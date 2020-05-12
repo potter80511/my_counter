@@ -1,0 +1,22 @@
+#index {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  #counter {
+    .title {
+      font-size: 80px;
+      margin: 0 0 30px;
+      color: #8d8d92;
+    }
+    .content {
+      color: #fff;
+      p {
+        margin: 0;
+      }
+      .time {
+        font-size: 60px;
+      }
+    }
+  }
+}
