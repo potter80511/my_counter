@@ -17,6 +17,50 @@
       .time {
         font-size: 60px;
       }
+      .buttons {
+        margin-top: 50px;
+        button {
+          font-size: 20px;
+          width: 90px;
+          height: 90px;
+          border-radius: 50%;
+          position: relative;
+          border: none;
+          transition: all .3s;
+          &:first-child {
+            margin-right: 30px;
+          }
+          &:hover {
+            transform: scale(1.05);
+          }
+          &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #000;
+          }
+        }
+        .start {
+          background-color: rgba(34, 138, 84, .5);
+          color: #1dcc71;
+          &:hover {
+            background-color: rgba(34, 138, 84, .6);
+          }
+        }
+        .cancel {
+          background-color: rgba(105, 105, 105, .5);
+          color: #fff;
+          &:hover {
+            background-color: rgba(105, 105, 105, .7);
+          }
+        }
+      }
     }
   }
 }

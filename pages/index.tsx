@@ -28,6 +28,10 @@ const index = () => {
             <span>00：</span>
             <span>00</span>
           </p>
+          <div className="buttons">
+            <button className="cancel">Cancel</button>
+            <button className="start">Start</button>
+          </div>
         </div>
       </div>
     </Layout>
