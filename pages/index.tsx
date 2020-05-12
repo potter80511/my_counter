@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '../components/Layout';
+import '@styles/index.scss';
 
 const meta = {
   title: 'My Counter',
@@ -20,7 +21,14 @@ const index = () => {
       meta={meta}
     >
       <div id='counter'>
-        <h1 className="sub">My Counter</h1>
+        <h1 className="title">My Counter</h1>
+        <div className="content">
+          <p className="time">
+            <span>00：</span>
+            <span>00：</span>
+            <span>00</span>
+          </p>
+        </div>
       </div>
     </Layout>
   );
