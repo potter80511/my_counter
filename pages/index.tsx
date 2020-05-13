@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {StartStatus, StartText} from '../types/index';
 import Layout from '../components/Layout';
 import TimeSettingTools from '../components/index/TimeSettingTools';
 import '@styles/index.scss';
@@ -16,17 +17,6 @@ const meta = {
 };
 
 let counting;
-
-enum StartStatus {
-  start = 'start',
-  pause = 'pause',
-  stop = 'stop',
-}
-enum StartText {
-  start = '開始',
-  continue = '繼續',
-  pause = '暫停',
-}
 
 const index = () => {
   const [totalSeconds, setTotalSeconds] = useState<number>(0);
@@ -46,6 +36,7 @@ const index = () => {
     if (t === 0) {
       setStartStatus(StartStatus.stop);
       setStartText(StartText.start);
+      setTimeIsSet(false);
       return clearInterval(counting);
     }
   };
@@ -72,7 +63,7 @@ const index = () => {
 
   const cancelCounting = () => {
     clearInterval(counting);
-    setTotalSeconds(30);
+    setTotalSeconds(0);
     setStartStatus(StartStatus.stop);
     setStartText(StartText.start);
   };
@@ -84,6 +75,7 @@ const index = () => {
     setSeconds(viewSeconds);
     const newTotalSeconds = totalSeconds + secondsNumber;
     setTotalSeconds(newTotalSeconds);
+    setTimeIsSet(true);
   };
 
   const stopClass = startStatus === StartStatus.start ? 'pause' : 'start';
@@ -96,7 +88,8 @@ const index = () => {
         <h1 className="title">My Counter</h1>
         <div className="content">
           <TimeSettingTools
-            seconds={seconds}
+            timeIsSet={timeIsSet}
+            seconds={Number(seconds)}
             onSecondsChange={onSecondsChange}
           />
           <p className="time">

@@ -1,11 +1,17 @@
 import React, {useState} from 'react';
 
+type optionType = {
+  label: string;
+  value: string;
+}
+
 type TimeSettingToolDatas = {
-  seconds: number[];
+  seconds: optionType[];
 };
 
 type TimeSettingTools = {
-  seconds: string;
+  timeIsSet: boolean;
+  seconds: number;
   onSecondsChange(s: string): void;
 };
 
@@ -14,28 +20,37 @@ const toolDatas: TimeSettingToolDatas = {
 };
 
 for (let i = 0; i <= 59; i++) {
-  toolDatas.seconds.push(i);
+  toolDatas.seconds.push({
+    label: i + '秒',
+    value: String(i),
+  });
 }
 
 const secondsDatas =  toolDatas.seconds.map(num =>
   (
     <option
-      value={num}
-    >{num}</option>
+      value={num.value}
+    >{num.label}</option>
   )
 );
 
 const TimeSettingTools = (props: TimeSettingTools) => {
   const {
+    timeIsSet,
+    seconds,
     onSecondsChange,
   } = props;
   return (
     <div className="time_setting_tools">
+      { !timeIsSet && (
+        <p>請設定時間開始計時</p>
+      )}
       <div className="select-group">
         <div className="seconds">
-          <select onChange={(e) => onSecondsChange(e.target.value)}>
+          <select value={seconds} onChange={(e) => onSecondsChange(e.target.value)}>
             {secondsDatas}
           </select>
+          <label>秒</label>
         </div>
       </div>
     </div>

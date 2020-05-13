@@ -1,0 +1,10 @@
+export enum StartStatus {
+  start = 'start',
+  pause = 'pause',
+  stop = 'stop',
+}
+export enum StartText {
+  start = '開始',
+  continue = '繼續',
+  pause = '暫停',
+}
