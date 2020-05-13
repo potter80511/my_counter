@@ -47,10 +47,17 @@
           }
         }
         .start {
-          background-color: rgba(34, 138, 84, .5);
+          background-color: rgba(34, 138, 84, .4);
           color: #1dcc71;
           &:hover {
             background-color: rgba(34, 138, 84, .6);
+          }
+        }
+        .pause {
+          background-color: rgba(205, 120, 31, .4);
+          color: #c9772e;
+          &:hover {
+            background-color: rgba(205, 120, 31, .6);
           }
         }
         .cancel {

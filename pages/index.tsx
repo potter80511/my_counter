@@ -14,27 +14,64 @@ const meta = {
   ogurl: '',
 };
 
+let counting;
+
+enum StartStatus {
+  start = 'start',
+  pause = 'pause',
+  stop = 'stop',
+}
+enum StartText {
+  start = '開始',
+  continue = '繼續',
+  pause = '暫停',
+}
+
 const index = () => {
   const [totalTime, setTotalTime] = useState<number>(30);
+  const [startStatus, setStartStatus] = useState<string>(StartStatus.stop);
+  const [startText, setStartText] = useState<string>(StartText.start);
 
-  // let counting =
-  let t = totalTime;
+  let t: number = totalTime;
+
+  const myTimer = () => {
+    t -= 1;
+    setTotalTime(t);
+    if (t === 0) {
+      setStartStatus(StartStatus.stop);
+      setStartText(StartText.start);
+      return clearInterval(counting);
+    }
+  };
 
   const startCounting = () => {
-    const myTimer = () => {
-      t -= 1;
-      setTotalTime(t);
-      console.log(t)
-      if (t === 0) {
-        return clearInterval(counting);
-      }
-    };
-    const counting = setInterval(myTimer, 1000);
+    switch (startStatus) {
+      case StartStatus.start: //按暫停
+        clearInterval(counting);
+        setStartStatus(StartStatus.pause);
+        setStartText(StartText.continue);
+        break;
+      case StartStatus.pause: //按繼續
+        setStartStatus(StartStatus.start);
+        setStartText(StartText.pause);
+        counting = setInterval(myTimer, 1000);
+        break;
+      case StartStatus.stop: //按開始
+        setStartStatus(StartStatus.start);
+        setStartText(StartText.pause);
+        counting = setInterval(myTimer, 1000);
+        break;
+    }
   };
 
   const cancelCounting = () => {
-    return clearInterval();
+    clearInterval(counting);
+    setTotalTime(30);
+    setStartStatus(StartStatus.stop);
+    setStartText(StartText.start);
   };
+
+  const stopClass = startStatus === StartStatus.start ? 'pause' : 'start';
   return (
     <Layout
       id={'index'}
@@ -52,15 +89,15 @@ const index = () => {
           <div className="buttons">
             <button
               className="cancel"
-              onClick={() => cancelCounting}
+              onClick={cancelCounting}
             >
               Cancel
             </button>
             <button
-              className="start"
+              className={stopClass}
               onClick={startCounting}
             >
-              Start
+              {startText}
             </button>
           </div>
         </div>
