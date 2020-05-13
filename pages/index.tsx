@@ -15,24 +15,25 @@ const meta = {
 };
 
 const index = () => {
-  const [totalTime, setTotalTime] = useState<number>(3600);
+  const [totalTime, setTotalTime] = useState<number>(30);
 
-  // let counting = 
-  
+  // let counting =
+  let t = totalTime;
+
   const startCounting = () => {
-    let tictock = totalTime;
-    setInterval(() => {
-      tictock = tictock - 1;
-      setTotalTime(tictock);
-    }, 1000);
+    const myTimer = () => {
+      t -= 1;
+      setTotalTime(t);
+      console.log(t)
+      if (t === 0) {
+        return clearInterval(counting);
+      }
+    };
+    const counting = setInterval(myTimer, 1000);
   };
-  const myTimer = () => {
-    let tictock = totalTime;
-    tictock = tictock - 1;
-    setTotalTime(tictock);
-  };
+
   const cancelCounting = () => {
-    window.clearInterval();
+    return clearInterval();
   };
   return (
     <Layout
