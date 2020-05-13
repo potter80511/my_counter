@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Layout from '../components/Layout';
+import TimeSettingTools from '../components/index/TimeSettingTools';
 import '@styles/index.scss';
 
 const meta = {
@@ -28,15 +29,20 @@ enum StartText {
 }
 
 const index = () => {
-  const [totalTime, setTotalTime] = useState<number>(30);
+  const [totalSeconds, setTotalSeconds] = useState<number>(0);
+  const [seconds, setSeconds] = useState<string>('00');
+  const [timeIsSet, setTimeIsSet] = useState<boolean>(false);
   const [startStatus, setStartStatus] = useState<string>(StartStatus.stop);
   const [startText, setStartText] = useState<string>(StartText.start);
 
-  let t: number = totalTime;
+  let t: number = totalSeconds;
+  let secondsNumber;
 
   const myTimer = () => {
     t -= 1;
-    setTotalTime(t);
+    secondsNumber = t < 10 ? '0' + t : t;
+    setTotalSeconds(t);
+    setSeconds(secondsNumber);
     if (t === 0) {
       setStartStatus(StartStatus.stop);
       setStartText(StartText.start);
@@ -66,9 +72,18 @@ const index = () => {
 
   const cancelCounting = () => {
     clearInterval(counting);
-    setTotalTime(30);
+    setTotalSeconds(30);
     setStartStatus(StartStatus.stop);
     setStartText(StartText.start);
+  };
+
+  const onSecondsChange = (s: string) => {
+    const secondsNumber = Number(s);
+    let viewSeconds = '00';
+    viewSeconds = secondsNumber < 10 ? '0' + s : s;
+    setSeconds(viewSeconds);
+    const newTotalSeconds = totalSeconds + secondsNumber;
+    setTotalSeconds(newTotalSeconds);
   };
 
   const stopClass = startStatus === StartStatus.start ? 'pause' : 'start';
@@ -80,12 +95,16 @@ const index = () => {
       <div id='counter'>
         <h1 className="title">My Counter</h1>
         <div className="content">
+          <TimeSettingTools
+            seconds={seconds}
+            onSecondsChange={onSecondsChange}
+          />
           <p className="time">
             <span>00：</span>
             <span>00：</span>
-            <span>00</span>
+            <span>{seconds}</span>
           </p>
-          <div>{totalTime}</div>
+          <div>{totalSeconds}</div>
           <div className="buttons">
             <button
               className="cancel"
