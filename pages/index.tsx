@@ -1,5 +1,9 @@
 import React, {useState} from 'react';
-import {StartStatus, StartText} from '../types/counter';
+import {
+  StartStatus,
+  StartText,
+  TimeSelectChangeType,
+} from '../types/counter';
 import Layout from '../components/Layout';
 import TimeSettingTools from '../components/index/TimeSettingTools';
 import '@styles/index.scss';
@@ -78,17 +82,26 @@ const index = () => {
   const calculateSettingsTime = (totalSeconds: number) => {
     //一分鐘60秒 60分鐘3600秒(1小時) 24小時86400秒
     let newViewSeconds = '00';
+    let newViewMinutes = '00';
+
     const numberSeconds = totalSeconds % 60; //餘秒數
     const stringSeconds = String(numberSeconds);
+    const numberMinutes = totalSeconds % 3600; //餘分
+    const stringMinutes = String(numberMinutes);
+
     newViewSeconds = numberSeconds < 10 ? '0' + stringSeconds : stringSeconds
     setViewSeconds(newViewSeconds);
+    newViewMinutes = numberMinutes < 10 ? '0' + stringMinutes : stringMinutes
+    setViewMinutes(newViewMinutes);
   };
 
   let settingsSeconds = 0;
   let settingsMinutes = 0;
 
   const calculateTotalSeconds = () => {
+    console.log(settingsSeconds, settingsMinutes)
     const newTotalSeconds = settingsSeconds + (settingsMinutes * 60);
+    console.log(newTotalSeconds)
     calculateSettingsTime(newTotalSeconds);
     setRemainTotalSeconds(newTotalSeconds);
     setSettingsTotalSeconds(newTotalSeconds);
@@ -101,13 +114,16 @@ const index = () => {
     calculateTotalSeconds();
     setTimeIsSet(true);
   };
-  const onMinutesChange = (m: string) => {
-    console.log(m)
-    // const secondsNumber = Number(s);
+  const onTimeChange = (t: string, type: string) => {
+    const timeNumber = Number(t);
 
-    // settingsSeconds = secondsNumber;
-    // calculateTotalSeconds();
-    // setTimeIsSet(true);
+    switch (type) {
+      case TimeSelectChangeType.minutes:
+        settingsMinutes = timeNumber;
+        break;
+    }
+    calculateTotalSeconds();
+    setTimeIsSet(true);
   };
 
   const stopClass = startStatus === StartStatus.start ? 'pause' : 'start';
@@ -124,11 +140,12 @@ const index = () => {
             seconds={Number(viewSeconds)}
             minutes={Number(viewMinutes)}
             onSecondsChange={onSecondsChange}
-            onMinutesChange={onMinutesChange}
+            onMinutesChange={(t) => onTimeChange(t, TimeSelectChangeType.minutes)}
           />
           <p className="time">
             <span>00：</span>
             <span>00：</span>
+            <span>{viewMinutes}：</span>
             <span>{viewSeconds}</span>
           </p>
           <div>剩餘{remainTotalSeconds}</div>

@@ -8,3 +8,8 @@ export enum StartText {
   continue = '繼續',
   pause = '暫停',
 }
+export enum TimeSelectChangeType {
+  seconds = 'seconds',
+  minutes = 'minutes',
+  hour = 'hour',
+}
