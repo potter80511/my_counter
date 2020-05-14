@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StartStatus, StartText} from '../types/index';
+import {StartStatus, StartText} from '../types/counter';
 import Layout from '../components/Layout';
 import TimeSettingTools from '../components/index/TimeSettingTools';
 import '@styles/index.scss';
@@ -19,23 +19,29 @@ const meta = {
 let counting;
 
 const index = () => {
-  const [totalSeconds, setTotalSeconds] = useState<number>(0);
-  const [seconds, setSeconds] = useState<string>('00');
+  const [remainTotalSeconds, setRemainTotalSeconds] = useState<number>(0);
+  const [settingsTotalSeconds, setSettingsTotalSeconds] = useState<number>(0);
+
+  const [viewSeconds, setViewSeconds] = useState<string>('00');
+  const [viewMinutes, setViewMinutes] = useState<string>('00');
+
   const [timeIsSet, setTimeIsSet] = useState<boolean>(false);
   const [startStatus, setStartStatus] = useState<string>(StartStatus.stop);
   const [startText, setStartText] = useState<string>(StartText.start);
 
-  let t: number = totalSeconds;
-  let secondsNumber;
+  let t: number = remainTotalSeconds;
+  let countingSeconds;
 
   const myTimer = () => {
     t -= 1;
-    secondsNumber = t < 10 ? '0' + t : t;
-    setTotalSeconds(t);
-    setSeconds(secondsNumber);
+    countingSeconds = t < 10 ? '0' + t : t;
+    setRemainTotalSeconds(t);
+    setViewSeconds(countingSeconds);
     if (t === 0) {
       setStartStatus(StartStatus.stop);
       setStartText(StartText.start);
+      calculateSettingsTime(settingsTotalSeconds);
+      setRemainTotalSeconds(settingsTotalSeconds);
       setTimeIsSet(false);
       return clearInterval(counting);
     }
@@ -63,18 +69,36 @@ const index = () => {
 
   const cancelCounting = () => {
     clearInterval(counting);
-    setTotalSeconds(0);
+    calculateSettingsTime(settingsTotalSeconds);
+    setRemainTotalSeconds(settingsTotalSeconds);
     setStartStatus(StartStatus.stop);
     setStartText(StartText.start);
   };
 
+  const calculateSettingsTime = (totalSeconds: number) => {
+    //一分鐘60秒 60分鐘3600秒(1小時) 24小時86400秒
+    let newViewSeconds = '00';
+    const numberSeconds = totalSeconds % 60; //餘秒數
+    const stringSeconds = String(numberSeconds);
+    newViewSeconds = numberSeconds < 10 ? '0' + stringSeconds : stringSeconds
+    setViewSeconds(newViewSeconds);
+  };
+
+  let settingsSeconds = 0;
+  let settingsMinutes = 0;
+
+  const calculateTotalSeconds = () => {
+    const newTotalSeconds = settingsSeconds + (settingsMinutes * 60);
+    calculateSettingsTime(newTotalSeconds);
+    setRemainTotalSeconds(newTotalSeconds);
+    setSettingsTotalSeconds(newTotalSeconds);
+  };
+
   const onSecondsChange = (s: string) => {
     const secondsNumber = Number(s);
-    let viewSeconds = '00';
-    viewSeconds = secondsNumber < 10 ? '0' + s : s;
-    setSeconds(viewSeconds);
-    const newTotalSeconds = totalSeconds + secondsNumber;
-    setTotalSeconds(newTotalSeconds);
+
+    settingsSeconds = secondsNumber;
+    calculateTotalSeconds();
     setTimeIsSet(true);
   };
 
@@ -89,15 +113,16 @@ const index = () => {
         <div className="content">
           <TimeSettingTools
             timeIsSet={timeIsSet}
-            seconds={Number(seconds)}
+            seconds={Number(viewSeconds)}
             onSecondsChange={onSecondsChange}
           />
           <p className="time">
             <span>00：</span>
             <span>00：</span>
-            <span>{seconds}</span>
+            <span>{viewSeconds}</span>
           </p>
-          <div>{totalSeconds}</div>
+          <div>剩餘{remainTotalSeconds}</div>
+          <div>設定{settingsTotalSeconds}</div>
           <div className="buttons">
             <button
               className="cancel"

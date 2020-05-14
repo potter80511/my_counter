@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
+import { optionType } from '../../types/common';
 
-type optionType = {
-  label: string;
-  value: string;
-}
+
 
 type TimeSettingToolDatas = {
   seconds: optionType[];
@@ -30,6 +28,7 @@ const secondsDatas =  toolDatas.seconds.map(num =>
   (
     <option
       value={num.value}
+      key={num.label}
     >{num.label}</option>
   )
 );
