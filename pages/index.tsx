@@ -101,6 +101,14 @@ const index = () => {
     calculateTotalSeconds();
     setTimeIsSet(true);
   };
+  const onMinutesChange = (m: string) => {
+    console.log(m)
+    // const secondsNumber = Number(s);
+
+    // settingsSeconds = secondsNumber;
+    // calculateTotalSeconds();
+    // setTimeIsSet(true);
+  };
 
   const stopClass = startStatus === StartStatus.start ? 'pause' : 'start';
   return (
@@ -114,7 +122,9 @@ const index = () => {
           <TimeSettingTools
             timeIsSet={timeIsSet}
             seconds={Number(viewSeconds)}
+            minutes={Number(viewMinutes)}
             onSecondsChange={onSecondsChange}
+            onMinutesChange={onMinutesChange}
           />
           <p className="time">
             <span>00：</span>
