@@ -126,18 +126,13 @@ const index = () => {
             timeIsSet={timeIsSet}
             seconds={Number(viewSeconds)}
             minutes={Number(viewMinutes)}
-            // onSecondsChange={onSecondsChange}
-            // onMinutesChange={onMinutesChange}
             onTotalSecondsChange={onTotalSecondsChange}
           />
           <p className="time">
             <span>00：</span>
-            <span>00：</span>
             <span>{viewMinutes}：</span>
             <span>{viewSeconds}</span>
           </p>
-          <div>剩餘{remainTotalSeconds}</div>
-          <div>設定{settingsTotalSeconds}</div>
           <div className="buttons">
             <button
               className="cancel"
@@ -152,6 +147,8 @@ const index = () => {
               {startText}
             </button>
           </div>
+          <div>剩餘{remainTotalSeconds}</div>
+          <div>設定{settingsTotalSeconds}</div>
         </div>
       </div>
     </Layout>

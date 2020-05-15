@@ -7,8 +7,12 @@ h1 {
   font-size: 40px;
   font-weight: bold;
 }
-button {
+button, select {
   &:focus {
     outline: none;
   }
+}
+
+.flex {
+  display: flex;
 }

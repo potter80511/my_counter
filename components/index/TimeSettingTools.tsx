@@ -1,6 +1,11 @@
 import React, {useState} from 'react';
 import NormalSelect from '../form_elements/NormalSelect';
 import { optionType } from '../../types/common';
+import '@styles/components/TimeSettingTools.scss';
+import {
+  faCaretDown,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type TimeSettingToolDatas = {
   seconds: optionType[];
@@ -21,11 +26,11 @@ const toolDatas: TimeSettingToolDatas = {
 
 for (let i = 0; i <= 59; i++) {
   toolDatas.seconds.push({
-    label: i + '秒',
+    label: String(i),
     value: String(i),
   });
   toolDatas.minutes.push({
-    label: i + '分',
+    label: String(i),
     value: String(i),
   });
 }
@@ -73,21 +78,26 @@ const TimeSettingTools = (props: TimeSettingToolsType) => {
       { !timeIsSet && (
         <p>請設定時間開始計時</p>
       )}
-      <div className="select-group">
-        <div className="seconds">
-          <select value={seconds} onChange={(e) => onSecondsChange(e.target.value)}>
-            {secondsDatas}
-          </select>
-          <label>秒</label>
+      <div className="flex tools">
+        <NormalSelect
+          className="minutes"
+          unit="分鐘"
+          value={minutes}
+          optionDatas={toolDatas.minutes}
+          onSelectChange={(m) => onMinutesChange(m)}
+        />
+        <div className="select-group">
+          <div className="times seconds">
+            <div className="select">
+              <select value={seconds} onChange={(e) => onSecondsChange(e.target.value)}>
+                {secondsDatas}
+              </select>
+              <FontAwesomeIcon icon={faCaretDown}/>
+            </div>
+            <label className="unit">秒鐘</label>
+          </div>
         </div>
       </div>
-      <NormalSelect
-        className="minutes"
-        unit="分"
-        value={minutes}
-        optionDatas={toolDatas.minutes}
-        onSelectChange={(m) => onMinutesChange(m)}
-      />
     </div>
   );
 };

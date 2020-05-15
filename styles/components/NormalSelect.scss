@@ -1,0 +1,38 @@
+.select-group {
+  .times {
+    .select {
+      position: relative;
+      svg {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        height: 15px;
+        color: #666;
+      }
+      select {
+        text-align: center;
+        background-color: #333;
+        opacity: .7;
+        color: #fff;
+        border: none;
+        padding: 5px 20px;
+        font-size: 30px;
+        border-radius: 2px;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        transition: all .3s;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+    .unit {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 15px;
+      color: #ccc;
+    }
+  }
+}
