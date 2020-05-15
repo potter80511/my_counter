@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import NormalSelect from '../form_elements/NormalSelect';
 import { optionType } from '../../types/common';
 
-
-
 type TimeSettingToolDatas = {
   seconds: optionType[];
   minutes: optionType[];
@@ -13,8 +11,7 @@ type TimeSettingToolsType = {
   timeIsSet: boolean;
   seconds: number;
   minutes: number;
-  onSecondsChange(s: string): void;
-  onMinutesChange(m: string): void;
+  onTotalSecondsChange(s: number): void;
 };
 
 const toolDatas: TimeSettingToolDatas = {
@@ -47,9 +44,30 @@ const TimeSettingTools = (props: TimeSettingToolsType) => {
     timeIsSet,
     seconds,
     minutes,
-    onSecondsChange,
-    onMinutesChange,
+    onTotalSecondsChange,
   } = props;
+  const [tempTotalSeconds, setTempTotalSeconds] = useState<number>(0);
+  const [prevSeconds, setPrevSeconds] = useState<number>(0);
+  const [prevMinutesSeconds, setMinutesPrevSeconds] = useState<number>(0);
+
+  const onSecondsChange = (s: string) => {
+    const numberSeconds = Number(s)
+    setPrevSeconds(numberSeconds);
+
+    const newTotalSeconds = tempTotalSeconds - prevSeconds + numberSeconds;
+    setTempTotalSeconds(newTotalSeconds);
+    onTotalSecondsChange(newTotalSeconds);
+  };
+
+  const onMinutesChange = (m: string) => {
+    const numberSeconds = Number(m) * 60;
+    setMinutesPrevSeconds(numberSeconds);
+
+    const newTotalSeconds = tempTotalSeconds - prevMinutesSeconds + numberSeconds;
+    setTempTotalSeconds(newTotalSeconds);
+    onTotalSecondsChange(newTotalSeconds);
+  };
+
   return (
     <div className="time_setting_tools">
       { !timeIsSet && (

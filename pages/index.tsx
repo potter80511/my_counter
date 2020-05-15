@@ -95,54 +95,23 @@ const index = () => {
     const stringSeconds = String(numberSeconds);
     const numberMinutes = Math.floor(totalSeconds / 60); //餘分
     const stringMinutes = String(numberMinutes);
-    console.log(numberMinutes)
 
     newViewSeconds = numberSeconds < 10 ? '0' + stringSeconds : stringSeconds
     setViewSeconds(newViewSeconds);
     newViewMinutes = numberMinutes < 10 ? '0' + stringMinutes : stringMinutes
     setViewMinutes(newViewMinutes);
-    console.log(totalSeconds)
-    console.log(newViewSeconds)
-    console.log(newViewMinutes)
   };
 
-  let settingsSeconds = 0;
-  let settingsMinutes = 0;
-
-  const calculateTotalSeconds = () => {
-    // console.log(settingsSeconds, settingsMinutes)
-    const newTotalSeconds = settingsSeconds + (settingsMinutes * 60);
-    // console.log(newTotalSeconds)
-    calculateSettingsTime(newTotalSeconds);
-    setRemainTotalSeconds(newTotalSeconds);
-    setSettingsTotalSeconds(newTotalSeconds);
+  const calculateTotalSeconds = (t: number) => {
+    calculateSettingsTime(t);
+    setRemainTotalSeconds(t);
+    setSettingsTotalSeconds(t);
   };
 
-  const onSecondsChange = (s: string) => {
-    const secondsNumber = Number(s);
-
-    settingsSeconds = secondsNumber;
-    calculateTotalSeconds();
-    setTimeIsSet(true);
+  const onTotalSecondsChange = (t: number) => {
+    setSettingsTotalSeconds(t);
+    calculateTotalSeconds(t);
   };
-  const onMinutesChange = (m: string) => {
-    const minutesNumber = Number(m);
-
-    settingsMinutes = minutesNumber;
-    calculateTotalSeconds();
-    setTimeIsSet(true);
-  };
-  // const onTimeChange = (t: string, type: string) => {
-  //   const timeNumber = Number(t);
-
-  //   switch (type) {
-  //     case TimeSelectChangeType.minutes:
-  //       settingsMinutes = timeNumber;
-  //       break;
-  //   }
-  //   calculateTotalSeconds();
-  //   setTimeIsSet(true);
-  // };
 
   const stopClass = startStatus === StartStatus.start ? 'pause' : 'start';
   return (
@@ -157,8 +126,9 @@ const index = () => {
             timeIsSet={timeIsSet}
             seconds={Number(viewSeconds)}
             minutes={Number(viewMinutes)}
-            onSecondsChange={onSecondsChange}
-            onMinutesChange={onMinutesChange}
+            // onSecondsChange={onSecondsChange}
+            // onMinutesChange={onMinutesChange}
+            onTotalSecondsChange={onTotalSecondsChange}
           />
           <p className="time">
             <span>00：</span>
