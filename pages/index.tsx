@@ -34,13 +34,20 @@ const index = () => {
   const [startText, setStartText] = useState<string>(StartText.start);
 
   let t: number = remainTotalSeconds;
-  let countingSeconds;
+  let countingSeconds: string | number = 0;
+  let countingMinutes: string | number = 0;
 
   const myTimer = () => {
     t -= 1;
-    countingSeconds = t < 10 ? '0' + t : t;
+    countingSeconds = t % 60;
+    countingMinutes = Math.floor(t / 60);
+
+    countingSeconds = countingSeconds < 10 ? '0' + countingSeconds : countingSeconds;
+    countingMinutes = countingMinutes < 10 ? '0' + countingMinutes : countingMinutes;
+
     setRemainTotalSeconds(t);
-    setViewSeconds(countingSeconds);
+    setViewSeconds(countingSeconds as string);
+    setViewMinutes(countingMinutes as string);
     if (t === 0) {
       setStartStatus(StartStatus.stop);
       setStartText(StartText.start);
@@ -86,22 +93,26 @@ const index = () => {
 
     const numberSeconds = totalSeconds % 60; //餘秒數
     const stringSeconds = String(numberSeconds);
-    const numberMinutes = totalSeconds % 3600; //餘分
+    const numberMinutes = Math.floor(totalSeconds / 60); //餘分
     const stringMinutes = String(numberMinutes);
+    console.log(numberMinutes)
 
     newViewSeconds = numberSeconds < 10 ? '0' + stringSeconds : stringSeconds
     setViewSeconds(newViewSeconds);
     newViewMinutes = numberMinutes < 10 ? '0' + stringMinutes : stringMinutes
     setViewMinutes(newViewMinutes);
+    console.log(totalSeconds)
+    console.log(newViewSeconds)
+    console.log(newViewMinutes)
   };
 
   let settingsSeconds = 0;
   let settingsMinutes = 0;
 
   const calculateTotalSeconds = () => {
-    console.log(settingsSeconds, settingsMinutes)
+    // console.log(settingsSeconds, settingsMinutes)
     const newTotalSeconds = settingsSeconds + (settingsMinutes * 60);
-    console.log(newTotalSeconds)
+    // console.log(newTotalSeconds)
     calculateSettingsTime(newTotalSeconds);
     setRemainTotalSeconds(newTotalSeconds);
     setSettingsTotalSeconds(newTotalSeconds);
@@ -114,17 +125,24 @@ const index = () => {
     calculateTotalSeconds();
     setTimeIsSet(true);
   };
-  const onTimeChange = (t: string, type: string) => {
-    const timeNumber = Number(t);
+  const onMinutesChange = (m: string) => {
+    const minutesNumber = Number(m);
 
-    switch (type) {
-      case TimeSelectChangeType.minutes:
-        settingsMinutes = timeNumber;
-        break;
-    }
+    settingsMinutes = minutesNumber;
     calculateTotalSeconds();
     setTimeIsSet(true);
   };
+  // const onTimeChange = (t: string, type: string) => {
+  //   const timeNumber = Number(t);
+
+  //   switch (type) {
+  //     case TimeSelectChangeType.minutes:
+  //       settingsMinutes = timeNumber;
+  //       break;
+  //   }
+  //   calculateTotalSeconds();
+  //   setTimeIsSet(true);
+  // };
 
   const stopClass = startStatus === StartStatus.start ? 'pause' : 'start';
   return (
@@ -140,7 +158,7 @@ const index = () => {
             seconds={Number(viewSeconds)}
             minutes={Number(viewMinutes)}
             onSecondsChange={onSecondsChange}
-            onMinutesChange={(t) => onTimeChange(t, TimeSelectChangeType.minutes)}
+            onMinutesChange={onMinutesChange}
           />
           <p className="time">
             <span>00：</span>
