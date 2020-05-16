@@ -6,6 +6,7 @@ import {
 } from '../types/counter';
 import Layout from '../components/Layout';
 import TimeSettingTools from '../components/index/TimeSettingTools';
+import Alert from '../components/modals/Alert';
 import '@styles/index.scss';
 
 const meta = {
@@ -37,6 +38,8 @@ const index = () => {
   const [timeIsSet, setTimeIsSet] = useState<boolean>(false);
   const [startStatus, setStartStatus] = useState<string>(StartStatus.stop);
   const [startText, setStartText] = useState<string>(StartText.start);
+
+  const [showSettingAlert, setShowSettingAlert] = useState<boolean>(false);
 
   let t: number = remainTotalSeconds;
   let countingSeconds: string | number = 0;
@@ -72,6 +75,10 @@ const index = () => {
   };
 
   const startCounting = () => {
+    if (remainTotalSeconds < 1) {
+      setShowSettingAlert(true);
+      return;
+    }
     switch (startStatus) {
       case StartStatus.start: //按暫停
         clearInterval(counting);
@@ -179,6 +186,10 @@ const index = () => {
     }
   };
 
+  const closeSettingAlert = () => {
+    setShowSettingAlert(false);
+  };
+
   const stopClass = startStatus === StartStatus.start ? 'pause' : 'start';
   return (
     <Layout
@@ -221,6 +232,14 @@ const index = () => {
           <div>剩餘{remainTotalSeconds}</div>
           <div>設定{settingsTotalSeconds}</div>
         </div>
+        { showSettingAlert && (
+          <Alert
+            id="please-set-time"
+            className="please-set-time"
+            message="請設定時間！"
+            onClose={closeSettingAlert}
+          />
+        )}
       </div>
     </Layout>
   );

@@ -1,0 +1,39 @@
+.alert-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  .background {
+    background-color: rgba(0, 0, 0, .7);
+    width: 100%;
+    height: 100%;
+  }
+  .modal-block {
+    border-radius: 5px;
+    padding: 10px 0 20px;
+    width: 80%;
+    max-width: 500px;
+    background-color: #2d2d2d;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    .close {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      color: #888;
+      svg {
+        height: 13px;
+      }
+    }
+    .modal-content {
+    }
+    .yes {
+      background-color: #fe9e0c;
+      padding: 5px 30px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    }
+  }
+}
