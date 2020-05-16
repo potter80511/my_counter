@@ -1,27 +1,28 @@
 import React, {useState} from 'react';
 import NormalSelect from '../form_elements/NormalSelect';
 import { optionType } from '../../types/common';
+import { TimeSelectChangeType } from '../../types/counter';
 import '@styles/components/TimeSettingTools.scss';
-import {
-  faCaretDown,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type TimeSettingToolDatas = {
   seconds: optionType[];
   minutes: optionType[];
+  hours: optionType[];
 };
 
 type TimeSettingToolsType = {
   timeIsSet: boolean;
   seconds: number;
   minutes: number;
-  onTotalSecondsChange(s: number): void;
+  hours: number;
+  onTotalSecondsChange(s: number, type: string): void;
+  onSettingsChange(s: number, type: string): void;
 };
 
 const toolDatas: TimeSettingToolDatas = {
   seconds: [],
   minutes: [],
+  hours: [],
 };
 
 for (let i = 0; i <= 59; i++) {
@@ -34,43 +35,51 @@ for (let i = 0; i <= 59; i++) {
     value: String(i),
   });
 }
-
-const secondsDatas =  toolDatas.seconds.map(num =>
-  (
-    <option
-      value={num.value}
-      key={num.label}
-    >{num.label}</option>
-  )
-);
+for (let i = 0; i <= 23; i++) {
+  toolDatas.hours.push({
+    label: String(i),
+    value: String(i),
+  });
+}
 
 const TimeSettingTools = (props: TimeSettingToolsType) => {
   const {
     timeIsSet,
     seconds,
     minutes,
+    hours,
     onTotalSecondsChange,
+    onSettingsChange,
   } = props;
   const [tempTotalSeconds, setTempTotalSeconds] = useState<number>(0);
   const [prevSeconds, setPrevSeconds] = useState<number>(0);
-  const [prevMinutesSeconds, setMinutesPrevSeconds] = useState<number>(0);
+  const [prevMinutesSeconds, setPrevMinutesSeconds] = useState<number>(0);
+  const [prevHoursSeconds, setPrevHoursSeconds] = useState<number>(0);
 
-  const onSecondsChange = (s: string) => {
-    const numberSeconds = Number(s)
-    setPrevSeconds(numberSeconds);
-
-    const newTotalSeconds = tempTotalSeconds - prevSeconds + numberSeconds;
+  const onTimeChange = (t: string, type: string) => {
+    let numberTimes= Number(t);
+    let newTotalSeconds: number;
+    onSettingsChange(numberTimes, type);
+    switch (type) {
+      case TimeSelectChangeType.seconds:
+        numberTimes = numberTimes;
+        setPrevSeconds(numberTimes);
+        newTotalSeconds = tempTotalSeconds - prevSeconds + numberTimes;
+        break;
+      case TimeSelectChangeType.minutes:
+        numberTimes = numberTimes * 60;
+        setPrevMinutesSeconds(numberTimes);
+        newTotalSeconds = tempTotalSeconds - prevMinutesSeconds + numberTimes;
+        break;
+      case TimeSelectChangeType.hour:
+        numberTimes = numberTimes * 3600;
+        setPrevHoursSeconds(numberTimes);
+        newTotalSeconds = tempTotalSeconds - prevHoursSeconds + numberTimes;
+        break;
+    }
+    
     setTempTotalSeconds(newTotalSeconds);
-    onTotalSecondsChange(newTotalSeconds);
-  };
-
-  const onMinutesChange = (m: string) => {
-    const numberSeconds = Number(m) * 60;
-    setMinutesPrevSeconds(numberSeconds);
-
-    const newTotalSeconds = tempTotalSeconds - prevMinutesSeconds + numberSeconds;
-    setTempTotalSeconds(newTotalSeconds);
-    onTotalSecondsChange(newTotalSeconds);
+    onTotalSecondsChange(newTotalSeconds, type);
   };
 
   return (
@@ -80,23 +89,26 @@ const TimeSettingTools = (props: TimeSettingToolsType) => {
       )}
       <div className="flex tools">
         <NormalSelect
+          className="hours"
+          unit="小時"
+          value={hours}
+          optionDatas={toolDatas.hours}
+          onSelectChange={(t) => onTimeChange(t, TimeSelectChangeType.hour)}
+        />
+        <NormalSelect
           className="minutes"
           unit="分鐘"
           value={minutes}
           optionDatas={toolDatas.minutes}
-          onSelectChange={(m) => onMinutesChange(m)}
+          onSelectChange={(t) => onTimeChange(t, TimeSelectChangeType.minutes)}
         />
-        <div className="select-group">
-          <div className="times seconds">
-            <div className="select">
-              <select value={seconds} onChange={(e) => onSecondsChange(e.target.value)}>
-                {secondsDatas}
-              </select>
-              <FontAwesomeIcon icon={faCaretDown}/>
-            </div>
-            <label className="unit">秒鐘</label>
-          </div>
-        </div>
+        <NormalSelect
+          className="seconds"
+          unit="秒鐘"
+          value={seconds}
+          optionDatas={toolDatas.seconds}
+          onSelectChange={(t) => onTimeChange(t, TimeSelectChangeType.seconds)}
+        />
       </div>
     </div>
   );

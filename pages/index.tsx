@@ -26,8 +26,13 @@ const index = () => {
   const [remainTotalSeconds, setRemainTotalSeconds] = useState<number>(0);
   const [settingsTotalSeconds, setSettingsTotalSeconds] = useState<number>(0);
 
+  const [settingsSeconds, setSettingsSeconds] = useState<number>(0);
+  const [settingsMinutes, setSettingsMinutes] = useState<number>(0);
+  const [settingsHours, setSettingsHours] = useState<number>(0);
+
   const [viewSeconds, setViewSeconds] = useState<string>('00');
   const [viewMinutes, setViewMinutes] = useState<string>('00');
+  const [viewHours, setViewHours] = useState<string>('00');
 
   const [timeIsSet, setTimeIsSet] = useState<boolean>(false);
   const [startStatus, setStartStatus] = useState<string>(StartStatus.stop);
@@ -36,22 +41,30 @@ const index = () => {
   let t: number = remainTotalSeconds;
   let countingSeconds: string | number = 0;
   let countingMinutes: string | number = 0;
+  let countingHours: string | number = 0;
 
   const myTimer = () => {
     t -= 1;
     countingSeconds = t % 60;
     countingMinutes = Math.floor(t / 60);
+    countingMinutes = countingMinutes > 59 ? countingMinutes % 60 : countingMinutes;
+
+    countingHours = Math.floor(t / 3600);
 
     countingSeconds = countingSeconds < 10 ? '0' + countingSeconds : countingSeconds;
     countingMinutes = countingMinutes < 10 ? '0' + countingMinutes : countingMinutes;
+    countingHours = countingHours < 10 ? '0' + countingHours : countingHours;
 
     setRemainTotalSeconds(t);
     setViewSeconds(countingSeconds as string);
     setViewMinutes(countingMinutes as string);
+    setViewHours(countingHours as string);
     if (t === 0) {
       setStartStatus(StartStatus.stop);
       setStartText(StartText.start);
-      calculateSettingsTime(settingsTotalSeconds);
+      
+      reset();
+
       setRemainTotalSeconds(settingsTotalSeconds);
       setTimeIsSet(false);
       return clearInterval(counting);
@@ -80,37 +93,90 @@ const index = () => {
 
   const cancelCounting = () => {
     clearInterval(counting);
-    calculateSettingsTime(settingsTotalSeconds);
+    reset();
     setRemainTotalSeconds(settingsTotalSeconds);
     setStartStatus(StartStatus.stop);
     setStartText(StartText.start);
   };
 
-  const calculateSettingsTime = (totalSeconds: number) => {
+  const reset = () => {
+    calculateViewTimes(settingsSeconds, TimeSelectChangeType.seconds);
+    calculateViewTimes(settingsMinutes, TimeSelectChangeType.minutes);
+    calculateViewTimes(settingsHours, TimeSelectChangeType.hour);
+  }
+
+  const calculateSettingsTime = (totalSeconds: number, type: string) => {
     //一分鐘60秒 60分鐘3600秒(1小時) 24小時86400秒
-    let newViewSeconds = '00';
-    let newViewMinutes = '00';
+    let newViewTimes = '00';
+    let numberTimes = 0;
+    let stringTimes = '00';
 
-    const numberSeconds = totalSeconds % 60; //餘秒數
-    const stringSeconds = String(numberSeconds);
-    const numberMinutes = Math.floor(totalSeconds / 60); //餘分
-    const stringMinutes = String(numberMinutes);
+    switch (type) {
+      case TimeSelectChangeType.seconds:
+        numberTimes = totalSeconds % 60; //餘分
 
-    newViewSeconds = numberSeconds < 10 ? '0' + stringSeconds : stringSeconds
-    setViewSeconds(newViewSeconds);
-    newViewMinutes = numberMinutes < 10 ? '0' + stringMinutes : stringMinutes
-    setViewMinutes(newViewMinutes);
+        stringTimes = String(numberTimes);
+        newViewTimes = numberTimes < 10 ? '0' + stringTimes : stringTimes
+        setViewSeconds(newViewTimes);
+        break;
+      case TimeSelectChangeType.minutes:
+        numberTimes = Math.floor(totalSeconds / 60); //餘分
+        numberTimes = numberTimes > 59 ? numberTimes % 60 : numberTimes;
+
+        stringTimes = String(numberTimes);
+        newViewTimes = numberTimes < 10 ? '0' + stringTimes : stringTimes
+        setViewMinutes(newViewTimes);
+        break;
+      case TimeSelectChangeType.hour:
+        numberTimes = Math.floor(totalSeconds / 3600); //餘小時
+        stringTimes = String(numberTimes);
+        newViewTimes = numberTimes < 10 ? '0' + stringTimes : stringTimes
+        setViewHours(newViewTimes);
+        break;
+    }
   };
 
-  const calculateTotalSeconds = (t: number) => {
-    calculateSettingsTime(t);
+  const calculateTotalSeconds = (t: number, type: string) => {
+    calculateSettingsTime(t, type);
+    
     setRemainTotalSeconds(t);
     setSettingsTotalSeconds(t);
   };
 
-  const onTotalSecondsChange = (t: number) => {
+  const onTotalSecondsChange = (t: number, type: string) => {
     setSettingsTotalSeconds(t);
-    calculateTotalSeconds(t);
+    calculateTotalSeconds(t, type);
+  };
+
+  const calculateViewTimes = (t: number, type: string) => {
+    let newViewTimes = '00';
+    const stringTimes = String(t);
+    newViewTimes = t < 10 ? '0' + stringTimes : stringTimes
+    switch (type) {
+      case TimeSelectChangeType.seconds:
+        setViewSeconds(newViewTimes);
+        break;
+      case TimeSelectChangeType.minutes:
+        setViewMinutes(newViewTimes);
+        break;
+      case TimeSelectChangeType.hour:
+        setViewHours(newViewTimes);
+        break;
+    }
+  }
+
+  const onSettingsChange = (t: number, type: string) => {
+    switch (type) {
+      case TimeSelectChangeType.seconds:
+        setSettingsSeconds(t);
+        break;
+      case TimeSelectChangeType.minutes:
+        setSettingsMinutes(t);
+        break;
+      case TimeSelectChangeType.hour:
+        setSettingsHours(t);
+        break;
+    }
   };
 
   const stopClass = startStatus === StartStatus.start ? 'pause' : 'start';
@@ -126,10 +192,12 @@ const index = () => {
             timeIsSet={timeIsSet}
             seconds={Number(viewSeconds)}
             minutes={Number(viewMinutes)}
-            onTotalSecondsChange={onTotalSecondsChange}
+            hours={Number(viewHours)}
+            onTotalSecondsChange={(s, type) => onTotalSecondsChange(s, type)}
+            onSettingsChange={(t, type) => onSettingsChange(t, type)}
           />
           <p className="time">
-            <span>00：</span>
+            <span>{viewHours}：</span>
             <span>{viewMinutes}：</span>
             <span>{viewSeconds}</span>
           </p>
