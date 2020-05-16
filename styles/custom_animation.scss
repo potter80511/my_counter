@@ -1,0 +1,42 @@
+@keyframes slide-down {
+  0% {
+    visibility: hidden;
+    height: 0;
+  }
+
+  95% {
+    visibility: visible;
+  }
+
+  // 動畫結束時把高設成 auto
+  100% {
+    visibility: visible;
+    height: auto;
+  }
+}
+.slide-down {
+  animation: slide-down 0.3s linear both;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.show {
+  animation: fadeIn 0.3s;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.fadeOut {
+  animation: fadeOut 0.3s;
+}

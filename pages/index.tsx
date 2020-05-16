@@ -237,6 +237,7 @@ const index = () => {
             id="please-set-time"
             className="please-set-time"
             message="請設定時間！"
+            show={showSettingAlert}
             onClose={closeSettingAlert}
           />
         )}

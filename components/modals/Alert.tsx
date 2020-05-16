@@ -8,6 +8,7 @@ import '@styles/components/Alert.scss';
 type AlertProps = {
   id?: string;
   className?: string;
+  show: boolean;
   message: string;
   yesText?: string;
   onClose(): void;
@@ -18,16 +19,18 @@ const Alert = (props: AlertProps) => {
   const {
     id,
     message,
+    show,
     yesText = 'ok',
     onClose,
   } = props;
+  const showClass = show ? ' show' : '';
   const onYes = () => {
     onClose();
   }
   return (
     <div
       id={id}
-      className={`alert-modal${className}`}
+      className={`alert-modal${className}${showClass}`}
     >
       <div className="background" onClick={onClose}></div>
       <div className="modal-block">
