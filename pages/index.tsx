@@ -220,7 +220,7 @@ const index = () => {
               className="cancel"
               onClick={cancelCounting}
             >
-              Cancel
+              取消
             </button>
             <button
               className={stopClass}

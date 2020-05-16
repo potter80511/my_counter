@@ -70,4 +70,12 @@
       }
     }
   }
+  @media (max-width: 575px) {
+    #counter {
+      .title {
+        font-size: 50px;
+        margin: 0 0 20px;
+      }
+    }
+  }
 }
