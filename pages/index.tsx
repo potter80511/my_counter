@@ -188,19 +188,22 @@ const index = () => {
       <div id='counter'>
         <h1 className="title">My Counter</h1>
         <div className="content">
-          <TimeSettingTools
-            timeIsSet={timeIsSet}
-            seconds={Number(viewSeconds)}
-            minutes={Number(viewMinutes)}
-            hours={Number(viewHours)}
-            onTotalSecondsChange={(s, type) => onTotalSecondsChange(s, type)}
-            onSettingsChange={(t, type) => onSettingsChange(t, type)}
-          />
-          <p className="time">
-            <span>{viewHours}：</span>
-            <span>{viewMinutes}：</span>
-            <span>{viewSeconds}</span>
-          </p>
+          { startStatus === StartStatus.stop ? (
+            <TimeSettingTools
+              timeIsSet={timeIsSet}
+              seconds={Number(viewSeconds)}
+              minutes={Number(viewMinutes)}
+              hours={Number(viewHours)}
+              onTotalSecondsChange={(s, type) => onTotalSecondsChange(s, type)}
+              onSettingsChange={(t, type) => onSettingsChange(t, type)}
+            />
+          ) : (
+            <p className="time">
+              <span>{viewHours}：</span>
+              <span>{viewMinutes}：</span>
+              <span>{viewSeconds}</span>
+            </p>
+          )}
           <div className="buttons">
             <button
               className="cancel"
