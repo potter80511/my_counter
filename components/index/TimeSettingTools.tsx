@@ -15,8 +15,12 @@ type TimeSettingToolsType = {
   seconds: number;
   minutes: number;
   hours: number;
+  prevSeconds: number;
+  prevMinutesSeconds: number;
+  prevHoursSeconds: number;
+  remainTotalSeconds: number;
   onTotalSecondsChange(s: number, type: string): void;
-  onSettingsChange(s: number, type: string): void;
+  onPrevTimeChange(s: number, type: string): void;
 };
 
 const toolDatas: TimeSettingToolDatas = {
@@ -48,36 +52,36 @@ const TimeSettingTools = (props: TimeSettingToolsType) => {
     seconds,
     minutes,
     hours,
+    prevSeconds,
+    prevMinutesSeconds,
+    prevHoursSeconds,
+    remainTotalSeconds,
     onTotalSecondsChange,
-    onSettingsChange,
+    onPrevTimeChange,
   } = props;
-  const [tempTotalSeconds, setTempTotalSeconds] = useState<number>(0);
-  const [prevSeconds, setPrevSeconds] = useState<number>(0);
-  const [prevMinutesSeconds, setPrevMinutesSeconds] = useState<number>(0);
-  const [prevHoursSeconds, setPrevHoursSeconds] = useState<number>(0);
-
+  const [tempTotalSeconds, setTempTotalSeconds] = useState<number>(remainTotalSeconds);
+  console.log(tempTotalSeconds)
   const onTimeChange = (t: string, type: string) => {
     let numberTimes= Number(t);
     let newTotalSeconds: number;
-    onSettingsChange(numberTimes, type);
     switch (type) {
       case TimeSelectChangeType.seconds:
         numberTimes = numberTimes;
-        setPrevSeconds(numberTimes);
+        onPrevTimeChange(numberTimes, type);
         newTotalSeconds = tempTotalSeconds - prevSeconds + numberTimes;
         break;
       case TimeSelectChangeType.minutes:
         numberTimes = numberTimes * 60;
-        setPrevMinutesSeconds(numberTimes);
+        onPrevTimeChange(numberTimes, type);
         newTotalSeconds = tempTotalSeconds - prevMinutesSeconds + numberTimes;
         break;
       case TimeSelectChangeType.hour:
         numberTimes = numberTimes * 3600;
-        setPrevHoursSeconds(numberTimes);
+        onPrevTimeChange(numberTimes, type);
         newTotalSeconds = tempTotalSeconds - prevHoursSeconds + numberTimes;
         break;
     }
-    
+
     setTempTotalSeconds(newTotalSeconds);
     onTotalSecondsChange(newTotalSeconds, type);
   };

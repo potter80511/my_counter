@@ -31,6 +31,10 @@ const index = () => {
   const [settingsMinutes, setSettingsMinutes] = useState<number>(0);
   const [settingsHours, setSettingsHours] = useState<number>(0);
 
+  const [prevSeconds, setPrevSeconds] = useState<number>(0);
+  const [prevMinutesSeconds, setPrevMinutesSeconds] = useState<number>(0);
+  const [prevHoursSeconds, setPrevHoursSeconds] = useState<number>(0);
+
   const [viewSeconds, setViewSeconds] = useState<string>('00');
   const [viewMinutes, setViewMinutes] = useState<string>('00');
   const [viewHours, setViewHours] = useState<string>('00');
@@ -65,7 +69,7 @@ const index = () => {
     if (t === 0) {
       setStartStatus(StartStatus.stop);
       setStartText(StartText.start);
-      
+
       reset();
 
       setRemainTotalSeconds(settingsTotalSeconds);
@@ -107,52 +111,51 @@ const index = () => {
   };
 
   const reset = () => {
-    calculateViewTimes(settingsSeconds, TimeSelectChangeType.seconds);
-    calculateViewTimes(settingsMinutes, TimeSelectChangeType.minutes);
-    calculateViewTimes(settingsHours, TimeSelectChangeType.hour);
+    calculateSettingsTime(settingsTotalSeconds);
   }
 
-  const calculateSettingsTime = (totalSeconds: number, type: string) => {
+  const calculateSettingsTime = (totalSeconds: number) => {
     //一分鐘60秒 60分鐘3600秒(1小時) 24小時86400秒
-    let newViewTimes = '00';
-    let numberTimes = 0;
-    let stringTimes = '00';
+    let newViewSeconds = '00';
+    let numberSeconds = 0;
+    let stringSeconds = '00';
+    numberSeconds = totalSeconds % 60; //餘分
 
-    switch (type) {
-      case TimeSelectChangeType.seconds:
-        numberTimes = totalSeconds % 60; //餘分
+    stringSeconds = String(numberSeconds);
+    newViewSeconds = numberSeconds < 10 ? '0' + stringSeconds : stringSeconds
+    setViewSeconds(newViewSeconds);
 
-        stringTimes = String(numberTimes);
-        newViewTimes = numberTimes < 10 ? '0' + stringTimes : stringTimes
-        setViewSeconds(newViewTimes);
-        break;
-      case TimeSelectChangeType.minutes:
-        numberTimes = Math.floor(totalSeconds / 60); //餘分
-        numberTimes = numberTimes > 59 ? numberTimes % 60 : numberTimes;
+    let newViewMinutes = '00';
+    let numberMinutes = 0;
+    let stringMinutes = '00';
 
-        stringTimes = String(numberTimes);
-        newViewTimes = numberTimes < 10 ? '0' + stringTimes : stringTimes
-        setViewMinutes(newViewTimes);
-        break;
-      case TimeSelectChangeType.hour:
-        numberTimes = Math.floor(totalSeconds / 3600); //餘小時
-        stringTimes = String(numberTimes);
-        newViewTimes = numberTimes < 10 ? '0' + stringTimes : stringTimes
-        setViewHours(newViewTimes);
-        break;
-    }
+    numberMinutes = Math.floor(totalSeconds / 60); //餘分
+    numberMinutes = numberMinutes > 59 ? numberMinutes % 60 : numberMinutes;
+
+    stringMinutes = String(numberMinutes);
+    newViewMinutes = numberMinutes < 10 ? '0' + stringMinutes : stringMinutes
+    setViewMinutes(newViewMinutes);
+
+    let newViewHours = '00';
+    let numberHours = 0;
+    let stringHours = '00';
+
+    numberHours = Math.floor(totalSeconds / 3600); //餘小時
+    stringHours = String(numberHours);
+    newViewHours = numberHours < 10 ? '0' + stringHours : stringHours
+    setViewHours(newViewHours);
   };
 
-  const calculateTotalSeconds = (t: number, type: string) => {
-    calculateSettingsTime(t, type);
-    
+  const calculateTotalSeconds = (t: number) => {
+    calculateSettingsTime(t);
+
     setRemainTotalSeconds(t);
     setSettingsTotalSeconds(t);
   };
 
   const onTotalSecondsChange = (t: number, type: string) => {
     setSettingsTotalSeconds(t);
-    calculateTotalSeconds(t, type);
+    calculateTotalSeconds(t);
   };
 
   const calculateViewTimes = (t: number, type: string) => {
@@ -172,16 +175,16 @@ const index = () => {
     }
   }
 
-  const onSettingsChange = (t: number, type: string) => {
+  const onPrevTimeChange = (t: number, type: string) => {
     switch (type) {
       case TimeSelectChangeType.seconds:
-        setSettingsSeconds(t);
+        setPrevSeconds(t);
         break;
       case TimeSelectChangeType.minutes:
-        setSettingsMinutes(t);
+        setPrevMinutesSeconds(t);
         break;
       case TimeSelectChangeType.hour:
-        setSettingsHours(t);
+        setPrevHoursSeconds(t);
         break;
     }
   };
@@ -202,11 +205,15 @@ const index = () => {
           { startStatus === StartStatus.stop ? (
             <TimeSettingTools
               timeIsSet={timeIsSet}
+              remainTotalSeconds={remainTotalSeconds}
               seconds={Number(viewSeconds)}
               minutes={Number(viewMinutes)}
               hours={Number(viewHours)}
+              prevSeconds={prevSeconds}
+              prevMinutesSeconds={prevMinutesSeconds}
+              prevHoursSeconds={prevHoursSeconds}
               onTotalSecondsChange={(s, type) => onTotalSecondsChange(s, type)}
-              onSettingsChange={(t, type) => onSettingsChange(t, type)}
+              onPrevTimeChange={(s, type) => onPrevTimeChange(s, type)}
             />
           ) : (
             <p className="time">
