@@ -18,7 +18,7 @@ type TimeSettingToolsType = {
   prevSeconds: number;
   prevMinutesSeconds: number;
   prevHoursSeconds: number;
-  remainTotalSeconds: number;
+  settingsTotalSeconds: number;
   onTotalSecondsChange(s: number, type: string): void;
   onPrevTimeChange(s: number, type: string): void;
 };
@@ -55,12 +55,12 @@ const TimeSettingTools = (props: TimeSettingToolsType) => {
     prevSeconds,
     prevMinutesSeconds,
     prevHoursSeconds,
-    remainTotalSeconds,
+    settingsTotalSeconds,
     onTotalSecondsChange,
     onPrevTimeChange,
   } = props;
-  const [tempTotalSeconds, setTempTotalSeconds] = useState<number>(remainTotalSeconds);
-  console.log(tempTotalSeconds)
+  const [tempTotalSeconds, setTempTotalSeconds] = useState<number>(settingsTotalSeconds);
+
   const onTimeChange = (t: string, type: string) => {
     let numberTimes= Number(t);
     let newTotalSeconds: number;

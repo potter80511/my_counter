@@ -158,22 +158,6 @@ const index = () => {
     calculateTotalSeconds(t);
   };
 
-  const calculateViewTimes = (t: number, type: string) => {
-    let newViewTimes = '00';
-    const stringTimes = String(t);
-    newViewTimes = t < 10 ? '0' + stringTimes : stringTimes
-    switch (type) {
-      case TimeSelectChangeType.seconds:
-        setViewSeconds(newViewTimes);
-        break;
-      case TimeSelectChangeType.minutes:
-        setViewMinutes(newViewTimes);
-        break;
-      case TimeSelectChangeType.hour:
-        setViewHours(newViewTimes);
-        break;
-    }
-  }
 
   const onPrevTimeChange = (t: number, type: string) => {
     switch (type) {
@@ -205,7 +189,7 @@ const index = () => {
           { startStatus === StartStatus.stop ? (
             <TimeSettingTools
               timeIsSet={timeIsSet}
-              remainTotalSeconds={remainTotalSeconds}
+              settingsTotalSeconds={settingsTotalSeconds}
               seconds={Number(viewSeconds)}
               minutes={Number(viewMinutes)}
               hours={Number(viewHours)}
@@ -236,8 +220,8 @@ const index = () => {
               {startText}
             </button>
           </div>
-          <div>剩餘{remainTotalSeconds}</div>
-          <div>設定{settingsTotalSeconds}</div>
+          <div>剩餘總秒數：{remainTotalSeconds}</div>
+          <div>設定總秒數：{settingsTotalSeconds}</div>
         </div>
         { showSettingAlert && (
           <Alert
