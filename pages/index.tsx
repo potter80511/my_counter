@@ -3,10 +3,11 @@ import {
   StartStatus,
   StartText,
   TimeSelectChangeType,
+  CounterAlertType,
 } from '../types/counter';
 import Layout from '../components/Layout';
 import TimeSettingTools from '../components/index/TimeSettingTools';
-import Alert from '../components/modals/Alert';
+import Alert, { AlertProps } from '../components/modals/Alert';
 import '@styles/index.scss';
 
 const meta = {
@@ -39,6 +40,7 @@ const index = () => {
   const [startStatus, setStartStatus] = useState<string>(StartStatus.stop);
   const [startText, setStartText] = useState<string>(StartText.start);
 
+  const [alertDatas, setAlertDatas] = useState<AlertProps>({message: ''});
   const [showSettingAlert, setShowSettingAlert] = useState<boolean>(false);
   const [showSettingAlertAnimate, setShowSettingAlertAnimate] = useState<boolean>(false);
   const [showTotalSeconds, setShowTotalSeconds] = useState<boolean>(false);
@@ -67,6 +69,7 @@ const index = () => {
     if (t === 0) {
       setStartStatus(StartStatus.stop);
       setStartText(StartText.start);
+      onShowSettingAlert(CounterAlertType.timesUp);
 
       reset();
 
@@ -78,7 +81,7 @@ const index = () => {
 
   const startCounting = () => {
     if (remainTotalSeconds < 1) {
-      onShowSettingAlert();
+      onShowSettingAlert(CounterAlertType.pleaseSetTime);
       return;
     }
     switch (startStatus) {
@@ -156,7 +159,6 @@ const index = () => {
     calculateTotalSeconds(t);
   };
 
-
   const onPrevTimeChange = (t: number, type: string) => {
     switch (type) {
       case TimeSelectChangeType.seconds:
@@ -171,9 +173,22 @@ const index = () => {
     }
   };
 
-  const onShowSettingAlert = () => {
+  const onShowSettingAlert = (type: string) => {
     setShowSettingAlert(true);
     setShowSettingAlertAnimate(true);
+
+    switch (type) {
+      case CounterAlertType.pleaseSetTime:
+        setAlertDatas({
+          message: '請設定時間再開始計時！',
+        });
+        break;
+      case CounterAlertType.timesUp:
+        setAlertDatas({
+          message: '時間到！',
+        });
+        break;
+    };
   };
 
   const closeSettingAlert = () => {
@@ -240,9 +255,7 @@ const index = () => {
         </div>
         { showSettingAlert && (
           <Alert
-            id="please-set-time"
-            className="please-set-time"
-            message="請設定時間再開始計時！"
+            message={alertDatas.message}
             show={showSettingAlertAnimate}
             onClose={closeSettingAlert}
           />

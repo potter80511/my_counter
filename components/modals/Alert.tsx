@@ -5,13 +5,13 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@styles/components/Alert.scss';
 
-type AlertProps = {
+export type AlertProps = {
   id?: string;
   className?: string;
-  show: boolean;
+  show?: boolean;
   message: string;
   yesText?: string;
-  onClose(): void;
+  onClose?(): void;
 }
 
 const Alert = (props: AlertProps) => {

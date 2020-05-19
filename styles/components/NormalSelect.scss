@@ -9,6 +9,15 @@
         transform: translateY(-50%);
         height: 15px;
         color: #666;
+        transition: all .3s;
+      }
+      &:hover {
+        select {
+          opacity: 1;
+        }
+        svg {
+          color: #fff;
+        }
       }
       select {
         text-align: center;
@@ -23,9 +32,6 @@
         -webkit-appearance: none;
         -moz-appearance: none;
         transition: all .3s;
-        &:hover {
-          opacity: 1;
-        }
       }
     }
     .unit {
