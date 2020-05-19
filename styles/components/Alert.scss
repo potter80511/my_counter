@@ -10,6 +10,9 @@
   &.show {
     opacity: 1;
   }
+  &.hide {
+    animation: fadeOut 0.3s;
+  }
   .background {
     background-color: rgba(0, 0, 0, .8);
     width: 100%;
@@ -17,10 +20,12 @@
   }
   .modal-block {
     border-radius: 5px;
+    border: 2px solid #222;
+    border: 1px solid #2c3745;
     padding: 10px 0 20px;
     width: 80%;
     max-width: 500px;
-    background-color: #2d2d2d;
+    background-color: rgba(29, 37, 47 ,.75);
     position: absolute;
     left: 50%;
     top: 50%;
@@ -29,16 +34,20 @@
       position: absolute;
       right: 10px;
       top: 10px;
-      color: #888;
+      color: #394d5c;
+      transition: all .3s;
       svg {
         height: 16px;
+      }
+      &:hover {
+        color: #506e85;
       }
     }
     .yes {
       background-color: #fe9e0c;
       color: #fff;
       font-size: 16px;
-      border-radius: 99em;
+      border-radius: 100em;
       padding: 5px 40px;
       transition: all .3s;
       &:hover {

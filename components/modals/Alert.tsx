@@ -24,6 +24,7 @@ const Alert = (props: AlertProps) => {
     onClose,
   } = props;
   const showClass = show ? ' show' : '';
+  // const scaleIn = show ? ' scaleIn' : '';
   const onYes = () => {
     onClose();
   }
@@ -33,7 +34,7 @@ const Alert = (props: AlertProps) => {
       className={`alert-modal${className}${showClass}`}
     >
       <div className="background" onClick={onClose}></div>
-      <div className="modal-block">
+      <div className={`modal-block`}>
         <button className="close" onClick={onClose}><FontAwesomeIcon icon={faTimes}/></button>
         <div className="modal-content">
           <p className="message">{message}</p>

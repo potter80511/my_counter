@@ -40,6 +40,7 @@ const index = () => {
   const [startText, setStartText] = useState<string>(StartText.start);
 
   const [showSettingAlert, setShowSettingAlert] = useState<boolean>(false);
+  const [showSettingAlertAnimate, setShowSettingAlertAnimate] = useState<boolean>(false);
   const [showTotalSeconds, setShowTotalSeconds] = useState<boolean>(false);
 
   let t: number = remainTotalSeconds;
@@ -77,7 +78,7 @@ const index = () => {
 
   const startCounting = () => {
     if (remainTotalSeconds < 1) {
-      setShowSettingAlert(true);
+      onShowSettingAlert();
       return;
     }
     switch (startStatus) {
@@ -170,8 +171,16 @@ const index = () => {
     }
   };
 
+  const onShowSettingAlert = () => {
+    setShowSettingAlert(true);
+    setShowSettingAlertAnimate(true);
+  };
+
   const closeSettingAlert = () => {
-    setShowSettingAlert(false);
+    setShowSettingAlertAnimate(false);
+    setTimeout(() => {
+      setShowSettingAlert(false);
+    }, 400);
   };
 
   const onShowTotalSeconds = () => {
@@ -234,8 +243,8 @@ const index = () => {
           <Alert
             id="please-set-time"
             className="please-set-time"
-            message="請設定時間！"
-            show={showSettingAlert}
+            message="請設定時間再開始計時！"
+            show={showSettingAlertAnimate}
             onClose={closeSettingAlert}
           />
         )}
