@@ -4,12 +4,24 @@
   align-items: center;
   height: 100vh;
   #counter {
+    .show_total_seconds {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 20px 0;
+    }
     .title {
       font-size: 80px;
       margin: 0 0 30px;
       color: #8d8d92;
     }
     .content {
+      .total_seconds {
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 20px;
+      }
       p {
         margin: 0;
       }

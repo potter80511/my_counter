@@ -27,10 +27,6 @@ const index = () => {
   const [remainTotalSeconds, setRemainTotalSeconds] = useState<number>(0);
   const [settingsTotalSeconds, setSettingsTotalSeconds] = useState<number>(0);
 
-  const [settingsSeconds, setSettingsSeconds] = useState<number>(0);
-  const [settingsMinutes, setSettingsMinutes] = useState<number>(0);
-  const [settingsHours, setSettingsHours] = useState<number>(0);
-
   const [prevSeconds, setPrevSeconds] = useState<number>(0);
   const [prevMinutesSeconds, setPrevMinutesSeconds] = useState<number>(0);
   const [prevHoursSeconds, setPrevHoursSeconds] = useState<number>(0);
@@ -44,6 +40,7 @@ const index = () => {
   const [startText, setStartText] = useState<string>(StartText.start);
 
   const [showSettingAlert, setShowSettingAlert] = useState<boolean>(false);
+  const [showTotalSeconds, setShowTotalSeconds] = useState<boolean>(false);
 
   let t: number = remainTotalSeconds;
   let countingSeconds: string | number = 0;
@@ -177,6 +174,11 @@ const index = () => {
     setShowSettingAlert(false);
   };
 
+  const onShowTotalSeconds = () => {
+    const newShow = !showTotalSeconds;
+    setShowTotalSeconds(newShow);
+  };
+
   const stopClass = startStatus === StartStatus.start ? 'pause' : 'start';
   return (
     <Layout
@@ -184,6 +186,7 @@ const index = () => {
       meta={meta}
     >
       <div id='counter'>
+        <button className="show_total_seconds" onClick={onShowTotalSeconds}>show totalSeconds</button>
         <h1 className="title">My Counter</h1>
         <div className="content">
           { startStatus === StartStatus.stop ? (
@@ -220,8 +223,12 @@ const index = () => {
               {startText}
             </button>
           </div>
-          <div>剩餘總秒數：{remainTotalSeconds}</div>
-          <div>設定總秒數：{settingsTotalSeconds}</div>
+          { showTotalSeconds && (
+            <div className="total_seconds">
+              <div>剩餘總秒數：{remainTotalSeconds}</div>
+              <div>設定總秒數：{settingsTotalSeconds}</div>
+            </div>
+          )}
         </div>
         { showSettingAlert && (
           <Alert
