@@ -198,20 +198,19 @@ const index = () => {
         <button className="show_total_seconds" onClick={onShowTotalSeconds}>show totalSeconds</button>
         <h1 className="title">My Counter</h1>
         <div className="content">
-          { startStatus === StartStatus.stop ? (
-            <TimeSettingTools
-              timeIsSet={timeIsSet}
-              settingsTotalSeconds={settingsTotalSeconds}
-              seconds={Number(viewSeconds)}
-              minutes={Number(viewMinutes)}
-              hours={Number(viewHours)}
-              prevSeconds={prevSeconds}
-              prevMinutesSeconds={prevMinutesSeconds}
-              prevHoursSeconds={prevHoursSeconds}
-              onTotalSecondsChange={(s, type) => onTotalSecondsChange(s, type)}
-              onPrevTimeChange={(s, type) => onPrevTimeChange(s, type)}
-            />
-          ) : (
+          <TimeSettingTools
+            timeIsSet={timeIsSet}
+            settingsTotalSeconds={settingsTotalSeconds}
+            seconds={Number(viewSeconds)}
+            minutes={Number(viewMinutes)}
+            hours={Number(viewHours)}
+            prevSeconds={prevSeconds}
+            prevMinutesSeconds={prevMinutesSeconds}
+            prevHoursSeconds={prevHoursSeconds}
+            onTotalSecondsChange={(s, type) => onTotalSecondsChange(s, type)}
+            onPrevTimeChange={(s, type) => onPrevTimeChange(s, type)}
+          />
+          { startStatus !== StartStatus.stop && (
             <p className="time">
               <span>{viewHours}：</span>
               <span>{viewMinutes}：</span>

@@ -16,6 +16,7 @@
       color: #8d8d92;
     }
     .content {
+      position: relative;
       .total_seconds {
         position: fixed;
         top: 0;
@@ -26,8 +27,14 @@
         margin: 0;
       }
       .time {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
         font-size: 60px;
-        margin: 40px 0;
+        width: 100%;
+        background: #000;
+        padding: 0 0 40px;
       }
       .buttons {
         margin-top: 50px;
