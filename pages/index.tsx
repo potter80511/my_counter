@@ -8,6 +8,7 @@ import {
 import Layout from '../components/Layout';
 import TimeSettingTools from '../components/index/TimeSettingTools';
 import Alert, { AlertProps } from '../components/modals/Alert';
+import ReactHowler from 'react-howler';
 import '@styles/index.scss';
 
 const meta = {
@@ -45,6 +46,9 @@ const index = () => {
   const [showSettingAlertAnimate, setShowSettingAlertAnimate] = useState<boolean>(false);
   const [showTotalSeconds, setShowTotalSeconds] = useState<boolean>(false);
 
+  const [timesUp, setTimesUp] = useState<boolean>(false);
+  const [alertType, setAlertType] = useState<string>('');
+
   let t: number = remainTotalSeconds;
   let countingSeconds: string | number = 0;
   let countingMinutes: string | number = 0;
@@ -70,6 +74,7 @@ const index = () => {
       setStartStatus(StartStatus.stop);
       setStartText(StartText.start);
       onShowSettingAlert(CounterAlertType.timesUp);
+      onRing(true);
 
       reset();
 
@@ -176,6 +181,7 @@ const index = () => {
   const onShowSettingAlert = (type: string) => {
     setShowSettingAlert(true);
     setShowSettingAlertAnimate(true);
+    setAlertType(type);
 
     switch (type) {
       case CounterAlertType.pleaseSetTime:
@@ -203,6 +209,18 @@ const index = () => {
     setShowTotalSeconds(newShow);
   };
 
+  const onRing = (status: boolean) => {
+    setTimesUp(status);
+  };
+
+  const alertOk = (type: string) => {
+    switch (type) {
+      case CounterAlertType.timesUp:
+        onRing(false);
+        break;
+    }
+  }
+
   const stopClass = startStatus === StartStatus.start ? 'pause' : 'start';
   return (
     <Layout
@@ -211,6 +229,13 @@ const index = () => {
     >
       <div id='counter'>
         <button className="show_total_seconds" onClick={onShowTotalSeconds}>show totalSeconds</button>
+        <ReactHowler
+          className="howler"
+          loop={true}
+          preload={true}
+          src='http://yss.yisell.com/yisell/ybys2018050819052088/sound/yisell_sound_2014040221463941553_88366.mp3'
+          playing={timesUp}
+        />
         <h1 className="title">My Counter</h1>
         <div className="content">
           <TimeSettingTools
@@ -258,6 +283,7 @@ const index = () => {
             message={alertDatas.message}
             show={showSettingAlertAnimate}
             onClose={closeSettingAlert}
+            yes={() => alertOk(alertType)}
           />
         )}
       </div>

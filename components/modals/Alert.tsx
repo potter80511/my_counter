@@ -11,6 +11,7 @@ export type AlertProps = {
   show?: boolean;
   message: string;
   yesText?: string;
+  yes?(): void;
   onClose?(): void;
 }
 
@@ -21,11 +22,13 @@ const Alert = (props: AlertProps) => {
     message,
     show,
     yesText = 'ok',
+    yes,
     onClose,
   } = props;
   const showClass = show ? ' show' : '';
   // const scaleIn = show ? ' scaleIn' : '';
   const onYes = () => {
+    yes();
     onClose();
   }
   return (
