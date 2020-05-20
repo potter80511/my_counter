@@ -12,7 +12,7 @@ export type AlertProps = {
   message: string;
   yesText?: string;
   yes?(): void;
-  onClose?(): void;
+  no?(): void;
 }
 
 const Alert = (props: AlertProps) => {
@@ -23,13 +23,16 @@ const Alert = (props: AlertProps) => {
     show,
     yesText = 'ok',
     yes,
-    onClose,
+    no,
   } = props;
   const showClass = show ? ' show' : '';
   // const scaleIn = show ? ' scaleIn' : '';
   const onYes = () => {
     yes();
     onClose();
+  }
+  const onClose = () => {
+    no ? no() : yes();
   }
   return (
     <div

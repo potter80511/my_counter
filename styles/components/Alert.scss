@@ -22,7 +22,7 @@
     border-radius: 5px;
     border: 2px solid #222;
     border: 1px solid #2c3745;
-    padding: 10px 0 20px;
+    padding: 10px 0 30px;
     width: 80%;
     max-width: 500px;
     background-color: rgba(29, 37, 47 ,.75);
@@ -43,10 +43,13 @@
         color: #506e85;
       }
     }
+    .message {
+      font-size: 22px;
+    }
     .yes {
       background-color: #fe9e0c;
       color: #fff;
-      font-size: 16px;
+      font-size: 20px;
       border-radius: 100em;
       padding: 5px 40px;
       transition: all .3s;

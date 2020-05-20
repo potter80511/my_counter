@@ -197,13 +197,6 @@ const index = () => {
     };
   };
 
-  const closeSettingAlert = () => {
-    setShowSettingAlertAnimate(false);
-    setTimeout(() => {
-      setShowSettingAlert(false);
-    }, 400);
-  };
-
   const onShowTotalSeconds = () => {
     const newShow = !showTotalSeconds;
     setShowTotalSeconds(newShow);
@@ -214,6 +207,10 @@ const index = () => {
   };
 
   const alertOk = (type: string) => {
+    setShowSettingAlertAnimate(false);
+    setTimeout(() => {
+      setShowSettingAlert(false);
+    }, 400);
     switch (type) {
       case CounterAlertType.timesUp:
         onRing(false);
@@ -282,7 +279,6 @@ const index = () => {
           <Alert
             message={alertDatas.message}
             show={showSettingAlertAnimate}
-            onClose={closeSettingAlert}
             yes={() => alertOk(alertType)}
           />
         )}
