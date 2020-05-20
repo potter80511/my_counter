@@ -233,7 +233,7 @@ const index = () => {
           className="howler"
           loop={true}
           preload={true}
-          src='http://yss.yisell.com/yisell/ybys2018050819052088/sound/yisell_sound_2014040221463941553_88366.mp3'
+          src='ring.mp3'
           playing={timesUp}
         />
         <h1 className="title">My Counter</h1>
