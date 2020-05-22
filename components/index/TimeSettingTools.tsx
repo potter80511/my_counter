@@ -11,7 +11,6 @@ type TimeSettingToolDatas = {
 };
 
 type TimeSettingToolsType = {
-  timeIsSet: boolean;
   seconds: number;
   minutes: number;
   hours: number;
@@ -48,7 +47,6 @@ for (let i = 0; i <= 23; i++) {
 
 const TimeSettingTools = (props: TimeSettingToolsType) => {
   const {
-    timeIsSet,
     seconds,
     minutes,
     hours,
@@ -88,9 +86,7 @@ const TimeSettingTools = (props: TimeSettingToolsType) => {
 
   return (
     <div className="time_setting_tools">
-      { !timeIsSet && (
-        <p>請設定時間開始計時</p>
-      )}
+      <p>請設定時間開始計時</p>
       <div className="flex tools">
         <NormalSelect
           className="hours"

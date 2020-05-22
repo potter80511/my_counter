@@ -8,6 +8,7 @@ import {
 import Layout from '../components/Layout';
 import TimeSettingTools from '../components/index/TimeSettingTools';
 import Alert, { AlertProps } from '../components/modals/Alert';
+import TimesUpAlertModal from '../components/index/TimesUpAlertModal';
 import ReactHowler from 'react-howler';
 import '@styles/index.scss';
 
@@ -37,14 +38,14 @@ const index = () => {
   const [viewMinutes, setViewMinutes] = useState<string>('00');
   const [viewHours, setViewHours] = useState<string>('00');
 
-  const [timeIsSet, setTimeIsSet] = useState<boolean>(false);
   const [startStatus, setStartStatus] = useState<string>(StartStatus.stop);
   const [startText, setStartText] = useState<string>(StartText.start);
 
-  const [alertDatas, setAlertDatas] = useState<AlertProps>({message: ''});
   const [showSettingAlert, setShowSettingAlert] = useState<boolean>(false);
+  const [showTimesUpAlert, setShowTimesUpAlert] = useState<boolean>(false);
   const [showSettingAlertAnimate, setShowSettingAlertAnimate] = useState<boolean>(false);
   const [showTotalSeconds, setShowTotalSeconds] = useState<boolean>(false);
+  const [showViewTimes, setShowViewTimes] = useState<boolean>(false);
 
   const [timesUp, setTimesUp] = useState<boolean>(false);
   const [alertType, setAlertType] = useState<string>('');
@@ -73,20 +74,17 @@ const index = () => {
     if (t === 0) {
       setStartStatus(StartStatus.stop);
       setStartText(StartText.start);
-      onShowSettingAlert(CounterAlertType.timesUp);
+      setShowTimesUpAlert(true);
       onRing(true);
 
-      reset();
-
       setRemainTotalSeconds(settingsTotalSeconds);
-      setTimeIsSet(false);
       return clearInterval(counting);
     }
   };
 
   const startCounting = () => {
     if (remainTotalSeconds < 1) {
-      onShowSettingAlert(CounterAlertType.pleaseSetTime);
+      onShowSettingAlert();
       return;
     }
     switch (startStatus) {
@@ -103,6 +101,7 @@ const index = () => {
       case StartStatus.stop: //按開始
         setStartStatus(StartStatus.start);
         setStartText(StartText.pause);
+        setShowViewTimes(true);
         counting = setInterval(myTimer, 1000);
         break;
     }
@@ -110,6 +109,7 @@ const index = () => {
 
   const cancelCounting = () => {
     clearInterval(counting);
+    setShowViewTimes(false);
     reset();
     setRemainTotalSeconds(settingsTotalSeconds);
     setStartStatus(StartStatus.stop);
@@ -178,23 +178,9 @@ const index = () => {
     }
   };
 
-  const onShowSettingAlert = (type: string) => {
+  const onShowSettingAlert = () => {
     setShowSettingAlert(true);
     setShowSettingAlertAnimate(true);
-    setAlertType(type);
-
-    switch (type) {
-      case CounterAlertType.pleaseSetTime:
-        setAlertDatas({
-          message: '請設定時間再開始計時！',
-        });
-        break;
-      case CounterAlertType.timesUp:
-        setAlertDatas({
-          message: '時間到！',
-        });
-        break;
-    };
   };
 
   const onShowTotalSeconds = () => {
@@ -206,17 +192,30 @@ const index = () => {
     setTimesUp(status);
   };
 
-  const alertOk = (type: string) => {
+  const onCloseTimesUpAlert = () => {
+    setShowTimesUpAlert(false);
+    reset();
+  };
+
+  const alertOk = () => {
     setShowSettingAlertAnimate(false);
+    setShowViewTimes(false);
     setTimeout(() => {
       setShowSettingAlert(false);
     }, 400);
-    switch (type) {
-      case CounterAlertType.timesUp:
-        onRing(false);
-        break;
-    }
   }
+
+  const onTimesUpOk = () => {
+    onCloseTimesUpAlert();
+    setShowViewTimes(false);
+    onRing(false);
+  };
+
+  const onRecount = () => {
+    onRing(false);
+    startCounting();
+    onCloseTimesUpAlert();
+  };
 
   const stopClass = startStatus === StartStatus.start ? 'pause' : 'start';
   return (
@@ -233,10 +232,9 @@ const index = () => {
           src='ring.mp3'
           playing={timesUp}
         />
-        <h1 className="title">My Counter</h1>
+        <h1 className="title">Counter</h1>
         <div className="content">
           <TimeSettingTools
-            timeIsSet={timeIsSet}
             settingsTotalSeconds={settingsTotalSeconds}
             seconds={Number(viewSeconds)}
             minutes={Number(viewMinutes)}
@@ -247,7 +245,7 @@ const index = () => {
             onTotalSecondsChange={(s, type) => onTotalSecondsChange(s, type)}
             onPrevTimeChange={(s, type) => onPrevTimeChange(s, type)}
           />
-          { startStatus !== StartStatus.stop && (
+          { showViewTimes && (
             <p className="time">
               <span>{viewHours}：</span>
               <span>{viewMinutes}：</span>
@@ -277,11 +275,17 @@ const index = () => {
         </div>
         { showSettingAlert && (
           <Alert
-            message={alertDatas.message}
+            message={'請設定時間再開始計時！'}
             show={showSettingAlertAnimate}
-            yes={() => alertOk(alertType)}
+            yes={alertOk}
           />
         )}
+        <TimesUpAlertModal
+          message={'時間到'}
+          show={showTimesUpAlert}
+          yes={onTimesUpOk}
+          onRecount={onRecount}
+        />
       </div>
     </Layout>
   );
