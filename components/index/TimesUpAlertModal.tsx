@@ -1,9 +1,10 @@
 import React from 'react';
 import {
-  faTimes,
+  faBell,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@styles/components/Alert.scss';
+import { Transition, animated } from 'react-spring/renderprops.cjs';
 
 export interface TimesUpAlertProps {
   id?: string;
@@ -30,20 +31,32 @@ const TimesUpAlertModal = (props: TimesUpAlertProps) => {
   }
   return (
     <>
-    { show && (
-      <div
-        id={id}
-        className={`ring-alert-modal${className}${showClass}`}
+      <Transition
+        native
+        items={show}
+        from={{opacity: 0}}
+        enter={{opacity: 1}}
+        leave={{opacity: 0}}
       >
-        <div className={`modal-block`}>
-          <div className="modal-content">
-            <p className="message">{message}</p>
-          </div>
-          <button className="yes" onClick={onYes}>關閉</button>
-          <button className="reset" onClick={onRecount}>重複</button>
-        </div>
-      </div>
-      )}
+        { show => show && (props =>
+          <animated.div
+            id={id}
+            className={`ring-alert-modal${className}${showClass}`}
+            style={props}
+          >
+            <div className={`modal-block`}>
+              <div className="modal-content">
+                <p className="message">
+                  <FontAwesomeIcon icon={faBell}/>
+                  <span>{message}</span>
+                </p>
+              </div>
+              <button className="yes" onClick={onYes}>關閉</button>
+              <button className="reset" onClick={onRecount}>重複</button>
+            </div>
+          </animated.div>
+        )}
+      </Transition>
     </>
   );
 };
