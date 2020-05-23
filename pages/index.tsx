@@ -10,6 +10,7 @@ import TimeSettingTools from '../components/index/TimeSettingTools';
 import Alert, { AlertProps } from '../components/modals/Alert';
 import TimesUpAlertModal from '../components/index/TimesUpAlertModal';
 import ReactHowler from 'react-howler';
+import { useTransition, animated } from 'react-spring';
 import '@styles/index.scss';
 
 const meta = {
@@ -218,6 +219,12 @@ const index = () => {
   };
 
   const stopClass = startStatus === StartStatus.start ? 'pause' : 'start';
+
+  const viewTimeFade = useTransition(showViewTimes, null, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+  });
   return (
     <Layout
       id={'index'}
@@ -245,12 +252,13 @@ const index = () => {
             onTotalSecondsChange={(s, type) => onTotalSecondsChange(s, type)}
             onPrevTimeChange={(s, type) => onPrevTimeChange(s, type)}
           />
-          { showViewTimes && (
-            <p className="time">
+          { viewTimeFade.map(({ item, key, props }) =>
+            item &&
+            <animated.p className="time" style={props} key={key}>
               <span>{viewHours}：</span>
               <span>{viewMinutes}：</span>
               <span>{viewSeconds}</span>
-            </p>
+            </animated.p>
           )}
           <div className="buttons">
             <button
