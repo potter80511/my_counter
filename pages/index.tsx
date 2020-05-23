@@ -3,7 +3,6 @@ import {
   StartStatus,
   StartText,
   TimeSelectChangeType,
-  CounterAlertType,
 } from '../types/counter';
 import Layout from '../components/Layout';
 import TimeSettingTools from '../components/index/TimeSettingTools';
@@ -44,7 +43,6 @@ const index = () => {
 
   const [showSettingAlert, setShowSettingAlert] = useState<boolean>(false);
   const [showTimesUpAlert, setShowTimesUpAlert] = useState<boolean>(false);
-  const [showSettingAlertAnimate, setShowSettingAlertAnimate] = useState<boolean>(false);
   const [showTotalSeconds, setShowTotalSeconds] = useState<boolean>(false);
   const [showViewTimes, setShowViewTimes] = useState<boolean>(false);
 
@@ -181,7 +179,6 @@ const index = () => {
 
   const onShowSettingAlert = () => {
     setShowSettingAlert(true);
-    setShowSettingAlertAnimate(true);
   };
 
   const onShowTotalSeconds = () => {
@@ -199,11 +196,8 @@ const index = () => {
   };
 
   const alertOk = () => {
-    setShowSettingAlertAnimate(false);
+    setShowSettingAlert(false);
     setShowViewTimes(false);
-    setTimeout(() => {
-      setShowSettingAlert(false);
-    }, 400);
   }
 
   const onTimesUpOk = () => {
@@ -281,13 +275,11 @@ const index = () => {
             </div>
           )}
         </div>
-        { showSettingAlert && (
-          <Alert
-            message={'請設定時間再開始計時！'}
-            show={showSettingAlertAnimate}
-            yes={alertOk}
-          />
-        )}
+        <Alert
+          message={'請設定時間再開始計時！'}
+          show={showSettingAlert}
+          yes={alertOk}
+        />
         <TimesUpAlertModal
           message={'時間到'}
           show={showTimesUpAlert}
