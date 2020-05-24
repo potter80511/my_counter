@@ -1,5 +1,7 @@
 @import 'color.scss';
-
+body {
+  background-color: #000;
+}
 #index {
   display: flex;
   justify-content: center;
@@ -91,6 +93,9 @@
         }
       }
     }
+  }
+  @media (max-width: 768px) {
+    height: calc(100vh - 50px);
   }
   @media (max-width: 575px) {
     #counter {

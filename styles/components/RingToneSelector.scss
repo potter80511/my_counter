@@ -9,10 +9,17 @@
   cursor: pointer;
   transition: all .3s;
   color: #888;
-  svg {
-    color: #333;
-    margin-left: 10px;
-    transition: all .3s;
+  >span {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    svg {
+      color: #333;
+      margin-left: 10px;
+      transition: all .3s;
+      height: 15px;
+      font-size: 15px;
+    }
   }
   &:hover {
     background-color: rgba(105, 105, 105, .5);
