@@ -11,6 +11,8 @@ import Alert, { AlertProps } from '../components/modals/Alert';
 import TimesUpAlertModal from '../components/index/TimesUpAlertModal';
 import ReactHowler from 'react-howler';
 import '@styles/index.scss';
+import '@styles/transition_group.scss';
+import { Transition, CSSTransition } from 'react-transition-group';
 
 const meta = {
   title: 'My Counter',
@@ -245,13 +247,18 @@ const index = () => {
             onTotalSecondsChange={(s, type) => onTotalSecondsChange(s, type)}
             onPrevTimeChange={(s, type) => onPrevTimeChange(s, type)}
           />
-          { showViewTimes && (
+          <CSSTransition
+            in={showViewTimes}
+            timeout={1000}
+            classNames="fade"
+            unmountOnExit
+          >
             <p className="time">
               <span>{viewHours}：</span>
               <span>{viewMinutes}：</span>
               <span>{viewSeconds}</span>
             </p>
-          )}
+          </CSSTransition>
           <div className="buttons">
             <button
               className="cancel"
