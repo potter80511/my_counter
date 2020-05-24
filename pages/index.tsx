@@ -7,6 +7,8 @@ import {
 } from '../types/counter';
 import Layout from '../components/Layout';
 import TimeSettingTools from '../components/index/TimeSettingTools';
+import RingToneSelector from '../components/index/RingToneSelector';
+import RingToneSelectModal from '../components/index/RingToneSelectModal';
 import Alert, { AlertProps } from '../components/modals/Alert';
 import TimesUpAlertModal from '../components/index/TimesUpAlertModal';
 import ReactHowler from 'react-howler';
@@ -48,6 +50,7 @@ const index = () => {
   const [showSettingAlertAnimate, setShowSettingAlertAnimate] = useState<boolean>(false);
   const [showTotalSeconds, setShowTotalSeconds] = useState<boolean>(false);
   const [showViewTimes, setShowViewTimes] = useState<boolean>(false);
+  const [showRingToneSelect, setShowRingToneSelect] = useState<boolean>(false);
 
   const [timesUp, setTimesUp] = useState<boolean>(false);
   const [alertType, setAlertType] = useState<string>('');
@@ -280,6 +283,13 @@ const index = () => {
             </div>
           )}
         </div>
+        <RingToneSelector
+          onClick={() => setShowRingToneSelect(true)}
+        />
+        <RingToneSelectModal
+          show={showRingToneSelect}
+          onCancel={() => setShowRingToneSelect(false)}
+        />
         { showSettingAlert && (
           <Alert
             message={'請設定時間再開始計時！'}

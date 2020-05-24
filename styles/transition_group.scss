@@ -1,4 +1,11 @@
 
+.fade-appear {
+  opacity: 0;
+}
+.fade-appear-active {
+  opacity: 1;
+  transition: opacity .3s;
+}
 .fade-enter {
   opacity: 0;
 }
@@ -12,4 +19,26 @@
 .fade-exit-active {
   opacity: 0;
   transition: opacity .3s;
+}
+
+.slideInCenterUp-appear {
+  bottom: -10% !important;
+}
+.slideInCenterUp-appear-active {
+  bottom: 50% !important;
+  transition: all .6s;
+}
+.slideInCenterUp-enter {
+  bottom: -10% !important;
+}
+.slideInCenterUp-enter-active {
+  bottom: 50% !important;
+  transition: all .6s;
+}
+.slideInCenterUp-exit {
+  bottom: 50% !important;
+}
+.slideInCenterUp-exit-active {
+  bottom: -10% !important;
+  transition: all .6s;
 }
