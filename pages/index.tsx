@@ -6,11 +6,14 @@ import {
 } from '../types/counter';
 import Layout from '../components/Layout';
 import TimeSettingTools from '../components/index/TimeSettingTools';
+import RingToneSelector from '../components/index/RingToneSelector';
+import RingToneSelectModal from '../components/index/RingToneSelectModal';
 import Alert, { AlertProps } from '../components/modals/Alert';
 import TimesUpAlertModal from '../components/index/TimesUpAlertModal';
 import ReactHowler from 'react-howler';
-import { useTransition, animated } from 'react-spring';
+import { CSSTransition } from 'react-transition-group';
 import '@styles/index.scss';
+import '@styles/transition_group.scss';
 
 const meta = {
   title: 'My Counter',
@@ -45,6 +48,7 @@ const index = () => {
   const [showTimesUpAlert, setShowTimesUpAlert] = useState<boolean>(false);
   const [showTotalSeconds, setShowTotalSeconds] = useState<boolean>(false);
   const [showViewTimes, setShowViewTimes] = useState<boolean>(false);
+  const [showRingToneSelect, setShowRingToneSelect] = useState<boolean>(false);
 
   const [timesUp, setTimesUp] = useState<boolean>(false);
   const [alertType, setAlertType] = useState<string>('');
@@ -214,11 +218,6 @@ const index = () => {
 
   const stopClass = startStatus === StartStatus.start ? 'pause' : 'start';
 
-  const viewTimeFade = useTransition(showViewTimes, null, {
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
-  });
   return (
     <Layout
       id={'index'}
@@ -246,14 +245,18 @@ const index = () => {
             onTotalSecondsChange={(s, type) => onTotalSecondsChange(s, type)}
             onPrevTimeChange={(s, type) => onPrevTimeChange(s, type)}
           />
-          { viewTimeFade.map(({ item, key, props }) =>
-            item &&
-            <animated.p className="time" style={props} key={key}>
+          <CSSTransition
+            in={showViewTimes}
+            timeout={1000}
+            classNames="fade"
+            unmountOnExit
+          >
+            <p className="time">
               <span>{viewHours}：</span>
               <span>{viewMinutes}：</span>
               <span>{viewSeconds}</span>
-            </animated.p>
-          )}
+            </p>
+          </CSSTransition>
           <div className="buttons">
             <button
               className="cancel"
@@ -275,6 +278,13 @@ const index = () => {
             </div>
           )}
         </div>
+        <RingToneSelector
+          onClick={() => setShowRingToneSelect(true)}
+        />
+        <RingToneSelectModal
+          show={showRingToneSelect}
+          onCancel={() => setShowRingToneSelect(false)}
+        />
         <Alert
           message={'請設定時間再開始計時！'}
           show={showSettingAlert}

@@ -1,0 +1,26 @@
+.ring-tone-select-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  button {
+    color: #fff;
+  }
+  .background-close {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, .8);
+    width: 100%;
+    height: 100%;
+  }
+  .modal-block {
+    z-index: 1;
+    background: #222;
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

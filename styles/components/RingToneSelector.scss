@@ -1,0 +1,13 @@
+.ring-tone-selector {
+  background-color: rgba(105, 105, 105, .5);
+  min-width: 300px;
+  display: inline-flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  margin-top: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  button {
+    color: #fff;
+  }
+}
