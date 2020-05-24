@@ -1,3 +1,5 @@
+@import 'color.scss';
+
 #index {
   display: flex;
   justify-content: center;
@@ -68,14 +70,14 @@
         }
         .start {
           background-color: rgba(34, 138, 84, .4);
-          color: #1dcc71;
+          color: $iphone-green;
           &:hover {
             background-color: rgba(34, 138, 84, .6);
           }
         }
         .pause {
           background-color: rgba(205, 120, 31, .4);
-          color: #c9772e;
+          color: $iphone-orange;
           &:hover {
             background-color: rgba(205, 120, 31, .6);
           }

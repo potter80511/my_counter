@@ -1,5 +1,5 @@
 .ring-tone-selector {
-  background-color: rgba(105, 105, 105, .5);
+  background-color: rgba(105, 105, 105, .2);
   min-width: 300px;
   display: inline-flex;
   justify-content: space-between;
@@ -7,7 +7,18 @@
   margin-top: 30px;
   border-radius: 5px;
   cursor: pointer;
-  button {
+  transition: all .3s;
+  color: #888;
+  svg {
+    color: #333;
+    margin-left: 10px;
+    transition: all .3s;
+  }
+  &:hover {
+    background-color: rgba(105, 105, 105, .5);
     color: #fff;
+    svg {
+      color: #888;
+    }
   }
 }

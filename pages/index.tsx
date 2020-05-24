@@ -10,8 +10,11 @@ import RingToneSelector from '../components/index/RingToneSelector';
 import RingToneSelectModal from '../components/index/RingToneSelectModal';
 import Alert, { AlertProps } from '../components/modals/Alert';
 import TimesUpAlertModal from '../components/index/TimesUpAlertModal';
+import { RingToneType } from '../types/ring_tone';
+
 import ReactHowler from 'react-howler';
 import { CSSTransition } from 'react-transition-group';
+
 import '@styles/index.scss';
 import '@styles/transition_group.scss';
 
@@ -51,7 +54,12 @@ const index = () => {
   const [showRingToneSelect, setShowRingToneSelect] = useState<boolean>(false);
 
   const [timesUp, setTimesUp] = useState<boolean>(false);
-  const [alertType, setAlertType] = useState<string>('');
+
+  const [selectedRingTone, setSelectedRingTone] = useState<RingToneType>({
+    id: 'warm_morning',
+    name: '溫暖早晨',
+    url: '/audios/warm_morning.mp3'
+  });
 
   let t: number = remainTotalSeconds;
   let countingSeconds: string | number = 0;
@@ -216,6 +224,11 @@ const index = () => {
     onCloseTimesUpAlert();
   };
 
+  const onSetRingTone = (rt: RingToneType) => {
+    setSelectedRingTone(rt);
+    setShowRingToneSelect(false);
+  };
+
   const stopClass = startStatus === StartStatus.start ? 'pause' : 'start';
 
   return (
@@ -229,7 +242,7 @@ const index = () => {
           className="howler"
           loop={true}
           preload={true}
-          src='ring.mp3'
+          src={selectedRingTone.url}
           playing={timesUp}
         />
         <h1 className="title">Counter</h1>
@@ -279,10 +292,13 @@ const index = () => {
           )}
         </div>
         <RingToneSelector
+          currentRingTone={selectedRingTone}
           onClick={() => setShowRingToneSelect(true)}
         />
         <RingToneSelectModal
           show={showRingToneSelect}
+          currentRingTone={selectedRingTone}
+          onSubmit={(rt) => onSetRingTone(rt)}
           onCancel={() => setShowRingToneSelect(false)}
         />
         <Alert

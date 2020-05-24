@@ -1,12 +1,11 @@
+@import '../color.scss';
+
 .ring-tone-select-modal {
   position: fixed;
   left: 0;
   top: 0;
   width: 100vw;
   height: 100vh;
-  button {
-    color: #fff;
-  }
   .background-close {
     position: absolute;
     left: 0;
@@ -21,6 +20,49 @@
     position: absolute;
     left: 50%;
     bottom: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 50%);
+    min-width: 300px;
+    padding: 10px;
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #424242;
+      button {
+        color: $iphone-orange;
+        font-size: 15px;
+      }
+    }
+    .modal-content {
+      text-align: left;
+      margin-top: 10px;
+      .ring-tones {
+        .item {
+          position: relative;
+          cursor: pointer;
+          svg {
+            font-size: 15px;
+            height: 15px;
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: $check-green;
+          }
+          span {
+            display: block;
+            margin-left: 40px;
+            padding: 10px;
+            transition: all .3s;
+            border-bottom: 1px solid #333;
+            &:hover {
+              border-radius: 5px;
+              border: none;
+              background: #111;
+            }
+          }
+        }
+      }
+    }
   }
 }
