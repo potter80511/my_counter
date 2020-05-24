@@ -22,14 +22,14 @@
 }
 
 .slideInCenterUp-appear {
-  bottom: -10% !important;
+  bottom: -30% !important;
 }
 .slideInCenterUp-appear-active {
   bottom: 50% !important;
   transition: all .6s;
 }
 .slideInCenterUp-enter {
-  bottom: -10% !important;
+  bottom: -30% !important;
 }
 .slideInCenterUp-enter-active {
   bottom: 50% !important;
@@ -39,6 +39,6 @@
   bottom: 50% !important;
 }
 .slideInCenterUp-exit-active {
-  bottom: -10% !important;
+  bottom: -30% !important;
   transition: all .6s;
 }

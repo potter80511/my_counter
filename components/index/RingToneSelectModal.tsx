@@ -101,7 +101,7 @@ const RingToneSelectModal = (props: RingToneSelectModalProps) => {
           classNames="fade"
           unmountOnExit
         >
-          <div className="background-close"></div>
+          <div className="background-close" onClick={onCancel}></div>
         </CSSTransition>
         <CSSTransition
           appear={true}

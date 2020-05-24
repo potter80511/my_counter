@@ -22,7 +22,7 @@
     bottom: 50%;
     transform: translate(-50%, 50%);
     min-width: 300px;
-    padding: 10px;
+    padding: 20px 10px;
     .modal-header {
       display: flex;
       justify-content: space-between;
@@ -64,5 +64,8 @@
         }
       }
     }
+  }
+  @media (max-width: 768px) {
+    height: calc(100vh - 50px);
   }
 }
