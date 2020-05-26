@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {
   StartStatus,
   StartText,
@@ -231,6 +231,17 @@ const index = () => {
 
   const stopClass = startStatus === StartStatus.start ? 'pause' : 'start';
 
+  const circleSvg = useRef(null);
+  const [circleHeight, setCircleHeight] = useState<number>(0);
+  // console.log(circleWidth)
+  // console.log(circleWidth)
+  useEffect(() => {
+    document.onreadystatechange = () => {
+      setCircleHeight(circleSvg.current.clientWidth);
+    };
+  }, []);
+  // return <div ref={ref}>Hello</div>;
+
   return (
     <Layout
       id={'index'}
@@ -259,16 +270,23 @@ const index = () => {
             onPrevTimeChange={(s, type) => onPrevTimeChange(s, type)}
           />
           <CSSTransition
-            in={showViewTimes}
+            in={true}
             timeout={1000}
             classNames="fade"
             unmountOnExit
           >
-            <p className="time">
-              <span>{viewHours}：</span>
-              <span>{viewMinutes}：</span>
-              <span>{viewSeconds}</span>
-            </p>
+            <div className="view-times" style={{height: circleHeight}}>
+              <div className="circle" style={{height: circleHeight}}>
+                <svg ref={circleSvg} height="100%" width="100%">
+                  <circle cx={circleHeight/2} cy={circleHeight/2} r={(circleHeight-10)/2} stroke="red" strokeWidth="5" fill="none" />
+                </svg>
+                <p className="time">
+                  <span>{viewHours}：</span>
+                  <span>{viewMinutes}：</span>
+                  <span>{viewSeconds}</span>
+                </p>
+              </div>
+            </div>
           </CSSTransition>
           <div className="buttons">
             <button

@@ -9,6 +9,8 @@ body {
   height: 100vh;
   #counter {
     width: 100%;
+    max-width: 340px;
+    position: relative;
     .show_total_seconds {
       position: fixed;
       top: 0;
@@ -21,7 +23,6 @@ body {
       color: #8d8d92;
     }
     .content {
-      position: relative;
       .total_seconds {
         position: fixed;
         top: 0;
@@ -31,15 +32,32 @@ body {
       p {
         margin: 0;
       }
-      .time {
+      .view-times {
         position: absolute;
         top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 60px;
+        left: 0;
         width: 100%;
-        background: #000;
-        padding: 0 0 40px;
+        min-height: 340px;
+        background: rgba(0, 0, 0, .7);
+        .circle {
+          width: 90%;
+          z-index: 1;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          align-items: center;
+          .time {
+            font-size: 35px;
+            width: 100%;
+          }
+          svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+        }
       }
       .buttons {
         margin-top: 50px;
