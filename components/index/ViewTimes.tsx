@@ -31,7 +31,7 @@ const ViewTimes = (props: ViewTimesProps) => {
   const circleHeight = height;
   const circleRadius = r;
   const circleLength = 2 * r * Math.PI;
-  const circleStrokeWidth = 8;
+  const circleStrokeWidth = 9;
   const circleStrokeColor = '#ee951b';
 
   const passedTimeRate = (totalSeconds - remainTotalSeconds) === 0
@@ -42,7 +42,7 @@ const ViewTimes = (props: ViewTimesProps) => {
     <div className="view-times" style={{height: circleHeight}}>
       <div className="circle" style={{height: circleHeight}}>
         <svg ref={circleSvg} height="100%" width="100%">
-          <circle cx={circleHeight/2} cy={circleHeight/2} r={circleRadius} stroke="#555" strokeWidth="7" fill="none" />
+          <circle cx={circleHeight/2} cy={circleHeight/2} r={circleRadius} stroke="#555" strokeWidth="6" fill="none" />
           { resetCircle ? (
             <Spring
               from={{strokeDashoffset: circlePassedLength}}
@@ -50,11 +50,11 @@ const ViewTimes = (props: ViewTimesProps) => {
               config={{duration: remainTotalSeconds * 1000}}
             >
               {stringProps =>
-                <circle style={stringProps} cx={circleHeight/2} cy={circleHeight/2} r={circleRadius} stroke={circleStrokeColor} strokeWidth={circleStrokeWidth} strokeDasharray={circleLength} fill="none" />
+                <circle style={stringProps} cx={circleHeight/2} cy={circleHeight/2} r={circleRadius} stroke={circleStrokeColor} strokeWidth={circleStrokeWidth} strokeDasharray={circleLength} fill="none" strokeLinecap="round" />
               }
             </Spring>
           ) : (
-            <circle  cx={circleHeight/2} cy={circleHeight/2} r={circleRadius} stroke={circleStrokeColor} strokeWidth={circleStrokeWidth} strokeDasharray={circleLength} strokeDashoffset={countingStatus === StartStatus.pause ? circlePassedLength : circleLength} fill="none" />
+            <circle  cx={circleHeight/2} cy={circleHeight/2} r={circleRadius} stroke={circleStrokeColor} strokeWidth={circleStrokeWidth} strokeDasharray={circleLength} strokeDashoffset={countingStatus === StartStatus.pause ? circlePassedLength : circleLength} fill="none" strokeLinecap="round" />
           )}
         </svg>
         <p className="time">
