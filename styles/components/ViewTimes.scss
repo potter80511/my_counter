@@ -1,28 +1,20 @@
 .view-times {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-height: 340px;
-  background: rgba(0, 0, 0, .7);
+  position: relative;
   .circle {
     width: 90%;
+    margin: 0 auto;
     z-index: 1;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     align-items: center;
     .time {
-      font-size: 35px;
+      font-size: 45px;
       width: 100%;
     }
     svg {
       position: absolute;
       top: 0;
       left: 0;
-      transform: rotate(-90deg);
+      transform: rotate(-90deg) translateX(24px);
     }
   }
 }

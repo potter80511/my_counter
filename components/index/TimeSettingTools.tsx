@@ -86,6 +86,7 @@ const TimeSettingTools = (props: TimeSettingToolsType) => {
 
   return (
     <div className="time_setting_tools">
+      <h1 className="title">Counter</h1>
       <p>請設定時間開始計時</p>
       <div className="flex tools">
         <NormalSelect

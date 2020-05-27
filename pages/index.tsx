@@ -14,6 +14,7 @@ import TimesUpAlertModal from '../components/index/TimesUpAlertModal';
 import { RingToneType } from '../types/ring_tone';
 
 import ReactHowler from 'react-howler';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 import '@styles/index.scss';
 import '@styles/transition_group.scss';
@@ -256,29 +257,40 @@ const index = () => {
           src={selectedRingTone.url}
           playing={timesUp}
         />
-        <h1 className="title">Counter</h1>
         <div className="content">
-          <TimeSettingTools
-            settingsTotalSeconds={settingsTotalSeconds}
-            seconds={Number(viewSeconds)}
-            minutes={Number(viewMinutes)}
-            hours={Number(viewHours)}
-            prevSeconds={prevSeconds}
-            prevMinutesSeconds={prevMinutesSeconds}
-            prevHoursSeconds={prevHoursSeconds}
-            onTotalSecondsChange={(s, type) => onTotalSecondsChange(s, type)}
-            onPrevTimeChange={(s, type) => onPrevTimeChange(s, type)}
-          />
-          <ViewTimes
-            show={showViewTimes}
-            resetCircle={showCircleBar}
-            totalSeconds={settingsTotalSeconds}
-            remainTotalSeconds={tempRemainTotalSeconds}
-            viewHours={viewHours}
-            viewMinutes={viewMinutes}
-            viewSeconds={viewSeconds}
-            countingStatus={startStatus}
-            />
+          <SwitchTransition mode="out-in">
+            <CSSTransition
+              key={showViewTimes}
+              classNames='fade'
+              timeout={300}
+            >
+              <div className="time-block">
+                { showViewTimes ? (
+                  <ViewTimes
+                    resetCircle={showCircleBar}
+                    totalSeconds={settingsTotalSeconds}
+                    remainTotalSeconds={tempRemainTotalSeconds}
+                    viewHours={viewHours}
+                    viewMinutes={viewMinutes}
+                    viewSeconds={viewSeconds}
+                    countingStatus={startStatus}
+                  />
+                ) : (
+                  <TimeSettingTools
+                    settingsTotalSeconds={settingsTotalSeconds}
+                    seconds={Number(viewSeconds)}
+                    minutes={Number(viewMinutes)}
+                    hours={Number(viewHours)}
+                    prevSeconds={prevSeconds}
+                    prevMinutesSeconds={prevMinutesSeconds}
+                    prevHoursSeconds={prevHoursSeconds}
+                    onTotalSecondsChange={(s, type) => onTotalSecondsChange(s, type)}
+                    onPrevTimeChange={(s, type) => onPrevTimeChange(s, type)}
+                  />
+                )}
+              </div>
+            </CSSTransition>
+          </SwitchTransition>
           <div className="buttons">
             <button
               className="cancel"
