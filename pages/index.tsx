@@ -5,6 +5,7 @@ import {
   TimeSelectChangeType,
 } from '../types/counter';
 import Layout from '../components/Layout';
+import ViewTimes from '../components/index/ViewTimes';
 import TimeSettingTools from '../components/index/TimeSettingTools';
 import RingToneSelector from '../components/index/RingToneSelector';
 import RingToneSelectModal from '../components/index/RingToneSelectModal';
@@ -13,7 +14,6 @@ import TimesUpAlertModal from '../components/index/TimesUpAlertModal';
 import { RingToneType } from '../types/ring_tone';
 
 import ReactHowler from 'react-howler';
-import { CSSTransition } from 'react-transition-group';
 
 import '@styles/index.scss';
 import '@styles/transition_group.scss';
@@ -34,6 +34,7 @@ let counting;
 
 const index = () => {
   const [remainTotalSeconds, setRemainTotalSeconds] = useState<number>(0);
+  const [tempRemainTotalSeconds, setTempRemainTotalSeconds] = useState<number>(0);
   const [settingsTotalSeconds, setSettingsTotalSeconds] = useState<number>(0);
 
   const [prevSeconds, setPrevSeconds] = useState<number>(0);
@@ -44,7 +45,7 @@ const index = () => {
   const [viewMinutes, setViewMinutes] = useState<string>('00');
   const [viewHours, setViewHours] = useState<string>('00');
 
-  const [startStatus, setStartStatus] = useState<string>(StartStatus.stop);
+  const [startStatus, setStartStatus] = useState<StartStatus>(StartStatus.stop);
   const [startText, setStartText] = useState<string>(StartText.start);
 
   const [showSettingAlert, setShowSettingAlert] = useState<boolean>(false);
@@ -52,6 +53,7 @@ const index = () => {
   const [showTotalSeconds, setShowTotalSeconds] = useState<boolean>(false);
   const [showViewTimes, setShowViewTimes] = useState<boolean>(false);
   const [showRingToneSelect, setShowRingToneSelect] = useState<boolean>(false);
+  const [showCircleBar, setShowCircleBar] = useState<boolean>(false);
 
   const [timesUp, setTimesUp] = useState<boolean>(false);
 
@@ -101,15 +103,21 @@ const index = () => {
     switch (startStatus) {
       case StartStatus.start: //按暫停
         clearInterval(counting);
+        setTempRemainTotalSeconds(remainTotalSeconds);
+        setShowCircleBar(false);
         setStartStatus(StartStatus.pause);
         setStartText(StartText.continue);
         break;
       case StartStatus.pause: //按繼續
+        setTempRemainTotalSeconds(remainTotalSeconds);
         setStartStatus(StartStatus.start);
+        setShowCircleBar(true);
         setStartText(StartText.pause);
         counting = setInterval(myTimer, 1000);
         break;
       case StartStatus.stop: //按開始
+        setTempRemainTotalSeconds(remainTotalSeconds);
+        setShowCircleBar(true);
         setStartStatus(StartStatus.start);
         setStartText(StartText.pause);
         setShowViewTimes(true);
@@ -167,7 +175,6 @@ const index = () => {
     calculateSettingsTime(t);
 
     setRemainTotalSeconds(t);
-    setSettingsTotalSeconds(t);
   };
 
   const onTotalSecondsChange = (t: number, type: string) => {
@@ -200,6 +207,8 @@ const index = () => {
 
   const onRing = (status: boolean) => {
     setTimesUp(status);
+    setShowCircleBar(false);
+    setTempRemainTotalSeconds(remainTotalSeconds);
   };
 
   const onCloseTimesUpAlert = () => {
@@ -222,6 +231,8 @@ const index = () => {
     onRing(false);
     startCounting();
     onCloseTimesUpAlert();
+    setShowCircleBar(true);
+    setTempRemainTotalSeconds(remainTotalSeconds);
   };
 
   const onSetRingTone = (rt: RingToneType) => {
@@ -230,17 +241,6 @@ const index = () => {
   };
 
   const stopClass = startStatus === StartStatus.start ? 'pause' : 'start';
-
-  const circleSvg = useRef(null);
-  const [circleHeight, setCircleHeight] = useState<number>(0);
-  // console.log(circleWidth)
-  // console.log(circleWidth)
-  useEffect(() => {
-    document.onreadystatechange = () => {
-      setCircleHeight(circleSvg.current.clientWidth);
-    };
-  }, []);
-  // return <div ref={ref}>Hello</div>;
 
   return (
     <Layout
@@ -269,25 +269,16 @@ const index = () => {
             onTotalSecondsChange={(s, type) => onTotalSecondsChange(s, type)}
             onPrevTimeChange={(s, type) => onPrevTimeChange(s, type)}
           />
-          <CSSTransition
-            in={true}
-            timeout={1000}
-            classNames="fade"
-            unmountOnExit
-          >
-            <div className="view-times" style={{height: circleHeight}}>
-              <div className="circle" style={{height: circleHeight}}>
-                <svg ref={circleSvg} height="100%" width="100%">
-                  <circle cx={circleHeight/2} cy={circleHeight/2} r={(circleHeight-10)/2} stroke="red" strokeWidth="5" fill="none" />
-                </svg>
-                <p className="time">
-                  <span>{viewHours}：</span>
-                  <span>{viewMinutes}：</span>
-                  <span>{viewSeconds}</span>
-                </p>
-              </div>
-            </div>
-          </CSSTransition>
+          <ViewTimes
+            show={showViewTimes}
+            resetCircle={showCircleBar}
+            totalSeconds={settingsTotalSeconds}
+            remainTotalSeconds={tempRemainTotalSeconds}
+            viewHours={viewHours}
+            viewMinutes={viewMinutes}
+            viewSeconds={viewSeconds}
+            countingStatus={startStatus}
+            />
           <div className="buttons">
             <button
               className="cancel"
