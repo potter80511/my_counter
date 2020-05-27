@@ -31,7 +31,7 @@ const ViewTimes = (props: ViewTimesProps) => {
   const circleHeight = height;
   const circleRadius = r;
   const circleLength = 2 * r * Math.PI;
-  const circleStrokeWidth = 9;
+  const circleStrokeWidth = 7;
   const circleStrokeColor = '#ee951b';
 
   const passedTimeRate = (totalSeconds - remainTotalSeconds) === 0
@@ -42,7 +42,7 @@ const ViewTimes = (props: ViewTimesProps) => {
     <div className="view-times" style={{height: circleHeight}}>
       <div className="circle" style={{height: circleHeight}}>
         <svg ref={circleSvg} height="100%" width="100%">
-          <circle cx={circleHeight/2} cy={circleHeight/2} r={circleRadius} stroke="#555" strokeWidth="6" fill="none" />
+          <circle cx={circleHeight/2} cy={circleHeight/2} r={circleRadius} stroke="#222" strokeWidth="7" fill="none" />
           { resetCircle ? (
             <Spring
               from={{strokeDashoffset: circlePassedLength}}
