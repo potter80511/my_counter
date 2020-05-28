@@ -9,6 +9,7 @@ import { useTransition, animated } from 'react-spring';
 export type AlertProps = {
   id?: string;
   className?: string;
+  viewHeight?: number;
   show?: boolean;
   message: string;
   yesText?: string;
@@ -26,6 +27,8 @@ const Alert = (props: AlertProps) => {
     yes,
     no,
   } = props;
+
+  const viewHeight = props.viewHeight + 'px';
 
   const onYes = () => {
     yes();
@@ -55,7 +58,7 @@ const Alert = (props: AlertProps) => {
         <animated.div
           id={id}
           className={`alert-modal${className}`}
-          style={props} key={key}
+          style={{height: viewHeight ,...props}} key={key}
         >
           <div className="background" onClick={onClose}></div>
           { fadeScale.map(({ item, key, props }) =>

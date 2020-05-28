@@ -55,6 +55,7 @@ const RingTone = (props: RingToneProps) => {
 
 type RingToneSelectModalProps = {
   show?: boolean;
+  viewHeight?: number;
   currentRingTone: RingToneType;
   onSubmit: (rt: RingToneType) => void;
   onCancel(): void;
@@ -67,6 +68,8 @@ const RingToneSelectModal = (props: RingToneSelectModalProps) => {
     onSubmit,
     onCancel,
   } = props;
+
+  const viewHeight = props.viewHeight + 'px';
 
   const [tempSelected, setTempSelected] = useState<RingToneType>(currentRingTone);
 
@@ -90,10 +93,9 @@ const RingToneSelectModal = (props: RingToneSelectModalProps) => {
       in={show}
       timeout={600}
       unmountOnExit
-      className="ring-tone-select-modal"
       onExited={() => setTempSelected(currentRingTone)}
     >
-      <div className="ring-tone-select-modal">
+      <div className="ring-tone-select-modal" style={{height: viewHeight}}>
         <CSSTransition
           appear={true}
           in={show}

@@ -251,7 +251,7 @@ const index = () => {
     <Layout
       id={'index'}
       meta={meta}
-      style={{height: viewHeight + 'px'}}
+      viewHeight={viewHeight}
     >
       <div id='counter'>
         <button className="show_total_seconds" onClick={onShowTotalSeconds}>show totalSeconds</button>
@@ -324,6 +324,7 @@ const index = () => {
         <RingToneSelectModal
           show={showRingToneSelect}
           currentRingTone={selectedRingTone}
+          viewHeight={viewHeight}
           onSubmit={(rt) => onSetRingTone(rt)}
           onCancel={() => setShowRingToneSelect(false)}
         />
@@ -331,9 +332,10 @@ const index = () => {
           message={'請設定時間再開始計時！'}
           show={showSettingAlert}
           yes={alertOk}
+          viewHeight={viewHeight}
         />
         <TimesUpAlertModal
-          style={{height: viewHeight + 'px'}}
+          viewHeight={viewHeight}
           message={'時間到'}
           show={showTimesUpAlert}
           yes={onTimesUpOk}
