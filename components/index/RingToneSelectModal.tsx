@@ -24,6 +24,21 @@ const ringTonesData = [
     name: '狗叫聲',
     url: '/audios/funny_barking.mp3'
   },
+  {
+    id: 'mario',
+    name: '超級瑪麗',
+    url: '/audios/mario.mp3'
+  },
+  {
+    id: 'salda',
+    name: '薩爾達傳說',
+    url: '/audios/salda.mp3'
+  },
+  {
+    id: 'zelda',
+    name: '薩爾達傳說2',
+    url: '/audios/zelda.mp3'
+  },
 ];
 
 type RingToneProps = {
