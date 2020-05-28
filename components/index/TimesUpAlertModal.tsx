@@ -5,9 +5,11 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@styles/components/Alert.scss';
 import { Transition, animated } from 'react-spring/renderprops.cjs';
+import { Style } from '../../types/common';
 
 export interface TimesUpAlertProps {
   id?: string;
+  style: Style;
   className?: string;
   show?: boolean;
   message: string;
@@ -20,6 +22,7 @@ const TimesUpAlertModal = (props: TimesUpAlertProps) => {
   const {
     id,
     message,
+    style,
     show,
     yes,
     onRecount,
@@ -42,7 +45,7 @@ const TimesUpAlertModal = (props: TimesUpAlertProps) => {
           <animated.div
             id={id}
             className={`ring-alert-modal${className}${showClass}`}
-            style={props}
+            style={{...style, ...props}}
           >
             <div className={`modal-block`}>
               <div className="modal-content">

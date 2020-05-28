@@ -9,7 +9,7 @@ import ViewTimes from '../components/index/ViewTimes';
 import TimeSettingTools from '../components/index/TimeSettingTools';
 import RingToneSelector from '../components/index/RingToneSelector';
 import RingToneSelectModal from '../components/index/RingToneSelectModal';
-import Alert, { AlertProps } from '../components/modals/Alert';
+import Alert from '../components/modals/Alert';
 import TimesUpAlertModal from '../components/index/TimesUpAlertModal';
 import { RingToneType } from '../types/ring_tone';
 
@@ -243,10 +243,15 @@ const index = () => {
 
   const stopClass = startStatus === StartStatus.start ? 'pause' : 'start';
 
+  const [viewHeight, setViewHeight] = useState<number>(0);
+  useEffect(() => {
+      setViewHeight(window.innerHeight);
+  }, []);
   return (
     <Layout
       id={'index'}
       meta={meta}
+      style={{height: viewHeight + 'px'}}
     >
       <div id='counter'>
         <button className="show_total_seconds" onClick={onShowTotalSeconds}>show totalSeconds</button>
@@ -328,6 +333,7 @@ const index = () => {
           yes={alertOk}
         />
         <TimesUpAlertModal
+          style={{height: viewHeight + 'px'}}
           message={'時間到'}
           show={showTimesUpAlert}
           yes={onTimesUpOk}

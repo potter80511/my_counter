@@ -26,8 +26,7 @@ const Alert = (props: AlertProps) => {
     yes,
     no,
   } = props;
-  const showClass = show ? ' show' : '';
-  // const scaleIn = show ? ' scaleIn' : '';
+
   const onYes = () => {
     yes();
     onClose();

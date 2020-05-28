@@ -1,0 +1,7 @@
+@mixin height_100 {
+  height: 100vh;
+  width: 100vw;
+  @media (max-width: 575px) {
+    height: calc(100vh - 80px);
+  }
+}
