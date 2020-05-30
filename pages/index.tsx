@@ -52,6 +52,14 @@ const index = () => {
   const presetViewSeconds = counter_settings && counter_settings.hasOwnProperty('viewSeconds') ? counter_settings.viewSeconds : '00';
   const presetViewMinutes = counter_settings && counter_settings.hasOwnProperty('viewMinutes') ? counter_settings.viewMinutes : '00';
   const presetViewHours = counter_settings && counter_settings.hasOwnProperty('viewHours') ? counter_settings.viewHours : '00';
+
+  const presetRingTones = counter_settings && counter_settings.hasOwnProperty('ringTone')
+    ? counter_settings.ringTone
+    : {
+      id: 'warm_morning',
+      name: '溫暖早晨',
+      url: '/audios/warm_morning.mp3'
+    };
   // if (counter_settings) {
   //   console.log(counter_settings)
   // }
@@ -80,11 +88,7 @@ const index = () => {
 
   const [timesUp, setTimesUp] = useState<boolean>(false);
 
-  const [selectedRingTone, setSelectedRingTone] = useState<RingToneType>({
-    id: 'warm_morning',
-    name: '溫暖早晨',
-    url: '/audios/warm_morning.mp3'
-  });
+  const [selectedRingTone, setSelectedRingTone] = useState<RingToneType>(presetRingTones);
 
   let t: number = remainTotalSeconds;
   let countingSeconds: string | number = 0;
@@ -275,6 +279,8 @@ const index = () => {
   const onSetRingTone = (rt: RingToneType) => {
     setSelectedRingTone(rt);
     setShowRingToneSelect(false);
+    const newSettingCookie = {...counter_settings, ringTone: rt}
+    onSetCookie(newSettingCookie);
   };
 
   const stopClass = startStatus === StartStatus.start ? 'pause' : 'start';
