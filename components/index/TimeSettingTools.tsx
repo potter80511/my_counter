@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import NormalSelect from '../form_elements/NormalSelect';
 import { optionType } from '../../types/common';
 import { TimeSelectChangeType } from '../../types/counter';
@@ -18,7 +18,7 @@ type TimeSettingToolsType = {
   prevMinutesSeconds: number;
   prevHoursSeconds: number;
   settingsTotalSeconds: number;
-  onTotalSecondsChange(s: number, type: string): void;
+  onTotalSecondsChange(s: number, type: string, viewTimes: number): void;
   onPrevTimeChange(s: number, type: string): void;
 };
 
@@ -81,8 +81,19 @@ const TimeSettingTools = (props: TimeSettingToolsType) => {
     }
 
     setTempTotalSeconds(newTotalSeconds);
-    onTotalSecondsChange(newTotalSeconds, type);
+    onTotalSecondsChange(newTotalSeconds, type, Number(t));
   };
+  const [firstLoad, setFirstLoad] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (firstLoad) {
+      console.log('fuck')
+      onTimeChange(String(seconds), TimeSelectChangeType.seconds);
+      onTimeChange(String(minutes), TimeSelectChangeType.minutes);
+      onTimeChange(String(hours), TimeSelectChangeType.hour);
+      setFirstLoad(false);
+    }
+  });
 
   return (
     <div className="time_setting_tools">

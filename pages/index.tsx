@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StartStatus,
   StartText,
@@ -12,9 +12,11 @@ import RingToneSelectModal from '../components/index/RingToneSelectModal';
 import Alert from '../components/modals/Alert';
 import TimesUpAlertModal from '../components/index/TimesUpAlertModal';
 import { RingToneType } from '../types/ring_tone';
+import { CounterCookie } from '../types/counterCookie';
 
 import ReactHowler from 'react-howler';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
+import { useCookies } from 'react-cookie';
 
 import '@styles/index.scss';
 import '@styles/transition_group.scss';
@@ -34,17 +36,37 @@ const meta = {
 let counting;
 
 const index = () => {
-  const [remainTotalSeconds, setRemainTotalSeconds] = useState<number>(0);
-  const [tempRemainTotalSeconds, setTempRemainTotalSeconds] = useState<number>(0);
-  const [settingsTotalSeconds, setSettingsTotalSeconds] = useState<number>(0);
+  const [cookies, setCookie] = useCookies(['counter_settings']);
 
-  const [prevSeconds, setPrevSeconds] = useState<number>(0);
-  const [prevMinutesSeconds, setPrevMinutesSeconds] = useState<number>(0);
-  const [prevHoursSeconds, setPrevHoursSeconds] = useState<number>(0);
+  const onSetCookie = (settings: CounterCookie) => {
+    setCookie('counter_settings', settings);
+  };
+  const counter_settings = cookies.counter_settings ? cookies.counter_settings : {};
+  
+  const presetTotalSeconds = counter_settings && counter_settings.hasOwnProperty('settingTimes') ? counter_settings.settingTimes : 0;
 
-  const [viewSeconds, setViewSeconds] = useState<string>('00');
-  const [viewMinutes, setViewMinutes] = useState<string>('00');
-  const [viewHours, setViewHours] = useState<string>('00');
+  const presetSeconds = counter_settings && counter_settings.hasOwnProperty('seconds') ? counter_settings.seconds : 0;
+  const presetMinutes = counter_settings && counter_settings.hasOwnProperty('minutes') ? counter_settings.minutes : 0;
+  const presetHours = counter_settings && counter_settings.hasOwnProperty('hours') ? counter_settings.hours : 0;
+
+  const presetViewSeconds = counter_settings && counter_settings.hasOwnProperty('viewSeconds') ? counter_settings.viewSeconds : '00';
+  const presetViewMinutes = counter_settings && counter_settings.hasOwnProperty('viewMinutes') ? counter_settings.viewMinutes : '00';
+  const presetViewHours = counter_settings && counter_settings.hasOwnProperty('viewHours') ? counter_settings.viewHours : '00';
+  // if (counter_settings) {
+  //   console.log(counter_settings)
+  // }
+
+  const [remainTotalSeconds, setRemainTotalSeconds] = useState<number>(presetTotalSeconds);
+  const [tempRemainTotalSeconds, setTempRemainTotalSeconds] = useState<number>(presetTotalSeconds);
+  const [settingsTotalSeconds, setSettingsTotalSeconds] = useState<number>(presetTotalSeconds);
+
+  const [prevSeconds, setPrevSeconds] = useState<number>(presetSeconds);
+  const [prevMinutesSeconds, setPrevMinutesSeconds] = useState<number>(presetMinutes * 60);
+  const [prevHoursSeconds, setPrevHoursSeconds] = useState<number>(presetHours * 3600);
+
+  const [viewSeconds, setViewSeconds] = useState<string>(presetViewSeconds);
+  const [viewMinutes, setViewMinutes] = useState<string>(presetViewMinutes);
+  const [viewHours, setViewHours] = useState<string>(presetViewHours);
 
   const [startStatus, setStartStatus] = useState<StartStatus>(StartStatus.stop);
   const [startText, setStartText] = useState<string>(StartText.start);
@@ -174,13 +196,27 @@ const index = () => {
 
   const calculateTotalSeconds = (t: number) => {
     calculateSettingsTime(t);
-
     setRemainTotalSeconds(t);
   };
 
-  const onTotalSecondsChange = (t: number, type: string) => {
+  const onTotalSecondsChange = (t: number, type: string, viewTimes: number) => {
     setSettingsTotalSeconds(t);
     calculateTotalSeconds(t);
+    let newSettingCookie: CounterCookie;
+    const stringViewTimes = viewTimes < 10 ? '0' + viewTimes : String(viewTimes);
+    
+    switch (type) {
+      case TimeSelectChangeType.seconds:
+        newSettingCookie = {...counter_settings, settingTimes: t, seconds: viewTimes, viewSeconds: stringViewTimes}
+        break;
+      case TimeSelectChangeType.minutes:
+        newSettingCookie = {...counter_settings, settingTimes: t, minutes: viewTimes, viewMinutes: stringViewTimes}
+        break;
+      case TimeSelectChangeType.hour:
+        newSettingCookie = {...counter_settings, settingTimes: t, hours: viewTimes, viewHours: stringViewTimes}
+        break;
+    }
+    onSetCookie(newSettingCookie);
   };
 
   const onPrevTimeChange = (t: number, type: string) => {
@@ -245,8 +281,8 @@ const index = () => {
 
   const [viewHeight, setViewHeight] = useState<number>(0);
   useEffect(() => {
-      setViewHeight(window.innerHeight);
-  }, []);
+    setViewHeight(window.innerHeight);
+  });
   return (
     <Layout
       id={'index'}
@@ -289,7 +325,7 @@ const index = () => {
                     prevSeconds={prevSeconds}
                     prevMinutesSeconds={prevMinutesSeconds}
                     prevHoursSeconds={prevHoursSeconds}
-                    onTotalSecondsChange={(s, type) => onTotalSecondsChange(s, type)}
+                    onTotalSecondsChange={(s, type, viewTimes) => onTotalSecondsChange(s, type, viewTimes)}
                     onPrevTimeChange={(s, type) => onPrevTimeChange(s, type)}
                   />
                 )}
