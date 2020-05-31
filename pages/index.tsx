@@ -46,8 +46,8 @@ const index = () => {
   const presetTotalSeconds = counter_settings && counter_settings.hasOwnProperty('settingTimes') ? counter_settings.settingTimes : 0;
 
   const presetSeconds = counter_settings && counter_settings.hasOwnProperty('seconds') ? counter_settings.seconds : 0;
-  const presetMinutes = counter_settings && counter_settings.hasOwnProperty('minutes') ? counter_settings.minutes : 0;
-  const presetHours = counter_settings && counter_settings.hasOwnProperty('hours') ? counter_settings.hours : 0;
+  const presetMinutesSeconds = counter_settings && counter_settings.hasOwnProperty('minutesSeconds') ? counter_settings.minutesSeconds : 0;
+  const presetHoursSeconds = counter_settings && counter_settings.hasOwnProperty('hoursSeconds') ? counter_settings.hoursSeconds : 0;
 
   const presetViewSeconds = counter_settings && counter_settings.hasOwnProperty('viewSeconds') ? counter_settings.viewSeconds : '00';
   const presetViewMinutes = counter_settings && counter_settings.hasOwnProperty('viewMinutes') ? counter_settings.viewMinutes : '00';
@@ -69,8 +69,8 @@ const index = () => {
   const [settingsTotalSeconds, setSettingsTotalSeconds] = useState<number>(presetTotalSeconds);
 
   const [prevSeconds, setPrevSeconds] = useState<number>(presetSeconds);
-  const [prevMinutesSeconds, setPrevMinutesSeconds] = useState<number>(presetMinutes * 60);
-  const [prevHoursSeconds, setPrevHoursSeconds] = useState<number>(presetHours * 3600);
+  const [prevMinutesSeconds, setPrevMinutesSeconds] = useState<number>(presetMinutesSeconds);
+  const [prevHoursSeconds, setPrevHoursSeconds] = useState<number>(presetHoursSeconds);
 
   const [viewSeconds, setViewSeconds] = useState<string>(presetViewSeconds);
   const [viewMinutes, setViewMinutes] = useState<string>(presetViewMinutes);
@@ -205,7 +205,7 @@ const index = () => {
     setRemainTotalSeconds(t);
   };
 
-  const onTotalSecondsChange = (t: number, type: string, viewTimes: number) => {
+  const onTotalSecondsChange = (t: number, type: string, viewTimes: number, numberTimes: number) => {
     setSettingsTotalSeconds(t);
     calculateTotalSeconds(t);
     let newSettingCookie: CounterCookie;
@@ -213,30 +213,19 @@ const index = () => {
     
     switch (type) {
       case TimeSelectChangeType.seconds:
-        newSettingCookie = {...counter_settings, settingTimes: t, seconds: viewTimes, viewSeconds: stringViewTimes}
+        setPrevSeconds(numberTimes);
+        newSettingCookie = {...counter_settings, settingTimes: t, seconds: numberTimes, viewSeconds: stringViewTimes}
         break;
       case TimeSelectChangeType.minutes:
-        newSettingCookie = {...counter_settings, settingTimes: t, minutes: viewTimes, viewMinutes: stringViewTimes}
+        setPrevMinutesSeconds(numberTimes);
+        newSettingCookie = {...counter_settings, settingTimes: t, minutesSeconds: numberTimes, viewMinutes: stringViewTimes}
         break;
       case TimeSelectChangeType.hour:
-        newSettingCookie = {...counter_settings, settingTimes: t, hours: viewTimes, viewHours: stringViewTimes}
+        setPrevHoursSeconds(numberTimes);
+        newSettingCookie = {...counter_settings, settingTimes: t, hoursSeconds: numberTimes, viewHours: stringViewTimes}
         break;
     }
     onSetCookie(newSettingCookie);
-  };
-
-  const onPrevTimeChange = (t: number, type: string) => {
-    switch (type) {
-      case TimeSelectChangeType.seconds:
-        setPrevSeconds(t);
-        break;
-      case TimeSelectChangeType.minutes:
-        setPrevMinutesSeconds(t);
-        break;
-      case TimeSelectChangeType.hour:
-        setPrevHoursSeconds(t);
-        break;
-    }
   };
 
   const onShowSettingAlert = () => {
@@ -337,8 +326,7 @@ const index = () => {
                     prevSeconds={prevSeconds}
                     prevMinutesSeconds={prevMinutesSeconds}
                     prevHoursSeconds={prevHoursSeconds}
-                    onTotalSecondsChange={(s, type, viewTimes) => onTotalSecondsChange(s, type, viewTimes)}
-                    onPrevTimeChange={(s, type) => onPrevTimeChange(s, type)}
+                    onTotalSecondsChange={(s, type, viewTimes, numberTimes) => onTotalSecondsChange(s, type, viewTimes, numberTimes)}
                   />
                 )}
               </div>

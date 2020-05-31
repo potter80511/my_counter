@@ -18,8 +18,7 @@ type TimeSettingToolsType = {
   prevMinutesSeconds: number;
   prevHoursSeconds: number;
   settingsTotalSeconds: number;
-  onTotalSecondsChange(s: number, type: string, viewTimes: number): void;
-  onPrevTimeChange(s: number, type: string): void;
+  onTotalSecondsChange(s: number, type: string, viewTimes: number, numberTimes: number): void;
 };
 
 const toolDatas: TimeSettingToolDatas = {
@@ -55,7 +54,6 @@ const TimeSettingTools = (props: TimeSettingToolsType) => {
     prevHoursSeconds,
     settingsTotalSeconds,
     onTotalSecondsChange,
-    onPrevTimeChange,
   } = props;
   const [tempTotalSeconds, setTempTotalSeconds] = useState<number>(settingsTotalSeconds);
 
@@ -65,23 +63,20 @@ const TimeSettingTools = (props: TimeSettingToolsType) => {
     switch (type) {
       case TimeSelectChangeType.seconds:
         numberTimes = numberTimes;
-        onPrevTimeChange(numberTimes, type);
         newTotalSeconds = tempTotalSeconds - prevSeconds + numberTimes;
         break;
       case TimeSelectChangeType.minutes:
         numberTimes = numberTimes * 60;
-        onPrevTimeChange(numberTimes, type);
         newTotalSeconds = tempTotalSeconds - prevMinutesSeconds + numberTimes;
         break;
       case TimeSelectChangeType.hour:
         numberTimes = numberTimes * 3600;
-        onPrevTimeChange(numberTimes, type);
         newTotalSeconds = tempTotalSeconds - prevHoursSeconds + numberTimes;
         break;
     }
 
     setTempTotalSeconds(newTotalSeconds);
-    onTotalSecondsChange(newTotalSeconds, type, Number(t));
+    onTotalSecondsChange(newTotalSeconds, type, Number(t), numberTimes);
   };
   const [firstLoad, setFirstLoad] = useState<boolean>(true);
 
