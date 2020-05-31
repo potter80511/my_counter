@@ -26,6 +26,19 @@
     opacity: 1;
   }
 }
+
+@keyframes fadeInfinite {
+  0% {
+    opacity: .3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: .3;
+  }
+}
+
 .show {
   // animation: fadeIn 0.3s;
 }
