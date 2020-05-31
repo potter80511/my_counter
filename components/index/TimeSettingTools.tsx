@@ -87,7 +87,6 @@ const TimeSettingTools = (props: TimeSettingToolsType) => {
 
   useEffect(() => {
     if (firstLoad) {
-      console.log('fuck')
       onTimeChange(String(seconds), TimeSelectChangeType.seconds);
       onTimeChange(String(minutes), TimeSelectChangeType.minutes);
       onTimeChange(String(hours), TimeSelectChangeType.hour);

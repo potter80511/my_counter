@@ -83,6 +83,7 @@ const index = () => {
   const [showTimesUpAlert, setShowTimesUpAlert] = useState<boolean>(false);
   const [showTotalSeconds, setShowTotalSeconds] = useState<boolean>(false);
   const [showViewTimes, setShowViewTimes] = useState<boolean>(false);
+  const [showViewHours, setShowViewHours] = useState<boolean>(false);
   const [showRingToneSelect, setShowRingToneSelect] = useState<boolean>(false);
   const [showCircleBar, setShowCircleBar] = useState<boolean>(false);
 
@@ -111,6 +112,7 @@ const index = () => {
     setViewSeconds(countingSeconds as string);
     setViewMinutes(countingMinutes as string);
     setViewHours(countingHours as string);
+
     if (t === 0) {
       setStartStatus(StartStatus.stop);
       setStartText(StartText.start);
@@ -289,6 +291,9 @@ const index = () => {
   useEffect(() => {
     setViewHeight(window.innerHeight);
   });
+  useEffect(() => {
+    remainTotalSeconds < 3600 ? setShowViewHours(false) : setShowViewHours(true);
+  }, [remainTotalSeconds]);
   return (
     <Layout
       id={'index'}
@@ -314,6 +319,7 @@ const index = () => {
               <div className="time-block">
                 { showViewTimes ? (
                   <ViewTimes
+                    showViewHours={showViewHours}
                     resetCircle={showCircleBar}
                     totalSeconds={settingsTotalSeconds}
                     remainTotalSeconds={tempRemainTotalSeconds}

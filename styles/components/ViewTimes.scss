@@ -13,6 +13,10 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      transition: font-size .6s;
+      &.font-big {
+        font-size: 55px;
+      }
     }
     svg {
       transform: rotate(-90deg);
