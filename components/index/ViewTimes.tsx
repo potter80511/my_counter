@@ -43,6 +43,18 @@ const ViewTimes = (props: ViewTimesProps) => {
   const circlePassedLength = circleLength * passedTimeRate;
 
   const fontBigClass = !showViewHours ? ' font-big' : '';
+  const countingClass = countingStatus === StartStatus.start ? ' startCounting' : '';
+
+  const statusText = () => {
+    switch (countingStatus) {
+      case StartStatus.start:
+        return '計時中..';
+      case StartStatus.pause:
+        return '計時暫停';
+      case StartStatus.stop:
+        return '計時停止';
+    }
+  }
 
   return (
     <div className="view-times" style={{height: circleHeight}}>
@@ -64,9 +76,9 @@ const ViewTimes = (props: ViewTimesProps) => {
           )}
         </svg>
         <div className="counting">
-          <span className="label fadeInfinite">
+          <span className={`label${countingClass}`}>
             <FontAwesomeIcon icon={faStopwatch} />
-            計時中..
+            {statusText()}
           </span>
           <p className={`time${fontBigClass}`}>
             <CSSTransition

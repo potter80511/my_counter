@@ -1,9 +1,5 @@
 @import '../custom_animation.scss';
 
-.fadeInfinite {
-  animation: fadeInfinite 2.5s infinite ease-in-out;
-}
-
 .view-times {
   position: relative;
   .circle {
@@ -19,8 +15,13 @@
       left: 50%;
       transform: translate(-50%, -50%);
       .label {
-        color: #888;
+        color: #0e9457;
         font-size: 18px;
+        transition: color .3s;
+        &.startCounting {
+          color: #888;
+          animation: fadeInfinite 2.5s infinite ease-in-out;
+        }
         svg {
           font-size: 13px;
           height: 13px;
