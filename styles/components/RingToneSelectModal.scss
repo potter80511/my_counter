@@ -31,6 +31,10 @@
       button {
         color: $iphone-orange;
         font-size: 15px;
+        transition: all .3s;
+        &:hover {
+          color: #f7b070;
+        }
       }
     }
     .modal-content {
