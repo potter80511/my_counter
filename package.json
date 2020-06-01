@@ -18,10 +18,10 @@
     "react": "16.13.1",
     "react-cookie": "^4.0.3",
     "react-dom": "16.13.1",
-    "react-howler": "^3.7.4",
     "react-spring": "^8.0.27",
     "react-transition-group": "^4.4.1",
-    "sass": "^1.26.5"
+    "sass": "^1.26.5",
+    "use-sound": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "^13.13.5",

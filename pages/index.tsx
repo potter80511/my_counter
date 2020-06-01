@@ -14,7 +14,7 @@ import TimesUpAlertModal from '../components/index/TimesUpAlertModal';
 import { RingToneType } from '../types/ring_tone';
 import { CounterCookie } from '../types/counterCookie';
 
-import ReactHowler from 'react-howler';
+import useSound from 'use-sound';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { useCookies } from 'react-cookie';
 
@@ -42,7 +42,7 @@ const index = () => {
     setCookie('counter_settings', settings);
   };
   const counter_settings = cookies.counter_settings ? cookies.counter_settings : {};
-  
+
   const presetTotalSeconds = counter_settings && counter_settings.hasOwnProperty('settingTimes') ? counter_settings.settingTimes : 0;
 
   const presetSeconds = counter_settings && counter_settings.hasOwnProperty('seconds') ? counter_settings.seconds : 0;
@@ -87,9 +87,9 @@ const index = () => {
   const [showRingToneSelect, setShowRingToneSelect] = useState<boolean>(false);
   const [showCircleBar, setShowCircleBar] = useState<boolean>(false);
 
-  const [timesUp, setTimesUp] = useState<boolean>(false);
-
   const [selectedRingTone, setSelectedRingTone] = useState<RingToneType>(presetRingTones);
+
+  const [play, { stop }] = useSound(selectedRingTone.url);
 
   let t: number = remainTotalSeconds;
   let countingSeconds: string | number = 0;
@@ -117,7 +117,7 @@ const index = () => {
       setStartStatus(StartStatus.stop);
       setStartText(StartText.start);
       setShowTimesUpAlert(true);
-      onRing(true);
+      onRing();
 
       setRemainTotalSeconds(settingsTotalSeconds);
       return clearInterval(counting);
@@ -210,7 +210,7 @@ const index = () => {
     calculateTotalSeconds(t);
     let newSettingCookie: CounterCookie;
     const stringViewTimes = viewTimes < 10 ? '0' + viewTimes : String(viewTimes);
-    
+
     switch (type) {
       case TimeSelectChangeType.seconds:
         setPrevSeconds(numberTimes);
@@ -237,9 +237,9 @@ const index = () => {
     setShowTotalSeconds(newShow);
   };
 
-  const onRing = (status: boolean) => {
-    setTimesUp(status);
-    setShowCircleBar(false);
+  const onRing = () => {
+    play();
+    setShowCircleBar(false); // 為了重新刷動畫，要讓動畫的spring重新render
     setTempRemainTotalSeconds(remainTotalSeconds);
   };
 
@@ -256,11 +256,11 @@ const index = () => {
   const onTimesUpOk = () => {
     onCloseTimesUpAlert();
     setShowViewTimes(false);
-    onRing(false);
+    stop();
   };
 
   const onRecount = () => {
-    onRing(false);
+    stop();
     startCounting();
     onCloseTimesUpAlert();
     setShowCircleBar(true);
@@ -283,6 +283,7 @@ const index = () => {
   useEffect(() => {
     remainTotalSeconds < 3600 ? setShowViewHours(false) : setShowViewHours(true);
   }, [remainTotalSeconds]);
+
   return (
     <Layout
       id={'index'}
@@ -291,13 +292,6 @@ const index = () => {
     >
       <div id='counter'>
         <button className="show_total_seconds" onClick={onShowTotalSeconds}>show totalSeconds</button>
-        <ReactHowler
-          className="howler"
-          loop={true}
-          preload={true}
-          src={selectedRingTone.url}
-          playing={timesUp}
-        />
         <div className="content">
           <SwitchTransition mode="out-in">
             <CSSTransition
