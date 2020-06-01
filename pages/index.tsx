@@ -90,8 +90,8 @@ const index = () => {
 
   const [selectedRingTone, setSelectedRingTone] = useState<RingToneType>(presetRingTones);
 
-  // const [play, { stop, sound }] = useSound(selectedRingTone.url);
-  const [play, { stop, sound }] = useSound(selectedRingTone.url, { loop: true });
+  const [play, { stop, sound }] = useSound(selectedRingTone.url);
+  // const [play, { stop, sound }] = useSound(selectedRingTone.url, { loop: true });
 
   let t: number = remainTotalSeconds;
   let countingSeconds: string | number = 0;
