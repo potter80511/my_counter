@@ -46,7 +46,7 @@ const ringTonesData = [
   },
   {
     id: 'westworld_dr_ford',
-    name: '西方極樂園 - Dr. Ford）',
+    name: '西方極樂園 - Dr. Ford',
     url: '/audios/westworld_dr_ford.mp3'
   },
   {
