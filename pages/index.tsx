@@ -14,7 +14,6 @@ import TimesUpAlertModal from '../components/index/TimesUpAlertModal';
 import { RingToneType } from '../types/ring_tone';
 import { CounterCookie } from '../types/counterCookie';
 
-import useSound from 'use-sound';
 import {Howl, Howler} from 'howler';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { useCookies } from 'react-cookie';
@@ -90,8 +89,11 @@ const index = () => {
 
   const [selectedRingTone, setSelectedRingTone] = useState<RingToneType>(presetRingTones);
 
-  const [play, { stop, sound }] = useSound(selectedRingTone.url);
-  // const [play, { stop, sound }] = useSound(selectedRingTone.url, { loop: true });
+  var sound = new Howl({
+    src: [selectedRingTone.url],
+    loop: true,
+    autoPlay: false,
+  });
 
   let t: number = remainTotalSeconds;
   let countingSeconds: string | number = 0;
@@ -240,9 +242,8 @@ const index = () => {
   };
 
   const onRing = () => {
-    sound.fade(0, 1, 1000);
-    // Howler.loop(true);
-    play();
+    const sound1 = sound.play();
+    sound.fade(0.0, 1.0, 1000, sound1);
     setShowCircleBar(false); // 為了重新刷動畫，要讓動畫的spring重新render
     setTempRemainTotalSeconds(remainTotalSeconds);
   };
@@ -260,11 +261,11 @@ const index = () => {
   const onTimesUpOk = () => {
     onCloseTimesUpAlert();
     setShowViewTimes(false);
-    stop();
+    Howler.stop();
   };
 
   const onRecount = () => {
-    stop();
+    Howler.stop();
     startCounting();
     onCloseTimesUpAlert();
     setShowCircleBar(true);
