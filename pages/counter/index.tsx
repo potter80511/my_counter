@@ -5,12 +5,12 @@ import {
   TimeSelectChangeType,
 } from '../../types/counter';
 import Layout from '../../components/Layout';
-import ViewTimes from '../../components/index/ViewTimes';
-import TimeSettingTools from '../../components/index/TimeSettingTools';
-import RingToneSelector from '../../components/index/RingToneSelector';
-import RingToneSelectModal from '../../components/index/RingToneSelectModal';
+import ViewTimes from '../../components/counter/ViewTimes';
+import TimeSettingTools from '../../components/counter/TimeSettingTools';
+import RingToneSelector from '../../components/counter/RingToneSelector';
+import RingToneSelectModal from '../../components/counter/RingToneSelectModal';
 import Alert from '../../components/modals/Alert';
-import TimesUpAlertModal from '../../components/index/TimesUpAlertModal';
+import TimesUpAlertModal from '../../components/counter/TimesUpAlertModal';
 import { RingToneType } from '../../types/ring_tone';
 import { CounterCookie } from '../../types/counterCookie';
 
@@ -22,14 +22,14 @@ import '@styles/counter/Counter.scss';
 import '@styles/transition_group.scss';
 
 const meta = {
-  title: 'My Counter',
-  description: 'My Counter',
-  keywords: 'My Counter',
-  ogtitle: 'My Counter',
-  ogdescription: 'My Counter',
+  title: "Johnny's App - Counter",
+  description: "Johnny's App - Counter",
+  keywords: "Johnny's App - Counter",
+  ogtitle: "Johnny's App - Counter",
+  ogdescription: "Johnny's App - Counter",
   ogtype: 'website',
   ogimage: '',
-  ogsitename: 'My Counter',
+  ogsitename: "Johnny's App - Counter",
   ogurl: '',
 };
 
