@@ -5,7 +5,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import '@styles/components/RingToneSelector.scss';
+import '@styles/counter/RingToneSelector.scss';
 
 type RingToneSelectorProps = {
   currentRingTone: RingToneType;

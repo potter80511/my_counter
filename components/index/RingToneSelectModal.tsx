@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Transition, CSSTransition } from 'react-transition-group';
-import '@styles/components/RingToneSelectModal.scss';
+import '@styles/counter/RingToneSelectModal.scss';
 import '@styles/transition_group.scss';
 import { RingToneType } from '../../types/ring_tone';
 import {

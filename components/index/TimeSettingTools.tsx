@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import NormalSelect from '../form_elements/NormalSelect';
 import { optionType } from '../../types/common';
 import { TimeSelectChangeType } from '../../types/counter';
-import '@styles/components/TimeSettingTools.scss';
+import '@styles/counter/TimeSettingTools.scss';
 
 type TimeSettingToolDatas = {
   seconds: optionType[];

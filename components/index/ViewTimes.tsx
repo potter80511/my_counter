@@ -4,7 +4,7 @@ import { Spring } from 'react-spring/renderprops.cjs';
 import { CSSTransition } from 'react-transition-group';
 import { faStopwatch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import '@styles/components/ViewTimes.scss';
+import '@styles/counter/ViewTimes.scss';
 import '@styles/transition_group.scss';
 
 interface ViewTimesProps {

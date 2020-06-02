@@ -1,13 +1,13 @@
-@import 'color.scss';
+@import '../color.scss';
 body {
   background-color: #000;
 }
-#index {
+#counter {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 500px;
-  #counter {
+  .counter {
     width: 100%;
     max-width: 340px;
     position: relative;
