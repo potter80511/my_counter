@@ -1,8 +1,8 @@
 @import '../custom_animation.scss';
 
 .view-times {
-  position: relative;
   .circle {
+    position: relative;
     width: 90%;
     margin: 0 auto;
     z-index: 1;
@@ -39,5 +39,8 @@
     .circleSvg {
       transform: rotate(-90deg);
     }
+  }
+  .notice {
+    margin: 20px 0 !important;
   }
 }
