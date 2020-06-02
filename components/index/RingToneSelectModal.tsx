@@ -30,6 +30,21 @@ const ringTonesData = [
     url: '/audios/breaking_bad.mp3'
   },
   {
+    id: 'breaking_bad_theme',
+    name: '絕命毒師2',
+    url: '/audios/breaking_bad_theme.mp3'
+  },
+  {
+    id: 'jesse_pinkmans_tone',
+    name: "Jesse Pinkman's Tone",
+    url: '/audios/jesse_pinkmans_tone.mp3'
+  },
+  {
+    id: 'better_call_saul',
+    name: "Better Call Saul",
+    url: '/audios/better_call_saul.mp3'
+  },
+  {
     id: 'westworld_theme',
     name: '西方極樂園',
     url: '/audios/westworld_theme.mp3'
@@ -43,6 +58,11 @@ const ringTonesData = [
     id: 'westworld_theme_3',
     name: '西方極樂園3',
     url: '/audios/westworld_theme_3.mp3'
+  },
+  {
+    id: 'westworld_theme_4',
+    name: '西方極樂園4',
+    url: '/audios/westworld_theme_4.mp3'
   },
   {
     id: 'westworld_dr_ford',
