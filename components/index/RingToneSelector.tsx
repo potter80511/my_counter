@@ -17,7 +17,7 @@ const RingToneSelector = (props: RingToneSelectorProps) => {
   return (
     <div className="ring-tone-selector" onClick={onClick}>
       <label>計時結束鈴聲</label>
-      <span>{currentRingTone.name}<FontAwesomeIcon icon={faChevronRight} /></span>
+      <span className="music-name">{currentRingTone.name}<FontAwesomeIcon icon={faChevronRight} /></span>
     </div>
   );
 };

@@ -31,12 +31,20 @@
       button {
         color: $iphone-orange;
         font-size: 15px;
+        transition: all .3s;
+        &:hover {
+          color: #f7b070;
+        }
       }
     }
     .modal-content {
       text-align: left;
       margin-top: 10px;
       .ring-tones {
+        max-height: 400px;
+        overflow: scroll;
+        border-radius: 7px;
+        padding: 0 15px 15px 0;
         .item {
           position: relative;
           cursor: pointer;

@@ -20,6 +20,66 @@ const ringTonesData = [
     url: '/audios/alarm_clock.mp3'
   },
   {
+    id: 'bohemian_rhapsody',
+    name: '波希米亞狂想曲',
+    url: '/audios/bohemian_rhapsody.mp3'
+  },
+  {
+    id: 'breaking_bad',
+    name: '絕命毒師',
+    url: '/audios/breaking_bad.mp3'
+  },
+  {
+    id: 'breaking_bad_theme',
+    name: '絕命毒師2',
+    url: '/audios/breaking_bad_theme.mp3'
+  },
+  {
+    id: 'jesse_pinkmans_tone',
+    name: "Jesse Pinkman's Tone",
+    url: '/audios/jesse_pinkmans_tone.mp3'
+  },
+  {
+    id: 'better_call_saul',
+    name: "Better Call Saul",
+    url: '/audios/better_call_saul.mp3'
+  },
+  {
+    id: 'westworld_theme',
+    name: '西方極樂園',
+    url: '/audios/westworld_theme.mp3'
+  },
+  {
+    id: 'westworld_theme_2',
+    name: '西方極樂園2',
+    url: '/audios/westworld_theme_2.mp3'
+  },
+  {
+    id: 'westworld_theme_3',
+    name: '西方極樂園3',
+    url: '/audios/westworld_theme_3.mp3'
+  },
+  {
+    id: 'westworld_theme_4',
+    name: '西方極樂園4',
+    url: '/audios/westworld_theme_4.mp3'
+  },
+  {
+    id: 'westworld_dr_ford',
+    name: '西方極樂園 - Dr. Ford',
+    url: '/audios/westworld_dr_ford.mp3'
+  },
+  {
+    id: 'show_yourself',
+    name: 'Show Yourself',
+    url: '/audios/show_yourself.mp3'
+  },
+  {
+    id: 'all_is_found',
+    name: 'All is Found',
+    url: '/audios/all_is_found.mp3'
+  },
+  {
     id: 'funny_barking',
     name: '狗叫聲',
     url: '/audios/funny_barking.mp3'
@@ -28,16 +88,6 @@ const ringTonesData = [
     id: 'mario',
     name: '超級瑪麗',
     url: '/audios/mario.mp3'
-  },
-  {
-    id: 'salda',
-    name: '薩爾達傳說',
-    url: '/audios/salda.mp3'
-  },
-  {
-    id: 'zelda',
-    name: '薩爾達傳說2',
-    url: '/audios/zelda.mp3'
   },
 ];
 
