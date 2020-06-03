@@ -21,8 +21,9 @@ const index = () => {
     <Layout
       id={'index'}
       meta={meta}
+      className="flex-center"
     >
-      <div id='counter'>
+      <div className='index'>
         sdf
       </div>
     </Layout>

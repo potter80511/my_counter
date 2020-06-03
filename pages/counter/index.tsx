@@ -293,7 +293,7 @@ const Counter = () => {
     <Layout
       id={'counter'}
       meta={meta}
-      viewHeight={viewHeight}
+      className="flex-center"
     >
       <div className="counter">
         <button className="show_total_seconds" onClick={onShowTotalSeconds}>show totalSeconds</button>
