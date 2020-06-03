@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
+import Link from 'next/link';
 import Layout from '../components/Layout';
 
 // import '@styles/index.scss';
@@ -24,7 +25,10 @@ const index = () => {
       className="flex-center"
     >
       <div className='index'>
-        sdf
+        <nav>
+          <Link href="/">Home</Link>
+          <Link href="/counter">Counter</Link>
+        </nav>
       </div>
     </Layout>
   );
