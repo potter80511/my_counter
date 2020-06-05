@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Transition, CSSTransition } from 'react-transition-group';
 import '@styles/counter/RingToneSelectModal.scss';
 import '@styles/transition_group.scss';
-import { RingToneType } from '../../types/ring_tone';
+import { RingToneType } from 'src/types/ring_tone';
 import {
   faCheck,
 } from '@fortawesome/free-solid-svg-icons';

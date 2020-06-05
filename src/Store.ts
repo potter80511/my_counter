@@ -1,5 +1,5 @@
 import { combineReducers, createStore } from 'redux';
-import todoListReducer, { CombinedState as TodoListState} from './features/todo_list/reducers/combinedReducer';
+import todoListReducer, { CombinedState as TodoListState} from 'src/features/todo_list/reducers/combinedReducer';
 
 export interface StoreState {
   todoList: TodoListState;

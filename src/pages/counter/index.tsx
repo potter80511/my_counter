@@ -3,16 +3,16 @@ import {
   StartStatus,
   StartText,
   TimeSelectChangeType,
-} from '../../types/counter';
-import Layout from '../../components/Layout';
-import ViewTimes from '../../components/counter/ViewTimes';
-import TimeSettingTools from '../../components/counter/TimeSettingTools';
-import RingToneSelector from '../../components/counter/RingToneSelector';
-import RingToneSelectModal from '../../components/counter/RingToneSelectModal';
-import Alert from '../../components/modals/Alert';
-import TimesUpAlertModal from '../../components/counter/TimesUpAlertModal';
-import { RingToneType } from '../../types/ring_tone';
-import { CounterCookie } from '../../types/counterCookie';
+} from 'src/types/counter';
+import Layout from 'src/components/Layout';
+import ViewTimes from 'src/components/counter/ViewTimes';
+import TimeSettingTools from 'src/components/counter/TimeSettingTools';
+import RingToneSelector from 'src/components/counter/RingToneSelector';
+import RingToneSelectModal from 'src/components/counter/RingToneSelectModal';
+import Alert from 'src/components/modals/Alert';
+import TimesUpAlertModal from 'src/components/counter/TimesUpAlertModal';
+import { RingToneType } from 'src/types/ring_tone';
+import { CounterCookie } from 'src/types/counterCookie';
 
 import {Howl, Howler} from 'howler';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';

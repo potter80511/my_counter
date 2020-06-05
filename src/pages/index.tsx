@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Layout from '../components/Layout';
+import Layout from 'src/components/Layout';
 
 // import '@styles/index.scss';
 

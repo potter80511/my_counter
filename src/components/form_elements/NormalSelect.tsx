@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { optionType } from '../../types/common';
+import { optionType } from 'src/types/common';
 import {
   faCaretDown,
 } from '@fortawesome/free-solid-svg-icons';

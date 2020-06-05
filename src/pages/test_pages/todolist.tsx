@@ -1,8 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import Layout from '../../components/Layout';
-import { store } from '../../Store';
-import TodoListContainer from '../../features/todo_list/domain/TodoListContainer';
+import Layout from 'src/components/Layout';
+import { store } from 'src/Store';
+import TodoListContainer from 'src/features/todo_list/domain/TodoListContainer';
 
 const meta = {
   title: "Johnny's App - Todo List",
