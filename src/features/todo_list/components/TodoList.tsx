@@ -1,9 +1,14 @@
 import React from 'react';
 import { TodoItem } from '../domain/models/TodoList';
+import '@styles/features/todo_list/TodoList.scss';
 
 const Todo = (props: TodoItem) => {
+  const {
+    id,
+    text,
+  } = props;
   return (
-    <div>{props.text}</div>
+    <div>{id + 1}. {text}</div>
   );
 };
 
