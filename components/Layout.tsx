@@ -12,17 +12,13 @@ type LayoutProps = {
 };
 
 const Layout = (props: LayoutProps) => {
-  const {
-    id,
-    children,
-    meta,
-  } = props;
+  const { id, children, meta } = props;
   const viewHeight = props.viewHeight + 'px';
   return (
     <>
       <Meta meta={meta} />
-      <div id={id} style={{height: viewHeight}}>
-        { children }
+      <div id={id} style={{ height: viewHeight }}>
+        {children}
       </div>
     </>
   );

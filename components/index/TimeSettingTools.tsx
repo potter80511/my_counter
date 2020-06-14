@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import NormalSelect from '../form_elements/NormalSelect';
 import { optionType } from '../../types/common';
 import { TimeSelectChangeType } from '../../types/counter';
@@ -18,7 +18,12 @@ type TimeSettingToolsType = {
   prevMinutesSeconds: number;
   prevHoursSeconds: number;
   settingsTotalSeconds: number;
-  onTotalSecondsChange(s: number, type: string, viewTimes: number, numberTimes: number): void;
+  onTotalSecondsChange(
+    s: number,
+    type: string,
+    viewTimes: number,
+    numberTimes: number
+  ): void;
 };
 
 const toolDatas: TimeSettingToolDatas = {
@@ -55,10 +60,12 @@ const TimeSettingTools = (props: TimeSettingToolsType) => {
     settingsTotalSeconds,
     onTotalSecondsChange,
   } = props;
-  const [tempTotalSeconds, setTempTotalSeconds] = useState<number>(settingsTotalSeconds);
+  const [tempTotalSeconds, setTempTotalSeconds] = useState<number>(
+    settingsTotalSeconds
+  );
 
   const onTimeChange = (t: string, type: string) => {
-    let numberTimes= Number(t);
+    let numberTimes = Number(t);
     let newTotalSeconds: number;
     switch (type) {
       case TimeSelectChangeType.seconds:

@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  faTimes,
-} from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@styles/components/Alert.scss';
 import { useTransition, animated } from 'react-spring';
@@ -15,28 +13,21 @@ export type AlertProps = {
   yesText?: string;
   yes?(): void;
   no?(): void;
-}
+};
 
 const Alert = (props: AlertProps) => {
   const className = props.className ? ` ${props.className}` : '';
-  const {
-    id,
-    message,
-    show,
-    yesText = 'ok',
-    yes,
-    no,
-  } = props;
+  const { id, message, show, yesText = 'ok', yes, no } = props;
 
   const viewHeight = props.viewHeight + 'px';
 
   const onYes = () => {
     yes();
     onClose();
-  }
+  };
   const onClose = () => {
     no ? no() : yes();
-  }
+  };
 
   const fade = useTransition(show, null, {
     from: { opacity: 0 },
@@ -48,30 +39,43 @@ const Alert = (props: AlertProps) => {
     enter: { opacity: 1, transform: 'translate(-50%, -50%) scale(1, 1)' },
     leave: { opacity: 0, transform: 'translate(-50%, -50%) scale(0.7, 0.7)' },
     config: {
-      duration: 300
-    }
+      duration: 300,
+    },
   });
   return (
     <>
-      { fade.map(({ item, key, props }) =>
-        item &&
-        <animated.div
-          id={id}
-          className={`alert-modal${className}`}
-          style={{height: viewHeight ,...props}} key={key}
-        >
-          <div className="background" onClick={onClose}></div>
-          { fadeScale.map(({ item, key, props }) =>
-            item &&
-            <animated.div className={`modal-block`} style={props} key={key}>
-              <button className="close" onClick={onClose}><FontAwesomeIcon icon={faTimes}/></button>
-              <div className="modal-content">
-                <p className="message">{message}</p>
-              </div>
-              <button className="yes" onClick={onYes}>{yesText}</button>
+      {fade.map(
+        ({ item, key, props }) =>
+          item && (
+            <animated.div
+              id={id}
+              className={`alert-modal${className}`}
+              style={{ height: viewHeight, ...props }}
+              key={key}
+            >
+              <div className="background" onClick={onClose}></div>
+              {fadeScale.map(
+                ({ item, key, props }) =>
+                  item && (
+                    <animated.div
+                      className={`modal-block`}
+                      style={props}
+                      key={key}
+                    >
+                      <button className="close" onClick={onClose}>
+                        <FontAwesomeIcon icon={faTimes} />
+                      </button>
+                      <div className="modal-content">
+                        <p className="message">{message}</p>
+                      </div>
+                      <button className="yes" onClick={onYes}>
+                        {yesText}
+                      </button>
+                    </animated.div>
+                  )
+              )}
             </animated.div>
-          )}
-        </animated.div>
+          )
       )}
     </>
   );

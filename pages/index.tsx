@@ -1,9 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {
-  StartStatus,
-  StartText,
-  TimeSelectChangeType,
-} from '../types/counter';
+import React, { useState, useEffect } from 'react';
+import { StartStatus, StartText, TimeSelectChangeType } from '../types/counter';
 import Layout from '../components/Layout';
 import ViewTimes from '../components/index/ViewTimes';
 import TimeSettingTools from '../components/index/TimeSettingTools';
@@ -14,7 +10,7 @@ import TimesUpAlertModal from '../components/index/TimesUpAlertModal';
 import { RingToneType } from '../types/ring_tone';
 import { CounterCookie } from '../types/counterCookie';
 
-import {Howl, Howler} from 'howler';
+import { Howl, Howler } from 'howler';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { useCookies } from 'react-cookie';
 
@@ -41,36 +37,67 @@ const index = () => {
   const onSetCookie = (settings: CounterCookie) => {
     setCookie('counter_settings', settings);
   };
-  const counter_settings = cookies.counter_settings ? cookies.counter_settings : {};
+  const counter_settings = cookies.counter_settings
+    ? cookies.counter_settings
+    : {};
 
-  const presetTotalSeconds = counter_settings && counter_settings.hasOwnProperty('settingTimes') ? counter_settings.settingTimes : 0;
+  const presetTotalSeconds =
+    counter_settings && counter_settings.hasOwnProperty('settingTimes')
+      ? counter_settings.settingTimes
+      : 0;
 
-  const presetSeconds = counter_settings && counter_settings.hasOwnProperty('seconds') ? counter_settings.seconds : 0;
-  const presetMinutesSeconds = counter_settings && counter_settings.hasOwnProperty('minutesSeconds') ? counter_settings.minutesSeconds : 0;
-  const presetHoursSeconds = counter_settings && counter_settings.hasOwnProperty('hoursSeconds') ? counter_settings.hoursSeconds : 0;
+  const presetSeconds =
+    counter_settings && counter_settings.hasOwnProperty('seconds')
+      ? counter_settings.seconds
+      : 0;
+  const presetMinutesSeconds =
+    counter_settings && counter_settings.hasOwnProperty('minutesSeconds')
+      ? counter_settings.minutesSeconds
+      : 0;
+  const presetHoursSeconds =
+    counter_settings && counter_settings.hasOwnProperty('hoursSeconds')
+      ? counter_settings.hoursSeconds
+      : 0;
 
-  const presetViewSeconds = counter_settings && counter_settings.hasOwnProperty('viewSeconds') ? counter_settings.viewSeconds : '00';
-  const presetViewMinutes = counter_settings && counter_settings.hasOwnProperty('viewMinutes') ? counter_settings.viewMinutes : '00';
-  const presetViewHours = counter_settings && counter_settings.hasOwnProperty('viewHours') ? counter_settings.viewHours : '00';
+  const presetViewSeconds =
+    counter_settings && counter_settings.hasOwnProperty('viewSeconds')
+      ? counter_settings.viewSeconds
+      : '00';
+  const presetViewMinutes =
+    counter_settings && counter_settings.hasOwnProperty('viewMinutes')
+      ? counter_settings.viewMinutes
+      : '00';
+  const presetViewHours =
+    counter_settings && counter_settings.hasOwnProperty('viewHours')
+      ? counter_settings.viewHours
+      : '00';
 
-  const presetRingTones = counter_settings && counter_settings.hasOwnProperty('ringTone')
-    ? counter_settings.ringTone
-    : {
-      id: 'warm_morning',
-      name: '溫暖早晨',
-      url: '/audios/warm_morning.mp3'
-    };
-  // if (counter_settings) {
-  //   console.log(counter_settings)
-  // }
+  const presetRingTones =
+    counter_settings && counter_settings.hasOwnProperty('ringTone')
+      ? counter_settings.ringTone
+      : {
+          id: 'warm_morning',
+          name: '溫暖早晨',
+          url: '/audios/warm_morning.mp3',
+        };
 
-  const [remainTotalSeconds, setRemainTotalSeconds] = useState<number>(presetTotalSeconds);
-  const [tempRemainTotalSeconds, setTempRemainTotalSeconds] = useState<number>(presetTotalSeconds);
-  const [settingsTotalSeconds, setSettingsTotalSeconds] = useState<number>(presetTotalSeconds);
+  const [remainTotalSeconds, setRemainTotalSeconds] = useState<number>(
+    presetTotalSeconds
+  );
+  const [tempRemainTotalSeconds, setTempRemainTotalSeconds] = useState<number>(
+    presetTotalSeconds
+  );
+  const [settingsTotalSeconds, setSettingsTotalSeconds] = useState<number>(
+    presetTotalSeconds
+  );
 
   const [prevSeconds, setPrevSeconds] = useState<number>(presetSeconds);
-  const [prevMinutesSeconds, setPrevMinutesSeconds] = useState<number>(presetMinutesSeconds);
-  const [prevHoursSeconds, setPrevHoursSeconds] = useState<number>(presetHoursSeconds);
+  const [prevMinutesSeconds, setPrevMinutesSeconds] = useState<number>(
+    presetMinutesSeconds
+  );
+  const [prevHoursSeconds, setPrevHoursSeconds] = useState<number>(
+    presetHoursSeconds
+  );
 
   const [viewSeconds, setViewSeconds] = useState<string>(presetViewSeconds);
   const [viewMinutes, setViewMinutes] = useState<string>(presetViewMinutes);
@@ -87,7 +114,9 @@ const index = () => {
   const [showRingToneSelect, setShowRingToneSelect] = useState<boolean>(false);
   const [showCircleBar, setShowCircleBar] = useState<boolean>(false);
 
-  const [selectedRingTone, setSelectedRingTone] = useState<RingToneType>(presetRingTones);
+  const [selectedRingTone, setSelectedRingTone] = useState<RingToneType>(
+    presetRingTones
+  );
 
   var sound = new Howl({
     src: [selectedRingTone.url],
@@ -104,12 +133,15 @@ const index = () => {
     t -= 1;
     countingSeconds = t % 60;
     countingMinutes = Math.floor(t / 60);
-    countingMinutes = countingMinutes > 59 ? countingMinutes % 60 : countingMinutes;
+    countingMinutes =
+      countingMinutes > 59 ? countingMinutes % 60 : countingMinutes;
 
     countingHours = Math.floor(t / 3600);
 
-    countingSeconds = countingSeconds < 10 ? '0' + countingSeconds : countingSeconds;
-    countingMinutes = countingMinutes < 10 ? '0' + countingMinutes : countingMinutes;
+    countingSeconds =
+      countingSeconds < 10 ? '0' + countingSeconds : countingSeconds;
+    countingMinutes =
+      countingMinutes < 10 ? '0' + countingMinutes : countingMinutes;
     countingHours = countingHours < 10 ? '0' + countingHours : countingHours;
 
     setRemainTotalSeconds(t);
@@ -170,7 +202,7 @@ const index = () => {
 
   const reset = () => {
     calculateSettingsTime(settingsTotalSeconds);
-  }
+  };
 
   const calculateSettingsTime = (totalSeconds: number) => {
     //一分鐘60秒 60分鐘3600秒(1小時) 24小時86400秒
@@ -180,7 +212,7 @@ const index = () => {
     numberSeconds = totalSeconds % 60; //餘分
 
     stringSeconds = String(numberSeconds);
-    newViewSeconds = numberSeconds < 10 ? '0' + stringSeconds : stringSeconds
+    newViewSeconds = numberSeconds < 10 ? '0' + stringSeconds : stringSeconds;
     setViewSeconds(newViewSeconds);
 
     let newViewMinutes = '00';
@@ -191,7 +223,7 @@ const index = () => {
     numberMinutes = numberMinutes > 59 ? numberMinutes % 60 : numberMinutes;
 
     stringMinutes = String(numberMinutes);
-    newViewMinutes = numberMinutes < 10 ? '0' + stringMinutes : stringMinutes
+    newViewMinutes = numberMinutes < 10 ? '0' + stringMinutes : stringMinutes;
     setViewMinutes(newViewMinutes);
 
     let newViewHours = '00';
@@ -200,7 +232,7 @@ const index = () => {
 
     numberHours = Math.floor(totalSeconds / 3600); //餘小時
     stringHours = String(numberHours);
-    newViewHours = numberHours < 10 ? '0' + stringHours : stringHours
+    newViewHours = numberHours < 10 ? '0' + stringHours : stringHours;
     setViewHours(newViewHours);
   };
 
@@ -209,24 +241,45 @@ const index = () => {
     setRemainTotalSeconds(t);
   };
 
-  const onTotalSecondsChange = (t: number, type: string, viewTimes: number, numberTimes: number) => {
+  const onTotalSecondsChange = (
+    t: number,
+    type: string,
+    viewTimes: number,
+    numberTimes: number
+  ) => {
     setSettingsTotalSeconds(t);
     calculateTotalSeconds(t);
     let newSettingCookie: CounterCookie;
-    const stringViewTimes = viewTimes < 10 ? '0' + viewTimes : String(viewTimes);
+    const stringViewTimes =
+      viewTimes < 10 ? '0' + viewTimes : String(viewTimes);
 
     switch (type) {
       case TimeSelectChangeType.seconds:
         setPrevSeconds(numberTimes);
-        newSettingCookie = {...counter_settings, settingTimes: t, seconds: numberTimes, viewSeconds: stringViewTimes}
+        newSettingCookie = {
+          ...counter_settings,
+          settingTimes: t,
+          seconds: numberTimes,
+          viewSeconds: stringViewTimes,
+        };
         break;
       case TimeSelectChangeType.minutes:
         setPrevMinutesSeconds(numberTimes);
-        newSettingCookie = {...counter_settings, settingTimes: t, minutesSeconds: numberTimes, viewMinutes: stringViewTimes}
+        newSettingCookie = {
+          ...counter_settings,
+          settingTimes: t,
+          minutesSeconds: numberTimes,
+          viewMinutes: stringViewTimes,
+        };
         break;
       case TimeSelectChangeType.hour:
         setPrevHoursSeconds(numberTimes);
-        newSettingCookie = {...counter_settings, settingTimes: t, hoursSeconds: numberTimes, viewHours: stringViewTimes}
+        newSettingCookie = {
+          ...counter_settings,
+          settingTimes: t,
+          hoursSeconds: numberTimes,
+          viewHours: stringViewTimes,
+        };
         break;
     }
     onSetCookie(newSettingCookie);
@@ -256,7 +309,7 @@ const index = () => {
   const alertOk = () => {
     setShowSettingAlert(false);
     setShowViewTimes(false);
-  }
+  };
 
   const onTimesUpOk = () => {
     onCloseTimesUpAlert();
@@ -275,7 +328,7 @@ const index = () => {
   const onSetRingTone = (rt: RingToneType) => {
     setSelectedRingTone(rt);
     setShowRingToneSelect(false);
-    const newSettingCookie = {...counter_settings, ringTone: rt}
+    const newSettingCookie = { ...counter_settings, ringTone: rt };
     onSetCookie(newSettingCookie);
   };
 
@@ -286,26 +339,22 @@ const index = () => {
     setViewHeight(window.innerHeight);
   });
   useEffect(() => {
-    remainTotalSeconds < 3600 ? setShowViewHours(false) : setShowViewHours(true);
+    remainTotalSeconds < 3600
+      ? setShowViewHours(false)
+      : setShowViewHours(true);
   }, [remainTotalSeconds]);
 
   return (
-    <Layout
-      id={'index'}
-      meta={meta}
-      viewHeight={viewHeight}
-    >
-      <div id='counter'>
-        <button className="show_total_seconds" onClick={onShowTotalSeconds}>show totalSeconds</button>
+    <Layout id={'index'} meta={meta} viewHeight={viewHeight}>
+      <div id="counter">
+        <button className="show_total_seconds" onClick={onShowTotalSeconds}>
+          show totalSeconds
+        </button>
         <div className="content">
           <SwitchTransition mode="out-in">
-            <CSSTransition
-              key={showViewTimes}
-              classNames='fade'
-              timeout={300}
-            >
+            <CSSTransition key={showViewTimes} classNames="fade" timeout={300}>
               <div className="time-block">
-                { showViewTimes ? (
+                {showViewTimes ? (
                   <ViewTimes
                     showViewHours={showViewHours}
                     resetCircle={showCircleBar}
@@ -325,27 +374,23 @@ const index = () => {
                     prevSeconds={prevSeconds}
                     prevMinutesSeconds={prevMinutesSeconds}
                     prevHoursSeconds={prevHoursSeconds}
-                    onTotalSecondsChange={(s, type, viewTimes, numberTimes) => onTotalSecondsChange(s, type, viewTimes, numberTimes)}
+                    onTotalSecondsChange={(s, type, viewTimes, numberTimes) =>
+                      onTotalSecondsChange(s, type, viewTimes, numberTimes)
+                    }
                   />
                 )}
               </div>
             </CSSTransition>
           </SwitchTransition>
           <div className="buttons">
-            <button
-              className="cancel"
-              onClick={cancelCounting}
-            >
+            <button className="cancel" onClick={cancelCounting}>
               取消
             </button>
-            <button
-              className={stopClass}
-              onClick={startCounting}
-            >
+            <button className={stopClass} onClick={startCounting}>
               {startText}
             </button>
           </div>
-          { showTotalSeconds && (
+          {showTotalSeconds && (
             <div className="total_seconds">
               <div>剩餘總秒數：{remainTotalSeconds}</div>
               <div>設定總秒數：{settingsTotalSeconds}</div>
