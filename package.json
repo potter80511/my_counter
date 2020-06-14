@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p $PORT"
+    "start": "next start -p $PORT",
+    "format": "prettier --write '**/*.tsx' '**/*.ts'",
+    "format:check": "prettier --check '**/*.tsx' '**/*.ts'"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
