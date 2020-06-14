@@ -374,9 +374,7 @@ const index = () => {
                     prevSeconds={prevSeconds}
                     prevMinutesSeconds={prevMinutesSeconds}
                     prevHoursSeconds={prevHoursSeconds}
-                    onTotalSecondsChange={(s, type, viewTimes, numberTimes) =>
-                      onTotalSecondsChange(s, type, viewTimes, numberTimes)
-                    }
+                    onTotalSecondsChange={onTotalSecondsChange}
                   />
                 )}
               </div>
@@ -405,18 +403,18 @@ const index = () => {
           show={showRingToneSelect}
           currentRingTone={selectedRingTone}
           viewHeight={viewHeight}
-          onSubmit={(rt) => onSetRingTone(rt)}
+          onSubmit={onSetRingTone}
           onCancel={() => setShowRingToneSelect(false)}
         />
         <Alert
-          message={'請設定時間再開始計時！'}
+          message="請設定時間再開始計時！"
           show={showSettingAlert}
           yes={alertOk}
           viewHeight={viewHeight}
         />
         <TimesUpAlertModal
           viewHeight={viewHeight}
-          message={'時間到'}
+          message="時間到"
           show={showTimesUpAlert}
           yes={onTimesUpOk}
           onRecount={onRecount}
