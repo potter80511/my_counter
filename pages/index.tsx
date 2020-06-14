@@ -77,7 +77,6 @@ const index = () => {
   const [viewHours, setViewHours] = useState<string>(presetViewHours);
 
   const [startStatus, setStartStatus] = useState<StartStatus>(StartStatus.stop);
-  const [startText, setStartText] = useState<string>(StartText.start);
 
   const [showSettingAlert, setShowSettingAlert] = useState<boolean>(false);
   const [showTimesUpAlert, setShowTimesUpAlert] = useState<boolean>(false);
@@ -118,7 +117,6 @@ const index = () => {
 
     if (t === 0) {
       setStartStatus(StartStatus.stop);
-      setStartText(StartText.start);
       setShowTimesUpAlert(true);
       onRing();
 
@@ -138,20 +136,17 @@ const index = () => {
         setTempRemainTotalSeconds(remainTotalSeconds);
         setShowCircleBar(false);
         setStartStatus(StartStatus.pause);
-        setStartText(StartText.continue);
         break;
       case StartStatus.pause: //按繼續
         setTempRemainTotalSeconds(remainTotalSeconds);
         setStartStatus(StartStatus.start);
         setShowCircleBar(true);
-        setStartText(StartText.pause);
         counting = setInterval(myTimer, 1000);
         break;
       case StartStatus.stop: //按開始
         setTempRemainTotalSeconds(remainTotalSeconds);
         setShowCircleBar(true);
         setStartStatus(StartStatus.start);
-        setStartText(StartText.pause);
         setShowViewTimes(true);
         counting = setInterval(myTimer, 1000);
         break;
@@ -164,7 +159,6 @@ const index = () => {
     reset();
     setRemainTotalSeconds(settingsTotalSeconds);
     setStartStatus(StartStatus.stop);
-    setStartText(StartText.start);
   };
 
   const reset = () => {
@@ -357,7 +351,7 @@ const index = () => {
               取消
             </button>
             <button className={stopClass} onClick={startCounting}>
-              {startText}
+              {showStartText(startStatus)}
             </button>
           </div>
           {showTotalSeconds && (
@@ -395,5 +389,16 @@ const index = () => {
     </Layout>
   );
 };
+
+function showStartText(startStatus: StartStatus): StartText {
+  switch (startStatus) {
+    case StartStatus.start:
+      return StartText.pause;
+    case StartStatus.pause:
+      return StartText.continue;
+    case StartStatus.stop:
+      return StartText.start;
+  }
+}
 
 export default index;
