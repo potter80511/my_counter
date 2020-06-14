@@ -91,12 +91,6 @@ const index = () => {
     presetRingTones
   );
 
-  var sound = new Howl({
-    src: [selectedRingTone.url],
-    loop: true,
-    autoPlay: false,
-  });
-
   let t: number = remainTotalSeconds;
   let countingSeconds: string | number = 0;
   let countingMinutes: string | number = 0;
@@ -268,6 +262,11 @@ const index = () => {
   };
 
   const onRing = () => {
+    const sound = new Howl({
+      src: [selectedRingTone.url],
+      loop: true,
+      autoPlay: false,
+    });
     const sound1 = sound.play();
     sound.fade(0.0, 1.0, 1000, sound1);
     setShowCircleBar(false); // 為了重新刷動畫，要讓動畫的spring重新render
