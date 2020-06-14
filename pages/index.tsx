@@ -37,49 +37,22 @@ const index = () => {
   const onSetCookie = (settings: CounterCookie) => {
     setCookie('counter_settings', settings);
   };
-  const counter_settings = cookies.counter_settings
-    ? cookies.counter_settings
-    : {};
+  const counter_settings = cookies.counter_settings ?? {};
 
-  const presetTotalSeconds =
-    counter_settings && counter_settings.hasOwnProperty('settingTimes')
-      ? counter_settings.settingTimes
-      : 0;
+  const presetTotalSeconds = counter_settings?.settingTimes ?? 0;
 
-  const presetSeconds =
-    counter_settings && counter_settings.hasOwnProperty('seconds')
-      ? counter_settings.seconds
-      : 0;
-  const presetMinutesSeconds =
-    counter_settings && counter_settings.hasOwnProperty('minutesSeconds')
-      ? counter_settings.minutesSeconds
-      : 0;
-  const presetHoursSeconds =
-    counter_settings && counter_settings.hasOwnProperty('hoursSeconds')
-      ? counter_settings.hoursSeconds
-      : 0;
+  const presetSeconds = counter_settings?.seconds ?? 0;
+  const presetMinutesSeconds = counter_settings?.minutesSeconds ?? 0;
+  const presetHoursSeconds = counter_settings?.hoursSeconds ?? 0;
+  const presetViewSeconds = counter_settings?.viewSeconds ?? '00';
+  const presetViewMinutes = counter_settings?.viewMinutes ?? '00';
+  const presetViewHours = counter_settings?.viewHours ?? '00';
 
-  const presetViewSeconds =
-    counter_settings && counter_settings.hasOwnProperty('viewSeconds')
-      ? counter_settings.viewSeconds
-      : '00';
-  const presetViewMinutes =
-    counter_settings && counter_settings.hasOwnProperty('viewMinutes')
-      ? counter_settings.viewMinutes
-      : '00';
-  const presetViewHours =
-    counter_settings && counter_settings.hasOwnProperty('viewHours')
-      ? counter_settings.viewHours
-      : '00';
-
-  const presetRingTones =
-    counter_settings && counter_settings.hasOwnProperty('ringTone')
-      ? counter_settings.ringTone
-      : {
-          id: 'warm_morning',
-          name: '溫暖早晨',
-          url: '/audios/warm_morning.mp3',
-        };
+  const presetRingTones = counter_settings?.ringTone ?? {
+    id: 'warm_morning',
+    name: '溫暖早晨',
+    url: '/audios/warm_morning.mp3',
+  };
 
   const [remainTotalSeconds, setRemainTotalSeconds] = useState<number>(
     presetTotalSeconds
