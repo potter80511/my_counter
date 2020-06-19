@@ -12,8 +12,8 @@ const TodoListContainer = () => {
   const onCreateTodo = (text: string, maxId: number) => {
     dispatch(createTodo(text, maxId));
   };
-  const onRemoveTodo = () => {
-    dispatch(removeTodo);
+  const onRemoveTodo = (id: number) => {
+    dispatch(removeTodo(id));
   };
   return (
     <div className="todo-list">
@@ -23,6 +23,7 @@ const TodoListContainer = () => {
       />
       <TodoList
         todoItems={todos}
+        onDelete={(id) => onRemoveTodo(id)}
       />
     </div>
   );
