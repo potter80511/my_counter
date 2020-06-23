@@ -8,7 +8,6 @@ type LayoutProps = {
   className?: string;
   children?: React.ReactNode;
   meta?: MetaType;
-  viewHeight?: number;
 };
 
 const Layout = (props: LayoutProps) => {
@@ -30,7 +29,7 @@ const Layout = (props: LayoutProps) => {
       <Meta meta={meta} />
       <div
         id={id}
-        style={{height: viewHeight}}
+        style={{minHeight: viewHeight}}
         className={className}
       >
         { children }
