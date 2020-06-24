@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LocationItem from 'src/features/weather/components/locations/LocationItem';
 import { locations } from 'src/features/weather/domain/data';
 import { LocationsFactory } from 'src/features/weather/domain/factories/LocationsFactory';
@@ -26,18 +26,21 @@ const locationData = [
   },
 ];
 
-
 const Locations = () => {
+  const [spread, setSpread] = useState<boolean>(false);
   const locationItem = locationData.map((item, index) => (
     <LocationItem
       key={'location-item-' + index}
       name={item.name}
       currentTemperature={item.currentTemperature}
       wX={item.wX}
+      spread={spread}
+      spreadOut={(on) => setSpread(on)}
     />
   ));
+  const spreadClass = spread ? ' spread' : '';
   return (
-    <div className="locations">
+    <div className={'locations' + spreadClass}>
       {locationItem}
     </div>
   );

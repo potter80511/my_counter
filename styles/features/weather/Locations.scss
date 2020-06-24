@@ -1,8 +1,28 @@
+// .spread-enter {
+//   min-height: 61px;
+// }
+// .spread-enter-active {
+//   min-height: 100vh;
+//   transition: opacity 200ms;
+// }
+// .spread-exit {
+//   min-height: 100vh;
+// }
+// .spread-exit-active {
+//   min-height: 61px;
+//   transition: min-height 200ms;
+// }
+
 .locations {
   .location-item {
     background-size: cover;
     background-position: center;
     padding: 15px;
+    overflow: hidden;
+    transition: min-height .3s;
+    &.item-spread {
+      box-sizing: border-box;
+    }
     .overview {
       display: flex;
       justify-content: space-between;
