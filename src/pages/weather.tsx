@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from 'src/components/Layout';
-import Locations from 'src/features/weather/components/Locations';
+import Locations from 'src/features/weather/components/locations/Locations';
 
 // import '@styles/index.scss';
 

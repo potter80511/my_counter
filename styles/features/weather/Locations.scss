@@ -1,0 +1,26 @@
+.locations {
+  .location-item {
+    background-size: cover;
+    background-position: center;
+    padding: 15px;
+    .overview {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+      cursor: pointer;
+      * {
+        display: block;
+        text-shadow: 0 0 5px rgba(0, 0, 8px, .3);
+      }
+      .flex-left {
+        .location-name {
+          font-size: 24px;
+        }
+      }
+      .temperature {
+        font-size: 42px;
+      }
+    }
+  }
+}
