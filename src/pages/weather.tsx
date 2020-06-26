@@ -19,11 +19,13 @@ const meta = {
 
 const weather = () => {
   const [viewHeight, setViewHeight] = useState<number>(0);
+  const [translateY, setTranslateY] = useState<number>(122 + 182);  //  122 是title到頂部的距離
   const [openedLocationIndex, setOpenedLocationIndex] = useState<number | null>(2);
   const [locationSpread, setLocationSpread] = useState<boolean>(false);
 
-  const onSpreadOut = (on: boolean, spreadIndex: number | null) => {
+  const onSpreadOut = (on: boolean, tlY: number, spreadIndex: number | null) => {
     setLocationSpread(on);
+    setTranslateY(tlY);
     setOpenedLocationIndex(spreadIndex);
   };
 
@@ -36,7 +38,6 @@ const weather = () => {
       id={'weather'}
       meta={meta}
       className="flex-center"
-      minHeight={false}
     >
       <div
         className="weather wrap"
@@ -45,7 +46,8 @@ const weather = () => {
         <h1 className="main-title">Weather</h1>
         <Locations
           spread={locationSpread}
-          spreadOut={(on, spreadIndex) => onSpreadOut(on, spreadIndex)}
+          translateY={translateY}
+          spreadOut={(on, tlY, spreadIndex) => onSpreadOut(on, tlY, spreadIndex)}
           openedLocationIndex={openedLocationIndex}
         />
       </div>
