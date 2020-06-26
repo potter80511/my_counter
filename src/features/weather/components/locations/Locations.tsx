@@ -28,18 +28,19 @@ const locationData = [
 
 type LocationsProps = {
   spread: boolean;
-  spreadOut: (on: boolean) => void;
+  openedLocationIndex: number | null;
+  spreadOut: (on: boolean, spreadIndex: number | null) => void;
 }
 
 const Locations = (props: LocationsProps) => {
   const {
     spread,
+    openedLocationIndex,
     spreadOut,
   } = props;
   const [translateY, setTranslateY] = useState<number>(0);
-  const onSpread = (on: boolean, tlY: number) => {
-    spreadOut(on);
-    console.log(tlY)
+  const onSpread = (on: boolean, tlY: number, spreadIndex: number | null) => {
+    spreadOut(on, spreadIndex);
     setTranslateY(tlY);
   };
 
@@ -50,8 +51,8 @@ const Locations = (props: LocationsProps) => {
       index={index}
       currentTemperature={item.currentTemperature}
       wX={item.wX}
-      spread={spread}
-      spreadOut={(on, tlY) => onSpread(on, tlY)}
+      spread={openedLocationIndex === index ? true : false}
+      spreadOut={(on, tlY, spreadIndex) => onSpread(on, tlY, spreadIndex)}
     />
   ));
   const spreadClass = spread ? ' spread' : '';

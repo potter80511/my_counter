@@ -8,7 +8,7 @@ type LocationItemProps = {
   currentTemperature: number;
   wX: WXType;
   spread: boolean;
-  spreadOut: (on: boolean, translateY: number) => void;
+  spreadOut: (on: boolean, translateY: number, spreadIndex: number | null) => void;
 }
 
 const LocationItem = (props: LocationItemProps) => {
@@ -33,25 +33,23 @@ const LocationItem = (props: LocationItemProps) => {
   }
   const ref = useRef(null);
   const onItemClick = () => {
-    spreadOut(true, 122 + ref.current.clientHeight * index);
-    setCurrentSpread(true);
-    setItemHeight(viewHeight);
+    spreadOut(true, 122 + ref.current.clientHeight * index, index);
   }
   const onCloseSpread = () => {
-    spreadOut(false, 0);
-    setCurrentSpread(false);
-    setItemHeight(61);
+    spreadOut(false, 0, null);
   }
 
   const [viewHeight, setViewHeight] = useState<number>(0);
-  const [itemHeight, setItemHeight] = useState<number>(61);
+  const [itemHeight, setItemHeight] = useState<number>(91);
+
   useEffect(() => {
     setViewHeight(window.innerHeight);
+    console.log(spread, index)
+    spread ? setItemHeight(viewHeight) : setItemHeight(91);
   });
 
+  const itemSpreadClass = spread ? ' item-spread' : '';
   
-
-  const itemSpreadClass = currentSpread ? ' item-spread' : '';
   return (
     <div
       className={'location-item' + itemSpreadClass}

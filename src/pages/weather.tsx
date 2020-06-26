@@ -19,7 +19,13 @@ const meta = {
 
 const weather = () => {
   const [viewHeight, setViewHeight] = useState<number>(0);
+  const [openedLocationIndex, setOpenedLocationIndex] = useState<number | null>(2);
   const [locationSpread, setLocationSpread] = useState<boolean>(false);
+
+  const onSpreadOut = (on: boolean, spreadIndex: number | null) => {
+    setLocationSpread(on);
+    setOpenedLocationIndex(spreadIndex);
+  };
 
   useEffect(() => {
     setViewHeight(window.innerHeight);
@@ -39,7 +45,8 @@ const weather = () => {
         <h1 className="main-title">Weather</h1>
         <Locations
           spread={locationSpread}
-          spreadOut={(on) => setLocationSpread(on)}
+          spreadOut={(on, spreadIndex) => onSpreadOut(on, spreadIndex)}
+          openedLocationIndex={openedLocationIndex}
         />
       </div>
     </Layout>

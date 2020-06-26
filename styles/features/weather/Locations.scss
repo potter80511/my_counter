@@ -28,8 +28,8 @@
     padding: 15px;
     overflow: hidden;
     transition: min-height .3s;
+    box-sizing: border-box;
     &.item-spread {
-      box-sizing: border-box;
     }
     .overview {
       display: flex;
