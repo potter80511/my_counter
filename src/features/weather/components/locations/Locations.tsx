@@ -26,11 +26,19 @@ const locationData = [
   },
 ];
 
-const Locations = () => {
-  const [spread, setSpread] = useState<boolean>(false);
+type LocationsProps = {
+  spread: boolean;
+  spreadOut: (on: boolean) => void;
+}
+
+const Locations = (props: LocationsProps) => {
+  const {
+    spread,
+    spreadOut,
+  } = props;
   const [translateY, setTranslateY] = useState<number>(0);
-  const spreadOut = (on: boolean, tlY: number) => {
-    setSpread(on);
+  const onSpread = (on: boolean, tlY: number) => {
+    spreadOut(on);
     console.log(tlY)
     setTranslateY(tlY);
   };
@@ -43,7 +51,7 @@ const Locations = () => {
       currentTemperature={item.currentTemperature}
       wX={item.wX}
       spread={spread}
-      spreadOut={(on, tlY) => spreadOut(on, tlY)}
+      spreadOut={(on, tlY) => onSpread(on, tlY)}
     />
   ));
   const spreadClass = spread ? ' spread' : '';

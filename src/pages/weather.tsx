@@ -19,6 +19,7 @@ const meta = {
 
 const weather = () => {
   const [viewHeight, setViewHeight] = useState<number>(0);
+  const [locationSpread, setLocationSpread] = useState<boolean>(false);
 
   useEffect(() => {
     setViewHeight(window.innerHeight);
@@ -33,10 +34,13 @@ const weather = () => {
     >
       <div
         className="weather wrap"
-        style={{ height: viewHeight + 'px' }}
+        style={{ height: locationSpread ? viewHeight + 'px' : 'auto' }}
       >
         <h1 className="main-title">Weather</h1>
-        <Locations/>
+        <Locations
+          spread={locationSpread}
+          spreadOut={(on) => setLocationSpread(on)}
+        />
       </div>
     </Layout>
   );
