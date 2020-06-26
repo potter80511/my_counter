@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { WXType } from 'src/features/weather/domain/model/Weather';
 import { Transition, CSSTransition } from 'react-transition-group';
 
 type LocationItemProps = {
   name: string;
+  index: number;
   currentTemperature: number;
   wX: WXType;
   spread: boolean;
-  spreadOut: (on: boolean) => void;
+  spreadOut: (on: boolean, translateY: number) => void;
 }
 
 const LocationItem = (props: LocationItemProps) => {
   const {
     name,
+    index,
     currentTemperature,
     wX,
     spread,
@@ -29,16 +31,15 @@ const LocationItem = (props: LocationItemProps) => {
         return '/img/weather/cloudy.jpg'
     }
   }
+  const ref = useRef(null);
   const onItemClick = () => {
-    // setSpread(true);
-    spreadOut(true);
+    spreadOut(true, 122 + ref.current.clientHeight * index);
     setCurrentSpread(true);
     setItemHeight(viewHeight);
   }
   const onCloseSpread = () => {
-    spreadOut(false);
+    spreadOut(false, 0);
     setCurrentSpread(false);
-    console.log('adf')
     setItemHeight(61);
   }
 
@@ -48,14 +49,10 @@ const LocationItem = (props: LocationItemProps) => {
     setViewHeight(window.innerHeight);
   });
 
+  
+
   const itemSpreadClass = currentSpread ? ' item-spread' : '';
   return (
-    // <CSSTransition
-    //   appear={true}
-    //   in={spread}
-    //   timeout={300}
-    //   classNames="spread"
-    // >
     <div
       className={'location-item' + itemSpreadClass}
       style={{
@@ -63,6 +60,7 @@ const LocationItem = (props: LocationItemProps) => {
         minHeight: itemHeight + 'px',
         maxHeight: itemHeight + 'px',
       }}
+      ref={ref}
     >
       <div className="overview" onClick={onItemClick}>
         <div className="flex-left">
@@ -73,7 +71,6 @@ const LocationItem = (props: LocationItemProps) => {
       </div>
       <button onClick={onCloseSpread}>關閉</button>
     </div>
-    // </CSSTransition>
   );
 };
 

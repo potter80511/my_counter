@@ -28,19 +28,31 @@ const locationData = [
 
 const Locations = () => {
   const [spread, setSpread] = useState<boolean>(false);
+  const [translateY, setTranslateY] = useState<number>(0);
+  const spreadOut = (on: boolean, tlY: number) => {
+    setSpread(on);
+    console.log(tlY)
+    setTranslateY(tlY);
+  };
+
   const locationItem = locationData.map((item, index) => (
     <LocationItem
       key={'location-item-' + index}
       name={item.name}
+      index={index}
       currentTemperature={item.currentTemperature}
       wX={item.wX}
       spread={spread}
-      spreadOut={(on) => setSpread(on)}
+      spreadOut={(on, tlY) => spreadOut(on, tlY)}
     />
   ));
   const spreadClass = spread ? ' spread' : '';
+  
   return (
-    <div className={'locations' + spreadClass}>
+    <div
+      className={'locations' + spreadClass}
+      style={{ transform: `translateY(-${translateY}px)` }}
+    >
       {locationItem}
     </div>
   );

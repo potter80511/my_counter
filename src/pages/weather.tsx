@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from 'src/components/Layout';
 import Locations from 'src/features/weather/components/locations/Locations';
+import '@styles/features/weather/weather.scss';
 
 // import '@styles/index.scss';
 
@@ -17,14 +18,23 @@ const meta = {
 };
 
 const weather = () => {
+  const [viewHeight, setViewHeight] = useState<number>(0);
+
+  useEffect(() => {
+    setViewHeight(window.innerHeight);
+  });
 
   return (
     <Layout
       id={'weather'}
       meta={meta}
       className="flex-center"
+      minHeight={false}
     >
-      <div className="weather wrap">
+      <div
+        className="weather wrap"
+        style={{ height: viewHeight + 'px' }}
+      >
         <h1 className="main-title">Weather</h1>
         <Locations/>
       </div>

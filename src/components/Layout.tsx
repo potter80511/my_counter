@@ -8,6 +8,7 @@ type LayoutProps = {
   className?: string;
   children?: React.ReactNode;
   meta?: MetaType;
+  minHeight? :boolean;
 };
 
 const Layout = (props: LayoutProps) => {
@@ -22,6 +23,7 @@ const Layout = (props: LayoutProps) => {
     className,
     children,
     meta,
+    minHeight = true,
   } = props;
 
   return (
@@ -29,7 +31,7 @@ const Layout = (props: LayoutProps) => {
       <Meta meta={meta} />
       <div
         id={id}
-        style={{minHeight: viewHeight}}
+        style={{minHeight: minHeight ? viewHeight : 'unset'}}
         className={className}
       >
         { children }

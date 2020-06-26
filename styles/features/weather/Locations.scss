@@ -14,6 +14,14 @@
 // }
 
 .locations {
+  overflow: hidden;
+  transition: all .3s;
+  &.spread {
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+    // width: 100%;
+  }
   .location-item {
     background-size: cover;
     background-position: center;
