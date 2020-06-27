@@ -1,10 +1,10 @@
 import React from 'react';
 import '@styles/features/weather/Tools.scss';
-import { SwitchButtonType, SwitchButtonDataType } from 'src/features/weather/domain/model/ToolsTypes';
+import { TemperatureType, SwitchButtonDataType } from 'src/features/weather/domain/model/ToolsTypes';
 
 type SwitchButtonProps = SwitchButtonDataType & {
-  currentType: SwitchButtonType;
-  onClick: (value: SwitchButtonType) => void;
+  currentType: TemperatureType;
+  onClick: (value: TemperatureType) => void;
 };
 
 const SwitchButton = (props: SwitchButtonProps) => {
@@ -26,8 +26,8 @@ const SwitchButton = (props: SwitchButtonProps) => {
 };
 
 type ToolsProps = {
-  temperatureType: SwitchButtonType;
-  onSwitchTemperatureType: (value: SwitchButtonType) => void;
+  temperatureType: TemperatureType;
+  onSwitchTemperatureType: (value: TemperatureType) => void;
 };
 
 const Tools = (props: ToolsProps) => {
@@ -40,14 +40,14 @@ const Tools = (props: ToolsProps) => {
       <div className="switch">
         <SwitchButton
           currentType={temperatureType}
-          value={SwitchButtonType.Celsius}
+          value={TemperatureType.Celsius}
           name="°C"
           onClick={(value) => onSwitchTemperatureType(value)}
         />
         <span>/</span>
         <SwitchButton
           currentType={temperatureType}
-          value={SwitchButtonType.Fahrenheit}
+          value={TemperatureType.Fahrenheit}
           name="°F"
           onClick={(value) => onSwitchTemperatureType(value)}
         />

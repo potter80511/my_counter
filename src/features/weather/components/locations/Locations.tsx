@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import LocationItem from 'src/features/weather/components/locations/LocationItem';
 import { locations } from 'src/features/weather/domain/data';
 import { LocationsFactory } from 'src/features/weather/domain/factories/LocationsFactory';
+import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import { WXType } from 'src/features/weather/domain/model/Weather';
 import '@styles/features/weather/Locations.scss';
 
@@ -30,6 +31,7 @@ type LocationsProps = {
   spread: boolean;
   translateY: number;
   openedLocationIndex: number | null;
+  temperatureType: TemperatureType;
   spreadOut: (on: boolean, tlY: number, spreadIndex: number | null) => void;
 }
 
@@ -38,6 +40,7 @@ const Locations = (props: LocationsProps) => {
     spread,
     translateY,
     openedLocationIndex,
+    temperatureType,
     spreadOut,
   } = props;
 
@@ -47,6 +50,7 @@ const Locations = (props: LocationsProps) => {
       name={item.name}
       index={index}
       currentTemperature={item.currentTemperature}
+      temperatureType={temperatureType}
       wX={item.wX}
       spread={openedLocationIndex === index ? true : false}
       spreadOut={(on, tlY, spreadIndex) => spreadOut(on, tlY, spreadIndex)}

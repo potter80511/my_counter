@@ -1,9 +1,9 @@
-export enum SwitchButtonType {
+export enum TemperatureType {
   Celsius = 'celsius',
   Fahrenheit = 'fahrenheit',
 }
 
 export type SwitchButtonDataType = {
-  value: SwitchButtonType;
+  value: TemperatureType;
   name: string;
 }

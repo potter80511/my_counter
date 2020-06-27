@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { WXType } from 'src/features/weather/domain/model/Weather';
+import { TemperatureFactory } from 'src/features/weather/domain/factories/TemperatureFactory';
+import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import moment from 'moment';
 import { Transition, CSSTransition } from 'react-transition-group';
 
@@ -7,6 +9,7 @@ type LocationItemProps = {
   name: string;
   index: number;
   currentTemperature: number;
+  temperatureType: TemperatureType
   wX: WXType;
   spread: boolean;
   spreadOut: (on: boolean, translateY: number, spreadIndex: number | null) => void;
@@ -17,6 +20,7 @@ const LocationItem = (props: LocationItemProps) => {
     name,
     index,
     currentTemperature,
+    temperatureType,
     wX,
     spread,
     spreadOut,
@@ -68,7 +72,7 @@ const LocationItem = (props: LocationItemProps) => {
           <span className="moment">{moment().format("HH:mm")}</span>
           <strong className="location-name">{name}</strong>
         </div>
-        <span className="temperature">{currentTemperature}°</span>
+        <span className="temperature">{TemperatureFactory.switchTemperatureType(currentTemperature, temperatureType)}°</span>
       </div>
       <button onClick={onCloseSpread}>關閉</button>
     </div>
