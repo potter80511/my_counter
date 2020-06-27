@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { WXType } from 'src/features/weather/domain/model/Weather';
 import { TemperatureFactory } from 'src/features/weather/domain/factories/TemperatureFactory';
+import { LocationsFactory } from 'src/features/weather/domain/factories/LocationsFactory';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import moment from 'moment';
 import { Transition, CSSTransition } from 'react-transition-group';
@@ -26,16 +27,6 @@ const LocationItem = (props: LocationItemProps) => {
     spreadOut,
   } = props;
 
-  const [currentSpread, setCurrentSpread] = useState<boolean>(false);
-
-  const weatherBg = (wX: WXType) => {
-    switch (wX) {
-      case WXType.SunnyCloudy:
-        return '/img/weather/sunny.jpg'
-      case WXType.Cloudy:
-        return '/img/weather/cloudy.jpg'
-    }
-  }
   const ref = useRef(null);
   const onItemClick = () => {
     spreadOut(true, spreadOutDistance + ref.current.clientHeight * index, index);
@@ -61,7 +52,7 @@ const LocationItem = (props: LocationItemProps) => {
     <div
       className={'location-item' + itemSpreadClass}
       style={{
-        backgroundImage: `url(${weatherBg(wX)})`,
+        backgroundImage: `url(${LocationsFactory.createWeatherBackground(wX)})`,
         minHeight: itemHeight + 'px',
         maxHeight: itemHeight + 'px',
       }}
