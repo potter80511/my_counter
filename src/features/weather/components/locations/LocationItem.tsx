@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { WXType } from 'src/features/weather/domain/model/Weather';
+import moment from 'moment';
 import { Transition, CSSTransition } from 'react-transition-group';
 
 type LocationItemProps = {
@@ -64,7 +65,7 @@ const LocationItem = (props: LocationItemProps) => {
     >
       <div className="overview" onClick={onItemClick}>
         <div className="flex-left">
-          <span className="moment">10:21</span>
+          <span className="moment">{moment().format("HH:mm")}</span>
           <strong className="location-name">{name}</strong>
         </div>
         <span className="temperature">{currentTemperature}°</span>
