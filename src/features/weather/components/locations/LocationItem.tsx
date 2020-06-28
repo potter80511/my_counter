@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import LocationItemDetails from 'src/features/weather/components/locations/LocationItemDetails'
 import { WXType } from 'src/features/weather/domain/model/Weather';
 import { TemperatureFactory } from 'src/features/weather/domain/factories/TemperatureFactory';
 import { LocationsFactory } from 'src/features/weather/domain/factories/LocationsFactory';
@@ -65,7 +66,9 @@ const LocationItem = (props: LocationItemProps) => {
         </div>
         <span className="temperature">{TemperatureFactory.switchTemperatureType(currentTemperature, temperatureType)}°</span>
       </div>
-      <button onClick={onCloseSpread}>關閉</button>
+      <LocationItemDetails
+        onCloseSpread={onCloseSpread}
+      />
     </div>
   );
 };
