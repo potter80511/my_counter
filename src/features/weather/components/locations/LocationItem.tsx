@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import LocationItemDetails from 'src/features/weather/components/locations/LocationItemDetails'
 import { WXType } from 'src/features/weather/domain/model/Weather';
 import { TemperatureFactory } from 'src/features/weather/domain/factories/TemperatureFactory';
-import { LocationsFactory } from 'src/features/weather/domain/factories/LocationsFactory';
+import { WeatherBackgroundFactory } from 'src/features/weather/domain/factories/WeatherBackgroundFactory';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import moment from 'moment';
 import { Transition, CSSTransition } from 'react-transition-group';
@@ -53,7 +53,7 @@ const LocationItem = (props: LocationItemProps) => {
     <div
       className={'location-item' + itemSpreadClass}
       style={{
-        backgroundImage: `url(${LocationsFactory.createWeatherBackground(wX)})`,
+        backgroundImage: `url(${WeatherBackgroundFactory.createBackground(wX)})`,
         minHeight: itemHeight + 'px',
         maxHeight: itemHeight + 'px',
       }}
