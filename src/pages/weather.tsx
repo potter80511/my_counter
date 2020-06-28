@@ -1,4 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  temperatureTypeSelector,
+} from 'src/features/weather/selectors';
+import {
+  switchTemperatureType,
+} from 'src/features/weather/actions/ToolsAction';
+
 import Layout from 'src/components/Layout';
 import Locations from 'src/features/weather/components/locations/Locations';
 import Tools from 'src/features/weather/components/Tools';
@@ -20,11 +28,14 @@ const meta = {
 };
 
 const weather = () => {
+  const dispatch = useDispatch();
+  const temperatureType = useSelector(temperatureTypeSelector);
+
   const [viewHeight, setViewHeight] = useState<number>(0);
   const [translateY, setTranslateY] = useState<number>(122 + 182);  //  122 是title到頂部的距離
   const [openedLocationIndex, setOpenedLocationIndex] = useState<number | null>(2);
   const [locationSpread, setLocationSpread] = useState<boolean>(false);
-  const [temperatureType, setTemperatureType] = useState<TemperatureType>(TemperatureType.Celsius);
+  // const [temperatureType, setTemperatureType] = useState<TemperatureType>(TemperatureType.Celsius);
 
   const onSpreadOut = (on: boolean, tlY: number, spreadIndex: number | null) => {
     setLocationSpread(on);
@@ -33,7 +44,7 @@ const weather = () => {
   };
 
   const onSwitchTemperatureType = (value: TemperatureType) => {
-    setTemperatureType(value);
+    dispatch(switchTemperatureType(value));
   }
 
   useEffect(() => {
