@@ -24,12 +24,12 @@ export const NULL_STATE: StoreState = {
   weather: {} as any,
 };
 
-const makeStore = () => {
+const makeStore = () => (
   createStore<StoreState, any, {}, {}>(
     appReducer,
     composeEnhancers(applyMiddleware(thunk)),
   )
-}
+);
 
 export const store = makeStore();
 export type Store = typeof store;
