@@ -1,21 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch, Provider } from 'react-redux';
+import React from 'react';
+import { Provider } from 'react-redux';
 import { store } from 'src/Store';
-import {
-  temperatureTypeSelector,
-} from 'src/features/weather/selectors';
-import {
-  switchTemperatureType,
-} from 'src/features/weather/actions/toolsAction';
 
 import Layout from 'src/components/Layout';
 import WeatherContainer from 'src/features/weather/WeatherContainer';
-import Locations from 'src/features/weather/components/locations/Locations';
-import Tools from 'src/features/weather/components/Tools';
-import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import '@styles/features/weather/weather.scss';
-
-// import '@styles/index.scss';
 
 const meta = {
   title: "Johnny's App - Weather",

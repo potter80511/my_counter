@@ -12,17 +12,14 @@ import Tools from 'src/features/weather/components/Tools';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import '@styles/features/weather/weather.scss';
 
-// import '@styles/index.scss';
-
 const WeatherContainer = () => {
   const dispatch = useDispatch();
   const temperatureType = useSelector(temperatureTypeSelector);
 
   const [viewHeight, setViewHeight] = useState<number>(0);
-  const [translateY, setTranslateY] = useState<number>(122 + 182);  //  122 是title到頂部的距離
+  const [translateY, setTranslateY] = useState<number>(0 + 182);  //  122 是title到頂部的距離
   const [openedLocationIndex, setOpenedLocationIndex] = useState<number | null>(2);
   const [locationSpread, setLocationSpread] = useState<boolean>(false);
-  // const [temperatureType, setTemperatureType] = useState<TemperatureType>(TemperatureType.Celsius);
 
   const onSpreadOut = (on: boolean, tlY: number, spreadIndex: number | null) => {
     setLocationSpread(on);
