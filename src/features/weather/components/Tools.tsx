@@ -1,6 +1,7 @@
 import React from 'react';
 import '@styles/features/weather/Tools.scss';
 import { TemperatureType, SwitchButtonDataType } from 'src/features/weather/domain/model/ToolsTypes';
+import { LocationData } from '../domain/model/Location';
 
 type SwitchButtonProps = SwitchButtonDataType & {
   currentType: TemperatureType;
@@ -29,12 +30,15 @@ type ToolsProps = {
   show: boolean;
   temperatureType: TemperatureType;
   onSwitchTemperatureType: (value: TemperatureType) => void;
+  showCreateItemModal: (show: boolean) => void;
+  // onCreateLocationItem: (newItem: LocationData) => void;
 };
 
 const Tools = (props: ToolsProps) => {
   const {
     show,
     temperatureType,
+    showCreateItemModal,
     onSwitchTemperatureType,
   } = props;
   return show && (
@@ -54,7 +58,7 @@ const Tools = (props: ToolsProps) => {
           onClick={(value) => onSwitchTemperatureType(value)}
         />
       </div>
-      <button id="add-location">+</button>
+      <button id="add-location" onClick={() => showCreateItemModal(true)}>+</button>
     </div>
   );
 };
