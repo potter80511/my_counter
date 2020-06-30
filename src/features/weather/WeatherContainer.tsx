@@ -18,11 +18,11 @@ const WeatherContainer = () => {
 
   const [viewHeight, setViewHeight] = useState<number>(0);
   const [translateY, setTranslateY] = useState<number>(0 + 182);  //  122 是title到頂部的距離
-  const [openedLocationIndex, setOpenedLocationIndex] = useState<number | null>(2);
-  const [locationSpread, setLocationSpread] = useState<boolean>(false);
+  const [openedLocationIndex, setOpenedLocationIndex] = useState<number | undefined>(2);
 
-  const onSpreadOut = (on: boolean, tlY: number, spreadIndex: number | null) => {
-    setLocationSpread(on);
+  const locationSpread = openedLocationIndex >= 0
+
+  const onSpreadOut = (tlY: number, spreadIndex: number | null) => {
     setTranslateY(tlY);
     setOpenedLocationIndex(spreadIndex);
   };
@@ -46,9 +46,10 @@ const WeatherContainer = () => {
         translateY={translateY}
         openedLocationIndex={openedLocationIndex}
         temperatureType={temperatureType}
-        spreadOut={(on, tlY, spreadIndex) => onSpreadOut(on, tlY, spreadIndex)}
+        spreadOut={(tlY, spreadIndex) => onSpreadOut(tlY, spreadIndex)}
       />
       <Tools
+        show={!locationSpread}
         temperatureType={temperatureType}
         onSwitchTemperatureType={onSwitchTemperatureType}
       />

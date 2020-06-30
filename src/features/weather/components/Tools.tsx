@@ -26,16 +26,18 @@ const SwitchButton = (props: SwitchButtonProps) => {
 };
 
 type ToolsProps = {
+  show: boolean;
   temperatureType: TemperatureType;
   onSwitchTemperatureType: (value: TemperatureType) => void;
 };
 
 const Tools = (props: ToolsProps) => {
   const {
+    show,
     temperatureType,
     onSwitchTemperatureType,
   } = props;
-  return (
+  return show && (
     <div className="tools">
       <div className="switch">
         <SwitchButton

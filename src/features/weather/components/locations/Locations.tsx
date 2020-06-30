@@ -32,7 +32,7 @@ type LocationsProps = {
   translateY: number;
   openedLocationIndex: number | null;
   temperatureType: TemperatureType;
-  spreadOut: (on: boolean, tlY: number, spreadIndex: number | null) => void;
+  spreadOut: (tlY: number, spreadIndex: number | null) => void;
 }
 
 const Locations = (props: LocationsProps) => {
@@ -53,11 +53,11 @@ const Locations = (props: LocationsProps) => {
       temperatureType={temperatureType}
       wX={item.wX}
       spread={openedLocationIndex === index ? true : false}
-      spreadOut={(on, tlY, spreadIndex) => spreadOut(on, tlY, spreadIndex)}
+      spreadOut={(tlY, spreadIndex) => spreadOut(tlY, spreadIndex)}
     />
   ));
   const spreadClass = spread ? ' spread' : '';
-  
+
   return (
     <div
       className={'locations' + spreadClass}

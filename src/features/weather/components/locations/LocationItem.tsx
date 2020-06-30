@@ -14,7 +14,7 @@ type LocationItemProps = {
   temperatureType: TemperatureType
   wX: WXType;
   spread: boolean;
-  spreadOut: (on: boolean, translateY: number, spreadIndex: number | null) => void;
+  spreadOut: (translateY: number, spreadIndex: number | null) => void;
 }
 
 const LocationItem = (props: LocationItemProps) => {
@@ -30,10 +30,10 @@ const LocationItem = (props: LocationItemProps) => {
 
   const ref = useRef(null);
   const onItemClick = () => {
-    spreadOut(true, spreadOutDistance + ref.current.clientHeight * index, index);
+    spreadOut(spreadOutDistance + ref.current.clientHeight * index, index);
   }
   const onCloseSpread = () => {
-    spreadOut(false, 0, null);
+    spreadOut(0, undefined);
   }
 
   const [viewHeight, setViewHeight] = useState<number>(0);
@@ -42,7 +42,6 @@ const LocationItem = (props: LocationItemProps) => {
 
   useEffect(() => {
     setViewHeight(window.innerHeight);
-    console.log(spread, index)
     spread ? setItemHeight(viewHeight) : setItemHeight(91);
     window.innerWidth >= 1024 ? setSpreadOutDistance(122) : setSpreadOutDistance(0);
   });
