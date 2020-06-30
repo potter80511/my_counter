@@ -29,6 +29,7 @@
     overflow: hidden;
     transition: min-height .3s;
     box-sizing: border-box;
+    position: relative;
     &.item-spread {
     }
     .overview {
@@ -48,6 +49,21 @@
       }
       .temperature {
         font-size: 42px;
+      }
+    }
+    .location-details {
+      .details-tools {
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 15px;
+        box-sizing: border-box;
+        .close {
+
+        }
       }
     }
   }

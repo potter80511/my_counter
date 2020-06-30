@@ -66,6 +66,7 @@ const LocationItem = (props: LocationItemProps) => {
         <span className="temperature">{TemperatureFactory.switchTemperatureType(currentTemperature, temperatureType)}°</span>
       </div>
       <LocationItemDetails
+        show={spread}
         onCloseSpread={onCloseSpread}
       />
     </div>
