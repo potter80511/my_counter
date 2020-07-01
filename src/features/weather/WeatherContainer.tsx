@@ -34,12 +34,10 @@ const WeatherContainer = () => {
   const isShowCreateLocationItemModal = useSelector(showCreateLocationItemModalSelector);
   const locationOptions = useSelector(locationOptionsSelector);
   const searchValue = useSelector(searchValueSelector);
-  console.log(isShowCreateLocationItemModal)
+
   const [viewHeight, setViewHeight] = useState<number>(0);
   // const [translateY, setTranslateY] = useState<number>(0);  //  122 是title到頂部的距離
   // const [translateY, setTranslateY] = useState<number>(0 + 182);  //  122 是title到頂部的距離
-  // const [locationOptions, setLocationOptions] = useState<LocationData[]>([]);
-  // const [searchValue, setSearchValue] = useState<string>('');
 
   const locationSpread = openedLocationIndex >= 0
 
