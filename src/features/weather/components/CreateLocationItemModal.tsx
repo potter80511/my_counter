@@ -24,7 +24,9 @@ const CreateLocationItemModal = (props: CreateLocationItemModal) => {
     onSearchInputChange,
   } = props;
   const locationOptionsBlock = locationOptions.map((item, index) => (
-    <div className="location-option" key={index}>{item.name}</div>
+    <div className="location-option" key={index}>
+      <span className="container-wrap">{item.name}</span>
+    </div>
   ));
   return show && (
     <div id="create-location-item-modal">
@@ -39,17 +41,19 @@ const CreateLocationItemModal = (props: CreateLocationItemModal) => {
                 value={searchValue}
                 onChange={(e) => onSearchInputChange(e.target.value)}
               />
-              <button><FontAwesomeIcon icon={faTimes}/></button>
-              {( locationOptions.length > 0 && searchValue !== '' ) && (
-                <div className="location-options">
-                  {locationOptionsBlock}
-                </div>
-              )}
+              <button onClick={() => onSearchInputChange('')}>
+                <FontAwesomeIcon icon={faTimes}/>
+              </button>
             </div>
             <button onClick={() => onCancel(false)}>取消</button>
           </div>
         </div>
       </div>
+      {( locationOptions.length > 0 && searchValue !== '' ) && (
+        <div className="location-options">
+          {locationOptionsBlock}
+        </div>
+      )}
     </div>
   );
 };
