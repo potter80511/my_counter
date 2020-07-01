@@ -25,18 +25,18 @@ export enum ActionType {
 }
 
 export type SwitchTemperatureTypeAction = {
-  type: ActionType.SwitchTemperatureType,
-  temperatureType: TemperatureType,
+  type: ActionType.SwitchTemperatureType;
+  temperatureType: TemperatureType;
 };
 
 export type CreateLocationItemAction = {
-  type: ActionType.CreateLocationItem,
-  newItem: LocationData,
+  type: ActionType.CreateLocationItem;
+  newItem: LocationData;
 };
 
 export type ShowCreateLocationItemModalAction = {
-  type: ActionType.ShowCreateLocationItemModal,
-  show: boolean,
+  type: ActionType.ShowCreateLocationItemModal;
+  show: boolean;
 };
 
 export type Action =

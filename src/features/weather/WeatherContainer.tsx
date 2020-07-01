@@ -1,37 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  temperatureTypeSelector, showCreateLocationItemModalSelector,
+  translateYSelector,
+  openedLocationIndexSelector,
+  temperatureTypeSelector,
+  showCreateLocationItemModalSelector,
 } from 'src/features/weather/selectors';
 import {
   switchTemperatureType,
   showCreateLocationItemModal,
 } from 'src/features/weather/actions/toolsAction';
+import {
+  spreadOut,
+} from 'src/features/weather/actions/locationsActions';
 
 import Locations from 'src/features/weather/components/locations/Locations';
 import Tools from 'src/features/weather/components/Tools';
 import CreateLocationItemModal from 'src/features/weather/components/CreateLocationItemModal';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import { LocationData } from 'src/features/weather/domain/model/Location';
+import { SpreadIndex } from "src/features/weather/domain/model/SpreadIndex";
 import '@styles/features/weather/weather.scss';
 import { allLocationsData } from './domain/data';
 
 const WeatherContainer = () => {
   const dispatch = useDispatch();
+  const translateY = useSelector(translateYSelector);
+  const openedLocationIndex = useSelector(openedLocationIndexSelector);
   const temperatureType = useSelector(temperatureTypeSelector);
   const isShowCreateLocationItemModal = useSelector(showCreateLocationItemModalSelector);
 
   const [viewHeight, setViewHeight] = useState<number>(0);
-  const [translateY, setTranslateY] = useState<number>(0);  //  122 是title到頂部的距離
+  // const [translateY, setTranslateY] = useState<number>(0);  //  122 是title到頂部的距離
   // const [translateY, setTranslateY] = useState<number>(0 + 182);  //  122 是title到頂部的距離
-  const [openedLocationIndex, setOpenedLocationIndex] = useState<number | undefined>(undefined);
   const [locationOptions, setLocationOptions] = useState<LocationData[]>([]);
 
   const locationSpread = openedLocationIndex >= 0
 
-  const onSpreadOut = (tlY: number, spreadIndex: number | null) => {
-    setTranslateY(tlY);
-    setOpenedLocationIndex(spreadIndex);
+  const onSpreadOut = (tlY: number, spreadIndex: SpreadIndex) => {
+    dispatch(spreadOut(tlY, spreadIndex));
   };
 
   const onSwitchTemperatureType = (value: TemperatureType) => {

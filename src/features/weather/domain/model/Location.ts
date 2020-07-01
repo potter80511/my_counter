@@ -1,3 +1,8 @@
+export type LocationData = {
+  name: LocationName;
+  type: WeatherLocationType;
+};
+
 export enum WeatherLocationType {
   Location = 'location',
   City = 'city',
@@ -15,7 +20,3 @@ export enum TaoyuanLocationName {
   Luzhu = '桃園市蘆竹區',
 };
 
-export type LocationData = {
-  name: LocationName;
-  type: WeatherLocationType;
-};
