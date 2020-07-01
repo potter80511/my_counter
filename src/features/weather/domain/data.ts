@@ -1,24 +1,44 @@
-import { LocationData, TaipeiLocationName, WeatherLocationType, TaoyuanLocationName } from 'src/features/weather/domain/model/Location';
+import {
+  LocationData,
+  WeatherLocationType,
+  TaipeiLocationValue,
+  TaoyuanLocationValue,
+} from 'src/features/weather/domain/model/Location';
 
 export const allLocationsData: LocationData[] = [
-  {
-    name: TaipeiLocationName.Taipei,
+  { // 台北
+    name: TaipeiLocationValue.Taipei,
+    value: TaipeiLocationValue.Taipei,
     type: WeatherLocationType.City,
   },
   {
-    name: TaipeiLocationName.Neihu,
+    name: TaipeiLocationValue.Taipei + TaipeiLocationValue.Neihu,
+    value: TaipeiLocationValue.Neihu,
     type: WeatherLocationType.Location,
   },
   {
-    name: TaoyuanLocationName.Taoyuan,
+    name: TaipeiLocationValue.Taipei + TaipeiLocationValue.Yonghe,
+    value: TaipeiLocationValue.Yonghe,
+    type: WeatherLocationType.Location,
+  },
+  {
+    name: TaipeiLocationValue.Taipei + TaipeiLocationValue.Zhongshan,
+    value: TaipeiLocationValue.Zhongshan,
+    type: WeatherLocationType.Location,
+  },
+  { // 桃園
+    name: TaoyuanLocationValue.Taoyuan,
+    value: TaoyuanLocationValue.Taoyuan,
     type: WeatherLocationType.City,
   },
   {
-    name: TaoyuanLocationName.TaoyuanArea,
+    name: TaoyuanLocationValue.Taoyuan + TaoyuanLocationValue.TaoyuanArea,
+    value: TaoyuanLocationValue.TaoyuanArea,
     type: WeatherLocationType.Location,
   },
   {
-    name: TaoyuanLocationName.Luzhu,
+    name: TaoyuanLocationValue.Taoyuan + TaoyuanLocationValue.Luzhu,
+    value: TaoyuanLocationValue.Luzhu,
     type: WeatherLocationType.Location,
   },
 ];

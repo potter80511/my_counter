@@ -10,6 +10,7 @@ import '@styles/features/weather/CreateLocationItemModal.scss'
 type CreateLocationItemModal = {
   show: boolean;
   locationOptions: LocationData[];
+  searchValue: string;
   onCancel: (show: boolean) => void;
   onSearchInputChange: (value: string) => void;
 };
@@ -18,6 +19,7 @@ const CreateLocationItemModal = (props: CreateLocationItemModal) => {
   const {
     show,
     locationOptions,
+    searchValue,
     onCancel,
     onSearchInputChange,
   } = props;
@@ -34,12 +36,15 @@ const CreateLocationItemModal = (props: CreateLocationItemModal) => {
               <input
                 type="text"
                 placeholder="搜尋"
+                value={searchValue}
                 onChange={(e) => onSearchInputChange(e.target.value)}
               />
               <button><FontAwesomeIcon icon={faTimes}/></button>
-              <div className="location-options">
-                {locationOptionsBlock}
-              </div>
+              {( locationOptions.length > 0 && searchValue !== '' ) && (
+                <div className="location-options">
+                  {locationOptionsBlock}
+                </div>
+              )}
             </div>
             <button onClick={() => onCancel(false)}>取消</button>
           </div>

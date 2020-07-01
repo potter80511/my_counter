@@ -34,6 +34,7 @@ const WeatherContainer = () => {
   // const [translateY, setTranslateY] = useState<number>(0);  //  122 是title到頂部的距離
   // const [translateY, setTranslateY] = useState<number>(0 + 182);  //  122 是title到頂部的距離
   const [locationOptions, setLocationOptions] = useState<LocationData[]>([]);
+  const [searchValue, setSearchValue] = useState<string>('');
 
   const locationSpread = openedLocationIndex >= 0
 
@@ -54,6 +55,7 @@ const WeatherContainer = () => {
       return item.name.search(value) != -1;
     });
     setLocationOptions(filterData);
+    setSearchValue(value);
   }
 
   useEffect(() => {
@@ -82,6 +84,7 @@ const WeatherContainer = () => {
       <CreateLocationItemModal
         show={isShowCreateLocationItemModal}
         locationOptions={locationOptions}
+        searchValue={searchValue}
         onCancel={(show) => onShowCreateLocationItemModal(show)}
         onSearchInputChange={(value) => onSearchInputChange(value)}
       />
