@@ -23,6 +23,7 @@ const CreateLocationItemModal = (props: CreateLocationItemModal) => {
     onCancel,
     onSearchInputChange,
   } = props;
+
   const locationOptionsBlock = locationOptions.map((item, index) => (
     <div className="location-option" key={index}>
       <span className="container-wrap">{item.name}</span>

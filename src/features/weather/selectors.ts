@@ -13,3 +13,9 @@ export const temperatureTypeSelector = (store: StoreState) =>
 
 export const showCreateLocationItemModalSelector = (store: StoreState) =>
   store.weather.tools.showCreateLocationItemModal;
+
+export const locationOptionsSelector = (store: StoreState) =>
+  store.weather.tools.locationOptions;
+
+export const searchValueSelector = (store: StoreState) =>
+  store.weather.tools.searchValue;

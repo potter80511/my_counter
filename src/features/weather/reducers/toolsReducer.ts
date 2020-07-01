@@ -1,10 +1,17 @@
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
-import { LocationData, TaipeiLocationValue, WeatherLocationType } from 'src/features/weather/domain/model/Location';
+import {
+  LocationData,
+  TaipeiLocationValue,
+  WeatherLocationType
+} from 'src/features/weather/domain/model/Location';
+import { allLocationsData } from 'src/features/weather/domain/data';
 
 export type State = {
   temperatureType: TemperatureType;
   locationItemInputDataArray: LocationData[];
   showCreateLocationItemModal: boolean;
+  locationOptions: LocationData[];
+  searchValue: string;
 };
 
 export const defaultState:State = {
@@ -17,12 +24,15 @@ export const defaultState:State = {
     },
   ],
   showCreateLocationItemModal: true,
+  locationOptions: [],
+  searchValue: '',
 };
 
 export enum ActionType {
   SwitchTemperatureType = 'switch_temperature_type',
   CreateLocationItem = 'create_location_item',
   ShowCreateLocationItemModal = 'show_create_location_item_modal',
+  SearchInputChange = 'search_input_change',
 }
 
 export type SwitchTemperatureTypeAction = {
@@ -40,10 +50,16 @@ export type ShowCreateLocationItemModalAction = {
   show: boolean;
 };
 
+export type SearchInputChangeAction = {
+  type: ActionType.SearchInputChange;
+  value: string;
+};
+
 export type Action =
   SwitchTemperatureTypeAction |
   CreateLocationItemAction |
-  ShowCreateLocationItemModalAction;
+  ShowCreateLocationItemModalAction |
+  SearchInputChangeAction;
 
 const reducer = (state: State = defaultState, action: Action) => {
   switch (action.type) {
@@ -69,7 +85,17 @@ const reducer = (state: State = defaultState, action: Action) => {
         showCreateLocationItemModal: action.show,
       }
     }
-    default:{
+    case ActionType.SearchInputChange: {
+      const filterData = allLocationsData.filter(item => {
+        return item.name.search(action.value) != -1;
+      });
+      return {
+        ...state,
+        locationOptions: filterData,
+        searchValue: action.value,
+      }
+    }
+    default: {
       return state;
     }
   };

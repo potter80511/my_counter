@@ -22,3 +22,10 @@ export const showCreateLocationItemModal = (show: boolean) => (
     show,
   }
 );
+
+export const searchInputChange = (value: string) => (
+  {
+    type: ActionType.SearchInputChange,
+    value,
+  }
+);

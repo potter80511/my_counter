@@ -5,10 +5,13 @@ import {
   openedLocationIndexSelector,
   temperatureTypeSelector,
   showCreateLocationItemModalSelector,
+  locationOptionsSelector,
+  searchValueSelector,
 } from 'src/features/weather/selectors';
 import {
   switchTemperatureType,
   showCreateLocationItemModal,
+  searchInputChange,
 } from 'src/features/weather/actions/toolsAction';
 import {
   spreadOut,
@@ -21,20 +24,22 @@ import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import { LocationData } from 'src/features/weather/domain/model/Location';
 import { SpreadIndex } from "src/features/weather/domain/model/SpreadIndex";
 import '@styles/features/weather/weather.scss';
-import { allLocationsData } from './domain/data';
 
 const WeatherContainer = () => {
   const dispatch = useDispatch();
   const translateY = useSelector(translateYSelector);
   const openedLocationIndex = useSelector(openedLocationIndexSelector);
+
   const temperatureType = useSelector(temperatureTypeSelector);
   const isShowCreateLocationItemModal = useSelector(showCreateLocationItemModalSelector);
-
+  const locationOptions = useSelector(locationOptionsSelector);
+  const searchValue = useSelector(searchValueSelector);
+  console.log(isShowCreateLocationItemModal)
   const [viewHeight, setViewHeight] = useState<number>(0);
   // const [translateY, setTranslateY] = useState<number>(0);  //  122 是title到頂部的距離
   // const [translateY, setTranslateY] = useState<number>(0 + 182);  //  122 是title到頂部的距離
-  const [locationOptions, setLocationOptions] = useState<LocationData[]>([]);
-  const [searchValue, setSearchValue] = useState<string>('');
+  // const [locationOptions, setLocationOptions] = useState<LocationData[]>([]);
+  // const [searchValue, setSearchValue] = useState<string>('');
 
   const locationSpread = openedLocationIndex >= 0
 
@@ -51,11 +56,7 @@ const WeatherContainer = () => {
   };
 
   const onSearchInputChange = (value: string) => {
-    const filterData = allLocationsData.filter(item => {
-      return item.name.search(value) != -1;
-    });
-    setLocationOptions(filterData);
-    setSearchValue(value);
+    dispatch(searchInputChange(value));
   }
 
   useEffect(() => {
