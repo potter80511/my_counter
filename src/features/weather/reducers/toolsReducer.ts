@@ -1,10 +1,11 @@
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import {
   LocationData,
+  TaiwanCities,
   TaipeiLocationValue,
   WeatherLocationType
 } from 'src/features/weather/domain/model/Location';
-import { allLocationsData } from 'src/features/weather/domain/data';
+import { allLocationsData } from 'src/features/weather/domain/data/allLocationsData';
 
 export type State = {
   temperatureType: TemperatureType;
@@ -18,7 +19,7 @@ export const defaultState:State = {
   temperatureType: TemperatureType.Celsius,
   locationItemInputDataArray: [
     {
-      name: TaipeiLocationValue.Taipei + TaipeiLocationValue.Neihu,
+      name: TaiwanCities.Taipei + TaipeiLocationValue.Neihu,
       value: TaipeiLocationValue.Neihu,
       type: WeatherLocationType.Location,
     },

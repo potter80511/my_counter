@@ -1,6 +1,5 @@
 import React from 'react';
 import LocationItem from 'src/features/weather/components/locations/LocationItem';
-import { locations } from 'src/features/weather/domain/data';
 import { CityWeatherDataFactory } from 'src/features/weather/domain/factories/CityWeatherDataFactory';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import { WXType } from 'src/features/weather/domain/model/Weather';
