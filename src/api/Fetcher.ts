@@ -21,6 +21,8 @@ export interface IFetcher {
 const DOMAIN = 'localhost:8080'
 
 export default class Fetcher implements IFetcher {
+  private static theOne: null | Fetcher = null;
+
   private client: AxiosInstance;
   private static theFetcher: null | Fetcher = null;
 
@@ -31,6 +33,13 @@ export default class Fetcher implements IFetcher {
     axios.defaults.timeout = 60000;
 
     this.client = axios
+  }
+  static instance(): IFetcher {
+    if (Fetcher.theOne === null) {
+      Fetcher.theOne = new Fetcher();
+    }
+
+    return Fetcher.theOne;
   }
 
   static init(): IFetcher {

@@ -12,6 +12,7 @@ export const defaultState: State = {
 
 export enum ActionType {
   SpreadOut = 'spread_out',
+  CurrentDayWeatherLoaded = 'current_day_weather_loaded',
 };
 
 export type SpreadOutAction = {
