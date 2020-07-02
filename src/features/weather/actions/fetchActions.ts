@@ -24,6 +24,7 @@ export const getCurrentDayWeather = (locationName: LocationValue, locationType: 
     },
     {
       onSuccess: ({ currentDayDetails }) => {
+        console.log(currentDayDetails)
         dispatch(getCurrentDayWeatherSuccess(currentDayDetails));
       },
       onError: () => {},

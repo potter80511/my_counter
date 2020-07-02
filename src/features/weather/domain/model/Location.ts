@@ -20,7 +20,7 @@ export type LocationValue =
 
 export enum TaiwanCities {
   Yilan = '宜蘭縣',
-  Taipei = '台北市',
+  Taipei = '臺北市',
   Taoyuan = '桃園市',
 };
 

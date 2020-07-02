@@ -16,12 +16,15 @@ import {
 import {
   spreadOut,
 } from 'src/features/weather/actions/locationsActions';
+import {
+  getCurrentDayWeather,
+} from 'src/features/weather/actions/fetchActions';
 
 import Locations from 'src/features/weather/components/locations/Locations';
 import Tools from 'src/features/weather/components/Tools';
 import CreateLocationItemModal from 'src/features/weather/components/CreateLocationItemModal';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
-import { LocationData } from 'src/features/weather/domain/model/Location';
+import { LocationData, TaiwanCities, WeatherLocationType } from 'src/features/weather/domain/model/Location';
 import { SpreadIndex } from "src/features/weather/domain/model/SpreadIndex";
 import '@styles/features/weather/weather.scss';
 
@@ -59,6 +62,7 @@ const WeatherContainer = () => {
 
   useEffect(() => {
     setViewHeight(window.innerHeight);
+    dispatch(getCurrentDayWeather(TaiwanCities.Taipei, WeatherLocationType.City));
   });
 
   return (
