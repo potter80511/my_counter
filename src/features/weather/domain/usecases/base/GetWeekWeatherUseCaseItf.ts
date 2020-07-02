@@ -5,11 +5,11 @@ import {
   UseCase as BaseUseCase,
 } from 'src/domain/usecases/base/UseCase';
 import { WeekTemperature } from 'src/features/weather/domain/model/Weather';
-import { LocationName, WeatherLocationType } from 'src/features/weather/domain/model/LocationName';
+import { LocationValue, WeatherLocationType } from 'src/features/weather/domain/model/Location';
 
 export namespace GetWeekWeather {
   export interface InputData extends UseCaseInputData {
-    locationName: LocationName;
+    locationName: LocationValue;
     locationType: WeatherLocationType;
   }
 
