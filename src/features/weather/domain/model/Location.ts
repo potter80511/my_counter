@@ -3,6 +3,10 @@ export type LocationData = {
   value: LocationValue;
   type: WeatherLocationType;
 };
+export type CurrentDayCitiesSeriesNumberData = {
+  value: LocationValue;
+  number: WeatherLocationType;
+};
 
 export enum WeatherLocationType {
   Location = 'location',
@@ -15,10 +19,15 @@ export type LocationValue =
   TaoyuanLocationValue;
 
 export enum TaiwanCities {
+  Yilan = '宜蘭縣',
   Taipei = '台北市',
   Taoyuan = '桃園市',
 };
 
+export enum YilanLocationValue {
+  YilanCity = '宜蘭市',
+  LuoDong = '羅東鎮',
+};
 export enum TaipeiLocationValue {
   Neihu = '內湖區',
   Yonghe = '永和區',
