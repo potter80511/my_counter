@@ -1,6 +1,6 @@
-import { UseCase, UseCaseInputData, UseCaseOutputData, UseCaseCallbacks } from '@src/domain/usecases/base/UseCase';
-import { FetchingController } from '@src/domain/usecases/decorators/fetching_decorator/FetchingController';
-import { Dispatch } from '@src/ReduxTypes';
+import { UseCase, UseCaseInputData, UseCaseOutputData, UseCaseCallbacks } from 'src/domain/usecases/base/UseCase';
+import { FetchingController } from 'src/domain/usecases/decorators/fetching_decorator/FetchingController';
+import { Dispatch } from 'src/ReduxTypes';
 
 export interface DispatchInputData extends UseCaseInputData { dispatch: Dispatch; }
 
@@ -32,7 +32,7 @@ export class FetchingDecorator<
       },
       onError: (e) => {
         const error = (e instanceof Error) ? e : undefined;
-        this.fetchingController.rejectFetching(dispatch, error);
+        // this.fetchingController.rejectFetching(dispatch, error);
 
         callbacks.onError(e);
       },

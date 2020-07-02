@@ -5,6 +5,10 @@ import thunk from 'redux-thunk';
 import todoListReducer, { CombinedState as TodoListState} from 'src/features/todo_list/reducers/combinedReducer';
 import weatherReducer, { CombinedState as WeatherState } from 'src/features/weather/reducers/combinedReducer';
 
+const composeEnhancers = composeWithDevTools({
+  // options like actionSanitizer, stateSanitizer
+});
+
 export const appReducer = combineReducers<StoreState>({
   todoList: todoListReducer,
   weather: weatherReducer,
@@ -15,18 +19,4 @@ export interface StoreState {
   weather: WeatherState;
 }
 
-export const store = createStore(appReducer);
-
-// const appReducer = combineReducers<StoreState>({
-//   todoList: todoListReducer,
-// });
-
-// export const store = createStore(appReducer);
-
-// const initStore = (preloadedState = initialState) => {
-//   return createStore(
-//     appReducer,
-//     preloadedState,
-//     composeWithDevTools(applyMiddleware())
-//   )
-// }
+export const store = createStore(appReducer, composeEnhancers(applyMiddleware(thunk)));
