@@ -4,6 +4,7 @@ import {
   translateYSelector,
   openedLocationIndexSelector,
   temperatureTypeSelector,
+  locationItemInputDataArraySelector,
   showCreateLocationItemModalSelector,
   locationOptionsSelector,
   searchValueSelector,
@@ -34,6 +35,8 @@ const WeatherContainer = () => {
   const openedLocationIndex = useSelector(openedLocationIndexSelector);
 
   const temperatureType = useSelector(temperatureTypeSelector);
+  const locationItemInputDataArray = useSelector(locationItemInputDataArraySelector);
+  // console.log(locationItemInputDataArray)
   const isShowCreateLocationItemModal = useSelector(showCreateLocationItemModalSelector);
   const locationOptions = useSelector(locationOptionsSelector);
   const searchValue = useSelector(searchValueSelector);
@@ -62,7 +65,10 @@ const WeatherContainer = () => {
 
   useEffect(() => {
     setViewHeight(window.innerHeight);
-    dispatch(getCurrentDayWeather(TaiwanCities.Taipei, WeatherLocationType.City));
+    locationItemInputDataArray.forEach(item => {
+      // const city = item.city ? item.city : undefined;
+      dispatch(getCurrentDayWeather(item.value, item.type, item.city));
+    });
   });
 
   return (

@@ -11,6 +11,9 @@ export const openedLocationIndexSelector = (store: StoreState) =>
 export const temperatureTypeSelector = (store: StoreState) =>
   store.weather.tools.temperatureType;
 
+export const locationItemInputDataArraySelector = (store: StoreState) =>
+  store.weather.tools.locationItemInputDataArray;
+
 export const showCreateLocationItemModalSelector = (store: StoreState) =>
   store.weather.tools.showCreateLocationItemModal;
 
