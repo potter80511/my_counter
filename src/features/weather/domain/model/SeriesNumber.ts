@@ -9,6 +9,6 @@ export enum SeriesNumber {
 };
 
 export interface SeriesNumberItem {
-  value: TaiwanCities;
+  name: TaiwanCities;
   seriesNumber: string;
 };

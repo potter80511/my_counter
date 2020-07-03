@@ -15,6 +15,7 @@ export class CityWeatherDataFactory {
     } = data;
 
     const wX = this.getCurrentWx(weatherElement);
+    // console.log(wX)
     const currentTemperature = this.getCityAverageT(weatherElement);
     const todayEveryHourArray = this.createCityTodayEveryHourArray(weatherElement);
 
@@ -28,6 +29,7 @@ export class CityWeatherDataFactory {
 
   static getCurrentWx(weatherElement: WeatherElementItem[]): WXType {
     const wxData = weatherElement.find(item => item.elementName === ElementName.Wx);
+    // console.log(wxData)
     if (wxData) {
       const wx = wxData.time[0].parameter.parameterName as WXType
       return wx;

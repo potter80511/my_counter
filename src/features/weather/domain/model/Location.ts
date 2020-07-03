@@ -1,4 +1,5 @@
 export type LocationData = {
+  city: TaiwanCities;
   name: string;
   value: LocationValue;
   type: WeatherLocationType;

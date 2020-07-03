@@ -18,8 +18,15 @@ export type State = {
 export const defaultState:State = {
   temperatureType: TemperatureType.Celsius,
   locationItemInputDataArray: [
+    // {
+    //   city: TaiwanCities.Taipei,
+    //   name: TaiwanCities.Taipei,
+    //   value: TaiwanCities.Taipei,
+    //   type: WeatherLocationType.City,
+    // },
     {
-      name: TaiwanCities.Taipei + TaipeiLocationValue.Neihu,
+      city: TaiwanCities.Taipei,
+      name: TaiwanCities.Taipei,
       value: TaipeiLocationValue.Neihu,
       type: WeatherLocationType.Location,
     },

@@ -12,11 +12,15 @@ import {
 
 export const currentDayCitiesSeriesNumberData: SeriesNumberItem[] = [
   {
-    value: TaiwanCities.Yilan,
+    name: TaiwanCities.Yilan,
     seriesNumber: SeriesNumber.Yilan,
   },
   {
-    value: TaiwanCities.Taoyuan,
+    name: TaiwanCities.Taoyuan,
     seriesNumber: SeriesNumber.Taoyuan,
+  },
+  {
+    name: TaiwanCities.Taipei,
+    seriesNumber: SeriesNumber.Taipei,
   },
 ];

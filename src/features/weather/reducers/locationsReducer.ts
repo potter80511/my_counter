@@ -1,13 +1,25 @@
 import { SpreadIndex } from "src/features/weather/domain/model/SpreadIndex";
+import { CurrentDayDetails, WXType } from "src/features/weather/domain/model/Weather";
+import { TaiwanCities } from "../domain/model/Location";
 
 export type State = {
   translateY: number;
   openedLocationIndex: number | undefined;
+  locationsData: CurrentDayDetails[];
 };
 
 export const defaultState: State = {
   translateY: 0,
   openedLocationIndex: undefined,
+  locationsData: [],
+  // locationsData: [
+  //   {
+  //     locationName: TaiwanCities.Taoyuan,
+  //     wX: WXType.Cloudy,
+  //     currentTemperature: '30',
+  //     todayEveryHourArray: [],
+  //   },
+  // ],
 };
 
 export enum ActionType {
