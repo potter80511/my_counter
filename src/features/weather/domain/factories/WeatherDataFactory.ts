@@ -1,5 +1,6 @@
 import { WXType } from 'src/features/weather/domain/model/Weather';
 import { WXIcons } from 'src/features/weather/domain/model/WXIcons';
+import moment, { Moment } from 'moment';
 
 export class WeatherDataFactory {
   static createBackground(wX: WXType): string {
@@ -46,4 +47,9 @@ export class WeatherDataFactory {
     return '/img/weather/wx_icons/' + iconName;
   }
 
+  static createEachHour(time: Moment): string {
+    const hour = moment(time).format('HH');
+    const newHour = String(Number(hour)) + '時';
+    return newHour;
+  }
 }

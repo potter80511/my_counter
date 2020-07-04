@@ -94,10 +94,11 @@ export class CityWeatherDataFactory {
     if (currentWx) {
       wXTimeArray = currentWx.time;
     }
+
     const result = minTTimeArray.map((item, index) => {
       const averageT = (Number(item.parameter.parameterName) + Number(maxTTimeArray[index].parameter.parameterName)) / 2;
       return {
-        hourName: moment(wXTimeArray[index].startTime),
+        hourName: WeatherDataFactory.createEachHour(wXTimeArray[index].startTime),
         wXIcon: WeatherDataFactory.createWXIcon(wXTimeArray[index].parameter.parameterName as WXType),
         temperature: String(averageT),
       }

@@ -57,10 +57,9 @@ export class LocationWeatherDataFactory {
     const tData = weatherElement.find(item => item.elementName === ElementName.T);
     if (tData) {
       const tempArray = tData.time.map(item => {
-        const hourName = item.dataTime;
         const temperature = item.elementValue[0].value;
         return {
-          hourName,
+          hourName: WeatherDataFactory.createEachHour(item.dataTime),
           temperature,
         };
       });
