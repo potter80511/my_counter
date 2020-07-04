@@ -10,9 +10,10 @@ import { Transition, CSSTransition } from 'react-transition-group';
 type LocationItemProps = {
   name: string;
   index: number;
-  currentTemperature: number;
+  currentTemperature: string;
   temperatureType: TemperatureType
   wX: WXType;
+  weatherBackgroundImage: string;
   spread: boolean;
   spreadOut: (translateY: number, spreadIndex: number | null) => void;
 }
@@ -24,6 +25,7 @@ const LocationItem = (props: LocationItemProps) => {
     currentTemperature,
     temperatureType,
     wX,
+    weatherBackgroundImage,
     spread,
     spreadOut,
   } = props;
@@ -52,7 +54,7 @@ const LocationItem = (props: LocationItemProps) => {
     <div
       className={'location-item' + itemSpreadClass}
       style={{
-        backgroundImage: `url(${WeatherBackgroundFactory.createBackground(wX)})`,
+        backgroundImage: `url(${weatherBackgroundImage})`,
         minHeight: itemHeight + 'px',
         maxHeight: itemHeight + 'px',
       }}
@@ -63,7 +65,8 @@ const LocationItem = (props: LocationItemProps) => {
           <span className="moment">{moment().format("HH:mm")}</span>
           <strong className="location-name">{name}</strong>
         </div>
-        <span className="temperature">{TemperatureFactory.switchTemperatureType(currentTemperature, temperatureType)}°</span>
+        {/* <span className="temperature">{TemperatureFactory.switchTemperatureType(currentTemperature, temperatureType)}°</span> */}
+        <span className="temperature">{currentTemperature}</span>
       </div>
       <LocationItemDetails
         show={spread}

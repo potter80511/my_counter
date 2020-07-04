@@ -32,9 +32,14 @@ export type SpreadOutAction = {
   translateY: number;
   spreadIndex: SpreadIndex;
 };
+export type CurrentDayWeatherLoadedAction = {
+  type: ActionType.CurrentDayWeatherLoaded;
+  data: CurrentDayDetails;
+};
 
 export type Action =
-  SpreadOutAction;
+  SpreadOutAction |
+  CurrentDayWeatherLoadedAction;
 
 const reducer = (state: State = defaultState, action: Action) => {
   switch (action.type) {
@@ -43,6 +48,15 @@ const reducer = (state: State = defaultState, action: Action) => {
         ...state,
         translateY: action.translateY,
         openedLocationIndex: action.spreadIndex,
+      }
+    }
+    case ActionType.CurrentDayWeatherLoaded: {
+      return {
+        ...state,
+        locationsData: [
+          ...state.locationsData,
+          action.data,
+        ],
       }
     }
     default:

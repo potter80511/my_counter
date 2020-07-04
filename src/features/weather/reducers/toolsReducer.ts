@@ -37,7 +37,7 @@ export const defaultState: State = {
     //   type: WeatherLocationType.Location,
     // },
   ],
-  showCreateLocationItemModal: true,
+  showCreateLocationItemModal: false,
   locationOptions: [],
   searchValue: '',
 };

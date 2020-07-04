@@ -2,8 +2,8 @@ import { Moment } from 'moment';
 
 export enum WXType {
   SunnyCloudy = '晴時多雲',
-  CloudyTempRainyOrThunder = '多雲短暫陣雨或雷雨',
-  Cloudy = '多雲'
+  Cloudy = '多雲',
+  CloudyTempRainyOrThunder = '多雲午後短暫雷陣雨',
 }
 
 export interface TodayEveryHour {
@@ -17,6 +17,7 @@ export interface CurrentDayDetails {
   wX: WXType;
   currentTemperature: string;
   todayEveryHourArray: TodayEveryHour[];
+  weatherBackgroundImage: string;
 };
 
 export interface WeekTemperature {

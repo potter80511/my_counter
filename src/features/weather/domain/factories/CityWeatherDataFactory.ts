@@ -1,5 +1,8 @@
 import { WXType, CurrentDayDetails, TodayEveryHour } from 'src/features/weather/domain/model/Weather';
 import { WeatherElementItem, ElementName, ElementTime } from 'src/features/weather/domain/model/WeatherElement';
+import {
+  WeatherBackgroundFactory,
+} from 'src/features/weather/domain/factories/WeatherBackgroundFactory';
 import moment from 'moment';
 
 enum TType {
@@ -16,14 +19,16 @@ export class CityWeatherDataFactory {
 
     const wX = this.getCurrentWx(weatherElement);
     // console.log(wX)
-    const currentTemperature = this.getCityAverageT(weatherElement);
+    const currentTemperature = this.getCityAverageT(weatherElement) + '˚';
     const todayEveryHourArray = this.createCityTodayEveryHourArray(weatherElement);
+    const weatherBackgroundImage = WeatherBackgroundFactory.createBackground(wX);
 
     return {
       locationName,
       wX,
       currentTemperature,
       todayEveryHourArray,
+      weatherBackgroundImage,
     };
   }
 
@@ -40,7 +45,7 @@ export class CityWeatherDataFactory {
     const averageMinT = this.getAverageT(weatherElement, TType.Min);
     const averageMaxT = this.getAverageT(weatherElement, TType.Max);
     const averageT = (averageMinT + averageMaxT) / 2;
-    return String(averageT);
+    return String(Math.round(averageT));
   }
 
   static getAverageT(weatherElement: WeatherElementItem[], tType: TType): number {

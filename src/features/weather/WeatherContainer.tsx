@@ -85,6 +85,7 @@ const WeatherContainer = () => {
         translateY={translateY}
         openedLocationIndex={openedLocationIndex}
         temperatureType={temperatureType}
+        locationsData={locationsData}
         spreadOut={(tlY, spreadIndex) => onSpreadOut(tlY, spreadIndex)}
       />
       <Tools
