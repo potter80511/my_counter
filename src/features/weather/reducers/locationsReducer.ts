@@ -1,6 +1,8 @@
 import { SpreadIndex } from "src/features/weather/domain/model/SpreadIndex";
 import { CurrentDayDetails, WXType } from "src/features/weather/domain/model/Weather";
-import { TaiwanCities } from "../domain/model/Location";
+import { TaiwanCities } from "src/features/weather/domain/model/Location";
+import { TemperatureType } from "src/features/weather/domain/model/ToolsTypes";
+import { WeatherHelper } from "src/features/weather/helper";
 
 export type State = {
   translateY: number;
@@ -25,6 +27,7 @@ export const defaultState: State = {
 export enum ActionType {
   SpreadOut = 'spread_out',
   CurrentDayWeatherLoaded = 'current_day_weather_loaded',
+  CalculateTemperature = 'calculate_temperature',
 };
 
 export type SpreadOutAction = {
@@ -36,10 +39,16 @@ export type CurrentDayWeatherLoadedAction = {
   type: ActionType.CurrentDayWeatherLoaded;
   data: CurrentDayDetails;
 };
+export type CalculateTemperatureAction = {
+  type: ActionType.CalculateTemperature;
+  locationsData: CurrentDayDetails[];
+  temperatureType: TemperatureType;
+};
 
 export type Action =
   SpreadOutAction |
-  CurrentDayWeatherLoadedAction;
+  CurrentDayWeatherLoadedAction |
+  CalculateTemperatureAction;
 
 const reducer = (state: State = defaultState, action: Action) => {
   switch (action.type) {
@@ -57,6 +66,23 @@ const reducer = (state: State = defaultState, action: Action) => {
           ...state.locationsData,
           action.data,
         ],
+      }
+    }
+    case ActionType.CalculateTemperature: {
+      console.log(action.locationsData)
+      const isFahrenheit = action.temperatureType === TemperatureType.Fahrenheit ? true : false;
+      const newLocationsData = action.locationsData.map(item => {
+        const newCurrentTemperature = isFahrenheit
+          ? WeatherHelper.switchTemperatureToFahrenheit(item.currentTemperature)
+          : WeatherHelper.switchTemperatureToCelsius(item.currentTemperature);
+        return {
+          ...item,
+          currentTemperature: newCurrentTemperature,
+        }
+      });
+      return {
+        ...state,
+        locationsData: newLocationsData,
       }
     }
     default:

@@ -17,6 +17,7 @@ import {
 } from 'src/features/weather/actions/toolsAction';
 import {
   spreadOut,
+  calculateLocationsDataTemperature,
 } from 'src/features/weather/actions/locationsActions';
 import {
   getCurrentDayWeather,
@@ -72,7 +73,13 @@ const WeatherContainer = () => {
       // const city = item.city ? item.city : undefined;
       dispatch(getCurrentDayWeather(item.value, item.type, item.city));
     });
+    dispatch(calculateLocationsDataTemperature(locationsData, temperatureType))
+    // console.log('first')
   }, []);
+  
+  useEffect(() => {
+    dispatch(calculateLocationsDataTemperature(locationsData, temperatureType))
+  }, [temperatureType]);
 
   return (
     <div
