@@ -15,21 +15,27 @@ export type State = {
   searchValue: string;
 };
 
-export const defaultState:State = {
+export const defaultState: State = {
   temperatureType: TemperatureType.Celsius,
   locationItemInputDataArray: [
-    // {
-    //   city: TaiwanCities.Taipei,
-    //   name: TaiwanCities.Taipei,
-    //   value: TaiwanCities.Taipei,
-    //   type: WeatherLocationType.City,
-    // },
     {
       city: TaiwanCities.Taipei,
       name: TaiwanCities.Taipei,
-      value: TaipeiLocationValue.Neihu,
-      type: WeatherLocationType.Location,
+      value: TaiwanCities.Taipei,
+      type: WeatherLocationType.City,
     },
+    {
+      city: TaiwanCities.Yilan,
+      name: TaiwanCities.Yilan,
+      value: TaiwanCities.Yilan,
+      type: WeatherLocationType.City,
+    },
+    // {
+    //   city: TaiwanCities.Taipei,
+    //   name: TaiwanCities.Taipei,
+    //   value: TaipeiLocationValue.Neihu,
+    //   type: WeatherLocationType.Location,
+    // },
   ],
   showCreateLocationItemModal: true,
   locationOptions: [],

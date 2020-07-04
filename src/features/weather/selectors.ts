@@ -7,6 +7,9 @@ export const translateYSelector = (store: StoreState) =>
 export const openedLocationIndexSelector = (store: StoreState) =>
   store.weather.locations.openedLocationIndex
 
+export const locationsDataSelector = (store: StoreState) =>
+  store.weather.locations.locationsData
+
 // tools
 export const temperatureTypeSelector = (store: StoreState) =>
   store.weather.tools.temperatureType;

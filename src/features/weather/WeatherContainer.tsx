@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   translateYSelector,
   openedLocationIndexSelector,
+  locationsDataSelector,
   temperatureTypeSelector,
   locationItemInputDataArraySelector,
   showCreateLocationItemModalSelector,
@@ -33,6 +34,8 @@ const WeatherContainer = () => {
   const dispatch = useDispatch();
   const translateY = useSelector(translateYSelector);
   const openedLocationIndex = useSelector(openedLocationIndexSelector);
+  const locationsData = useSelector(locationsDataSelector);
+  console.log(locationsData)
 
   const temperatureType = useSelector(temperatureTypeSelector);
   const locationItemInputDataArray = useSelector(locationItemInputDataArraySelector);
@@ -69,7 +72,7 @@ const WeatherContainer = () => {
       // const city = item.city ? item.city : undefined;
       dispatch(getCurrentDayWeather(item.value, item.type, item.city));
     });
-  });
+  }, []);
 
   return (
     <div

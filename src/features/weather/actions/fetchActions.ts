@@ -8,7 +8,7 @@ import { CurrentDayDetails } from 'src/features/weather/domain/model/Weather';
 
 const getCurrentDayWeatherSuccess = (currentDayDetails: CurrentDayDetails) => ({
   type: ActionType.CurrentDayWeatherLoaded,
-  currentDayDetails,
+  data: currentDayDetails,
 });
 
 export const getCurrentDayWeather = (locationName: LocationValue, locationType: WeatherLocationType, city?: TaiwanCities) => async (dispatch: Dispatch) => {
@@ -26,6 +26,7 @@ export const getCurrentDayWeather = (locationName: LocationValue, locationType: 
     {
       onSuccess: ({ currentDayDetails }) => {
         console.log(currentDayDetails)
+        // dispatch(createLocationsData(currentDayDetails));
         dispatch(getCurrentDayWeatherSuccess(currentDayDetails));
       },
       onError: () => {},
