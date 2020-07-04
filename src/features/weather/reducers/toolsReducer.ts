@@ -3,7 +3,8 @@ import {
   LocationData,
   TaiwanCities,
   TaipeiLocationValue,
-  WeatherLocationType
+  WeatherLocationType,
+  TaoyuanLocationValue
 } from 'src/features/weather/domain/model/Location';
 import { allLocationsData } from 'src/features/weather/domain/data/allLocationsData';
 
@@ -30,12 +31,18 @@ export const defaultState: State = {
       value: TaiwanCities.Yilan,
       type: WeatherLocationType.City,
     },
-    // {
-    //   city: TaiwanCities.Taipei,
-    //   name: TaiwanCities.Taipei,
-    //   value: TaipeiLocationValue.Neihu,
-    //   type: WeatherLocationType.Location,
-    // },
+    {
+      city: TaiwanCities.Taoyuan,
+      name: TaiwanCities.Taoyuan,
+      value: TaoyuanLocationValue.Luzhu,
+      type: WeatherLocationType.Location,
+    },
+    {
+      city: TaiwanCities.Taipei,
+      name: TaiwanCities.Taipei,
+      value: TaipeiLocationValue.Neihu,
+      type: WeatherLocationType.Location,
+    },
   ],
   showCreateLocationItemModal: false,
   locationOptions: [],

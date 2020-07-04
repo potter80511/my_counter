@@ -2,6 +2,7 @@ import { IFetcher } from 'src/api/Fetcher';
 import { GetCurrentDayWeather } from 'src/features/weather/domain/usecases/base/GetCurrentDayWeatherUseCaseItf';
 import { WeatherLocationType } from 'src/features/weather/domain/model/Location';
 import { CityWeatherDataFactory } from 'src/features/weather/domain/factories/CityWeatherDataFactory';
+import { LocationWeatherDataFactory } from 'src/features/weather/domain/factories/LocationWeatherDataFactory';
 import { currentDayCitiesSeriesNumberData } from 'src/features/weather/domain/data/allCitiesSeriesNumberData';
 
 export class GetCurrentDayWeatherUseCase implements GetCurrentDayWeather.UseCase {
@@ -35,11 +36,11 @@ export class GetCurrentDayWeatherUseCase implements GetCurrentDayWeather.UseCase
         const seriesNumber = currentDayCitiesSeriesNumberData.find(item =>
           item.name === city
         ).seriesNumber;
-          console.log(city, locationName, seriesNumber)
+        
         this.fetcher.get(`https://opendata.cwb.gov.tw/api/v1/rest/datastore/${seriesNumber}?Authorization=CWB-FA978B40-46C9-479E-8875-9902059B75D0&locationName=${locationName}`, {
           onSuccess: result => {
             console.log(result.records)
-            const currentDayDetails = CityWeatherDataFactory.createCurrentDayDataFromNet(result.records.locations[0].location[0]);
+            const currentDayDetails = LocationWeatherDataFactory.createCurrentDayDataFromNet(result.records.locations[0].location[0]);
             callbacks.onSuccess({ currentDayDetails });
           },
           onError: e => callbacks.onError(e),

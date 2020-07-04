@@ -1,10 +1,16 @@
 import { Moment } from 'moment';
 import { WXType } from 'src/features/weather/domain/model/Weather';
 
+export enum TType {
+  Min = 'min',
+  Max = 'max',
+}
+
 export enum ElementName {
   Wx = 'Wx',
   MinT = 'MinT',
   MaxT = 'MaxT',
+  T = 'T',
 }
 
 export interface WeatherElementItem {
