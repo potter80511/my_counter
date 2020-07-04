@@ -25,18 +25,25 @@ export class WeatherDataFactory {
   }
 
   static createWXIcon(wx: WXType): string {
+    let iconName = '';
     switch (wx) {
       case WXType.Sunny:
-        return WXIcons.Sunny
+        iconName = WXIcons.Sunny
+        break;
       case WXType.SunnyCloudy:
-        return WXIcons.SunnyCloudy
+        iconName = WXIcons.SunnyCloudy
+        break;
       case WXType.Cloudy:
-        return WXIcons.Cloudy
+        iconName = WXIcons.Cloudy
+        break;
       case WXType.CloudyTempRainyOrThunder:
-        return WXIcons.CloudyTempRainyOrThunder
+        iconName = WXIcons.CloudyTempRainyOrThunder
+        break;
       case WXType.TempRainyOrThunder:
-        return WXIcons.TempRainyOrThunder
+        iconName = WXIcons.TempRainyOrThunder
+        break;
     }
+    return '/img/weather/wx_icons/' + iconName;
   }
 
 }

@@ -68,7 +68,7 @@ export class LocationWeatherDataFactory {
       const result = tempArray.map((item, index) => (
         {
           ...item,
-          wXIcon: '/img/weather/wx_icons/' + wxArray[index],
+          wXIcon: wxArray[index],
         }
       ));
       // console.log(result)
