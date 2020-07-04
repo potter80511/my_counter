@@ -3,18 +3,25 @@ import { WXIcons } from 'src/features/weather/domain/model/WXIcons';
 
 export class WeatherDataFactory {
   static createBackground(wX: WXType): string {
+    let photoName = '';
     switch (wX) {
       case WXType.Sunny:
-        return '/img/weather/sunny.jpg'
+        photoName = 'sunny.jpg'
+        break;
       case WXType.SunnyCloudy:
-        return '/img/weather/sunny.jpg'
+        photoName = 'sunny.jpg'
+        break;
       case WXType.Cloudy:
-        return '/img/weather/cloudy.jpg'
+        photoName = 'cloudy.jpg'
+        break;
       case WXType.CloudyTempRainyOrThunder:
-        return '/img/weather/cloudy_temp_rainy_or_thunder.jpg'
+        photoName = 'cloudy_temp_rainy_or_thunder.jpg'
+        break;
       case WXType.TempRainyOrThunder:
-        return '/img/weather/temp_rainy_or_thunder.jpg'
+        photoName = 'temp_rainy_or_thunder.jpg'
+        break;
     }
+    return '/img/weather/' + photoName;
   }
 
   static createWXIcon(wx: WXType): string {
