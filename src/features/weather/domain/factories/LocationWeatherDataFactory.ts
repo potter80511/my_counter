@@ -17,8 +17,7 @@ export class LocationWeatherDataFactory {
     // console.log(weatherElement, 'we')
 
     const wX = this.getCurrentWx(weatherElement);
-    const currentTemperature = this.getLocationT(weatherElement) + '˚';
-    console.log(currentTemperature)
+    const currentTemperature = this.getLocationT(weatherElement);
     const todayEveryHourArray = this.createLocationTodayEveryHourArray(weatherElement);
     const weatherBackgroundImage = WeatherDataFactory.createBackground(wX);
 
@@ -43,7 +42,7 @@ export class LocationWeatherDataFactory {
     const tData = weatherElement.find(item => item.elementName === ElementName.T);
     if (tData) {
       const t = tData.time[0].elementValue[0].value
-      return t;
+      return WeatherDataFactory.createTemperature(t);
     }
   }
 
@@ -57,7 +56,7 @@ export class LocationWeatherDataFactory {
     const tData = weatherElement.find(item => item.elementName === ElementName.T);
     if (tData) {
       const tempArray = tData.time.map(item => {
-        const temperature = item.elementValue[0].value;
+        const temperature = WeatherDataFactory.createTemperature(item.elementValue[0].value);
         return {
           hourName: WeatherDataFactory.createEachHour(item.dataTime),
           temperature,

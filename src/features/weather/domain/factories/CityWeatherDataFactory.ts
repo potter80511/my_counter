@@ -18,8 +18,7 @@ export class CityWeatherDataFactory {
     } = data;
 
     const wX = this.getCurrentWx(weatherElement);
-    // console.log(wX)
-    const currentTemperature = this.getCityAverageT(weatherElement) + '˚';
+    const currentTemperature = this.getCityAverageT(weatherElement);
     const todayEveryHourArray = this.createCityTodayEveryHourArray(weatherElement);
     const weatherBackgroundImage = WeatherDataFactory.createBackground(wX);
 
@@ -45,7 +44,7 @@ export class CityWeatherDataFactory {
     const averageMinT = this.getAverageT(weatherElement, TType.Min);
     const averageMaxT = this.getAverageT(weatherElement, TType.Max);
     const averageT = (averageMinT + averageMaxT) / 2;
-    return String(Math.round(averageT));
+    return WeatherDataFactory.createTemperature(String(Math.round(averageT)));
   }
 
   static getAverageT(weatherElement: WeatherElementItem[], tType: TType): number {
@@ -100,7 +99,7 @@ export class CityWeatherDataFactory {
       return {
         hourName: WeatherDataFactory.createEachHour(wXTimeArray[index].startTime),
         wXIcon: WeatherDataFactory.createWXIcon(wXTimeArray[index].parameter.parameterName as WXType),
-        temperature: String(averageT),
+        temperature: WeatherDataFactory.createTemperature(String(averageT)),
       }
     });
     return result;

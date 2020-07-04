@@ -47,9 +47,15 @@ export class WeatherDataFactory {
     return '/img/weather/wx_icons/' + iconName;
   }
 
+  static createTemperature(t: string, noUnit?: boolean): string {
+    const result = noUnit ? String(Math.round(Number(t))) : Math.round(Number(t)) + '˚';
+    return result;
+  }
+
   static createEachHour(time: Moment): string {
     const hour = moment(time).format('HH');
     const newHour = String(Number(hour)) + '時';
     return newHour;
   }
+  
 }
