@@ -27,12 +27,10 @@ const Locations = (props: LocationsProps) => {
   const locationItem = locationsData.map((item, index) => (
     <LocationItem
       key={'location-item-' + index}
-      name={item.locationName}
+      locationData={item}
       index={index}
-      currentTemperature={item.currentTemperature}
       temperatureType={temperatureType}
-      wX={item.wX}
-      weatherBackgroundImage={item.weatherBackgroundImage}
+      translateD={translateY}
       spread={openedLocationIndex === index ? true : false}
       spreadOut={(tlY, spreadIndex) => spreadOut(tlY, spreadIndex)}
     />

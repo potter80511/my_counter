@@ -1,30 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
 import LocationItemDetails from 'src/features/weather/components/locations/LocationItemDetails'
-import { WXType } from 'src/features/weather/domain/model/Weather';
+import { WXType, CurrentDayDetails } from 'src/features/weather/domain/model/Weather';
 import { TemperatureFactory } from 'src/features/weather/domain/factories/TemperatureFactory';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import moment from 'moment';
 import { Transition, CSSTransition } from 'react-transition-group';
 
 type LocationItemProps = {
-  name: string;
   index: number;
-  currentTemperature: string;
+  locationData: CurrentDayDetails;
   temperatureType: TemperatureType
-  wX: WXType;
-  weatherBackgroundImage: string;
+  translateD: number;
   spread: boolean;
   spreadOut: (translateY: number, spreadIndex: number | null) => void;
 }
 
 const LocationItem = (props: LocationItemProps) => {
   const {
-    name,
     index,
-    currentTemperature,
+    locationData,
     temperatureType,
-    wX,
-    weatherBackgroundImage,
+    translateD,
     spread,
     spreadOut,
   } = props;
@@ -53,22 +49,25 @@ const LocationItem = (props: LocationItemProps) => {
     <div
       className={'location-item' + itemSpreadClass}
       style={{
-        backgroundImage: `url(${weatherBackgroundImage})`,
+        backgroundImage: `url(${locationData.weatherBackgroundImage})`,
         minHeight: itemHeight + 'px',
         maxHeight: itemHeight + 'px',
       }}
       ref={ref}
     >
-      <div className="overview" onClick={onItemClick}>
-        <div className="flex-left">
-          <span className="moment">{moment().format("HH:mm")}</span>
-          <strong className="location-name">{name}</strong>
+      {!spread && (
+        <div className="overview" onClick={onItemClick}>
+          <div className="flex-left">
+            <span className="moment">{moment().format("HH:mm")}</span>
+            <strong className="location-name">{locationData.locationName}</strong>
+          </div>
+          <span className="temperature">{locationData.currentTemperature}</span>
         </div>
-        {/* <span className="temperature">{TemperatureFactory.switchTemperatureType(currentTemperature, temperatureType)}°</span> */}
-        <span className="temperature">{currentTemperature}</span>
-      </div>
+      )}
       <LocationItemDetails
         show={spread}
+        locationData={locationData}
+        translateD={translateD}
         onCloseSpread={onCloseSpread}
       />
     </div>
