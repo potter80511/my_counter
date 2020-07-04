@@ -46,6 +46,7 @@ const WeatherContainer = () => {
   const searchValue = useSelector(searchValueSelector);
 
   const [viewHeight, setViewHeight] = useState<number>(0);
+  const [isFirstCalculateTemperature, setIsFirstCalculateTemperature] = useState<boolean>(true);
   // const [translateY, setTranslateY] = useState<number>(0);  //  122 是title到頂部的距離
   // const [translateY, setTranslateY] = useState<number>(0 + 182);  //  122 是title到頂部的距離
 
@@ -70,13 +71,10 @@ const WeatherContainer = () => {
   useEffect(() => {
     setViewHeight(window.innerHeight);
     locationItemInputDataArray.forEach(item => {
-      // const city = item.city ? item.city : undefined;
       dispatch(getCurrentDayWeather(item.value, item.type, item.city));
     });
-    dispatch(calculateLocationsDataTemperature(locationsData, temperatureType))
-    // console.log('first')
   }, []);
-  
+
   useEffect(() => {
     dispatch(calculateLocationsDataTemperature(locationsData, temperatureType))
   }, [temperatureType]);

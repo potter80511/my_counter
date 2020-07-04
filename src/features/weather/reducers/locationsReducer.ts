@@ -69,10 +69,9 @@ const reducer = (state: State = defaultState, action: Action) => {
       }
     }
     case ActionType.CalculateTemperature: {
-      console.log(action.locationsData)
-      const isFahrenheit = action.temperatureType === TemperatureType.Fahrenheit ? true : false;
+      const toFahrenheit = action.temperatureType === TemperatureType.Fahrenheit ? true : false;
       const newLocationsData = action.locationsData.map(item => {
-        const newCurrentTemperature = isFahrenheit
+        const newCurrentTemperature = toFahrenheit
           ? WeatherHelper.switchTemperatureToFahrenheit(item.currentTemperature)
           : WeatherHelper.switchTemperatureToCelsius(item.currentTemperature);
         return {
@@ -80,6 +79,7 @@ const reducer = (state: State = defaultState, action: Action) => {
           currentTemperature: newCurrentTemperature,
         }
       });
+      console.log(newLocationsData)
       return {
         ...state,
         locationsData: newLocationsData,
