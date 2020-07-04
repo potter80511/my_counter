@@ -1,6 +1,7 @@
 import { WXType } from 'src/features/weather/domain/model/Weather';
+import { WXIcons } from 'src/features/weather/domain/model/WXIcons';
 
-export class WeatherBackgroundFactory {
+export class WeatherDataFactory {
   static createBackground(wX: WXType): string {
     switch (wX) {
       case WXType.Sunny:
@@ -15,4 +16,20 @@ export class WeatherBackgroundFactory {
         return '/img/weather/temp_rainy_or_thunder.jpg'
     }
   }
+
+  static createWXIcon(wx: WXType): string {
+    switch (wx) {
+      case WXType.Sunny:
+        return WXIcons.Sunny
+      case WXType.SunnyCloudy:
+        return WXIcons.SunnyCloudy
+      case WXType.Cloudy:
+        return WXIcons.Cloudy
+      case WXType.CloudyTempRainyOrThunder:
+        return WXIcons.CloudyTempRainyOrThunder
+      case WXType.TempRainyOrThunder:
+        return WXIcons.TempRainyOrThunder
+    }
+  }
+
 }

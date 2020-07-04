@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import LocationItemDetails from 'src/features/weather/components/locations/LocationItemDetails'
 import { WXType } from 'src/features/weather/domain/model/Weather';
 import { TemperatureFactory } from 'src/features/weather/domain/factories/TemperatureFactory';
-import { WeatherBackgroundFactory } from 'src/features/weather/domain/factories/WeatherBackgroundFactory';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import moment from 'moment';
 import { Transition, CSSTransition } from 'react-transition-group';

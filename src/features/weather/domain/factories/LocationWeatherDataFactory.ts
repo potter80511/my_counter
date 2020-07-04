@@ -2,8 +2,8 @@ import { WXType, CurrentDayDetails, TodayEveryHour } from 'src/features/weather/
 import { ElementName, ElementTime, TType } from 'src/features/weather/domain/model/WeatherElement';
 import { WeatherElementItem } from 'src/features/weather/domain/model/WeatherElementForLocation';
 import {
-  WeatherBackgroundFactory,
-} from 'src/features/weather/domain/factories/WeatherBackgroundFactory';
+  WeatherDataFactory,
+} from 'src/features/weather/domain/factories/WeatherDataFactory';
 import moment from 'moment';
 import { WXIcons } from 'src/features/weather/domain/model/WXIcons';
 
@@ -20,7 +20,7 @@ export class LocationWeatherDataFactory {
     const currentTemperature = this.getLocationT(weatherElement) + '˚';
     console.log(currentTemperature)
     const todayEveryHourArray = this.createLocationTodayEveryHourArray(weatherElement);
-    const weatherBackgroundImage = WeatherBackgroundFactory.createBackground(wX);
+    const weatherBackgroundImage = WeatherDataFactory.createBackground(wX);
 
     return {
       locationName,
@@ -51,7 +51,7 @@ export class LocationWeatherDataFactory {
     let wxArray = [];
     const wxData = weatherElement.find(item => item.elementName === ElementName.Wx);
     if (wxData) {
-      wxArray = wxData.time.map(item => this.createWXIcon(item.elementValue[0].value as WXType));
+      wxArray = wxData.time.map(item => WeatherDataFactory.createWXIcon(item.elementValue[0].value as WXType));
     }
 
     const tData = weatherElement.find(item => item.elementName === ElementName.T);
@@ -75,21 +75,6 @@ export class LocationWeatherDataFactory {
       return result;
     }
     return [];
-  }
-
-  static createWXIcon(wx: WXType): string {
-    switch (wx) {
-      case WXType.Sunny:
-        return WXIcons.Sunny
-      case WXType.SunnyCloudy:
-        return WXIcons.SunnyCloudy
-      case WXType.Cloudy:
-        return WXIcons.Cloudy
-      case WXType.CloudyTempRainyOrThunder:
-        return WXIcons.CloudyTempRainyOrThunder
-      case WXType.TempRainyOrThunder:
-        return WXIcons.TempRainyOrThunder
-    }
   }
 
 };
