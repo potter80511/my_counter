@@ -7,8 +7,18 @@ export const translateYSelector = (store: StoreState) =>
 export const openedLocationIndexSelector = (store: StoreState) =>
   store.weather.locations.openedLocationIndex
 
-export const locationsDataSelector = (store: StoreState) =>
-  store.weather.locations.locationsData
+export const locationsDataSelector = (store: StoreState) => {
+  const loading = store.weather.locations.locationsData.length === store.weather.tools.locationItemInputDataArray.length
+    ? false : true;
+  const data = store.weather.locations.locationsData
+  const newData = data.map((item, index) => {
+    const newItem = data.find(correctItem =>
+      correctItem.inputIndex === index
+    );
+    return newItem ? newItem : {}
+  });
+  return loading ? [] : newData;
+}
 
 // tools
 export const temperatureTypeSelector = (store: StoreState) =>

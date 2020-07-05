@@ -11,7 +11,7 @@ enum TType {
 }
 
 export class CityWeatherDataFactory {
-  static createCurrentDayDataFromNet(data): CurrentDayDetails {
+  static createCurrentDayDataFromNet(data, inputIndex: number): CurrentDayDetails {
     const {
       locationName,
       weatherElement,
@@ -23,6 +23,7 @@ export class CityWeatherDataFactory {
     const weatherBackgroundImage = WeatherDataFactory.createBackground(wX);
 
     return {
+      inputIndex,
       locationName,
       wX,
       currentTemperature,

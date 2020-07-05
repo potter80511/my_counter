@@ -8,7 +8,7 @@ import moment from 'moment';
 import { WXIcons } from 'src/features/weather/domain/model/WXIcons';
 
 export class LocationWeatherDataFactory {
-  static createCurrentDayDataFromNet(data): CurrentDayDetails {
+  static createCurrentDayDataFromNet(data, inputIndex: number): CurrentDayDetails {
     const {
       locationName,
       weatherElement,
@@ -22,6 +22,7 @@ export class LocationWeatherDataFactory {
     const weatherBackgroundImage = WeatherDataFactory.createBackground(wX);
 
     return {
+      inputIndex,
       locationName,
       wX,
       currentTemperature,

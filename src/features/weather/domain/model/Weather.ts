@@ -15,6 +15,7 @@ export interface TodayEveryHour {
 }
 
 export interface CurrentDayDetails {
+  inputIndex: number;
   locationName: string;
   wX: WXType;
   currentTemperature: string;

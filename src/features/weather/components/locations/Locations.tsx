@@ -42,7 +42,10 @@ const Locations = (props: LocationsProps) => {
       className={'locations' + spreadClass}
       style={{ transform: `translateY(-${translateY}px)` }}
     >
-      {locationItem}
+      {locationsData.length > 0 ?
+        locationItem : (
+        <div>loading</div>
+      )}
     </div>
   );
 };

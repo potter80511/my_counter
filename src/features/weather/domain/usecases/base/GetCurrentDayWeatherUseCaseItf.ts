@@ -9,6 +9,7 @@ import { LocationValue, WeatherLocationType, TaiwanCities } from 'src/features/w
 
 export namespace GetCurrentDayWeather {
   export interface InputData extends UseCaseInputData {
+    inputIndex: number;
     locationName: LocationValue;
     locationType: WeatherLocationType;
     city?: TaiwanCities;

@@ -70,8 +70,8 @@ const WeatherContainer = () => {
 
   useEffect(() => {
     setViewHeight(window.innerHeight);
-    locationItemInputDataArray.forEach(item => {
-      dispatch(getCurrentDayWeather(item.value, item.type, item.city));
+    locationItemInputDataArray.forEach((item, index) => {
+      dispatch(getCurrentDayWeather(item.value, item.type, index, item.city));
     });
   }, []);
 
