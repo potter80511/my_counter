@@ -14,6 +14,7 @@ import {
   switchTemperatureType,
   showCreateLocationItemModal,
   searchInputChange,
+  createNewLocationInputAction,
 } from 'src/features/weather/actions/toolsAction';
 import {
   spreadOut,
@@ -68,6 +69,18 @@ const WeatherContainer = () => {
     dispatch(searchInputChange(value));
   }
 
+  const onCreateLocation = (newLocation: LocationData, nextIndex: number) => {
+    const {
+      value,
+      type,
+      city,
+    } = newLocation;
+    dispatch(searchInputChange(''));
+    dispatch(showCreateLocationItemModal(false));
+    dispatch(createNewLocationInputAction(newLocation));
+    dispatch(getCurrentDayWeather(value, type, nextIndex, city));
+  };
+
   useEffect(() => {
     setViewHeight(window.innerHeight);
     locationItemInputDataArray.forEach((item, index) => {
@@ -103,8 +116,10 @@ const WeatherContainer = () => {
         show={isShowCreateLocationItemModal}
         locationOptions={locationOptions}
         searchValue={searchValue}
+        nextIndex={locationItemInputDataArray.length}
         onCancel={(show) => onShowCreateLocationItemModal(show)}
         onSearchInputChange={(value) => onSearchInputChange(value)}
+        onCreateLocation={(newLocation, nextIndex) => onCreateLocation(newLocation, nextIndex)}
       />
     </div>
   );

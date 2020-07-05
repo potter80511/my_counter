@@ -4,6 +4,7 @@ import {
   TaiwanCities,
   TaipeiLocationValue,
   TaoyuanLocationValue,
+  NewTaipeiLocationValue,
 } from 'src/features/weather/domain/model/Location';
 
 export const allLocationsData: LocationData[] = [
@@ -21,14 +22,14 @@ export const allLocationsData: LocationData[] = [
   },
   {
     city: TaiwanCities.Taipei,
-    name: TaiwanCities.Taipei + TaipeiLocationValue.Yonghe,
-    value: TaipeiLocationValue.Yonghe,
-    type: WeatherLocationType.Location,
-  },
-  {
-    city: TaiwanCities.Taipei,
     name: TaiwanCities.Taipei + TaipeiLocationValue.Zhongshan,
     value: TaipeiLocationValue.Zhongshan,
+    type: WeatherLocationType.Location,
+  },
+  { // 新北
+    city: TaiwanCities.NewTaipei,
+    name: TaiwanCities.NewTaipei + NewTaipeiLocationValue.Yonghe,
+    value: NewTaipeiLocationValue.Yonghe,
     type: WeatherLocationType.Location,
   },
   { // 桃園

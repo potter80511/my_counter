@@ -11,8 +11,10 @@ type CreateLocationItemModal = {
   show: boolean;
   locationOptions: LocationData[];
   searchValue: string;
+  nextIndex: number;
   onCancel: (show: boolean) => void;
   onSearchInputChange: (value: string) => void;
+  onCreateLocation: (newLocation: LocationData, nextIndex: number) => void;
 };
 
 const CreateLocationItemModal = (props: CreateLocationItemModal) => {
@@ -20,12 +22,17 @@ const CreateLocationItemModal = (props: CreateLocationItemModal) => {
     show,
     locationOptions,
     searchValue,
+    nextIndex,
     onCancel,
     onSearchInputChange,
+    onCreateLocation,
   } = props;
 
   const locationOptionsBlock = locationOptions.map((item, index) => (
-    <div className="location-option" key={index}>
+    <div
+      className="location-option" key={index}
+      onClick={() => onCreateLocation(item, nextIndex)}
+    >
       <span className="container-wrap">{item.name}</span>
     </div>
   ));

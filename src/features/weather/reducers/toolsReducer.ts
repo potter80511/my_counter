@@ -51,7 +51,7 @@ export const defaultState: State = {
 
 export enum ActionType {
   SwitchTemperatureType = 'switch_temperature_type',
-  CreateLocationItem = 'create_location_item',
+  CreateNewLocationInput = 'create_location_item',
   ShowCreateLocationItemModal = 'show_create_location_item_modal',
   SearchInputChange = 'search_input_change',
 }
@@ -61,9 +61,9 @@ export type SwitchTemperatureTypeAction = {
   temperatureType: TemperatureType;
 };
 
-export type CreateLocationItemAction = {
-  type: ActionType.CreateLocationItem;
-  newItem: LocationData;
+export type CreateNewLocationInputAction = {
+  type: ActionType.CreateNewLocationInput;
+  newLocation: LocationData;
 };
 
 export type ShowCreateLocationItemModalAction = {
@@ -78,7 +78,7 @@ export type SearchInputChangeAction = {
 
 export type Action =
   SwitchTemperatureTypeAction |
-  CreateLocationItemAction |
+  CreateNewLocationInputAction |
   ShowCreateLocationItemModalAction |
   SearchInputChangeAction;
 
@@ -90,13 +90,13 @@ const reducer = (state: State = defaultState, action: Action) => {
         temperatureType: action.temperatureType,
       };
     }
-    case ActionType.CreateLocationItem: {
+    case ActionType.CreateNewLocationInput: {
       const newLocationItemArray = [...state.locationItemInputDataArray];
       return {
         ...state,
         locationItemInputDataArray: [
           ...state.locationItemInputDataArray,
-          action.newItem,
+          action.newLocation,
         ]
       }
     }

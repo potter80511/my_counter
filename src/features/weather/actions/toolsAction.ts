@@ -9,10 +9,10 @@ export const switchTemperatureType = (newType: TemperatureType) => (
   }
 );
 
-export const createLocationItemAction = (newItem: LocationData) => (
+export const createNewLocationInputAction = (newLocation: LocationData) => (
   {
-    type: ActionType.CreateLocationItem,
-    newItem,
+    type: ActionType.CreateNewLocationInput,
+    newLocation,
   }
 );
 

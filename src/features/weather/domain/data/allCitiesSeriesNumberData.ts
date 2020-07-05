@@ -23,4 +23,8 @@ export const currentDayCitiesSeriesNumberData: SeriesNumberItem[] = [
     name: TaiwanCities.Taipei,
     seriesNumber: SeriesNumber.Taipei,
   },
+  {
+    name: TaiwanCities.NewTaipei,
+    seriesNumber: SeriesNumber.NewTaipei,
+  },
 ];

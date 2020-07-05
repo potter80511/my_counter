@@ -17,11 +17,13 @@ export enum WeatherLocationType {
 export type LocationValue =
   TaiwanCities |
   TaipeiLocationValue |
+  NewTaipeiLocationValue |
   TaoyuanLocationValue;
 
 export enum TaiwanCities {
   Yilan = '宜蘭縣',
   Taipei = '臺北市',
+  NewTaipei = '新北市',
   Taoyuan = '桃園市',
 };
 
@@ -33,6 +35,9 @@ export enum TaipeiLocationValue {
   Neihu = '內湖區',
   Yonghe = '永和區',
   Zhongshan = '中山區',
+};
+export enum NewTaipeiLocationValue {
+  Yonghe = '永和區',
 };
 export enum TaoyuanLocationValue {
   TaoyuanArea = '桃園區',
