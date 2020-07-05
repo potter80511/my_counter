@@ -40,6 +40,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 5px 0;
+      position: relative;
       * {
         display: block;
         text-shadow: 0 0 5px rgba(0, 0, 8px, .3);
@@ -60,6 +61,7 @@
         height: 100%;
         position: absolute;
         top: 0;
+        left: 0;
         background-color: rgba(0, 0, 0, .3);
         z-index: 1;
       }

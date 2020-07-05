@@ -10,7 +10,7 @@ export class WeatherDataFactory {
         photoName = 'sunny.jpg'
         break;
       case WXType.SunnyCloudy:
-        photoName = 'sunny.jpg'
+        photoName = 'sunny_cloudy.jpg'
         break;
       case WXType.Cloudy:
         photoName = 'cloudy.jpg'

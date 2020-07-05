@@ -48,12 +48,12 @@ const LocationItem = (props: LocationItemProps) => {
   return (
     <div
       className={'location-item' + itemSpreadClass}
+      ref={ref}
       style={{
         backgroundImage: `url(${locationData.weatherBackgroundImage})`,
         minHeight: itemHeight + 'px',
         maxHeight: itemHeight + 'px',
       }}
-      ref={ref}
     >
       {!spread && (
         <div className="overview" onClick={onItemClick}>
