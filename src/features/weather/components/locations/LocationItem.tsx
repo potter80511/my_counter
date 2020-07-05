@@ -27,7 +27,7 @@ const LocationItem = (props: LocationItemProps) => {
 
   const ref = useRef(null);
   const onItemClick = () => {
-    spreadOut(spreadOutDistance + ref.current.clientHeight * index, index);
+    spreadOut(ref.current.clientHeight * index, index);
   }
   const onCloseSpread = () => {
     spreadOut(0, undefined);
@@ -40,7 +40,7 @@ const LocationItem = (props: LocationItemProps) => {
   useEffect(() => {
     setViewHeight(window.innerHeight);
     spread ? setItemHeight(viewHeight) : setItemHeight(91);
-    window.innerWidth >= 1024 ? setSpreadOutDistance(122) : setSpreadOutDistance(0);
+    // window.innerWidth >= 1024 ? setSpreadOutDistance(122) : setSpreadOutDistance(0);
   });
 
   const itemSpreadClass = spread ? ' item-spread' : '';

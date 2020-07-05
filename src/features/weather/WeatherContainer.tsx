@@ -84,7 +84,7 @@ const WeatherContainer = () => {
       className="weather wrap"
       style={{ height: locationSpread ? viewHeight + 'px' : 'auto' }}
     >
-      <h1 className="main-title">Weather</h1>
+      {/* <h1 className="main-title">Weather</h1> */}
       <Locations
         spread={locationSpread}
         translateY={translateY}
