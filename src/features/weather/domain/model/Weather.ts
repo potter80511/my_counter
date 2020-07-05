@@ -2,8 +2,9 @@ import { Moment } from 'moment';
 
 export enum WXType {
   Sunny = '晴',
-  SunnyCloudy = '多雲時晴',
+  SunnyCloudy = '晴時多雲',
   Cloudy = '多雲',
+  CloudySunny = '多雲時晴',
   CloudyTempRainyOrThunder = '多雲午後短暫雷陣雨',
   TempRainyOrThunder = '午後短暫雷陣雨',
 }

@@ -37,6 +37,9 @@ export class WeatherDataFactory {
       case WXType.Cloudy:
         iconName = WXIcons.Cloudy
         break;
+      case WXType.CloudySunny:
+        iconName = WXIcons.CloudySunny
+        break;
       case WXType.CloudyTempRainyOrThunder:
         iconName = WXIcons.CloudyTempRainyOrThunder
         break;
