@@ -30,15 +30,16 @@
     transition: min-height .3s;
     box-sizing: border-box;
     position: relative;
+    cursor: pointer;
     &.item-spread {
       padding: 15px 0;
+      cursor: unset;
     }
     .overview {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 5px 0;
-      cursor: pointer;
       * {
         display: block;
         text-shadow: 0 0 5px rgba(0, 0, 8px, .3);
