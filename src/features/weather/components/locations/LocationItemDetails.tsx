@@ -18,6 +18,15 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
     translateD,
     onCloseSpread,
   } = props;
+
+  const everyTimeItem = locationData.todayEveryHourArray.map(item => {
+    return (
+      <div className="item">
+        <span className="hour">{item.hourName}</span>
+        <span className="t">{item.temperature}</span>
+      </div>
+    );
+  });
   return (
     <CSSTransition
       in={show}
@@ -35,7 +44,16 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
           </div>
           <div className="more">
             <div className="today">
-              <div className="day-name">星期六</div>
+              <div className="day">
+                <span className="day-name">星期六</span>
+              </div>
+              <div className="temperature-range">
+                <span className="max-t">27</span>
+                <span className="min-t">25</span>
+              </div>
+            </div>
+            <div className="today-every-time">
+              {everyTimeItem}
             </div>
           </div>
         </div>

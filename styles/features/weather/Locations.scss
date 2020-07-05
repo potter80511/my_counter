@@ -98,7 +98,29 @@
           position: relative;
           .today {
             background: #444;
-            padding: 15px;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            span {
+              display: inline-block;
+            }
+            .min-t {
+              margin-left: 20px;
+            }
+          }
+          .today-every-time {
+            padding: 8px 0;
+            display: flex;
+            border-top: 1px solid rgba(255, 255, 255, .3);
+            border-bottom: 1px solid rgba(255, 255, 255, .3);
+            .item {
+              min-width: 60px;
+              span {
+                display: block;
+                text-align: center;
+              }
+            }
           }
         }
       }
