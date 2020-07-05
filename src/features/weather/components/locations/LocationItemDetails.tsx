@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
-import '@styles/transition_group.scss';
 import { CSSTransition } from 'react-transition-group';
 import { CurrentDayDetails } from 'src/features/weather/domain/model/Weather';
 import moment from 'moment';
+import '@styles/transition_group.scss';
 
 type LocationItemDetailsProps = {
   show: boolean;

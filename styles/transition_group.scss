@@ -44,7 +44,7 @@
 }
 
 .slideFadeInUp-enter {
-  transform: translateY(50px);
+  transform: translateY(100%);
   opacity: 0;
 }
 .slideFadeInUp-enter-active {
@@ -57,7 +57,7 @@
   opacity: 1;
 }
 .slideFadeInUp-exit-active {
-  transform: translateY(50px);
+  transform: translateY(100%);
   opacity: 0;
   transition: all .6s;
 }
