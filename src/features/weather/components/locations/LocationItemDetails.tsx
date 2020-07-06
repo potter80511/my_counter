@@ -99,7 +99,10 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
               {everyTimeItem}
             </div>
             <div className="week-weather">
-              asdfasdf
+              一週天氣區塊
+            </div>
+            <div className="current-description">
+              <p>今天：目前{locationData.wX}。最高溫可達{locationData.maxT}˚，最低溫可達 {locationData.minT}˚</p>
             </div>
           </div>
         </div>

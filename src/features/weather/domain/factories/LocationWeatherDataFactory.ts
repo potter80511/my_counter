@@ -21,7 +21,7 @@ export class LocationWeatherDataFactory {
     const maxT = this.getExtremeT(weatherElement, ElementName.MaxT);
     const todayEveryHourArray = this.createLocationTodayEveryHourArray(weatherElement);
     const weatherBackgroundImage = WeatherDataFactory.createBackground(wX);
-    console.log(minT, maxT)
+
     return {
       inputIndex,
       locationName,
@@ -55,6 +55,7 @@ export class LocationWeatherDataFactory {
     const tArray = elementT.time.map(item =>
       Number(item.elementValue[0].value)
     );
+    // TO DO 要判斷當天，而不是一週
     switch (type) {
       case ElementName.MinT: {
         const result = FindExtremeNumber.findMin(tArray)
