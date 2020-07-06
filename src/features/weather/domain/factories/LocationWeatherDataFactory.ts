@@ -52,10 +52,16 @@ export class LocationWeatherDataFactory {
 
   static getExtremeT(weatherElement: WeatherElementItem[], type: ElementName): string {
     const elementT = weatherElement.find(item => item.elementName === ElementName.T);
-    const tArray = elementT.time.map(item =>
+    const currentDate = moment().format('MM/DD');
+
+    const filterToday = elementT.time.filter(item => {
+      const date = moment(item.dataTime).format('MM/DD');
+      return date === currentDate;
+    });
+    const tArray = filterToday.map(item =>
       Number(item.elementValue[0].value)
     );
-    // TO DO 要判斷當天，而不是一週
+
     switch (type) {
       case ElementName.MinT: {
         const result = FindExtremeNumber.findMin(tArray)
