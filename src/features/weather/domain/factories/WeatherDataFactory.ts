@@ -15,6 +15,9 @@ export class WeatherDataFactory {
       case WXType.Cloudy:
         photoName = 'cloudy.jpg'
         break;
+      case WXType.CloudySunny:
+        photoName = 'cloudy_sunny.jpg'
+        break;
       case WXType.CloudyTempRainyOrThunder:
         photoName = 'cloudy_temp_rainy_or_thunder.jpg'
         break;
@@ -60,5 +63,5 @@ export class WeatherDataFactory {
     const newHour = String(Number(hour)) + '時';
     return newHour;
   }
-  
+
 }
