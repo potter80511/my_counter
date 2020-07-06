@@ -6,7 +6,7 @@ import {
 } from 'src/features/weather/domain/factories/WeatherDataFactory';
 import moment from 'moment';
 import { WXIcons } from 'src/features/weather/domain/model/WXIcons';
-import { FindExtremeNumber } from '../../helper';
+import { FindExtremeNumber } from 'src/features/weather/helper';
 
 export class LocationWeatherDataFactory {
   static createCurrentDayDataFromNet(data, inputIndex: number): CurrentDayDetails {
@@ -53,12 +53,20 @@ export class LocationWeatherDataFactory {
   static getExtremeT(weatherElement: WeatherElementItem[], type: ElementName): string {
     const elementT = weatherElement.find(item => item.elementName === ElementName.T);
     const currentDate = moment().format('MM/DD');
+    const tommorow = moment().add(3, 'hours').format('MM/DD'); // 因為是每竹三小時吧
 
     const filterToday = elementT.time.filter(item => {
       const date = moment(item.dataTime).format('MM/DD');
       return date === currentDate;
     });
-    const tArray = filterToday.map(item =>
+    const filterTomorrow = elementT.time.filter(item => {
+      const date = moment(item.dataTime).format('MM/DD');
+      return date === tommorow;
+    });
+    
+    // 今天已經準備過去時會找不到今天，只能用明天
+    const filterData = filterToday.length > 0 ? filterToday : filterTomorrow;
+    const tArray = filterData.map(item =>
       Number(item.elementValue[0].value)
     );
 
