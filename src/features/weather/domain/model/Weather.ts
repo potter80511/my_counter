@@ -20,6 +20,8 @@ export interface CurrentDayDetails {
   locationName: string;
   wX: WXType;
   currentTemperature: string;
+  minT: string;
+  maxT: string;
   todayEveryHourArray: TodayEveryHour[];
   weatherBackgroundImage: string;
 };

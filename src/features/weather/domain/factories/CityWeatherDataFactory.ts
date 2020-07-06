@@ -1,14 +1,14 @@
 import { WXType, CurrentDayDetails, TodayEveryHour } from 'src/features/weather/domain/model/Weather';
-import { WeatherElementItem, ElementName, ElementTime } from 'src/features/weather/domain/model/WeatherElement';
+import {
+  WeatherElementItem,
+  ElementName,
+  ElementTime,
+  ExtremeType
+} from 'src/features/weather/domain/model/WeatherElement';
 import {
   WeatherDataFactory,
 } from 'src/features/weather/domain/factories/WeatherDataFactory';
 import moment from 'moment';
-
-enum TType {
-  Min = 'min',
-  Max = 'max',
-}
 
 export class CityWeatherDataFactory {
   static createCurrentDayDataFromNet(data, inputIndex: number): CurrentDayDetails {
@@ -19,6 +19,8 @@ export class CityWeatherDataFactory {
 
     const wX = this.getCurrentWx(weatherElement);
     const currentTemperature = this.getCityAverageT(weatherElement);
+    const minT = this.getExtremeT(weatherElement, ElementName.MinT);
+    const maxT = this.getExtremeT(weatherElement, ElementName.MaxT);
     const todayEveryHourArray = this.createCityTodayEveryHourArray(weatherElement);
     const weatherBackgroundImage = WeatherDataFactory.createBackground(wX);
 
@@ -27,6 +29,8 @@ export class CityWeatherDataFactory {
       locationName,
       wX,
       currentTemperature,
+      minT,
+      maxT,
       todayEveryHourArray,
       weatherBackgroundImage,
     };
@@ -42,15 +46,15 @@ export class CityWeatherDataFactory {
   }
 
   static getCityAverageT(weatherElement: WeatherElementItem[]): string {
-    const averageMinT = this.getAverageT(weatherElement, TType.Min);
-    const averageMaxT = this.getAverageT(weatherElement, TType.Max);
+    const averageMinT = this.getAverageT(weatherElement, ExtremeType.Min);
+    const averageMaxT = this.getAverageT(weatherElement, ExtremeType.Max);
     const averageT = (averageMinT + averageMaxT) / 2;
     return WeatherDataFactory.createTemperature(String(Math.round(averageT)));
   }
 
-  static getAverageT(weatherElement: WeatherElementItem[], tType: TType): number {
+  static getAverageT(weatherElement: WeatherElementItem[], tType: ExtremeType): number {
     switch (tType) {
-      case TType.Min: {
+      case ExtremeType.Min: {
         const tData = weatherElement.find(item => item.elementName === ElementName.MinT);
         if (tData) {
           const timeArray = tData.time;
@@ -62,7 +66,7 @@ export class CityWeatherDataFactory {
           return averageMinT;
         }
       }
-      case TType.Max: {
+      case ExtremeType.Max: {
         const tData = weatherElement.find(item => item.elementName === ElementName.MaxT);
         if (tData) {
           const timeArray = tData.time;
@@ -75,6 +79,11 @@ export class CityWeatherDataFactory {
         }
       }
     }
+  }
+
+  static getExtremeT(weatherElement: WeatherElementItem[], type: ElementName): string {
+    const element = weatherElement.find(item => item.elementName === type);
+    return element.time[0].parameter.parameterName;
   }
 
   static createCityTodayEveryHourArray(weatherElement: WeatherElementItem[]): TodayEveryHour[] {

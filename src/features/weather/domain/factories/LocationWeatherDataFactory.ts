@@ -1,11 +1,12 @@
 import { WXType, CurrentDayDetails, TodayEveryHour } from 'src/features/weather/domain/model/Weather';
-import { ElementName, ElementTime, TType } from 'src/features/weather/domain/model/WeatherElement';
+import { ElementName } from 'src/features/weather/domain/model/WeatherElement';
 import { WeatherElementItem } from 'src/features/weather/domain/model/WeatherElementForLocation';
 import {
   WeatherDataFactory,
 } from 'src/features/weather/domain/factories/WeatherDataFactory';
 import moment from 'moment';
 import { WXIcons } from 'src/features/weather/domain/model/WXIcons';
+import { FindExtremeNumber } from '../../helper';
 
 export class LocationWeatherDataFactory {
   static createCurrentDayDataFromNet(data, inputIndex: number): CurrentDayDetails {
@@ -13,19 +14,21 @@ export class LocationWeatherDataFactory {
       locationName,
       weatherElement,
     } = data;
-    console.log(data)
-    // console.log(weatherElement, 'we')
 
     const wX = this.getCurrentWx(weatherElement);
     const currentTemperature = this.getLocationT(weatherElement);
+    const minT = this.getExtremeT(weatherElement, ElementName.MinT);
+    const maxT = this.getExtremeT(weatherElement, ElementName.MaxT);
     const todayEveryHourArray = this.createLocationTodayEveryHourArray(weatherElement);
     const weatherBackgroundImage = WeatherDataFactory.createBackground(wX);
-
+    console.log(minT, maxT)
     return {
       inputIndex,
       locationName,
       wX,
       currentTemperature,
+      minT,
+      maxT,
       todayEveryHourArray,
       weatherBackgroundImage,
     };
@@ -47,6 +50,23 @@ export class LocationWeatherDataFactory {
     }
   }
 
+  static getExtremeT(weatherElement: WeatherElementItem[], type: ElementName): string {
+    const elementT = weatherElement.find(item => item.elementName === ElementName.T);
+    const tArray = elementT.time.map(item =>
+      Number(item.elementValue[0].value)
+    );
+    switch (type) {
+      case ElementName.MinT: {
+        const result = FindExtremeNumber.findMin(tArray)
+        return String(result)
+      }
+      case ElementName.MaxT: {
+        const result = FindExtremeNumber.findMax(tArray)
+        return String(result)
+      }
+    }
+  }
+
   static createLocationTodayEveryHourArray(weatherElement: WeatherElementItem[]): TodayEveryHour[] {
     let wxArray = [];
     const wxData = weatherElement.find(item => item.elementName === ElementName.Wx);
@@ -63,7 +83,7 @@ export class LocationWeatherDataFactory {
           temperature,
         };
       });
-      
+
       const result = tempArray.map((item, index) => (
         {
           ...item,

@@ -84,8 +84,8 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
                 <span className="today-today">今天</span>
               </div>
               <div className="temperature-range">
-                <span className="max-t">27</span>
-                <span className="min-t">25</span>
+                <span className="max-t">{locationData.maxT}</span>
+                <span className="min-t">{locationData.minT}</span>
               </div>
             </div>
             <div

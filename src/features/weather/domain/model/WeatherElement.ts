@@ -1,7 +1,7 @@
 import { Moment } from 'moment';
 import { WXType } from 'src/features/weather/domain/model/Weather';
 
-export enum TType {
+export enum ExtremeType {
   Min = 'min',
   Max = 'max',
 }
