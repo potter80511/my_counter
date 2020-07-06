@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import OthersDataItem from 'src/features/weather/components/locations/OthersDataItem';
 import { CSSTransition } from 'react-transition-group';
 import { CurrentDayDetails } from 'src/features/weather/domain/model/Weather';
 import moment from 'moment';
@@ -57,6 +58,14 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
       </div>
     );
   });
+
+  const othersDataItem = locationData.othersDataArray.map((item, index) =>
+    <OthersDataItem
+      key={name + '_' + index}
+      name={item.name}
+      value={item.value}
+    />
+  );
   return (
     <CSSTransition
       in={show}
@@ -103,6 +112,9 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
             </div>
             <div className="current-description">
               <p>今天：目前{locationData.wX}。最高溫可達{locationData.maxT}˚，最低溫可達 {locationData.minT}˚</p>
+            </div>
+            <div className="others flex">
+              {othersDataItem}
             </div>
           </div>
         </div>

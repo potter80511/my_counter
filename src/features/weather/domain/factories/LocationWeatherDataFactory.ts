@@ -1,4 +1,4 @@
-import { WXType, CurrentDayDetails, TodayEveryHour } from 'src/features/weather/domain/model/Weather';
+import { WXType, CurrentDayDetails, TodayEveryHour, OthersData } from 'src/features/weather/domain/model/Weather';
 import { ElementName } from 'src/features/weather/domain/model/WeatherElement';
 import { WeatherElementItem } from 'src/features/weather/domain/model/WeatherElementForLocation';
 import {
@@ -20,6 +20,7 @@ export class LocationWeatherDataFactory {
     const minT = this.getExtremeT(weatherElement, ElementName.MinT);
     const maxT = this.getExtremeT(weatherElement, ElementName.MaxT);
     const todayEveryHourArray = this.createLocationTodayEveryHourArray(weatherElement);
+    const othersDataArray = this.createOthersDataArray(weatherElement);
     const weatherBackgroundImage = WeatherDataFactory.createBackground(wX);
 
     return {
@@ -30,6 +31,7 @@ export class LocationWeatherDataFactory {
       minT,
       maxT,
       todayEveryHourArray,
+      othersDataArray,
       weatherBackgroundImage,
     };
   }
@@ -109,6 +111,37 @@ export class LocationWeatherDataFactory {
       return result;
     }
     return [];
+  }
+
+  static createOthersDataArray(weatherElement: WeatherElementItem[]): OthersData[] {
+    const poP = this.createOtherDataItem(weatherElement, ElementName.PoP6H);
+    const rH = this.createOtherDataItem(weatherElement, ElementName.RH);
+    
+    return [
+      poP,
+      rH,
+    ]
+  }
+
+  static createOtherDataItem(weatherElement: WeatherElementItem[], type: ElementName): OthersData {
+    const result = weatherElement.find(item =>
+      item.elementName === type
+    ).time[0].elementValue[0].value;
+    
+    switch (type) {
+      case ElementName.PoP6H: {
+        return {
+          name: '降雨機率',
+          value: result + '%'
+        }
+      }
+      case ElementName.RH: {
+        return {
+          name: '濕度',
+          value: result + '%'
+        }
+      }
+    }
   }
 
 };

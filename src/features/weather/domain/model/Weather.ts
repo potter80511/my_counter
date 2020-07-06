@@ -23,6 +23,7 @@ export interface CurrentDayDetails {
   minT: string;
   maxT: string;
   todayEveryHourArray: TodayEveryHour[];
+  othersDataArray: OthersData[];
   weatherBackgroundImage: string;
 };
 
@@ -31,4 +32,9 @@ export interface WeekTemperature {
   wX: WXType;
   minT: number;
   maxT: number;
+};
+
+export interface OthersData {
+  name: string;
+  value: string;
 };

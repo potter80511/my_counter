@@ -12,6 +12,7 @@
 //   min-height: 61px;
 //   transition: min-height 200ms;
 // }
+$border: 1px solid rgba(255, 255, 255, .3);
 
 .locations {
   overflow: hidden;
@@ -121,8 +122,8 @@
             }
           }
           .today-every-time, .current-description {
-            border-top: 1px solid rgba(255, 255, 255, .3);
-            border-bottom: 1px solid rgba(255, 255, 255, .3);
+            border-top: $border;
+            border-bottom: $border;
           }
           .today-every-time {
             padding: 8px 0;
@@ -142,6 +143,27 @@
             padding: 10px 15px;
             p {
               margin: 0;
+            }
+          }
+          .others {
+            padding: 0 15px 15px;
+            max-width: 768px;
+            width: 100%;
+            margin: 0 auto;
+            .other-item {
+              padding: 10px 0;
+              width: 50%;
+              border-bottom: $border;
+              * {
+                display: block;
+              }
+              label {
+                font-size: 13px;
+                color: #ccc;
+              }
+              span {
+                font-size: 30px;
+              }
             }
           }
         }

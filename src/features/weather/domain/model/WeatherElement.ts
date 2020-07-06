@@ -11,6 +11,8 @@ export enum ElementName {
   MinT = 'MinT',
   MaxT = 'MaxT',
   T = 'T',
+  PoP6H = 'PoP6h',
+  RH = 'RH'
 }
 
 export interface WeatherElementItem {
@@ -21,7 +23,13 @@ export interface WeatherElementItem {
 export interface ElementTime {
   startTime: Moment;
   endTime: Moment;
-  parameter: parameter;
+  parameter?: parameter;
+  elementValue?: ElementValueValue[];
+};
+
+interface ElementValueValue {
+  value: string;
+  measures: string;
 };
 
 interface parameter {
