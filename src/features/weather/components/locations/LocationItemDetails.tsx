@@ -80,7 +80,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
           <div className="more" style={{ paddingTop: morePaddingTop }}>
             <div className="today" style={{ opacity: opacityValue }}>
               <div className="day">
-                <span className="day-name">星期{moment().locale('zh-tw').format('dd')}</span>
+                <span className="day-name">{moment().locale('zh-tw').format('dddd')}</span>
                 <span className="today-today">今天</span>
               </div>
               <div className="temperature-range">
