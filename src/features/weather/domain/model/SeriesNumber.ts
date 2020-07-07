@@ -9,6 +9,13 @@ export enum SeriesNumber {
   NewTaipei = 'F-D0047-069',
 };
 
+export enum WeekSeriesNumber {
+  Yilan = 'F-D0047-003',
+  Taoyuan = 'F-D0047-007',
+  Taipei = 'F-D0047-063',
+  NewTaipei = 'F-D0047-071',
+};
+
 export interface SeriesNumberItem {
   name: TaiwanCities;
   seriesNumber: string;

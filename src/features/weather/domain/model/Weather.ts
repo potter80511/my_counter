@@ -29,7 +29,7 @@ export interface CurrentDayDetails {
 
 export interface WeekTemperature {
   dayName: Moment;
-  wX: WXType;
+  wXIcon: string;
   minT: number;
   maxT: number;
 };
