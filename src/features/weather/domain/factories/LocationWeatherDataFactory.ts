@@ -65,7 +65,7 @@ export class LocationWeatherDataFactory {
       const date = moment(item.dataTime).format('MM/DD');
       return date === tommorow;
     });
-    
+
     // 今天已經準備過去時會找不到今天，只能用明天
     const filterData = filterToday.length > 0 ? filterToday : filterTomorrow;
     const tArray = filterData.map(item =>
@@ -116,29 +116,77 @@ export class LocationWeatherDataFactory {
   static createOthersDataArray(weatherElement: WeatherElementItem[]): OthersData[] {
     const poP = this.createOtherDataItem(weatherElement, ElementName.PoP6H);
     const rH = this.createOtherDataItem(weatherElement, ElementName.RH);
-    
+
+    const wS = this.createOtherDataItem(weatherElement, ElementName.WS);
+    const wD = this.createOtherDataItem(weatherElement, ElementName.WD);
+    const wind = {
+      name: wS.name,
+      value: wD.value + wS.value,
+      unit: wS.unit,
+    }
+
+    const aT = this.createOtherDataItem(weatherElement, ElementName.AT);
+    const cI = this.createOtherDataItem(weatherElement, ElementName.CI);
+
     return [
       poP,
       rH,
+      wind,
+      aT,
+      cI,
     ]
   }
 
   static createOtherDataItem(weatherElement: WeatherElementItem[], type: ElementName): OthersData {
-    const result = weatherElement.find(item =>
-      item.elementName === type
-    ).time[0].elementValue[0].value;
-    
+    const element = weatherElement.find(item => item.elementName === type);
+    const value = element.time[0].elementValue[0].value;
+    const value2 = element.time[0].elementValue.length >= 2
+      ? element.time[0].elementValue[1].value
+      : undefined;
+    const measures = element.time[0].elementValue[0].measures;
+    const description = element.description;
+
     switch (type) {
       case ElementName.PoP6H: {
         return {
           name: '降雨機率',
-          value: result + '%'
+          value,
+          unit: '%',
         }
       }
       case ElementName.RH: {
         return {
           name: '濕度',
-          value: result + '%'
+          value,
+          unit: '%',
+        }
+      }
+      case ElementName.WS: {
+        return {
+          name: '風',
+          value,
+          unit: measures,
+        }
+      }
+      case ElementName.AT: {
+        return {
+          name: description,
+          value,
+          unit: '˚',
+        }
+      }
+      case ElementName.WD: {
+        return {
+          name: description,
+          value,
+          unit: '',
+        }
+      }
+      case ElementName.CI: {
+        return {
+          name: '舒適度',
+          value: value2,
+          unit: '',
         }
       }
     }

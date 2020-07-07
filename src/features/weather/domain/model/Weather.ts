@@ -37,4 +37,5 @@ export interface WeekTemperature {
 export interface OthersData {
   name: string;
   value: string;
+  unit: string;
 };

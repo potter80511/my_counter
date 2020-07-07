@@ -150,19 +150,30 @@ $border: 1px solid rgba(255, 255, 255, .3);
             max-width: 768px;
             width: 100%;
             margin: 0 auto;
-            .other-item {
+            flex-wrap: wrap;
+            div.other-item {
               padding: 10px 0;
               width: 50%;
               border-bottom: $border;
-              * {
+              &:last-child {
+                width: 100%;
+              }
+              @media (max-width: 575px) {
+                width: 100%;
+              }
+              label, .value {
                 display: block;
+                text-shadow: 2px 2px 8px rgba(0, 0, 0, .5);
               }
               label {
                 font-size: 13px;
                 color: #ccc;
               }
-              span {
+              .value {
                 font-size: 30px;
+              }
+              .unit {
+                font-size: 20px;
               }
             }
           }

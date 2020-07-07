@@ -42,7 +42,7 @@ const CreateLocationItemModal = (props: CreateLocationItemModal) => {
     <CSSTransition
       in={show}
       timeout={300}
-      classNames="slideFadeInUp"
+      classNames="slideInUp"
       unmountOnExit
     >
       <div id="create-location-item-modal">

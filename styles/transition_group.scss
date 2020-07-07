@@ -61,3 +61,18 @@
   opacity: 0;
   transition: all .6s;
 }
+
+.slideInUp-enter {
+  transform: translateY(100%);
+}
+.slideInUp-enter-active {
+  transform: translateY(0);
+  transition: all .6s linear;
+}
+.slideInUp-exit {
+  transform: translateY(0);
+}
+.slideInUp-exit-active {
+  transform: translateY(100%);
+  transition: all .6s;
+}

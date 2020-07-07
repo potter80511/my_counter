@@ -12,7 +12,11 @@ export enum ElementName {
   MaxT = 'MaxT',
   T = 'T',
   PoP6H = 'PoP6h',
-  RH = 'RH'
+  RH = 'RH',
+  AT = 'AT',
+  WS = 'WS',
+  WD = 'WD',
+  CI = 'CI',
 }
 
 export interface WeatherElementItem {

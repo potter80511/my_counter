@@ -64,6 +64,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
       key={name + '_' + index}
       name={item.name}
       value={item.value}
+      unit={item.unit}
     />
   );
   return (

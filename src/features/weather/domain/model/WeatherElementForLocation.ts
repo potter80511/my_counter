@@ -4,6 +4,7 @@ import { ElementName } from 'src/features/weather/domain/model/WeatherElement';
 
 export interface WeatherElementItem {
   elementName: ElementName;
+  description: string;
   time: ElementTime[];
 };
 
