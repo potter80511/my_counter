@@ -34,7 +34,7 @@ export class WeekWeatherDataFactory {
     // 每天的日期
     const dateArray = filterWithStartTime.map(item => moment(item.startTime).locale('zh-tw').format('yyyy-MM-DD'));
 
-    const wXArray = dateArray.map((date, index) => {
+    const wXArray = dateArray.map(date => {
       const filterDay = timeArray.filter(time => {
         const timeDate = moment(time.startTime).locale('zh-tw').format('yyyy-MM-DD')
         return timeDate === date
