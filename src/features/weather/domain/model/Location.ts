@@ -16,6 +16,7 @@ export enum WeatherLocationType {
 
 export type LocationValue =
   TaiwanCities |
+  YilanLocationValue |
   TaipeiLocationValue |
   NewTaipeiLocationValue |
   TaoyuanLocationValue;

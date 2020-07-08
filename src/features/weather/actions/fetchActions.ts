@@ -34,3 +34,25 @@ export const getCurrentDayWeather = (locationName: LocationValue, locationType: 
     },
   );
 };
+
+export const getWeekWeather = (locationName: LocationValue, locationType: WeatherLocationType, city?: TaiwanCities) => async (dispatch: Dispatch) => {
+  const useCase = FetchingDecoratorFactory.decorateUseCase(
+    WeatherProvider.GetWeekWeatherUseCase,
+  );
+  appProvider.useCaseHandler.execute(
+    useCase,
+    {
+      dispatch,
+      locationName,
+      locationType,
+      city,
+    },
+    {
+      onSuccess: ({ weekTemperatureArray }) => {
+        console.log(weekTemperatureArray)
+        // dispatch(getWeekWeatherSuccess(weekTemperatureArray));
+      },
+      onError: () => {},
+    },
+  );
+}

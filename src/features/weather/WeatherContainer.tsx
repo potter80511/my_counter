@@ -22,6 +22,7 @@ import {
 } from 'src/features/weather/actions/locationsActions';
 import {
   getCurrentDayWeather,
+  getWeekWeather,
 } from 'src/features/weather/actions/fetchActions';
 
 import Locations from 'src/features/weather/components/locations/Locations';
@@ -83,6 +84,7 @@ const WeatherContainer = () => {
 
   useEffect(() => {
     setViewHeight(window.innerHeight);
+    dispatch(getWeekWeather(TaiwanCities.Yilan, WeatherLocationType.City, TaiwanCities.Yilan))
     locationItemInputDataArray.forEach((item, index) => {
       dispatch(getCurrentDayWeather(item.value, item.type, index, item.city));
     });
