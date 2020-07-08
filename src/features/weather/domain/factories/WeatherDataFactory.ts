@@ -12,6 +12,9 @@ export class WeatherDataFactory {
       case WXType.SunnyCloudy:
         photoName = 'sunny_cloudy.jpg'
         break;
+      case WXType.StrongCloudy:
+        photoName = 'strong_cloudy.jpg'
+        break;
       case WXType.Cloudy:
         photoName = 'cloudy.jpg'
         break;
@@ -36,6 +39,9 @@ export class WeatherDataFactory {
         break;
       case WXType.SunnyCloudy:
         iconName = WXIcons.SunnyCloudy
+        break;
+      case WXType.StrongCloudy:
+        iconName = WXIcons.StrongCloudy
         break;
       case WXType.Cloudy:
         iconName = WXIcons.Cloudy
