@@ -1,10 +1,11 @@
 import { WeekTemperature, WXType } from "src/features/weather/domain/model/Weather";
-import { ElementName, WeatherElementItem } from "src/features/weather/domain/model/WeatherElement";
+import { ElementName, WeatherElementItem, ElementTime } from "src/features/weather/domain/model/WeatherElement";
 import moment, { Moment } from "moment";
 import { WeatherDataFactory } from "./WeatherDataFactory";
+import { time } from "console";
 
 interface WXArray {
-  dayName: Moment;
+  dayName: string;
   wXIcon: string;
 };
 export class WeekWeatherDataFactory {
@@ -14,25 +15,21 @@ export class WeekWeatherDataFactory {
     } = data;
 
     const wXArray = this.createWXArray(weatherElement);
-    console.log(wXArray)
+    const minTArray = this.createAverageExtremeT(weatherElement, ElementName.MinT);
+    const maxTArray = this.createAverageExtremeT(weatherElement, ElementName.MaxT);
 
-    // const result = wXTimeArray.map();
-
-
-    return
+    return wXArray.map((item, index) => ({
+      ...item,
+      minT: minTArray[index],
+      maxT: maxTArray[index],
+    }))
   }
 
   static createWXArray(weatherElement: WeatherElementItem[]): WXArray[] {
     const timeArray = this.findElement(weatherElement, ElementName.Wx).time;
 
-    // 找出星期幾
-    const filterWithStartTime = timeArray.filter(item => {
-      const startTimeHour = moment(item.startTime).format('HH')
-      return startTimeHour === '18'
-    });
-
     // 每天的日期
-    const dateArray = filterWithStartTime.map(item => moment(item.startTime).locale('zh-tw').format('yyyy-MM-DD'));
+    const dateArray = this.createDateArray(timeArray);
 
     const wXArray = dateArray.map(date => {
       const filterDay = timeArray.filter(time => {
@@ -42,15 +39,52 @@ export class WeekWeatherDataFactory {
       // 轉成「星期幾」
       const dayName = moment(date).locale('zh-tw').format('dddd')
       return {
-        dayName: dayName as unknown as Moment,
+        dayName: dayName,
         wXIcon: WeatherDataFactory.createWXIcon(filterDay[0].elementValue[0].value as WXType)
       }
     });
     return wXArray
   }
 
+  static createAverageExtremeT(weatherElement: WeatherElementItem[], type: ElementName) {
+    const timeArray = this.findElement(weatherElement, type).time;
+
+    // 每天的日期
+    const dateArray = this.createDateArray(timeArray);
+
+    let averageTArray = [];
+
+    dateArray.forEach(date => {
+      const filterDay = timeArray.filter(time => {
+        const timeDate = moment(time.startTime).locale('zh-tw').format('yyyy-MM-DD')
+        return timeDate === date
+      });
+      let sum = 0;
+
+      filterDay.forEach(item => {
+        sum = sum + Number(item.elementValue[0].value)
+      });
+      const averageT = sum / filterDay.length;
+      averageTArray.push(String(averageT));
+    });
+    return averageTArray.map(item => WeatherDataFactory.createTemperature(item));
+  }
+
   static findElement(weatherElement: WeatherElementItem[], type: ElementName): WeatherElementItem {
     const result = weatherElement.find(item => item.elementName === type)
     return result
   }
+
+  static createDateArray(timeArray: ElementTime[]): string[] {
+    // 找出星期幾
+    const filterWithStartTime = timeArray.filter(item => {
+      const startTimeHour = moment(item.startTime).format('HH')
+      return startTimeHour === '18'
+    });
+
+    // 每天的日期
+    const dateArray = filterWithStartTime.map(item => moment(item.startTime).locale('zh-tw').format('yyyy-MM-DD'));
+    return dateArray
+  }
+
 }
