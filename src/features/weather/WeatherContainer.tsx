@@ -84,7 +84,6 @@ const WeatherContainer = () => {
 
   useEffect(() => {
     setViewHeight(window.innerHeight);
-    dispatch(getWeekWeather(TaiwanCities.Yilan, WeatherLocationType.City, TaiwanCities.Yilan))
     locationItemInputDataArray.forEach((item, index) => {
       dispatch(getCurrentDayWeather(item.value, item.type, index, item.city));
     });

@@ -9,7 +9,7 @@ import { WXIcons } from 'src/features/weather/domain/model/WXIcons';
 import { FindExtremeNumber } from 'src/features/weather/helper';
 
 export class LocationWeatherDataFactory {
-  static createCurrentDayDataFromNet(data, inputIndex: number): CurrentDayDetails {
+  static createCurrentDayDataFromNet(data, inputIndex: number): Omit<CurrentDayDetails, 'locationType'> {
     const {
       locationName,
       weatherElement,

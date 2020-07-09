@@ -1,3 +1,4 @@
+import { WeatherLocationType, TaiwanCities } from "src/features/weather/domain/model/Location";
 
 export enum WXType {
   Sunny = '晴',
@@ -18,6 +19,8 @@ export interface TodayEveryHour {
 export interface CurrentDayDetails {
   inputIndex: number;
   locationName: string;
+  locationType: WeatherLocationType;
+  city?: TaiwanCities;
   wX: WXType;
   currentTemperature: string;
   minT: string;
