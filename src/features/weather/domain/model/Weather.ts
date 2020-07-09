@@ -1,4 +1,3 @@
-import { Moment } from 'moment';
 
 export enum WXType {
   Sunny = '晴',
