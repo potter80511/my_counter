@@ -17,11 +17,10 @@ $border: 1px solid rgba(255, 255, 255, .3);
 .locations {
   overflow: hidden;
   transition: all .3s;
-  &.spread {
-    // position: fixed;
-    // top: 0;
-    // left: 0;
-    // width: 100%;
+  .wrap {
+    max-width: 768px;
+    width: 100%;
+    margin: 0 auto;
   }
   .location-item {
     background-size: cover;
@@ -139,6 +138,23 @@ $border: 1px solid rgba(255, 255, 255, .3);
               }
             }
           }
+          .week-weather {
+            padding: 10px 15px;
+            div.week-item{
+              justify-content: space-between;
+              &:not(:last-child) {
+                padding-bottom: 10px;
+              }
+              .extreame-t {
+                span {
+                  display: inline-block;
+                }
+                .min {
+                  margin-left: 20px;
+                }
+              }
+            }
+          }
           .current-description {
             padding: 10px 15px;
             p {
@@ -147,9 +163,6 @@ $border: 1px solid rgba(255, 255, 255, .3);
           }
           .others {
             padding: 0 15px 15px;
-            max-width: 768px;
-            width: 100%;
-            margin: 0 auto;
             flex-wrap: wrap;
             div.other-item {
               padding: 10px 0;

@@ -1,13 +1,15 @@
 import React, { useRef, useState } from 'react';
 import OthersDataItem from 'src/features/weather/components/locations/OthersDataItem';
+import WeekItem from 'src/features/weather/components/locations/WeekItem';
 import { CSSTransition } from 'react-transition-group';
-import { CurrentDayDetails } from 'src/features/weather/domain/model/Weather';
+import { CurrentDayDetails, WeekTemperature } from 'src/features/weather/domain/model/Weather';
 import moment from 'moment';
 import '@styles/transition_group.scss';
 
 type LocationItemDetailsProps = {
   show: boolean;
   locationData: CurrentDayDetails;
+  weekTemperatureArray: WeekTemperature[];
   translateD: number;
   onCloseSpread: () => void;
 };
@@ -16,6 +18,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
   const {
     show,
     locationData,
+    weekTemperatureArray,
     translateD,
     onCloseSpread,
   } = props;
@@ -67,6 +70,17 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
       unit={item.unit}
     />
   );
+
+  const weekItems = weekTemperatureArray.map((item, index) =>
+    <WeekItem
+      key={'week-item-' + index}
+      dayName={item.dayName}
+      wXIcon={item.wXIcon}
+      minT={item.minT}
+      maxT={item.maxT}
+    />
+  );
+
   return (
     <CSSTransition
       in={show}
@@ -108,13 +122,13 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
             >
               {everyTimeItem}
             </div>
-            <div className="week-weather">
-              一週天氣區塊
+            <div className="week-weather wrap">
+              {weekItems}
             </div>
-            <div className="current-description">
+            <div className="current-description wrap">
               <p>今天：目前{locationData.wX}。最高溫可達{locationData.maxT}˚，最低溫可達 {locationData.minT}˚</p>
             </div>
-            <div className="others flex">
+            <div className="others flex wrap">
               {othersDataItem}
             </div>
           </div>

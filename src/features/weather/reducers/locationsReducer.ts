@@ -1,5 +1,5 @@
 import { SpreadIndex } from "src/features/weather/domain/model/SpreadIndex";
-import { CurrentDayDetails, WXType } from "src/features/weather/domain/model/Weather";
+import { CurrentDayDetails, WXType, WeekTemperature } from "src/features/weather/domain/model/Weather";
 import { TaiwanCities } from "src/features/weather/domain/model/Location";
 import { TemperatureType } from "src/features/weather/domain/model/ToolsTypes";
 import { WeatherHelper } from "src/features/weather/helper";
@@ -8,12 +8,14 @@ export type State = {
   translateY: number;
   openedLocationIndex: number | undefined;
   locationsData: CurrentDayDetails[];
+  weekTemperatureArray: WeekTemperature[];
 };
 
 export const defaultState: State = {
   translateY: 0,
   openedLocationIndex: undefined,
   locationsData: [],
+  weekTemperatureArray: [],
   // locationsData: [
   //   {
   //     locationName: TaiwanCities.Taoyuan,
@@ -28,6 +30,7 @@ export enum ActionType {
   SpreadOut = 'spread_out',
   CurrentDayWeatherLoaded = 'current_day_weather_loaded',
   CalculateTemperature = 'calculate_temperature',
+  WeekWeatherLoaded = 'week_weather_loaded',
 };
 
 export type SpreadOutAction = {
@@ -35,10 +38,17 @@ export type SpreadOutAction = {
   translateY: number;
   spreadIndex: SpreadIndex;
 };
+
 export type CurrentDayWeatherLoadedAction = {
   type: ActionType.CurrentDayWeatherLoaded;
   data: CurrentDayDetails;
 };
+
+export type WeekWeatherLoadedAction = {
+  type: ActionType.WeekWeatherLoaded;
+  weekTemperatureArray: WeekTemperature[];
+};
+
 export type CalculateTemperatureAction = {
   type: ActionType.CalculateTemperature;
   locationsData: CurrentDayDetails[];
@@ -48,6 +58,7 @@ export type CalculateTemperatureAction = {
 export type Action =
   SpreadOutAction |
   CurrentDayWeatherLoadedAction |
+  WeekWeatherLoadedAction |
   CalculateTemperatureAction;
 
 const reducer = (state: State = defaultState, action: Action) => {
@@ -66,6 +77,12 @@ const reducer = (state: State = defaultState, action: Action) => {
           ...state.locationsData,
           action.data,
         ],
+      }
+    }
+    case ActionType.WeekWeatherLoaded: {
+      return {
+        ...state,
+        weekTemperatureArray: action.weekTemperatureArray,
       }
     }
     case ActionType.CalculateTemperature: {

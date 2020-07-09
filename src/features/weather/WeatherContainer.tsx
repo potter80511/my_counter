@@ -4,6 +4,7 @@ import {
   translateYSelector,
   openedLocationIndexSelector,
   locationsDataSelector,
+  weekTemperatureArraySelector,
   temperatureTypeSelector,
   locationItemInputDataArraySelector,
   showCreateLocationItemModalSelector,
@@ -29,7 +30,7 @@ import Locations from 'src/features/weather/components/locations/Locations';
 import Tools from 'src/features/weather/components/Tools';
 import CreateLocationItemModal from 'src/features/weather/components/CreateLocationItemModal';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
-import { LocationData, TaiwanCities, WeatherLocationType } from 'src/features/weather/domain/model/Location';
+import { LocationData, TaiwanCities, WeatherLocationType, LocationValue } from 'src/features/weather/domain/model/Location';
 import { SpreadIndex } from "src/features/weather/domain/model/SpreadIndex";
 import '@styles/features/weather/weather.scss';
 
@@ -38,6 +39,7 @@ const WeatherContainer = () => {
   const translateY = useSelector(translateYSelector);
   const openedLocationIndex = useSelector(openedLocationIndexSelector);
   const locationsData = useSelector(locationsDataSelector);
+  const weekTemperatureArray = useSelector(weekTemperatureArraySelector);
   console.log(locationsData)
 
   const temperatureType = useSelector(temperatureTypeSelector);
@@ -56,6 +58,10 @@ const WeatherContainer = () => {
 
   const onSpreadOut = (tlY: number, spreadIndex: SpreadIndex) => {
     dispatch(spreadOut(tlY, spreadIndex));
+  };
+
+  const onGetWeekWeather = (locationName: LocationValue, locationType: WeatherLocationType, city: TaiwanCities) => {
+    dispatch(getWeekWeather(locationName, locationType, city));
   };
 
   const onSwitchTemperatureType = (value: TemperatureType) => {
@@ -101,10 +107,12 @@ const WeatherContainer = () => {
       {/* <h1 className="main-title">Weather</h1> */}
       <Locations
         spread={locationSpread}
+        getWeekWeather={(locationName, locationType, city) => onGetWeekWeather(locationName, locationType, city)}
         translateY={translateY}
         openedLocationIndex={openedLocationIndex}
         temperatureType={temperatureType}
         locationsData={locationsData}
+        weekTemperatureArray={weekTemperatureArray}
         spreadOut={(tlY, spreadIndex) => onSpreadOut(tlY, spreadIndex)}
       />
       <Tools

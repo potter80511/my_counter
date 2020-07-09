@@ -20,6 +20,9 @@ export const locationsDataSelector = (store: StoreState) => {
   return loading ? [] : newData;
 }
 
+export const weekTemperatureArraySelector = (store: StoreState) =>
+  store.weather.locations.weekTemperatureArray
+
 // tools
 export const temperatureTypeSelector = (store: StoreState) =>
   store.weather.tools.temperatureType;
