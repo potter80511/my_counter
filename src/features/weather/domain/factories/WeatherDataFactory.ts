@@ -56,7 +56,7 @@ export class WeatherDataFactory {
         iconName = WXIcons.TempRainyOrThunder
         break;
     }
-    return '/img/weather/wx_icons/' + iconName;
+    return '/img/weather/wx_icons/' + iconName + '.png';
   }
 
   static createTemperature(t: string, noUnit?: boolean): string {

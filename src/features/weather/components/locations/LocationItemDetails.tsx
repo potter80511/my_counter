@@ -14,7 +14,11 @@ type LocationItemDetailsProps = {
   locationData: CurrentDayDetails;
   weekTemperatureArray: WeekTemperature[];
   translateD: number;
+  everyTimeFixed: boolean;
+  todayEveryTimeHeight: number;
   onCloseSpread: () => void;
+  onSetTodayEveryTimeFixed: (fix: boolean) => void;
+  onSetTodayEveryTimeHeight: (height: number) => void;
 };
 
 const LocationItemDetails = (props: LocationItemDetailsProps) => {
@@ -24,12 +28,16 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
     locationData,
     weekTemperatureArray,
     translateD,
+    everyTimeFixed,
+    todayEveryTimeHeight,
     onCloseSpread,
+    onSetTodayEveryTimeFixed,
+    onSetTodayEveryTimeHeight,
   } = props;
 
-  const [everyTimeFixed, setTodayEveryTimeFixed] = useState<boolean>(false);
+  // const [everyTimeFixed, setTodayEveryTimeFixed] = useState<boolean>(false);
   const [opacityValue, setOpacityValue] = useState<number>(1);
-  const [todayEveryTimeHeight, setTodayEveryTimeHeight] = useState<number>(0);
+  // const [todayEveryTimeHeight, setTodayEveryTimeHeight] = useState<number>(0);
   const fixedDistance = 130 - 7 - 20;
   const opacityDistance = 100;
 
@@ -42,17 +50,17 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
     const opacity = opacityRate >= 0 ? opacityRate : 0;
     setOpacityValue(opacity);
     if (scrollTop >= fixedDistance) {
-      setTodayEveryTimeFixed(true)
-      setTodayEveryTimeHeight(todayEveryTimeRef.current.clientHeight);
+      onSetTodayEveryTimeFixed(true)
+      onSetTodayEveryTimeHeight(todayEveryTimeRef.current.clientHeight);
     } else {
-      setTodayEveryTimeFixed(false)
+      onSetTodayEveryTimeFixed(false)
     };
   };
 
   const todayEveryTimePosition = everyTimeFixed ? 'fixed' : 'unset';
-  const fixedBackgroundColor = everyTimeFixed ? 'rgba(0, 0, 0, .5)' : 'none';
-  const todayEveryTimeTop = everyTimeFixed ? ((translateD + todayEveryTimeHeight + 42) + 'px') : 'auto';
-  const morePaddingTop = everyTimeFixed ? 143 + todayEveryTimeHeight : 143;
+  // const fixedBackgroundColor = everyTimeFixed ? 'rgba(0, 0, 0, .5)' : 'none';
+  const todayEveryTimeTop = everyTimeFixed ? ((translateD + todayEveryTimeHeight + 3) + 'px') : 'auto';
+  const morePaddingTop = everyTimeFixed ? 63 : 143;
 
   const everyTimeItem = locationData.todayEveryHourArray.map((item, index) => {
     return (
@@ -61,6 +69,9 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
         key={'location-item-' + index}
       >
         <span className="hour">{item.hourName}</span>
+        <span className="wx">
+          <img src={item.wXIcon} height="16" />
+        </span>
         <span className="t">{TemperatureHelper.CalculateTemperature(item.temperature, temperatureType)}</span>
       </div>
     );
@@ -95,7 +106,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
       <div className="location-details">
         <div className="bg"></div>
         <div className="content" onScroll={onWeekScroll} ref={contentRef}>
-          <div className="location-wx" style={{top: (translateD + 15) + 'px', background: fixedBackgroundColor}}>
+          <div className="location-wx" style={{top: (translateD + 15) + 'px'}}>
             <h2>{locationData.locationName}</h2>
             <span className="wx">{locationData.wX}</span>
             <span
@@ -105,7 +116,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
               {locationData.currentTemperature}
             </span>
           </div>
-          <div className="more" style={{ paddingTop: morePaddingTop }}>
+          <div className="more" style={{paddingTop: morePaddingTop}}>
             <div className="today" style={{ opacity: opacityValue }}>
               <div className="day">
                 <span className="day-name">{moment().locale('zh-tw').format('dddd')}</span>

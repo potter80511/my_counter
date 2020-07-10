@@ -1,9 +1,9 @@
 export enum WXIcons {
-  Sunny = 'sunny.jpg',
-  SunnyCloudy = 'sunny_cloudy.jpg',
-  StrongCloudy = 'strong_cloudy.jpg',
-  Cloudy = 'cloudy.jpg',
-  CloudySunny = 'cloudy_sunny.jpg',
-  CloudyTempRainyOrThunder = 'cloudy_temp_rainy_or_thunder.jpg',
-  TempRainyOrThunder = 'temp_rainy_or_thunder.jpg',
+  Sunny = 'sunny',
+  SunnyCloudy = 'sunny_cloudy',
+  StrongCloudy = 'strong_cloudy',
+  Cloudy = 'cloudy',
+  CloudySunny = 'cloudy_sunny',
+  CloudyTempRainyOrThunder = 'cloudy_temp_rainy_or_thunder',
+  TempRainyOrThunder = 'temp_rainy_or_thunder',
 };

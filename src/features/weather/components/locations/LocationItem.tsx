@@ -47,6 +47,10 @@ const LocationItem = (props: LocationItemProps) => {
   const [viewHeight, setViewHeight] = useState<number>(0);
   const [spreadOutDistance, setSpreadOutDistance] = useState<number>(0);
   const [itemHeight, setItemHeight] = useState<number>(91);
+  const [everyTimeFixed, setTodayEveryTimeFixed] = useState<boolean>(false);
+  const [todayEveryTimeHeight, setTodayEveryTimeHeight] = useState<number>(0);
+
+  const morePaddingTop = everyTimeFixed ? 100 + todayEveryTimeHeight : 15;
 
   useEffect(() => {
     setViewHeight(window.innerHeight);
@@ -64,6 +68,7 @@ const LocationItem = (props: LocationItemProps) => {
         backgroundImage: `url(${locationData.weatherBackgroundImage})`,
         minHeight: itemHeight + 'px',
         maxHeight: itemHeight + 'px',
+        paddingTop: morePaddingTop,
       }}
     >
       {!spread && (
@@ -81,7 +86,11 @@ const LocationItem = (props: LocationItemProps) => {
         locationData={locationData}
         weekTemperatureArray={weekTemperatureArray}
         translateD={translateD}
+        everyTimeFixed={everyTimeFixed}
+        todayEveryTimeHeight={todayEveryTimeHeight}
         onCloseSpread={onCloseSpread}
+        onSetTodayEveryTimeFixed={(fix) => setTodayEveryTimeFixed(fix)}
+        onSetTodayEveryTimeHeight={(height) => setTodayEveryTimeHeight(height)}
       />
     </div>
   );

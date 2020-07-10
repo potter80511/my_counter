@@ -21,6 +21,10 @@ $border: 1px solid rgba(255, 255, 255, .3);
     max-width: 768px;
     width: 100%;
     margin: 0 auto;
+    @media (min-width: 768px) {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
   }
   .location-item {
     background-size: cover;
@@ -135,6 +139,13 @@ $border: 1px solid rgba(255, 255, 255, .3);
               span {
                 display: block;
                 text-align: center;
+              }
+              .wx {
+                padding: 10px 0;
+                img {
+                  width: auto;
+                  height: 16px;
+                }
               }
             }
           }
