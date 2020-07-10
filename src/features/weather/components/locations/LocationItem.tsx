@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import LocationItemDetails from 'src/features/weather/components/locations/LocationItemDetails';
 import { WXType, CurrentDayDetails, WeekTemperature } from 'src/features/weather/domain/model/Weather';
-import { TemperatureFactory } from 'src/features/weather/domain/factories/TemperatureFactory';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import moment from 'moment';
 import { Transition, CSSTransition } from 'react-transition-group';
@@ -11,7 +10,7 @@ type LocationItemProps = {
   index: number;
   locationData: CurrentDayDetails;
   weekTemperatureArray: WeekTemperature[];
-  temperatureType: TemperatureType
+  temperatureType: TemperatureType;
   translateD: number;
   spread: boolean;
   spreadOut: (translateY: number, spreadIndex: number | null) => void;
@@ -78,6 +77,7 @@ const LocationItem = (props: LocationItemProps) => {
       )}
       <LocationItemDetails
         show={spread}
+        temperatureType={temperatureType}
         locationData={locationData}
         weekTemperatureArray={weekTemperatureArray}
         translateD={translateD}

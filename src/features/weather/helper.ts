@@ -1,4 +1,5 @@
-import { WeatherDataFactory } from "./domain/factories/WeatherDataFactory";
+import { WeatherDataFactory } from "src/features/weather/domain/factories/WeatherDataFactory";
+import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 
 export class WeatherHelper {
   static switchTemperatureToFahrenheit(value: string, noUnit?: boolean): string {
@@ -37,3 +38,17 @@ export class FindExtremeNumber {
     return min;
   }
 }
+
+export class TemperatureHelper {
+  static CalculateTemperature(value: string, type: TemperatureType, noUnit?: boolean): string {
+    switch (type) {
+      case TemperatureType.Celsius:
+        return value;
+      case TemperatureType.Fahrenheit:
+        let num = 0;
+        num = noUnit ? Number(value) : Number(value.substring(0, value.length - 1))
+        const newValue = String(Math.round((num * (9/5)) + 32))
+        return noUnit ? newValue : newValue + '˚';
+    }
+  }
+};

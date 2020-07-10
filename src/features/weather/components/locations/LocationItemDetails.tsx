@@ -3,11 +3,14 @@ import OthersDataItem from 'src/features/weather/components/locations/OthersData
 import WeekItem from 'src/features/weather/components/locations/WeekItem';
 import { CSSTransition } from 'react-transition-group';
 import { CurrentDayDetails, WeekTemperature } from 'src/features/weather/domain/model/Weather';
+import { TemperatureHelper } from 'src/features/weather/helper';
 import moment from 'moment';
 import '@styles/transition_group.scss';
+import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 
 type LocationItemDetailsProps = {
   show: boolean;
+  temperatureType: TemperatureType;
   locationData: CurrentDayDetails;
   weekTemperatureArray: WeekTemperature[];
   translateD: number;
@@ -17,6 +20,7 @@ type LocationItemDetailsProps = {
 const LocationItemDetails = (props: LocationItemDetailsProps) => {
   const {
     show,
+    temperatureType,
     locationData,
     weekTemperatureArray,
     translateD,
@@ -57,7 +61,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
         key={'location-item-' + index}
       >
         <span className="hour">{item.hourName}</span>
-        <span className="t">{item.temperature}</span>
+        <span className="t">{TemperatureHelper.CalculateTemperature(item.temperature, temperatureType)}</span>
       </div>
     );
   });
@@ -76,8 +80,8 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
       key={'week-item-' + index}
       dayName={item.dayName}
       wXIcon={item.wXIcon}
-      minT={item.minT}
-      maxT={item.maxT}
+      minT={TemperatureHelper.CalculateTemperature(item.minT, temperatureType)}
+      maxT={TemperatureHelper.CalculateTemperature(item.maxT, temperatureType)}
     />
   );
 
@@ -108,8 +112,12 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
                 <span className="today-today">今天</span>
               </div>
               <div className="temperature-range">
-                <span className="max-t">{locationData.maxT}</span>
-                <span className="min-t">{locationData.minT}</span>
+                <span className="max-t">
+                  {TemperatureHelper.CalculateTemperature(locationData.maxT, temperatureType, true)}
+                </span>
+                <span className="min-t">
+                  {TemperatureHelper.CalculateTemperature(locationData.minT, temperatureType, true)}
+                </span>
               </div>
             </div>
             <div
@@ -126,7 +134,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
               {weekItems}
             </div>
             <div className="current-description wrap">
-              <p>今天：目前{locationData.wX}。最高溫可達{locationData.maxT}˚，最低溫可達 {locationData.minT}˚</p>
+              <p>今天：目前{locationData.wX}。最高溫可達 {TemperatureHelper.CalculateTemperature(locationData.maxT, temperatureType, true)}˚，最低溫可達 {TemperatureHelper.CalculateTemperature(locationData.minT, temperatureType, true)}˚</p>
             </div>
             <div className="others flex wrap">
               {othersDataItem}
