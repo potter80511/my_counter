@@ -7,10 +7,12 @@ import {
   TaoyuanLocationValue
 } from 'src/features/weather/domain/model/Location';
 import { allLocationsData } from 'src/features/weather/domain/data/allLocationsData';
+import { CurrentDayDetails } from '../domain/model/Weather';
 
 export type State = {
   temperatureType: TemperatureType;
   locationItemInputDataArray: LocationData[];
+  locationsData: CurrentDayDetails[];
   showCreateLocationItemModal: boolean;
   locationOptions: LocationData[];
   searchValue: string;
@@ -44,6 +46,7 @@ export const defaultState: State = {
       type: WeatherLocationType.Location,
     },
   ],
+  locationsData: [],
   showCreateLocationItemModal: false,
   locationOptions: [],
   searchValue: '',
@@ -51,7 +54,9 @@ export const defaultState: State = {
 
 export enum ActionType {
   SwitchTemperatureType = 'switch_temperature_type',
+  CurrentDayWeatherLoaded = 'current_day_weather_loaded',
   CreateNewLocationInput = 'create_location_item',
+  DeleteLocationInput = 'delete_location_item',
   ShowCreateLocationItemModal = 'show_create_location_item_modal',
   SearchInputChange = 'search_input_change',
 }
@@ -61,9 +66,19 @@ export type SwitchTemperatureTypeAction = {
   temperatureType: TemperatureType;
 };
 
+export type CurrentDayWeatherLoadedAction = {
+  type: ActionType.CurrentDayWeatherLoaded;
+  data: CurrentDayDetails;
+};
+
 export type CreateNewLocationInputAction = {
   type: ActionType.CreateNewLocationInput;
   newLocation: LocationData;
+};
+
+export type DeleteLocationInputAction = {
+  type: ActionType.DeleteLocationInput;
+  deleteIndex: number;
 };
 
 export type ShowCreateLocationItemModalAction = {
@@ -78,7 +93,9 @@ export type SearchInputChangeAction = {
 
 export type Action =
   SwitchTemperatureTypeAction |
+  CurrentDayWeatherLoadedAction |
   CreateNewLocationInputAction |
+  DeleteLocationInputAction |
   ShowCreateLocationItemModalAction |
   SearchInputChangeAction;
 
@@ -90,6 +107,15 @@ const reducer = (state: State = defaultState, action: Action) => {
         temperatureType: action.temperatureType,
       };
     }
+    case ActionType.CurrentDayWeatherLoaded: {
+      return {
+        ...state,
+        locationsData: [
+          ...state.locationsData,
+          action.data,
+        ],
+      }
+    }
     case ActionType.CreateNewLocationInput: {
       const newLocationItemArray = [...state.locationItemInputDataArray];
       return {
@@ -98,6 +124,26 @@ const reducer = (state: State = defaultState, action: Action) => {
           ...state.locationItemInputDataArray,
           action.newLocation,
         ]
+      }
+    }
+    case ActionType.DeleteLocationInput: {
+      const newLocationInputData = state.locationItemInputDataArray.filter((item, index) =>
+        index !== action.deleteIndex
+      );
+      console.log(newLocationInputData)
+
+      const newLoaciotionsData = state.locationsData.filter((item) =>
+        item.inputIndex !== action.deleteIndex
+      ).map((item, index) =>
+        ({
+          ...item,
+          inputIndex: index,
+        })
+      );
+      return {
+        ...state,
+        locationItemInputDataArray: newLocationInputData,
+        locationsData: newLoaciotionsData,
       }
     }
     case ActionType.ShowCreateLocationItemModal: {

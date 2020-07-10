@@ -57,6 +57,19 @@ $border: 1px solid rgba(255, 255, 255, .3);
       .temperature {
         font-size: 42px;
       }
+      .delete {
+        position: absolute;
+        right: -5px;
+        top: -5px;
+        padding: 0;
+        svg {
+          color: #fff;
+          opacity: .3;
+        }
+        &:hover svg {
+          opacity: .7;
+        }
+      }
     }
     .location-details {
       overflow: scroll;

@@ -1,4 +1,5 @@
-import { ActionType } from 'src/features/weather/reducers/locationsReducer';
+import { ActionType as ToolsActionType } from 'src/features/weather/reducers/toolsReducer';
+import { ActionType as LocationsActionType } from 'src/features/weather/reducers/locationsReducer';
 import { Dispatch } from 'src/ReduxTypes';
 import { FetchingDecoratorFactory } from 'src/domain/usecases/decorators/fetching_decorator/FetchingDecoratorFactory'
 import appProvider from 'src/provider/AppProvider';
@@ -7,7 +8,7 @@ import { LocationValue, WeatherLocationType, TaiwanCities } from 'src/features/w
 import { CurrentDayDetails, WeekTemperature } from 'src/features/weather/domain/model/Weather';
 
 const getCurrentDayWeatherSuccess = (currentDayDetails: CurrentDayDetails, inputIndex: number) => ({
-  type: ActionType.CurrentDayWeatherLoaded,
+  type: ToolsActionType.CurrentDayWeatherLoaded,
   data: currentDayDetails,
   inputIndex,
 });
@@ -36,7 +37,7 @@ export const getCurrentDayWeather = (locationName: LocationValue, locationType: 
 };
 
 const getWeekWeatherSuccess = (weekTemperatureArray: WeekTemperature[]) => ({
-  type: ActionType.WeekWeatherLoaded,
+  type: LocationsActionType.WeekWeatherLoaded,
   weekTemperatureArray,
 });
 

@@ -8,9 +8,10 @@ export const openedLocationIndexSelector = (store: StoreState) =>
   store.weather.locations.openedLocationIndex
 
 export const locationsDataSelector = (store: StoreState) => {
-  const loading = store.weather.locations.locationsData.length === store.weather.tools.locationItemInputDataArray.length
+  const loading = store.weather.tools.locationsData.length === store.weather.tools.locationItemInputDataArray.length
     ? false : true;
-  const data = store.weather.locations.locationsData
+  const data = store.weather.tools.locationsData
+  
   const newData = data.map((item, index) => {
     const newItem = data.find(correctItem =>
       correctItem.inputIndex === index

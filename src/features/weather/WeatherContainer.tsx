@@ -16,6 +16,7 @@ import {
   showCreateLocationItemModal,
   searchInputChange,
   createNewLocationInputAction,
+  deleteLocationInputAction,
 } from 'src/features/weather/actions/toolsAction';
 import {
   spreadOut,
@@ -40,7 +41,7 @@ const WeatherContainer = () => {
   const openedLocationIndex = useSelector(openedLocationIndexSelector);
   const locationsData = useSelector(locationsDataSelector);
   const weekTemperatureArray = useSelector(weekTemperatureArraySelector);
-  console.log(locationsData)
+  console.log(locationsData, 'locationsData')
 
   const temperatureType = useSelector(temperatureTypeSelector);
   const locationItemInputDataArray = useSelector(locationItemInputDataArraySelector);
@@ -88,6 +89,10 @@ const WeatherContainer = () => {
     dispatch(getCurrentDayWeather(value, type, nextIndex, city));
   };
 
+  const onDeleteLocation = (deleteIndex: number) => {
+    dispatch(deleteLocationInputAction(deleteIndex));
+  };
+
   useEffect(() => {
     setViewHeight(window.innerHeight);
     locationItemInputDataArray.forEach((item, index) => {
@@ -95,9 +100,9 @@ const WeatherContainer = () => {
     });
   }, []);
 
-  useEffect(() => {
-    dispatch(calculateLocationsDataTemperature(locationsData, temperatureType))
-  }, [temperatureType]);
+  // useEffect(() => {
+  //   dispatch(calculateLocationsDataTemperature(locationsData, temperatureType))
+  // }, [temperatureType]);
 
   return (
     <div
@@ -114,6 +119,7 @@ const WeatherContainer = () => {
         locationsData={locationsData}
         weekTemperatureArray={weekTemperatureArray}
         spreadOut={(tlY, spreadIndex) => onSpreadOut(tlY, spreadIndex)}
+        onDelete={(deleteIndex) => onDeleteLocation(deleteIndex)}
       />
       <Tools
         show={!locationSpread}

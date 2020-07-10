@@ -16,6 +16,13 @@ export const createNewLocationInputAction = (newLocation: LocationData) => (
   }
 );
 
+export const deleteLocationInputAction = (deleteIndex: number) => (
+  {
+    type: ActionType.DeleteLocationInput,
+    deleteIndex,
+  }
+);
+
 export const showCreateLocationItemModal = (show: boolean) => (
   {
     type: ActionType.ShowCreateLocationItemModal,

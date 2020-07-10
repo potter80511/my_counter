@@ -15,6 +15,7 @@ type LocationsProps = {
   weekTemperatureArray: WeekTemperature[];
   spreadOut: (tlY: number, spreadIndex: number | null) => void;
   getWeekWeather: (locationName: LocationValue, locationType: WeatherLocationType, city: TaiwanCities) => void;
+  onDelete: (deleteIndex: number) => void;
 }
 
 const Locations = (props: LocationsProps) => {
@@ -27,6 +28,7 @@ const Locations = (props: LocationsProps) => {
     weekTemperatureArray,
     spreadOut,
     getWeekWeather,
+    onDelete,
   } = props;
 
   const locationItem = locationsData.map((item, index) => (
@@ -40,6 +42,7 @@ const Locations = (props: LocationsProps) => {
       spread={openedLocationIndex === index ? true : false}
       spreadOut={(tlY, spreadIndex) => spreadOut(tlY, spreadIndex)}
       getWeekWeather={(locationName, locationType, city) => getWeekWeather(locationName, locationType, city)}
+      onDelete={(deleteIndex) => onDelete(deleteIndex)}
     />
   ));
   const spreadClass = spread ? ' spread' : '';

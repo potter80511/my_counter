@@ -5,6 +5,10 @@ import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import moment from 'moment';
 import { Transition, CSSTransition } from 'react-transition-group';
 import { TaiwanCities, WeatherLocationType, LocationValue } from 'src/features/weather/domain/model/Location';
+import {
+  faTimes,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type LocationItemProps = {
   index: number;
@@ -15,6 +19,7 @@ type LocationItemProps = {
   spread: boolean;
   spreadOut: (translateY: number, spreadIndex: number | null) => void;
   getWeekWeather: (locationName: LocationValue, locationType: WeatherLocationType, city: TaiwanCities) => void;
+  onDelete: (deleteIndex: number) => void;
 }
 
 const LocationItem = (props: LocationItemProps) => {
@@ -27,6 +32,7 @@ const LocationItem = (props: LocationItemProps) => {
     spread,
     spreadOut,
     getWeekWeather,
+    onDelete,
   } = props;
 
   const {
@@ -42,6 +48,11 @@ const LocationItem = (props: LocationItemProps) => {
   }
   const onCloseSpread = () => {
     spreadOut(0, undefined);
+  }
+
+  const onDeleteLocation = (e, deleteIndex: number) => {
+    onDelete(deleteIndex);
+    e.stopPropagation();
   }
 
   const [viewHeight, setViewHeight] = useState<number>(0);
@@ -78,6 +89,12 @@ const LocationItem = (props: LocationItemProps) => {
             <strong className="location-name">{locationData.locationName}</strong>
           </div>
           <span className="temperature">{locationData.currentTemperature}</span>
+          <button
+            className="delete"
+            onClick={(e) => onDeleteLocation(e, index)}
+          >
+            <FontAwesomeIcon icon={faTimes}/>
+          </button>
         </div>
       )}
       <LocationItemDetails
