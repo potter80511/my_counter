@@ -102,7 +102,7 @@ $border: 1px solid rgba(255, 255, 255, .3);
           }
         }
         .more {
-          height: 3000px;
+          height: 1300px;
           .today {
             padding: 10px 15px;
             display: flex;
@@ -153,6 +153,7 @@ $border: 1px solid rgba(255, 255, 255, .3);
             padding: 10px 15px;
             div.week-item{
               justify-content: space-between;
+              align-items: center;
               &:not(:last-child) {
                 padding-bottom: 10px;
               }

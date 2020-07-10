@@ -13,6 +13,9 @@ const WeekItem = (props: WeekItemProps) => {
   return (
     <div className="week-item flex">
       <div className="day-name">{dayName}</div>
+      <div className="wx">
+        <img height="15" src={wXIcon} />
+      </div>
       <div className="extreame-t">
         <span className="max">{maxT}</span>
         <span className="min">{minT}</span>
