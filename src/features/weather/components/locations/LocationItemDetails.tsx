@@ -7,6 +7,10 @@ import { TemperatureHelper } from 'src/features/weather/helper';
 import moment from 'moment';
 import '@styles/transition_group.scss';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
+import {
+  faSpinner,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type LocationItemDetailsProps = {
   show: boolean;
@@ -142,7 +146,14 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
               {everyTimeItem}
             </div>
             <div className="week-weather wrap">
-              {weekItems}
+              {weekTemperatureArray.length > 0
+                ? weekItems
+                : (
+                  <div className="flex-center loading">
+                    <FontAwesomeIcon icon={faSpinner} spin />
+                  </div>
+                )
+              }
             </div>
             <div className="current-description wrap">
               <p>今天：目前{locationData.wX}。最高溫可達 {TemperatureHelper.CalculateTemperature(locationData.maxT, temperatureType, true)}˚，最低溫可達 {TemperatureHelper.CalculateTemperature(locationData.minT, temperatureType, true)}˚</p>
