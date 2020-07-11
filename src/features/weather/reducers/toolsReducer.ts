@@ -166,9 +166,11 @@ const reducer = (state: State = defaultState, action: Action) => {
       const newLocationInputData = state.locationItemInputDataArray.filter((item, index) =>
         index !== action.deleteIndex
       );
-      console.log(newLocationInputData)
 
-      const newLoaciotionsData = state.locationsData.filter((item) =>
+      const newLoaciotionsData = state.locationsData.map((item, index) => {
+        const correctItem = state.locationsData.find(c => c.inputIndex === index);
+        return correctItem
+      }).filter((item) =>
         item.inputIndex !== action.deleteIndex
       ).map((item, index) =>
         ({
@@ -176,6 +178,7 @@ const reducer = (state: State = defaultState, action: Action) => {
           inputIndex: index,
         })
       );
+
       return {
         ...state,
         locationItemInputDataArray: newLocationInputData,

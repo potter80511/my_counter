@@ -101,7 +101,7 @@ const WeatherContainer = () => {
   useEffect(() => {
     setViewHeight(window.innerHeight);
     
-    if (weather_settings) {
+    if (weather_settings && !stateIsInitial) {
       console.log(weather_settings, 'weather_settings2')
       dispatch(initialToolsState());
     }
@@ -110,14 +110,12 @@ const WeatherContainer = () => {
 
   useEffect(() => {
     if (stateIsInitial) {
-      // console.log(546456)
       locationItemInputDataArray.forEach((item, index) => {
         dispatch(getCurrentDayWeather(item.value, item.type, index, item.city));
       });
     }
   }, [stateIsInitial]);
 
-  // console.log(weather_settings, temperatureType)
   useEffect(() => {
     dispatch(saveSettingsToCookie())
   }, [temperatureType, locationItemInputDataArray]);
