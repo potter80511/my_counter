@@ -39,9 +39,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
     onSetTodayEveryTimeHeight,
   } = props;
 
-  // const [everyTimeFixed, setTodayEveryTimeFixed] = useState<boolean>(false);
   const [opacityValue, setOpacityValue] = useState<number>(1);
-  // const [todayEveryTimeHeight, setTodayEveryTimeHeight] = useState<number>(0);
   const fixedDistance = 130 - 7 - 20;
   const opacityDistance = 100;
 
@@ -62,9 +60,9 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
   };
 
   const todayEveryTimePosition = everyTimeFixed ? 'fixed' : 'unset';
-  // const fixedBackgroundColor = everyTimeFixed ? 'rgba(0, 0, 0, .5)' : 'none';
   const todayEveryTimeTop = everyTimeFixed ? ((translateD + todayEveryTimeHeight + 3) + 'px') : 'auto';
   const morePaddingTop = everyTimeFixed ? 63 : 143;
+  // const moreHeight = 143 + 1055 + 45 + 98;
 
   const everyTimeItem = locationData.todayEveryHourArray.map((item, index) => {
     return (
@@ -120,7 +118,8 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
               {TemperatureHelper.CalculateTemperature(locationData.currentTemperature, temperatureType)}
             </span>
           </div>
-          <div className="more" style={{paddingTop: morePaddingTop}}>
+          <div className="more" style={{ paddingTop: morePaddingTop }}
+          >
             <div className="today" style={{ opacity: opacityValue }}>
               <div className="day">
                 <span className="day-name">{moment().locale('zh-tw').format('dddd')}</span>

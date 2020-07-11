@@ -115,7 +115,9 @@ $border: 1px solid rgba(255, 255, 255, .3);
           }
         }
         .more {
-          height: 1300px;
+          @media(max-width: 767px) {
+            height: 1341px;
+          }
           .today {
             padding: 10px 15px;
             display: flex;
