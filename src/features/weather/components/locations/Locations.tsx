@@ -1,6 +1,5 @@
 import React from 'react';
 import LocationItem from 'src/features/weather/components/locations/LocationItem';
-import { CityWeatherDataFactory } from 'src/features/weather/domain/factories/CityWeatherDataFactory';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import { WXType, CurrentDayDetails, WeekTemperature } from 'src/features/weather/domain/model/Weather';
 import { LocationValue, WeatherLocationType, TaiwanCities } from 'src/features/weather/domain/model/Location';
