@@ -1,7 +1,6 @@
 import { IFetcher } from 'src/api/Fetcher';
 import { GetCurrentDayWeather } from 'src/features/weather/domain/usecases/base/GetCurrentDayWeatherUseCaseItf';
 import { WeatherLocationType } from 'src/features/weather/domain/model/Location';
-import { CityWeatherDataFactory } from 'src/features/weather/domain/factories/CityWeatherDataFactory';
 import { LocationWeatherDataFactory } from 'src/features/weather/domain/factories/LocationWeatherDataFactory';
 import { currentDayCitiesSeriesNumberData } from 'src/features/weather/domain/data/allCitiesSeriesNumberData';
 
