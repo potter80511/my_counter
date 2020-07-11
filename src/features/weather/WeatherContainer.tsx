@@ -22,6 +22,7 @@ import {
 } from 'src/features/weather/actions/toolsAction';
 import {
   spreadOut,
+  initialLocationsState,
 } from 'src/features/weather/actions/locationsActions';
 import {
   getCurrentDayWeather,
@@ -97,13 +98,14 @@ const WeatherContainer = () => {
 
   const cookies = new Cookies();
   const weather_settings = cookies.get('weather_settings') ? cookies.get('weather_settings') : undefined;
-
+  console.log(weather_settings)
   useEffect(() => {
     setViewHeight(window.innerHeight);
     
     if (weather_settings && !stateIsInitial) {
       console.log(weather_settings, 'weather_settings2')
       dispatch(initialToolsState());
+      dispatch(initialLocationsState());
     }
     setStateIsInitial(true);
   }, []);
@@ -118,7 +120,23 @@ const WeatherContainer = () => {
 
   useEffect(() => {
     dispatch(saveSettingsToCookie())
-  }, [temperatureType, locationItemInputDataArray]);
+    if (openedLocationIndex !== undefined) {
+      const openInputData = locationItemInputDataArray.find((item, index) =>
+        index === openedLocationIndex
+      );
+      const {
+        value,
+        type,
+        city
+      } = openInputData;
+      dispatch(getWeekWeather(value, type, city));
+    }
+  }, [
+    temperatureType,
+    locationItemInputDataArray,
+    translateY,
+    openedLocationIndex,
+  ]);
 
   return (
     <div

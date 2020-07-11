@@ -1,8 +1,6 @@
 import { SpreadIndex } from "src/features/weather/domain/model/SpreadIndex";
-import { CurrentDayDetails, WXType, WeekTemperature } from "src/features/weather/domain/model/Weather";
-import { TaiwanCities } from "src/features/weather/domain/model/Location";
-import { TemperatureType } from "src/features/weather/domain/model/ToolsTypes";
-import { WeatherHelper } from "src/features/weather/helper";
+import { WeekTemperature } from "src/features/weather/domain/model/Weather";
+import { Cookies } from 'react-cookie';
 
 export type State = {
   translateY: number;
@@ -25,8 +23,18 @@ export const defaultState: State = {
 };
 
 export enum ActionType {
+  SaveSettingsToCookie = 'save_settings_to_cookie',
+  InitialLocationsState = 'initial_locations_state',
   SpreadOut = 'spread_out',
   WeekWeatherLoaded = 'week_weather_loaded',
+};
+
+export type SaveSettingsToCookieAction = {
+  type: ActionType.SaveSettingsToCookie;
+};
+
+export type InitialLocationsStateAction = {
+  type: ActionType.InitialLocationsState;
 };
 
 export type SpreadOutAction = {
@@ -41,11 +49,35 @@ export type WeekWeatherLoadedAction = {
 };
 
 export type Action =
+  SaveSettingsToCookieAction |
+  InitialLocationsStateAction |
   SpreadOutAction |
   WeekWeatherLoadedAction;
 
 const reducer = (state: State = defaultState, action: Action) => {
+  const cookies = new Cookies();
+  const weather_settings = cookies.get('weather_settings') ? cookies.get('weather_settings') : {};
   switch (action.type) {
+    case ActionType.SaveSettingsToCookie: {
+      cookies.set(
+        'weather_settings',
+        {
+          ...weather_settings,
+          translateY: state.translateY,
+          openedLocationIndex: state.openedLocationIndex,
+        },
+      );
+      return {
+        ...state,
+      }
+    }
+    case ActionType.InitialLocationsState: {
+      return {
+        ...state,
+        translateY: weather_settings.translateY,
+        openedLocationIndex: weather_settings.openedLocationIndex,
+      }
+    }
     case ActionType.SpreadOut: {
       return {
         ...state,
