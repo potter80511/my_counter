@@ -8,6 +8,7 @@ import {
 } from 'src/features/weather/domain/model/Location';
 import { allLocationsData } from 'src/features/weather/domain/data/allLocationsData';
 import { CurrentDayDetails } from '../domain/model/Weather';
+import { Cookies } from 'react-cookie';
 
 export type State = {
   temperatureType: TemperatureType;
@@ -53,6 +54,8 @@ export const defaultState: State = {
 };
 
 export enum ActionType {
+  SaveSettingsToCookie = 'save_settings_to_cookie',
+  InitialToolsState = 'initial_tools_state',
   SwitchTemperatureType = 'switch_temperature_type',
   CurrentDayWeatherLoaded = 'current_day_weather_loaded',
   CreateNewLocationInput = 'create_location_item',
@@ -60,6 +63,14 @@ export enum ActionType {
   ShowCreateLocationItemModal = 'show_create_location_item_modal',
   SearchInputChange = 'search_input_change',
 }
+
+export type SaveSettingsToCookieAction = {
+  type: ActionType.SaveSettingsToCookie;
+};
+
+export type InitialToolsStateAction = {
+  type: ActionType.InitialToolsState;
+};
 
 export type SwitchTemperatureTypeAction = {
   type: ActionType.SwitchTemperatureType;
@@ -91,7 +102,10 @@ export type SearchInputChangeAction = {
   value: string;
 };
 
+
 export type Action =
+  SaveSettingsToCookieAction |
+  InitialToolsStateAction |
   SwitchTemperatureTypeAction |
   CurrentDayWeatherLoadedAction |
   CreateNewLocationInputAction |
@@ -100,7 +114,29 @@ export type Action =
   SearchInputChangeAction;
 
 const reducer = (state: State = defaultState, action: Action) => {
+  const cookies = new Cookies();
+  const weather_settings = cookies.get('weather_settings') ? cookies.get('weather_settings') : {};
   switch (action.type) {
+    case ActionType.SaveSettingsToCookie: {
+      cookies.set(
+        'weather_settings',
+        {
+          ...weather_settings,
+          temperatureType: state.temperatureType,
+          locationItemInputDataArray: state.locationItemInputDataArray,
+        },
+      );
+      return {
+        ...state,
+      }
+    }
+    case ActionType.InitialToolsState: {
+      return {
+        ...state,
+        temperatureType: weather_settings.temperatureType,
+        locationItemInputDataArray: weather_settings.locationItemInputDataArray,
+      }
+    }
     case ActionType.SwitchTemperatureType: {
       return {
         ...state,

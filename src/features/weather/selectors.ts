@@ -7,6 +7,16 @@ export const translateYSelector = (store: StoreState) =>
 export const openedLocationIndexSelector = (store: StoreState) =>
   store.weather.locations.openedLocationIndex
 
+export const weekTemperatureArraySelector = (store: StoreState) =>
+  store.weather.locations.weekTemperatureArray
+
+// tools
+export const temperatureTypeSelector = (store: StoreState) =>
+  store.weather.tools.temperatureType;
+
+export const locationItemInputDataArraySelector = (store: StoreState) =>
+  store.weather.tools.locationItemInputDataArray;
+
 export const locationsDataSelector = (store: StoreState) => {
   const loading = store.weather.tools.locationsData.length === store.weather.tools.locationItemInputDataArray.length
     ? false : true;
@@ -20,16 +30,6 @@ export const locationsDataSelector = (store: StoreState) => {
   });
   return loading ? [] : newData;
 }
-
-export const weekTemperatureArraySelector = (store: StoreState) =>
-  store.weather.locations.weekTemperatureArray
-
-// tools
-export const temperatureTypeSelector = (store: StoreState) =>
-  store.weather.tools.temperatureType;
-
-export const locationItemInputDataArraySelector = (store: StoreState) =>
-  store.weather.tools.locationItemInputDataArray;
 
 export const showCreateLocationItemModalSelector = (store: StoreState) =>
   store.weather.tools.showCreateLocationItemModal;
