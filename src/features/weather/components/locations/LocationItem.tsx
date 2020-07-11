@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import LocationItemDetails from 'src/features/weather/components/locations/LocationItemDetails';
 import { WXType, CurrentDayDetails, WeekTemperature } from 'src/features/weather/domain/model/Weather';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
+import { TemperatureHelper } from 'src/features/weather/helper';
 import moment from 'moment';
 import { Transition, CSSTransition } from 'react-transition-group';
 import { TaiwanCities, WeatherLocationType, LocationValue } from 'src/features/weather/domain/model/Location';
@@ -88,7 +89,7 @@ const LocationItem = (props: LocationItemProps) => {
             <span className="moment">{moment().format("HH:mm")}</span>
             <strong className="location-name">{locationData.locationName}</strong>
           </div>
-          <span className="temperature">{locationData.currentTemperature}</span>
+          <span className="temperature">{TemperatureHelper.CalculateTemperature(locationData.currentTemperature, temperatureType)}</span>
           <button
             className="delete"
             onClick={(e) => onDeleteLocation(e, index)}

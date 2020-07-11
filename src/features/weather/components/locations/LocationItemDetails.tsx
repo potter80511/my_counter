@@ -117,7 +117,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
               className="current-temperature"
               style={{ opacity: opacityValue }}
             >
-              {locationData.currentTemperature}
+              {TemperatureHelper.CalculateTemperature(locationData.currentTemperature, temperatureType)}
             </span>
           </div>
           <div className="more" style={{paddingTop: morePaddingTop}}>

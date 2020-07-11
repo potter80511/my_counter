@@ -26,7 +26,6 @@ export const defaultState: State = {
 
 export enum ActionType {
   SpreadOut = 'spread_out',
-  CalculateTemperature = 'calculate_temperature',
   WeekWeatherLoaded = 'week_weather_loaded',
 };
 
@@ -41,16 +40,9 @@ export type WeekWeatherLoadedAction = {
   weekTemperatureArray: WeekTemperature[];
 };
 
-export type CalculateTemperatureAction = {
-  type: ActionType.CalculateTemperature;
-  locationsData: CurrentDayDetails[];
-  temperatureType: TemperatureType;
-};
-
 export type Action =
   SpreadOutAction |
-  WeekWeatherLoadedAction |
-  CalculateTemperatureAction;
+  WeekWeatherLoadedAction;
 
 const reducer = (state: State = defaultState, action: Action) => {
   switch (action.type) {
@@ -67,23 +59,6 @@ const reducer = (state: State = defaultState, action: Action) => {
         weekTemperatureArray: action.weekTemperatureArray,
       }
     }
-    // case ActionType.CalculateTemperature: {
-    //   const toFahrenheit = action.temperatureType === TemperatureType.Fahrenheit ? true : false;
-    //   const newLocationsData = action.locationsData.map(item => {
-    //     const newCurrentTemperature = toFahrenheit
-    //       ? WeatherHelper.switchTemperatureToFahrenheit(item.currentTemperature)
-    //       : WeatherHelper.switchTemperatureToCelsius(item.currentTemperature);
-    //     return {
-    //       ...item,
-    //       currentTemperature: newCurrentTemperature,
-    //     }
-    //   });
-    //   console.log(newLocationsData)
-    //   return {
-    //     ...state,
-    //     locationsData: newLocationsData,
-    //   }
-    // }
     default:
       return state;
   };

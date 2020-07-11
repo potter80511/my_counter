@@ -20,7 +20,6 @@ import {
 } from 'src/features/weather/actions/toolsAction';
 import {
   spreadOut,
-  calculateLocationsDataTemperature,
 } from 'src/features/weather/actions/locationsActions';
 import {
   getCurrentDayWeather,
@@ -99,10 +98,6 @@ const WeatherContainer = () => {
       dispatch(getCurrentDayWeather(item.value, item.type, index, item.city));
     });
   }, []);
-
-  // useEffect(() => {
-  //   dispatch(calculateLocationsDataTemperature(locationsData, temperatureType))
-  // }, [temperatureType]);
 
   return (
     <div
