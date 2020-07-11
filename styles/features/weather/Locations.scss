@@ -21,7 +21,7 @@ $border: 1px solid rgba(255, 255, 255, .3);
     max-width: 768px;
     width: 100%;
     margin: 0 auto;
-    @media (min-width: 768px) {
+    @media (min-width: 769px) {
       padding-left: 0 !important;
       padding-right: 0 !important;
     }
@@ -193,9 +193,6 @@ $border: 1px solid rgba(255, 255, 255, .3);
               padding: 10px 0;
               width: 50%;
               border-bottom: $border;
-              &:last-child {
-                width: 100%;
-              }
               @media (max-width: 575px) {
                 width: 100%;
               }
