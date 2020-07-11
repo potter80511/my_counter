@@ -114,7 +114,9 @@ export class LocationWeatherDataFactory {
   }
 
   static createOthersDataArray(weatherElement: WeatherElementItem[]): OthersData[] {
-    const poP = this.createOtherDataItem(weatherElement, ElementName.PoP6H);
+    const currentPoP = this.createPoPData(weatherElement, ElementName.PoP12H, 0);
+    const nextPoP = this.createPoPData(weatherElement, ElementName.PoP12H, 1);
+    
     const rH = this.createOtherDataItem(weatherElement, ElementName.RH);
 
     const wS = this.createOtherDataItem(weatherElement, ElementName.WS);
@@ -129,12 +131,26 @@ export class LocationWeatherDataFactory {
     const cI = this.createOtherDataItem(weatherElement, ElementName.CI);
 
     return [
-      poP,
+      currentPoP,
+      nextPoP,
       rH,
       wind,
       aT,
       cI,
     ]
+  }
+
+  static createPoPData(weatherElement: WeatherElementItem[], type: ElementName, timeIndex: number): OthersData { // 降雨機率
+    const element = weatherElement.find(item => item.elementName === type);
+    const poP = element.time[timeIndex]
+    const timeRange = '降雨機率：' + moment(poP.startTime).format('M/DD，HH:mm') + ' ~ ' + moment(poP.endTime).format('M/DD，HH:mm');
+    const value = poP.elementValue[0].value;
+    
+    return {
+      name: timeRange,
+      value,
+      unit: '%',
+    }
   }
 
   static createOtherDataItem(weatherElement: WeatherElementItem[], type: ElementName): OthersData {
@@ -164,7 +180,7 @@ export class LocationWeatherDataFactory {
       case ElementName.WS: {
         return {
           name: '風',
-          value,
+          value: ' ' + value,
           unit: measures,
         }
       }

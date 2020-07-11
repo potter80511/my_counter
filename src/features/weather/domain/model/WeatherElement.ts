@@ -11,6 +11,7 @@ export enum ElementName {
   MinT = 'MinT',
   MaxT = 'MaxT',
   T = 'T',
+  PoP12H = 'PoP12h',
   PoP6H = 'PoP6h',
   RH = 'RH',
   AT = 'AT',
