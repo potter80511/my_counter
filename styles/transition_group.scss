@@ -59,7 +59,7 @@
 .slideFadeInUp-exit-active {
   transform: translateY(100%);
   opacity: 0;
-  transition: all .6s;
+  transition: all .5s linear;
 }
 
 .slideInUp-enter {
@@ -67,12 +67,12 @@
 }
 .slideInUp-enter-active {
   transform: translateY(0);
-  transition: all .6s linear;
+  transition: all .5s linear;
 }
 .slideInUp-exit {
   transform: translateY(0);
 }
 .slideInUp-exit-active {
   transform: translateY(100%);
-  transition: all .6s;
+  transition: all .5s linear;
 }
