@@ -9,8 +9,13 @@ import { WXIcons } from 'src/features/weather/domain/model/WXIcons';
 import { FindExtremeNumber } from 'src/features/weather/helper';
 
 export class LocationWeatherDataFactory {
-  static createCurrentDayDataFromNet(data): Omit<CurrentDayDetails, 'locationType' | 'locationName' | 'inputIndex'> {
-    const { weatherElement } = data;
+  static createCurrentDayDataFromNet(data): Omit<CurrentDayDetails, 'locationType' | 'inputIndex'> {
+    const {
+      locationName,
+      weatherElement,
+    } = data;
+
+    const newLocationName = locationName.search('臺') != -1 ? locationName.replace('臺', '台') : locationName;
 
     const wX = this.getCurrentWx(weatherElement);
     const currentTemperature = this.getLocationT(weatherElement);
@@ -21,6 +26,7 @@ export class LocationWeatherDataFactory {
     const weatherBackgroundImage = WeatherDataFactory.createBackground(wX);
 
     return {
+      locationName: newLocationName,
       wX,
       currentTemperature,
       minT,
