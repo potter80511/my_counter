@@ -20,6 +20,7 @@
     height: 100%;
   }
   .modal-block {
+    text-align: center;
     border-radius: 5px;
     border: 2px solid #222;
     border: 1px solid #2c3745;
@@ -48,17 +49,23 @@
     .message {
       font-size: 22px;
     }
+    button {
+      padding: 4px 25px;
+      font-size: 15px;
+      border-radius: 100em;
+      transition: all .3s;
+    }
     .yes {
       background-color: #fe9e0c;
       color: #fff;
-      font-size: 20px;
-      border-radius: 100em;
-      padding: 5px 40px;
-      transition: all .3s;
       &:hover {
         color: #724500;
         background-color: #ffe6c0;
       }
+    }
+    .no {
+      background-color: #aaa;
+      color: #333;
     }
   }
 }

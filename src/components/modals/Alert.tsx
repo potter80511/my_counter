@@ -13,6 +13,7 @@ export type AlertProps = {
   show?: boolean;
   message: string;
   yesText?: string;
+  noText?: string;
   yes?(): void;
   no?(): void;
 }
@@ -24,6 +25,7 @@ const Alert = (props: AlertProps) => {
     message,
     show,
     yesText = 'ok',
+    noText = 'cancel',
     yes,
     no,
   } = props;
@@ -68,7 +70,16 @@ const Alert = (props: AlertProps) => {
               <div className="modal-content">
                 <p className="message">{message}</p>
               </div>
-              <button className="yes" onClick={onYes}>{yesText}</button>
+              <button
+                className="yes"
+                onClick={onYes}
+                style={{marginRight: no ? 10 : 0}}
+              >
+                {yesText}
+              </button>
+              {no && (
+                <button className="no" onClick={onClose}>{noText}</button>
+              )}
             </animated.div>
           )}
         </animated.div>
