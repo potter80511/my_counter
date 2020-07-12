@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Layout from 'src/components/Layout';
 
-// import '@styles/index.scss';
+import '@styles/features/index.scss';
 
 const meta = {
   title: "Johnny's App",
@@ -25,9 +25,17 @@ const index = () => {
       className="flex-center"
     >
       <div className='index'>
+        <h2>Johnny's App</h2>
         <nav>
-          <Link href="/">Home</Link>
-          <Link href="/counter">Counter</Link>
+          <Link href="/">
+            <a>Home</a>
+          </Link>
+          <Link href="/counter">
+            <a>Counter</a>
+          </Link>
+          <Link href="/weather">
+            <a>Weather</a>
+          </Link>
         </nav>
       </div>
     </Layout>

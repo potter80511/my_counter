@@ -4,10 +4,12 @@ import WeekItem from 'src/features/weather/components/locations/WeekItem';
 import { CurrentDayDetails, WeekTemperature } from 'src/features/weather/domain/model/Weather';
 import { TemperatureHelper } from 'src/features/weather/helper';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
+import { useRouter } from 'next/router'
 
 import {
   faSpinner,
   faListUl,
+  faHome,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CSSTransition } from 'react-transition-group';
@@ -41,6 +43,8 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
     onSetTodayEveryTimeHeight,
   } = props;
 
+  const router = useRouter()
+
   const [opacityValue, setOpacityValue] = useState<number>(1);
   const fixedDistance = 130 - 7 - 20;
   const opacityDistance = 100;
@@ -59,6 +63,10 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
     } else {
       onSetTodayEveryTimeFixed(false)
     };
+  };
+
+  const onBackToHome = () => {
+    router.push('/');
   };
 
   const todayEveryTimePosition = everyTimeFixed ? 'fixed' : 'unset';
@@ -83,7 +91,6 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
 
   const othersDataItem = locationData.othersDataArray.map((item, index) => {
     if (item.name === '體感溫度') {
-      console.log(item.name)
       const value = TemperatureHelper.CalculateTemperature(item.value, temperatureType, true)
       return (
         <OthersDataItem
@@ -181,6 +188,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
           </div>
         </div>
         <div className="details-tools">
+          {/* <button className="home" onClick={onBackToHome}><FontAwesomeIcon icon={faHome} /></button> */}
           <button className="close" onClick={onCloseSpread}><FontAwesomeIcon icon={faListUl} /></button>
         </div>
       </div>

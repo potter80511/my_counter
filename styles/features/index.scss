@@ -1,0 +1,35 @@
+#index {
+  text-align: center;
+  h2 {
+    color: #888;
+    font-size: 60px;
+  }
+  nav {
+    a {
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+      background: #1a8273;
+      padding: 3px 20px;
+      border-radius: 100em;
+      transition: all .3s;
+      font-size: 22px;
+      &:hover {
+        transform: scale(1.1);
+      }
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+  }
+  @media (max-width: 575px) {
+    h2 {
+      font-size: 40px;
+    }
+    nav {
+      a {
+        font-size: 16px;
+      }
+    }
+  }
+}
