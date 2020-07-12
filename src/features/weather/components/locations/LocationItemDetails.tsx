@@ -81,13 +81,29 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
     );
   });
 
-  const othersDataItem = locationData.othersDataArray.map((item, index) =>
-    <OthersDataItem
-      key={name + '_' + index}
-      name={item.name}
-      value={item.value}
-      unit={item.unit}
-    />
+  const othersDataItem = locationData.othersDataArray.map((item, index) => {
+    if (item.name === '體感溫度') {
+      console.log(item.name)
+      const value = TemperatureHelper.CalculateTemperature(item.value, temperatureType, true)
+      return (
+        <OthersDataItem
+          key={name + '_' + index}
+          name={item.name}
+          value={value}
+          unit={item.unit}
+        />
+      )
+    } else {
+      return (
+        <OthersDataItem
+          key={name + '_' + index}
+          name={item.name}
+          value={item.value}
+          unit={item.unit}
+        />
+      )
+    }
+  }
   );
 
   const weekItems = weekTemperatureArray.map((item, index) =>
