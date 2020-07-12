@@ -32,6 +32,7 @@ import {
 import Locations from 'src/features/weather/components/locations/Locations';
 import Tools from 'src/features/weather/components/Tools';
 import CreateLocationItemModal from 'src/features/weather/components/CreateLocationItemModal';
+import Alert from 'src/components/modals/Alert';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import { LocationData, TaiwanCities, WeatherLocationType, LocationValue } from 'src/features/weather/domain/model/Location';
 import { SpreadIndex } from "src/features/weather/domain/model/SpreadIndex";
@@ -55,6 +56,14 @@ const WeatherContainer = () => {
 
   const [viewHeight, setViewHeight] = useState<number>(0);
   const [stateIsInitial, setStateIsInitial] = useState<boolean>(false);
+  const [deleteLocationIndex, setDeleteLocationIndex] = useState<number | undefined>(undefined);
+  const [showDeleteAlert, setShowDeleteAlert] = useState<boolean>(false);
+  const [showCannotDeleteAlert, setShowCannotDeleteAlert] = useState<boolean>(false);
+  const deleteLocationName = deleteLocationIndex !== undefined
+    ? locationsData.find((item, index) =>
+        index === deleteLocationIndex
+      ).locationName
+    : '';
   // const [translateY, setTranslateY] = useState<number>(0);  //  122 是title到頂部的距離
   // const [translateY, setTranslateY] = useState<number>(0 + 182);  //  122 是title到頂部的距離
 
@@ -93,7 +102,20 @@ const WeatherContainer = () => {
   };
 
   const onDeleteLocation = (deleteIndex: number) => {
+    if (locationsData.length === 1) {
+      setShowCannotDeleteAlert(true);
+    } else {
+      setShowDeleteAlert(true);
+      setDeleteLocationIndex(deleteIndex);
+    }
+  };
+
+  const onDeleteYes = (deleteIndex: number) => {
     dispatch(deleteLocationInputAction(deleteIndex));
+  };
+  const onDeleteNo = () => {
+    setShowDeleteAlert(false);
+    setDeleteLocationIndex(undefined);
   };
 
   const cookies = new Cookies();
@@ -169,6 +191,24 @@ const WeatherContainer = () => {
         onCancel={(show) => onShowCreateLocationItemModal(show)}
         onSearchInputChange={(value) => onSearchInputChange(value)}
         onCreateLocation={(newLocation, nextIndex) => onCreateLocation(newLocation, nextIndex)}
+      />
+      <Alert
+        show={showDeleteAlert}
+        message={
+          '確定要刪除' + deleteLocationName + '嗎？'
+        }
+        viewHeight={viewHeight}
+        yesText="確定"
+        noText="取消"
+        yes={() => onDeleteYes(deleteLocationIndex)}
+        no={onDeleteNo}
+      />
+      <Alert
+        show={showCannotDeleteAlert}
+        message={'請至少保留一項地區天氣'}
+        viewHeight={viewHeight}
+        yes={() => setShowCannotDeleteAlert(false)}
+        yesText="確定"
       />
     </div>
   );

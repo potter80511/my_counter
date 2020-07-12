@@ -28,24 +28,24 @@ export const defaultState: State = {
       value: TaiwanCities.Taipei,
       type: WeatherLocationType.City,
     },
-    {
-      city: TaiwanCities.Yilan,
-      name: TaiwanCities.Yilan,
-      value: TaiwanCities.Yilan,
-      type: WeatherLocationType.City,
-    },
-    {
-      city: TaiwanCities.Taoyuan,
-      name: TaiwanCities.Taoyuan,
-      value: TaoyuanLocationValue.Luzhu,
-      type: WeatherLocationType.Location,
-    },
-    {
-      city: TaiwanCities.Taipei,
-      name: TaiwanCities.Taipei,
-      value: TaipeiLocationValue.Neihu,
-      type: WeatherLocationType.Location,
-    },
+    // {
+    //   city: TaiwanCities.Yilan,
+    //   name: TaiwanCities.Yilan,
+    //   value: TaiwanCities.Yilan,
+    //   type: WeatherLocationType.City,
+    // },
+    // {
+    //   city: TaiwanCities.Taoyuan,
+    //   name: TaiwanCities.Taoyuan,
+    //   value: TaoyuanLocationValue.Luzhu,
+    //   type: WeatherLocationType.Location,
+    // },
+    // {
+    //   city: TaiwanCities.Taipei,
+    //   name: TaiwanCities.Taipei,
+    //   value: TaipeiLocationValue.Neihu,
+    //   type: WeatherLocationType.Location,
+    // },
   ],
   locationsData: [],
   showCreateLocationItemModal: false,
@@ -192,7 +192,12 @@ const reducer = (state: State = defaultState, action: Action) => {
       }
     }
     case ActionType.SearchInputChange: {
-      const filterData = allLocationsData.filter(item => {
+      const filterData = allLocationsData.map(item => {
+        return item.name.search('臺') != -1 ? {
+          ...item,
+          name: item.name.replace('臺', '台')
+        } : item;
+      }).filter(item => {
         return item.name.search(action.value) != -1;
       });
       return {

@@ -1,16 +1,20 @@
 import React, { useRef, useState } from 'react';
 import OthersDataItem from 'src/features/weather/components/locations/OthersDataItem';
 import WeekItem from 'src/features/weather/components/locations/WeekItem';
-import { CSSTransition } from 'react-transition-group';
 import { CurrentDayDetails, WeekTemperature } from 'src/features/weather/domain/model/Weather';
 import { TemperatureHelper } from 'src/features/weather/helper';
-import moment from 'moment';
-import '@styles/transition_group.scss';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
+import { useRouter } from 'next/router'
+
 import {
   faSpinner,
+  faListUl,
+  faHome,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { CSSTransition } from 'react-transition-group';
+import moment from 'moment';
+import '@styles/transition_group.scss';
 
 type LocationItemDetailsProps = {
   show: boolean;
@@ -39,6 +43,8 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
     onSetTodayEveryTimeHeight,
   } = props;
 
+  const router = useRouter()
+
   const [opacityValue, setOpacityValue] = useState<number>(1);
   const fixedDistance = 130 - 7 - 20;
   const opacityDistance = 100;
@@ -59,10 +65,14 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
     };
   };
 
+  const onBackToHome = () => {
+    router.push('/');
+  };
+
   const todayEveryTimePosition = everyTimeFixed ? 'fixed' : 'unset';
   const todayEveryTimeTop = everyTimeFixed ? ((translateD + todayEveryTimeHeight + 3) + 'px') : 'auto';
   const morePaddingTop = everyTimeFixed ? 63 : 143;
-  // const moreHeight = 143 + 1055 + 45 + 98;
+  // const moreHeight = 143 + 1055 + 45 + 98 + 20;
 
   const everyTimeItem = locationData.todayEveryHourArray.map((item, index) => {
     return (
@@ -79,13 +89,28 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
     );
   });
 
-  const othersDataItem = locationData.othersDataArray.map((item, index) =>
-    <OthersDataItem
-      key={name + '_' + index}
-      name={item.name}
-      value={item.value}
-      unit={item.unit}
-    />
+  const othersDataItem = locationData.othersDataArray.map((item, index) => {
+    if (item.name === '體感溫度') {
+      const value = TemperatureHelper.CalculateTemperature(item.value, temperatureType, true)
+      return (
+        <OthersDataItem
+          key={name + '_' + index}
+          name={item.name}
+          value={value}
+          unit={item.unit}
+        />
+      )
+    } else {
+      return (
+        <OthersDataItem
+          key={name + '_' + index}
+          name={item.name}
+          value={item.value}
+          unit={item.unit}
+        />
+      )
+    }
+  }
   );
 
   const weekItems = weekTemperatureArray.map((item, index) =>
@@ -163,7 +188,8 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
           </div>
         </div>
         <div className="details-tools">
-          <button className="close" onClick={onCloseSpread}>關閉</button>
+          {/* <button className="home" onClick={onBackToHome}><FontAwesomeIcon icon={faHome} /></button> */}
+          <button className="close" onClick={onCloseSpread}><FontAwesomeIcon icon={faListUl} /></button>
         </div>
       </div>
     </CSSTransition>

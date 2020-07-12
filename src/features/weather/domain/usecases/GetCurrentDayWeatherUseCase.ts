@@ -36,7 +36,6 @@ export class GetCurrentDayWeatherUseCase implements GetCurrentDayWeather.UseCase
             ...currentDayDetails,
             inputIndex,
             locationType,
-            locationName,
             city,
           }
         });
