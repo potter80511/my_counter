@@ -17,6 +17,15 @@
       padding: 0 5px;
     }
   }
+  .home {
+    color: #888;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all .3s;
+    &:hover {
+      color: #eee;
+    }
+  }
   #add-location {
     border: 1px solid #fff;
     width: 18px;

@@ -62,6 +62,7 @@ export enum ActionType {
   DeleteLocationInput = 'delete_location_item',
   ShowCreateLocationItemModal = 'show_create_location_item_modal',
   SearchInputChange = 'search_input_change',
+  ClearLocationsData = 'clear_locations_data',
 }
 
 export type SaveSettingsToCookieAction = {
@@ -102,6 +103,10 @@ export type SearchInputChangeAction = {
   value: string;
 };
 
+export type ClearLocationsDataAction = {
+  type: ActionType.ClearLocationsData;
+};
+
 
 export type Action =
   SaveSettingsToCookieAction |
@@ -111,7 +116,8 @@ export type Action =
   CreateNewLocationInputAction |
   DeleteLocationInputAction |
   ShowCreateLocationItemModalAction |
-  SearchInputChangeAction;
+  SearchInputChangeAction |
+  ClearLocationsDataAction;
 
 const reducer = (state: State = defaultState, action: Action) => {
   const cookies = new Cookies();
@@ -204,6 +210,12 @@ const reducer = (state: State = defaultState, action: Action) => {
         ...state,
         locationOptions: filterData,
         searchValue: action.value,
+      }
+    }
+    case ActionType.ClearLocationsData: {
+      return {
+        ...state,
+        locationsData: [],
       }
     }
     default: {

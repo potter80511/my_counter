@@ -49,3 +49,9 @@ export const searchInputChange = (value: string) => (
     value,
   }
 );
+
+export const clearLocationsDataAction = () => (
+  {
+    type: ActionType.ClearLocationsData,
+  }
+);
