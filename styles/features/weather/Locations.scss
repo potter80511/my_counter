@@ -65,6 +65,8 @@ $border: 1px solid rgba(255, 255, 255, .3);
         svg {
           color: #fff;
           opacity: .3;
+          height: 15px;
+          font-size: 15px;
         }
         &:hover svg {
           opacity: .7;
@@ -243,6 +245,8 @@ $border: 1px solid rgba(255, 255, 255, .3);
         svg {
           color: #ccc;
           transition: all .3s;
+          font-size: 16px;
+          height: 16px;
           &:hover {
             color: #fff;
           }
