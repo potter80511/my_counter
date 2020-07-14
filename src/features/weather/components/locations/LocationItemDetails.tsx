@@ -4,7 +4,7 @@ import WeekItem from 'src/features/weather/components/locations/WeekItem';
 import { CurrentDayDetails, WeekTemperature } from 'src/features/weather/domain/model/Weather';
 import { TemperatureHelper } from 'src/features/weather/helper';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
-import { useRouter } from 'next/router'
+import Link from 'next/link';
 
 import {
   faSpinner,
@@ -43,8 +43,6 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
     onSetTodayEveryTimeHeight,
   } = props;
 
-  const router = useRouter()
-
   const [opacityValue, setOpacityValue] = useState<number>(1);
   const fixedDistance = 130 - 7 - 20;
   const opacityDistance = 100;
@@ -69,10 +67,6 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
       onSetTodayEveryTimeHeight(todayEveryTimeRef.current.clientHeight);
     }
   });
-
-  const onBackToHome = () => {
-    router.push('/');
-  };
 
   const todayEveryTimePosition = everyTimeFixed ? 'fixed' : 'unset';
   const todayEveryTimeTop = everyTimeFixed ? ((translateD + todayEveryTimeHeight + 3) + 'px') : 'auto';
@@ -207,7 +201,9 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
           </div>
         </div>
         <div className="details-tools">
-          {/* <button className="home" onClick={onBackToHome}><FontAwesomeIcon icon={faHome} /></button> */}
+          <Link href="/">
+            <a className="home" ><FontAwesomeIcon icon={faHome} /></a>
+          </Link>
           <button className="close" onClick={onCloseSpread}><FontAwesomeIcon icon={faListUl} /></button>
         </div>
       </div>

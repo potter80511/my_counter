@@ -12,15 +12,17 @@ import {
   searchValueSelector,
 } from 'src/features/weather/selectors';
 import {
-  saveSettingsToCookie,
+  saveSettingsToCookie as saveSettingsToToolsCookie,
   initialToolsState,
   switchTemperatureType,
   showCreateLocationItemModal,
   searchInputChange,
   createNewLocationInputAction,
   deleteLocationInputAction,
+  clearLocationsDataAction,
 } from 'src/features/weather/actions/toolsAction';
 import {
+  saveSettingsToCookie as saveSettingsToLocationsCookie,
   spreadOut,
   initialLocationsState,
 } from 'src/features/weather/actions/locationsActions';
@@ -120,9 +122,10 @@ const WeatherContainer = () => {
 
   const cookies = new Cookies();
   const weather_settings = cookies.get('weather_settings') ? cookies.get('weather_settings') : undefined;
-  console.log(weather_settings)
+  // console.log(weather_settings)
   useEffect(() => {
     setViewHeight(window.innerHeight);
+    dispatch(clearLocationsDataAction());
     
     if (weather_settings && !stateIsInitial) {
       console.log(weather_settings, 'weather_settings2')
@@ -141,7 +144,8 @@ const WeatherContainer = () => {
   }, [stateIsInitial]);
 
   useEffect(() => {
-    dispatch(saveSettingsToCookie())
+    dispatch(saveSettingsToToolsCookie())
+    // dispatch(saveSettingsToLocationsCookie())
     if (openedLocationIndex !== undefined) {
       const openInputData = locationItemInputDataArray.find((item, index) =>
         index === openedLocationIndex
