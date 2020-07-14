@@ -27,7 +27,7 @@ export class GetCurrentDayWeatherUseCase implements GetCurrentDayWeather.UseCase
         item.name === city
       ).seriesNumber
       : 'F-D0047-089';
-    this.fetcher.get(`https://opendata.cwb.gov.tw/api/v1/rest/datastore/${seriesNumber}?Authorization=CWB-FA978B40-46C9-479E-8875-9902059B75D0&locationName=${locationName}`, {
+    this.fetcher.get(`https://opendata.cwb.gov.tw/api/v1/rest/datastore/${seriesNumber}`, {
       onSuccess: result => {
         const currentDayDetails = LocationWeatherDataFactory.createCurrentDayDataFromNet(result.records.locations[0].location[0]);
 
@@ -41,6 +41,11 @@ export class GetCurrentDayWeatherUseCase implements GetCurrentDayWeather.UseCase
         });
       },
       onError: e => callbacks.onError(e),
+    }, {
+      params: {
+        Authorization: 'CWB-FA978B40-46C9-479E-8875-9902059B75D0',
+        locationName,
+      },
     });
   }
 }

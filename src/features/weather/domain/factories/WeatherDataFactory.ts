@@ -24,8 +24,17 @@ export class WeatherDataFactory {
       case WXType.CloudyTempRainyOrThunder:
         photoName = 'cloudy_temp_rainy_or_thunder.jpg'
         break;
+      case WXType.CloudCloudyTempRain:
+        photoName = 'cloud_cloudy_temp_rain.jpg'
+        break;
+      case WXType.CloudyAfternoonTempRainyOrThunder:
+        photoName = 'cloudy_afternoon_temp_rainy_or_thunder.jpg'
+        break;
       case WXType.TempRainyOrThunder:
         photoName = 'temp_rainy_or_thunder.jpg'
+        break;
+      case WXType.AfternoonTempRainyOrThunder:
+        photoName = 'afternoon_temp_rainy_or_thunder.jpg'
         break;
     }
     return '/img/weather/' + photoName;
@@ -52,8 +61,20 @@ export class WeatherDataFactory {
       case WXType.CloudyTempRainyOrThunder:
         iconName = WXIcons.CloudyTempRainyOrThunder
         break;
+      case WXType.CloudCloudyTempRain:
+        iconName = WXIcons.CloudCloudyTempRain
+        break;
+      case WXType.CloudTempRain:
+        iconName = WXIcons.CloudTempRain
+        break;
+      case WXType.CloudyAfternoonTempRainyOrThunder:
+        iconName = WXIcons.CloudyAfternoonTempRainyOrThunder
+        break;
       case WXType.TempRainyOrThunder:
         iconName = WXIcons.TempRainyOrThunder
+        break;
+      case WXType.AfternoonTempRainyOrThunder:
+        iconName = WXIcons.AfternoonTempRainyOrThunder
         break;
     }
     return '/img/weather/wx_icons/' + iconName + '.png';

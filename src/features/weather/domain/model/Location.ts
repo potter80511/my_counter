@@ -19,7 +19,8 @@ export type LocationValue =
   YilanLocationValue |
   TaipeiLocationValue |
   NewTaipeiLocationValue |
-  TaoyuanLocationValue;
+  TaoyuanLocationValue |
+  TaiNanValue;
 
 export enum TaiwanCities {
   Yilan = '宜蘭縣',
@@ -43,7 +44,7 @@ export enum TaiwanCities {
   Kinmen = '金門縣',
 };
 
-export enum YilanLocationValue {
+export enum YilanLocationValue { // 宜蘭
   YilanCity = '宜蘭市',
   LuoDong = '羅東鎮',
   Suao = '蘇澳鎮',
@@ -57,7 +58,7 @@ export enum YilanLocationValue {
   Datong = '大同鄉',
   NanAo = '南澳鄉',
 };
-export enum TaoyuanLocationValue {
+export enum TaoyuanLocationValue { // 桃園
   Zhongli = '中壢區',
   Pingzhen = '平鎮區',
   Longtan = '龍潭區',
@@ -72,7 +73,7 @@ export enum TaoyuanLocationValue {
   Dayuan = '大園區',
   Luzhu = '蘆竹區',
 };
-export enum TaipeiLocationValue {
+export enum TaipeiLocationValue { // 台北
   Zhongzheng = '中正區',
   Datong = '大同區',
   Zhongshan = '中山區',
@@ -86,7 +87,7 @@ export enum TaipeiLocationValue {
   Nangang = '南港區',
   Wenshan = '文山區',
 };
-export enum NewTaipeiLocationValue {
+export enum NewTaipeiLocationValue { // 新北
   Wanli = '萬里區',
   Jinshan = '金山區',
   Banqiao = '板橋區',
@@ -117,4 +118,42 @@ export enum NewTaipeiLocationValue {
   Sanzhi = '三芝區',
   Shimen = '石門區',
 };
-
+export enum TaiNanValue { // 台南
+  Annan = '安南區',
+  WestCentral = '中西區',
+  Anping = '安平區',
+  Eastern = '東區',
+  South = '南區',
+  North = '北區',
+  Baihe = '白河區',
+  Houbi = '後壁區',
+  Yanshuei = '鹽水區',
+  Xinying = '新營區',
+  Dongshan = '東山區',
+  Beimen = '北門區',
+  Liuying = '柳營區',
+  Xuejia = '學甲區',
+  Xiaying = '下營區',
+  Liujia = '六甲區',
+  Nanhua = '南化區',
+  Jiangjun = '將軍區',
+  Nanxi = '楠西區',
+  Madou = '麻豆區',
+  Guantian = '官田區',
+  Jiali = '佳里區',
+  Danei = '大內區',
+  Qigu = '七股區',
+  Yujing = '玉井區',
+  Shanhua = '善化區',
+  Westport = '西港區',
+  Shanshang = '山上區',
+  Anding = '安定區',
+  Xinshi = '新市區',
+  Zuozhen = '左鎮區',
+  Xinhua = '新化區',
+  Yongkang = '永康區',
+  Guiren = '歸仁區',
+  Guanmiao = '關廟區',
+  Longci = '龍崎區',
+  Rende = '仁德區',
+}
