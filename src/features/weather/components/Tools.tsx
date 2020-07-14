@@ -1,7 +1,10 @@
 import React from 'react';
 import '@styles/features/weather/Tools.scss';
 import { TemperatureType, SwitchButtonDataType } from 'src/features/weather/domain/model/ToolsTypes';
-import { LocationData } from '../domain/model/Location';
+import {
+  faPlus,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 
 type SwitchButtonProps = SwitchButtonDataType & {
@@ -62,7 +65,9 @@ const Tools = (props: ToolsProps) => {
       <Link href="/">
         <a className="home" >Johnny's App</a>
       </Link>
-      <button id="add-location" onClick={() => showCreateItemModal(true)}>+</button>
+      <button id="add-location" onClick={() => showCreateItemModal(true)}>
+        <FontAwesomeIcon icon={faPlus}/>
+      </button>
     </div>
   );
 };
