@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import OthersDataItem from 'src/features/weather/components/locations/OthersDataItem';
 import WeekItem from 'src/features/weather/components/locations/WeekItem';
 import { CurrentDayDetails, WeekTemperature } from 'src/features/weather/domain/model/Weather';
@@ -59,11 +59,16 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
     setOpacityValue(opacity);
     if (scrollTop >= fixedDistance) {
       onSetTodayEveryTimeFixed(true)
-      onSetTodayEveryTimeHeight(todayEveryTimeRef.current.clientHeight);
     } else {
       onSetTodayEveryTimeFixed(false)
     };
   };
+
+  useEffect(() => {
+    if (todayEveryTimeRef.current && todayEveryTimeHeight === 0) {
+      onSetTodayEveryTimeHeight(todayEveryTimeRef.current.clientHeight);
+    }
+  });
 
   const onBackToHome = () => {
     router.push('/');
@@ -132,17 +137,30 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
     >
       <div className="location-details">
         <div className="bg"></div>
-        <div className="content" onScroll={onWeekScroll} ref={contentRef}>
-          <div className="location-wx" style={{top: (translateD + 15) + 'px'}}>
+        {everyTimeFixed && (
+          <div className="location-wx-fixed location-wx-common">
             <h2>{locationData.locationName}</h2>
             <span className="wx">{locationData.wX}</span>
-            <span
-              className="current-temperature"
-              style={{ opacity: opacityValue }}
+            <div
+              className="today-every-time"
             >
-              {TemperatureHelper.CalculateTemperature(locationData.currentTemperature, temperatureType)}
-            </span>
+              {everyTimeItem}
+            </div>
           </div>
+        )}
+        <div className="content" onScroll={onWeekScroll} ref={contentRef}>
+          {!everyTimeFixed && (
+            <div className="location-wx location-wx-common" style={{top: (translateD + 15) + 'px'}}>
+              <h2>{locationData.locationName}</h2>
+              <span className="wx">{locationData.wX}</span>
+              <span
+                className="current-temperature"
+                style={{ opacity: opacityValue }}
+              >
+                {TemperatureHelper.CalculateTemperature(locationData.currentTemperature, temperatureType)}
+              </span>
+            </div>
+          )}
           <div className="more" style={{ paddingTop: morePaddingTop }}
           >
             <div className="today" style={{ opacity: opacityValue }}>
@@ -165,6 +183,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
               style={{
                 position: todayEveryTimePosition,
                 top: todayEveryTimeTop,
+                display: everyTimeFixed ? 'none' : 'flex',
               }}
             >
               {everyTimeItem}

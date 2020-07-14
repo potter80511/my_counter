@@ -82,6 +82,62 @@ $border: 1px solid rgba(255, 255, 255, .3);
         background-color: rgba(0, 0, 0, .3);
         z-index: 1;
       }
+      .today-every-time, .current-description {
+        border-top: $border;
+        border-bottom: $border;
+      }
+      .today-every-time {
+        padding: 8px 0;
+        width: 100%;
+        display: flex;
+        transition: all .3s;
+        overflow: scroll;
+        .item {
+          min-width: 60px;
+          span {
+            display: block;
+            text-align: center;
+          }
+          .wx {
+            padding: 10px 0;
+            img {
+              width: auto;
+              height: 16px;
+            }
+          }
+        }
+      }
+      .location-wx-common {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: -15px;
+        padding-top: 12px;
+        h2, span {
+          text-align: center;
+        }
+        h2 {
+          margin: 0;
+          font-size: 26px;
+          font-weight: normal;
+        }
+        .wx {
+          font-size: 15px;
+        }
+        .current-temperature {
+          font-size: 74px;
+          font-weight: lighter;
+        }
+      }
+      .location-wx-fixed {
+        position: absolute;
+        top: 15px;
+        z-index: 100000;
+        .today-every-time {
+          margin-top: 30px;
+        }
+      }
       .content {
         z-index: 10;
         position: fixed;
@@ -91,29 +147,9 @@ $border: 1px solid rgba(255, 255, 255, .3);
         .location-wx {
           position: fixed;
           top: 0;
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          flex-direction: column;
           transition: all .3s;
-          margin-top: -15px;
-          padding-top: 12px;
           transform: translate3d(0,0,0);
-          h2, span {
-            text-align: center;
-          }
-          h2 {
-            margin: 0;
-            font-size: 26px;
-            font-weight: normal;
-          }
-          .wx {
-            font-size: 15px;
-          }
-          .current-temperature {
-            font-size: 74px;
-            font-weight: lighter;
-          }
+          
         }
         .more {
           @media(max-width: 767px) {
@@ -138,31 +174,6 @@ $border: 1px solid rgba(255, 255, 255, .3);
             }
             .min-t {
               margin-left: 20px;
-            }
-          }
-          .today-every-time, .current-description {
-            border-top: $border;
-            border-bottom: $border;
-          }
-          .today-every-time {
-            padding: 8px 0;
-            width: 100%;
-            display: flex;
-            transition: all .3s;
-            overflow: scroll;
-            .item {
-              min-width: 60px;
-              span {
-                display: block;
-                text-align: center;
-              }
-              .wx {
-                padding: 10px 0;
-                img {
-                  width: auto;
-                  height: 16px;
-                }
-              }
             }
           }
           .week-weather {

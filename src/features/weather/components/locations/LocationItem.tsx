@@ -62,7 +62,7 @@ const LocationItem = (props: LocationItemProps) => {
   const [everyTimeFixed, setTodayEveryTimeFixed] = useState<boolean>(false);
   const [todayEveryTimeHeight, setTodayEveryTimeHeight] = useState<number>(0);
 
-  const morePaddingTop = everyTimeFixed && spread ? 100 + todayEveryTimeHeight : 15;
+  const morePaddingTop = everyTimeFixed && spread ? 103 + todayEveryTimeHeight : 15;
 
   useEffect(() => {
     setViewHeight(window.innerHeight);
