@@ -151,7 +151,7 @@ $border: 1px solid rgba(255, 255, 255, .3);
           top: 0;
           transition: all .3s;
           transform: translate3d(0,0,0);
-          
+
         }
         .more {
           @media(max-width: 767px) {
@@ -209,6 +209,14 @@ $border: 1px solid rgba(255, 255, 255, .3);
               padding: 10px 0;
               width: 50%;
               border-bottom: $border;
+              &:last-child {
+                border-bottom: none;
+              }
+              @media (min-width: 576px) {
+                &:nth-last-child(2) {
+                  border-bottom: none;
+                }
+              }
               @media (max-width: 575px) {
                 width: 100%;
               }
@@ -253,7 +261,7 @@ $border: 1px solid rgba(255, 255, 255, .3);
         }
         .close {
           padding: 0;
-          
+
         }
       }
     }

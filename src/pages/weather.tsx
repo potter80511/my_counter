@@ -1,7 +1,4 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { store } from 'src/Store';
-
 import Layout from 'src/components/Layout';
 import WeatherContainer from 'src/features/weather/WeatherContainer';
 import '@styles/features/weather/weather.scss';
