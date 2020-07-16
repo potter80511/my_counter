@@ -2,6 +2,7 @@ import React from 'react';
 import App from 'next/app';
 import { Provider } from 'react-redux';
 import { store } from 'src/Store';
+import '@styles/theme.scss';
 
 // import '@styles/theme.scss';
 // import '@styles/transition_group.scss';
