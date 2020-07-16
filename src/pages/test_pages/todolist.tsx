@@ -18,14 +18,12 @@ const meta = {
 
 const TodoListView = () => {
   return (
-    <Provider store={store}>
-      <Layout
-        meta={meta}
-        className="flex-center"
-      >
-        <TodoListContainer />
-      </Layout>
-    </Provider>
+    <Layout
+      meta={meta}
+      className="flex-center"
+    >
+      <TodoListContainer />
+    </Layout>
   );
 };
 

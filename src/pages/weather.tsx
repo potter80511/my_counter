@@ -20,15 +20,13 @@ const meta = {
 
 const weather = () => {
   return (
-    <Provider store={store}>
-      <Layout
-        id={'weather'}
-        meta={meta}
-        className="flex-center"
-      >
-        <WeatherContainer/>
-      </Layout>
-    </Provider>
+    <Layout
+      id={'weather'}
+      meta={meta}
+      className="flex-center"
+    >
+      <WeatherContainer/>
+    </Layout>
   );
 };
 
