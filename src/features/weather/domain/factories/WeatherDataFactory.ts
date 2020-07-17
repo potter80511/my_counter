@@ -46,6 +46,9 @@ export class WeatherDataFactory {
       case WXType.OCCASIONAL_AFTERNOON_THUNDERSHOWERS:
         photoName = WXBgs.CLOUD_WITH_THUNDERSTORMS
         break;
+      case WXType.CLEAR_WITH_OCCASIONAL_AFTERNOON_THUNDERSHOWERS:
+        photoName = WXBgs.MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS
+        break;
     }
     return '/img/weather/' + photoName + '.jpg';
   }
@@ -90,6 +93,9 @@ export class WeatherDataFactory {
         iconName = WXIcons.Cloud_Thunder_Shower
         break;
       case WXType.OCCASIONAL_AFTERNOON_THUNDERSHOWERS:
+        iconName = WXIcons.Thunder_Storm_Shower_Afternoon
+        break;
+      case WXType.CLEAR_WITH_OCCASIONAL_AFTERNOON_THUNDERSHOWERS:
         iconName = WXIcons.Thunder_Storm_Shower_Afternoon
         break;
     }

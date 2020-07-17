@@ -36,6 +36,7 @@ export class WeekWeatherDataFactory {
         const timeDate = moment(time.startTime).locale('zh-tw').format('yyyy-MM-DD')
         return timeDate === date
       });
+      // console.log(filterDay)
       // 轉成「星期幾」
       const dayName = moment(date).locale('zh-tw').format('dddd')
       return {

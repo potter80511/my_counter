@@ -21,6 +21,7 @@ export class GetWeekWeatherUseCase implements GetWeekWeather.UseCase {
       locationName,
       city,
     } = inputData;
+    // console.log(locationName)
 
     const seriesNumber = locationType === WeatherLocationType.Location
       ? weekCitiesSeriesNumberData.find(item =>
