@@ -18,7 +18,10 @@ export class LocationWeatherDataFactory {
     const newLocationName = locationName.search('臺') != -1 ? locationName.replace('臺', '台') : locationName;
 
     const wX = this.getCurrentWx(weatherElement);
-    const wXIcon = WeatherDataFactory.createWXIcon(wX);
+
+    const wXNight = this.getCurrentWxNight(weatherElement);
+    const wXIcon = WeatherDataFactory.createWXIcon(wX, wXNight);
+    
     const currentTemperature = this.getLocationT(weatherElement);
     const minT = this.getExtremeT(weatherElement, ElementName.MinT);
     const maxT = this.getExtremeT(weatherElement, ElementName.MaxT);
@@ -44,6 +47,15 @@ export class LocationWeatherDataFactory {
     if (wxData) {
       const wx = wxData.time[0].elementValue[0].value as WXType
       return wx;
+    }
+  }
+
+  static getCurrentWxNight(weatherElement: WeatherElementItem[]): boolean {
+    const wxData = weatherElement.find(item => item.elementName === ElementName.Wx);
+    if (wxData) {
+      const wxHour = Number(moment(wxData.time[0].startTime).format('HH'));
+      const night = wxHour === 21 || wxHour === 0 || wxHour === 3
+      return night;
     }
   }
 
