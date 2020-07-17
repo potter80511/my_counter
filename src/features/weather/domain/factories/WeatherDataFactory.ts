@@ -1,83 +1,93 @@
 import { WXType } from 'src/features/weather/domain/model/Weather';
 import { WXIcons } from 'src/features/weather/domain/model/WXIcons';
+import { WXBgs } from 'src/features/weather/domain/model/WXBgs';
 import moment, { Moment } from 'moment';
 
 export class WeatherDataFactory {
   static createBackground(wX: WXType): string {
     let photoName = '';
     switch (wX) {
-      case WXType.Sunny:
-        photoName = 'sunny.jpg'
+      case WXType.CLEAR:
+        photoName = WXBgs.CLEAR
         break;
-      case WXType.SunnyCloudy:
-        photoName = 'sunny_cloudy.jpg'
+      case WXType.MOSTLY_CLEAR:
+        photoName = WXBgs.MOSTLY_CLEAR
         break;
-      case WXType.StrongCloudy:
-        photoName = 'strong_cloudy.jpg'
+      case WXType.PARTLY_CLEAR:
+        photoName = WXBgs.PARTLY_CLEAR
         break;
-      case WXType.Cloudy:
-        photoName = 'cloudy.jpg'
+      case WXType.CLOUDY:
+        photoName = WXBgs.CLOUDY
         break;
-      case WXType.CloudySunny:
-        photoName = 'cloudy_sunny.jpg'
+      case WXType.PARTLY_CLOUDY:
+        photoName = WXBgs.PARTLY_CLOUDY
         break;
-      case WXType.CloudyTempRainyOrThunder:
-        photoName = 'cloudy_temp_rainy_or_thunder.jpg'
+      case WXType.MOSTLY_CLOUDY:
+        photoName = WXBgs.MOSTLY_CLOUDY
         break;
-      case WXType.CloudCloudyTempRain:
-        photoName = 'cloud_cloudy_temp_rain.jpg'
+      case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS_OR_THUNDERSHOWERS:
+        photoName = WXBgs.PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS_OR_THUNDERSHOWERS
         break;
-      case WXType.CloudyAfternoonTempRainyOrThunder:
-        photoName = 'cloudy_afternoon_temp_rainy_or_thunder.jpg'
+      case WXType.MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS:
+        photoName = WXBgs.MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS
         break;
-      case WXType.TempRainyOrThunder:
-        photoName = 'temp_rainy_or_thunder.jpg'
+      case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS:
+        photoName = WXBgs.MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS
         break;
-      case WXType.AfternoonTempRainyOrThunder:
-        photoName = 'afternoon_temp_rainy_or_thunder.jpg'
+      case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_AFTERNOON_THUNDERSHOWERS:
+        photoName = WXBgs.CLOUD_WITH_THUNDERSTORMS
+        break;
+      case WXType.OCCASIONAL_SHOWERS_OR_THUNDERSTORMS:
+        photoName = WXBgs.CLOUD_WITH_THUNDERSTORMS
+        break;
+      case WXType.OCCASIONAL_AFTERNOON_THUNDERSHOWERS:
+        photoName = WXBgs.CLOUD_WITH_THUNDERSTORMS
         break;
     }
-    return '/img/weather/' + photoName;
+    return '/img/weather/' + photoName + '.jpg';
   }
 
   static createWXIcon(wx: WXType): string {
     let iconName = '';
     switch (wx) {
-      case WXType.Sunny:
-        iconName = WXIcons.Sunny
+      case WXType.CLEAR:
+        iconName = WXIcons.Clear_Sunny
         break;
-      case WXType.SunnyCloudy:
-        iconName = WXIcons.SunnyCloudy
+      case WXType.MOSTLY_CLEAR:
+        iconName = WXIcons.Mostly_Clear
         break;
-      case WXType.StrongCloudy:
-        iconName = WXIcons.StrongCloudy
+      case WXType.PARTLY_CLEAR:
+        iconName = WXIcons.Partly_Clear
         break;
-      case WXType.Cloudy:
-        iconName = WXIcons.Cloudy
+      case WXType.CLOUDY:
+        iconName = WXIcons.CLOUDY
         break;
-      case WXType.CloudySunny:
-        iconName = WXIcons.CloudySunny
+      case WXType.PARTLY_CLOUDY:
+        iconName = WXIcons.CLOUD
         break;
-      case WXType.CloudyTempRainyOrThunder:
-        iconName = WXIcons.CloudyTempRainyOrThunder
+      case WXType.MOSTLY_CLOUDY:
+        iconName = WXIcons.Two_White_Cloud
         break;
-      case WXType.CloudCloudyTempRain:
-        iconName = WXIcons.CloudCloudyTempRain
+      case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS_OR_THUNDERSHOWERS:
+        iconName = WXIcons.Cloud_Thunder_Shower
         break;
-      case WXType.CloudTempRain:
-        iconName = WXIcons.CloudTempRain
+      case WXType.MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS:
+        iconName = WXIcons.Cloudy_Shower
         break;
-      case WXType.CloudyAfternoonTempRainyOrThunder:
-        iconName = WXIcons.CloudyAfternoonTempRainyOrThunder
+      case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS:
+        iconName = WXIcons.Cloud_Shower
         break;
-      case WXType.TempRainyOrThunder:
-        iconName = WXIcons.TempRainyOrThunder
+      case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_AFTERNOON_THUNDERSHOWERS:
+        iconName = WXIcons.Cloudy_Thunder_Storm_Shower_Afternoon
         break;
-      case WXType.AfternoonTempRainyOrThunder:
-        iconName = WXIcons.AfternoonTempRainyOrThunder
+      case WXType.OCCASIONAL_SHOWERS_OR_THUNDERSTORMS:
+        iconName = WXIcons.Cloud_Thunder_Shower
+        break;
+      case WXType.OCCASIONAL_AFTERNOON_THUNDERSHOWERS:
+        iconName = WXIcons.Thunder_Storm_Shower_Afternoon
         break;
     }
-    return '/img/weather/wx_icons/' + iconName + '.png';
+    return '/img/weather/wx_icons/' + iconName + '.svg';
   }
 
   static createTemperature(t: string, noUnit?: boolean): string {
