@@ -44,11 +44,14 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
   } = props;
 
   const [opacityValue, setOpacityValue] = useState<number>(1);
+  const [moreHeight, setMoreHeight] = useState<number>(0);
+  const [oriMoreHeight, setOriMoreHeight] = useState<number>(0);
   const fixedDistance = 130 - 7 - 20;
   const opacityDistance = 100;
 
   const contentRef = useRef(null);
   const todayEveryTimeRef = useRef(null);
+  const moreRef = useRef(null);
 
   const onWeekScroll = () => {
     const scrollTop = contentRef.current.scrollTop;
@@ -66,12 +69,17 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
     if (todayEveryTimeRef.current && todayEveryTimeHeight === 0) {
       onSetTodayEveryTimeHeight(todayEveryTimeRef.current.clientHeight);
     }
+    setMoreHeight(oriMoreHeight + 143)
   });
+  useEffect(() => {
+    if (moreRef.current && weekTemperatureArray.length > 0 && oriMoreHeight === 0) {
+      setOriMoreHeight(moreRef.current.clientHeight)
+    }
+  }, [weekTemperatureArray]);
 
   const todayEveryTimePosition = everyTimeFixed ? 'fixed' : 'unset';
   const todayEveryTimeTop = everyTimeFixed ? ((translateD + todayEveryTimeHeight + 3) + 'px') : 'auto';
   const morePaddingTop = everyTimeFixed ? 63 : 143;
-  // const moreHeight = 143 + 1055 + 45 + 98 + 20;
 
   const everyTimeItem = locationData.todayEveryHourArray.map((item, index) => {
     return (
@@ -155,7 +163,13 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
               </span>
             </div>
           )}
-          <div className="more" style={{ paddingTop: morePaddingTop }}
+          <div
+            className="more"
+            ref={moreRef}
+            style={{
+              paddingTop: morePaddingTop,
+              height: oriMoreHeight > 0 ? moreHeight : 'auto',
+            }}
           >
             <div className="today" style={{ opacity: opacityValue }}>
               <div className="day">
