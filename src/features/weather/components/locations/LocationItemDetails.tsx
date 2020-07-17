@@ -149,7 +149,10 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
         {everyTimeFixed && (
           <div className="location-wx-fixed location-wx-common">
             <h2>{locationData.locationName}</h2>
-            <span className="wx">{locationData.wX}</span>
+            <span className="wx flex-center">
+              <img src={locationData.wXIcon} />
+              <span>{locationData.wX}</span>
+            </span>
             <div
               className="today-every-time"
             >
@@ -161,7 +164,10 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
           {!everyTimeFixed && (
             <div className="location-wx location-wx-common" style={{top: (translateD + 15) + 'px'}}>
               <h2>{locationData.locationName}</h2>
-              <span className="wx">{locationData.wX}</span>
+              <span className="wx flex-center">
+                <img src={locationData.wXIcon} />
+                <span>{locationData.wX}</span>
+              </span>
               <span
                 className="current-temperature"
                 style={{ opacity: opacityValue }}

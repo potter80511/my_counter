@@ -126,6 +126,12 @@ $border: 1px solid rgba(255, 255, 255, .3);
         }
         .wx {
           font-size: 15px;
+          img {
+            height: 15px;
+            width: auto;
+            display: inline-block;
+            margin-right: 5px;
+          }
         }
         .current-temperature {
           font-size: 74px;

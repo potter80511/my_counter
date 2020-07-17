@@ -18,6 +18,7 @@ export class LocationWeatherDataFactory {
     const newLocationName = locationName.search('臺') != -1 ? locationName.replace('臺', '台') : locationName;
 
     const wX = this.getCurrentWx(weatherElement);
+    const wXIcon = WeatherDataFactory.createWXIcon(wX);
     const currentTemperature = this.getLocationT(weatherElement);
     const minT = this.getExtremeT(weatherElement, ElementName.MinT);
     const maxT = this.getExtremeT(weatherElement, ElementName.MaxT);
@@ -28,6 +29,7 @@ export class LocationWeatherDataFactory {
     return {
       locationName: newLocationName,
       wX,
+      wXIcon,
       currentTemperature,
       minT,
       maxT,
