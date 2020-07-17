@@ -4,6 +4,10 @@ import WeekItem from 'src/features/weather/components/locations/WeekItem';
 import { CurrentDayDetails, WeekTemperature } from 'src/features/weather/domain/model/Weather';
 import { TemperatureHelper } from 'src/features/weather/helper';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
+import {
+  locationsDataSelector,
+} from 'src/features/weather/selectors';
+import { useSelector } from 'react-redux';
 import Link from 'next/link';
 
 import {
@@ -53,6 +57,9 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
   const todayEveryTimeRef = useRef(null);
   const moreRef = useRef(null);
 
+  const locationsData = useSelector(locationsDataSelector);
+  const locationsLength = locationsData.length;
+
   const onWeekScroll = () => {
     const scrollTop = contentRef.current.scrollTop;
     const opacityRate = 1 - (scrollTop / opacityDistance);
@@ -69,7 +76,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
     if (todayEveryTimeRef.current && todayEveryTimeHeight === 0) {
       onSetTodayEveryTimeHeight(todayEveryTimeRef.current.clientHeight);
     }
-    setMoreHeight(oriMoreHeight + 143)
+    setMoreHeight(oriMoreHeight + 40 + (15 * (locationsLength - 1)) + (81 * (locationsLength - 1)))
   });
   useEffect(() => {
     if (moreRef.current && weekTemperatureArray.length > 0 && oriMoreHeight === 0) {
