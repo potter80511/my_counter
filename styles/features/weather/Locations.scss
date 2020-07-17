@@ -47,7 +47,7 @@ $border: 1px solid rgba(255, 255, 255, .3);
       position: relative;
       * {
         display: block;
-        text-shadow: 0 0 5px rgba(0, 0, 8px, .3);
+        text-shadow: 0 0 8px rgba(0, 0, 0, .3);
       }
       .flex-left {
         .location-name {
@@ -151,12 +151,9 @@ $border: 1px solid rgba(255, 255, 255, .3);
           top: 0;
           transition: all .3s;
           transform: translate3d(0,0,0);
-          
+
         }
         .more {
-          @media(max-width: 767px) {
-            height: 1361px;
-          }
           .today {
             padding: 10px 15px;
             display: flex;
@@ -209,6 +206,14 @@ $border: 1px solid rgba(255, 255, 255, .3);
               padding: 10px 0;
               width: 50%;
               border-bottom: $border;
+              &:last-child {
+                border-bottom: none;
+              }
+              @media (min-width: 576px) {
+                &:nth-last-child(2) {
+                  border-bottom: none;
+                }
+              }
               @media (max-width: 575px) {
                 width: 100%;
               }
@@ -253,7 +258,7 @@ $border: 1px solid rgba(255, 255, 255, .3);
         }
         .close {
           padding: 0;
-          
+
         }
       }
     }

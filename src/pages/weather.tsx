@@ -1,7 +1,4 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { store } from 'src/Store';
-
 import Layout from 'src/components/Layout';
 import WeatherContainer from 'src/features/weather/WeatherContainer';
 import '@styles/features/weather/weather.scss';
@@ -20,15 +17,13 @@ const meta = {
 
 const weather = () => {
   return (
-    <Provider store={store}>
-      <Layout
-        id={'weather'}
-        meta={meta}
-        className="flex-center"
-      >
-        <WeatherContainer/>
-      </Layout>
-    </Provider>
+    <Layout
+      id={'weather'}
+      meta={meta}
+      className="flex-center"
+    >
+      <WeatherContainer/>
+    </Layout>
   );
 };
 

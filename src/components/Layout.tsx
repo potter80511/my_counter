@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Meta from './Meta';
 import { MetaType } from './Meta';
-import '@styles/theme.scss';
 
 type LayoutProps = {
   id?: string;
