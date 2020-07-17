@@ -131,6 +131,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
     <WeekItem
       key={'week-item-' + index}
       dayName={item.dayName}
+      wX={item.wX}
       wXIcon={item.wXIcon}
       minT={TemperatureHelper.CalculateTemperature(item.minT, temperatureType)}
       maxT={TemperatureHelper.CalculateTemperature(item.maxT, temperatureType)}

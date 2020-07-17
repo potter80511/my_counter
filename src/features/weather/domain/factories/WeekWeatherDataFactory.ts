@@ -6,6 +6,7 @@ import { time } from "console";
 
 interface WXArray {
   dayName: string;
+  wX: WXType;
   wXIcon: string;
 };
 export class WeekWeatherDataFactory {
@@ -41,6 +42,7 @@ export class WeekWeatherDataFactory {
       const dayName = moment(date).locale('zh-tw').format('dddd')
       return {
         dayName: dayName,
+        wX: filterDay[0].elementValue[0].value as WXType,
         wXIcon: WeatherDataFactory.createWXIcon(filterDay[0].elementValue[0].value as WXType)
       }
     });
