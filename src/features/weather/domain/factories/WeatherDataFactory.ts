@@ -53,11 +53,11 @@ export class WeatherDataFactory {
     return '/img/weather/' + photoName + '.jpg';
   }
 
-  static createWXIcon(wx: WXType): string {
+  static createWXIcon(wx: WXType, night?: boolean): string {
     let iconName = '';
     switch (wx) {
       case WXType.CLEAR:
-        iconName = WXIcons.Clear_Sunny
+        iconName = night ? WXIcons.Clear_Night : WXIcons.Clear_Sunny;
         break;
       case WXType.MOSTLY_CLEAR:
         iconName = WXIcons.Mostly_Clear

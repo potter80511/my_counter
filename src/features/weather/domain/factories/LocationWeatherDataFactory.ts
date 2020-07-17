@@ -93,7 +93,10 @@ export class LocationWeatherDataFactory {
     if (wxData) {
       wxArray = wxData.time.map(item => {
         // console.log(item)
-        return WeatherDataFactory.createWXIcon(item.elementValue[0].value as WXType)});
+        const hour = Number(moment(item.startTime).format('HH'));
+        const night = hour === 21 || hour === 0 || hour === 3 ? true : false;
+        return WeatherDataFactory.createWXIcon(item.elementValue[0].value as WXType, night)
+      });
     }
 
     const tData = weatherElement.find(item => item.elementName === ElementName.T);

@@ -1,5 +1,6 @@
 export enum WXIcons {
   Clear_Sunny = 'clear_sunny',
+  Clear_Night = 'clear_night',
   Mostly_Clear = 'mostly_clear',
   Partly_Clear = 'partly_clear',
   Sunny_Big_Cloud = 'sunny_big_cloud',
