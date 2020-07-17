@@ -12,7 +12,7 @@ export enum WXIcons {
   Cloud_Shower = 'cloud_shower',
   Thunder_Storm_Shower_Afternoon = 'thunder_storm_shower_afternoon',
   Cloudy_Thunder_Storm_Shower_Afternoon = 'cloudy_thunder_storm_shower_afternoon',
-  // PARTLY_CLOUDY_WITH_OCCASIONAL_AFTERNOON_THUNDERSHOWERS = '',
+  Partly_Cloud_Shower = 'partly_cloud_shower',
   // OCCASIONAL_SHOWERS_OR_THUNDERSTORMS = '',
   // OCCASIONAL_AFTERNOON_THUNDERSHOWERS = '',
 };

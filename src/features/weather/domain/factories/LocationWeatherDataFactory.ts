@@ -5,7 +5,6 @@ import {
   WeatherDataFactory,
 } from 'src/features/weather/domain/factories/WeatherDataFactory';
 import moment from 'moment';
-import { WXIcons } from 'src/features/weather/domain/model/WXIcons';
 import { FindExtremeNumber } from 'src/features/weather/helper';
 
 export class LocationWeatherDataFactory {
@@ -14,6 +13,7 @@ export class LocationWeatherDataFactory {
       locationName,
       weatherElement,
     } = data;
+    // console.log(locationName)
 
     const newLocationName = locationName.search('臺') != -1 ? locationName.replace('臺', '台') : locationName;
 
@@ -89,7 +89,9 @@ export class LocationWeatherDataFactory {
     let wxArray = [];
     const wxData = weatherElement.find(item => item.elementName === ElementName.Wx);
     if (wxData) {
-      wxArray = wxData.time.map(item => WeatherDataFactory.createWXIcon(item.elementValue[0].value as WXType));
+      wxArray = wxData.time.map(item => {
+        // console.log(item)
+        return WeatherDataFactory.createWXIcon(item.elementValue[0].value as WXType)});
     }
 
     const tData = weatherElement.find(item => item.elementName === ElementName.T);

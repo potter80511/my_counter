@@ -16,22 +16,25 @@ export class WeatherDataFactory {
       case WXType.PARTLY_CLEAR:
         photoName = WXBgs.PARTLY_CLEAR
         break;
-      case WXType.CLOUDY:
-        photoName = WXBgs.CLOUDY
-        break;
       case WXType.PARTLY_CLOUDY:
         photoName = WXBgs.PARTLY_CLOUDY
         break;
       case WXType.MOSTLY_CLOUDY:
         photoName = WXBgs.MOSTLY_CLOUDY
         break;
+      case WXType.CLOUDY:
+        photoName = WXBgs.CLOUDY
+        break;
+      case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS:
+        photoName = WXBgs.MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS
+        break;
+      case WXType.OCCASIONAL_SHOWERS:
+        photoName = WXBgs.MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS
+        break;
       case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS_OR_THUNDERSHOWERS:
         photoName = WXBgs.PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS_OR_THUNDERSHOWERS
         break;
       case WXType.MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS:
-        photoName = WXBgs.MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS
-        break;
-      case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS:
         photoName = WXBgs.MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS
         break;
       case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_AFTERNOON_THUNDERSHOWERS:
@@ -59,23 +62,26 @@ export class WeatherDataFactory {
       case WXType.PARTLY_CLEAR:
         iconName = WXIcons.Partly_Clear
         break;
-      case WXType.CLOUDY:
-        iconName = WXIcons.CLOUDY
-        break;
       case WXType.PARTLY_CLOUDY:
         iconName = WXIcons.CLOUD
         break;
       case WXType.MOSTLY_CLOUDY:
         iconName = WXIcons.Two_White_Cloud
         break;
+      case WXType.CLOUDY:
+        iconName = WXIcons.CLOUDY
+        break;
+      case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS:
+        iconName = WXIcons.Partly_Cloud_Shower
+        break;
+      case WXType.OCCASIONAL_SHOWERS:
+        iconName = WXIcons.Cloud_Shower
+        break;
       case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS_OR_THUNDERSHOWERS:
         iconName = WXIcons.Cloud_Thunder_Shower
         break;
       case WXType.MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS:
         iconName = WXIcons.Cloudy_Shower
-        break;
-      case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS:
-        iconName = WXIcons.Cloud_Shower
         break;
       case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_AFTERNOON_THUNDERSHOWERS:
         iconName = WXIcons.Cloudy_Thunder_Storm_Shower_Afternoon
