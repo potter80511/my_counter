@@ -44,7 +44,7 @@ export class WeatherDataFactory {
         photoName = WXBgs.CLOUD_WITH_THUNDERSTORMS
         break;
       case WXType.OCCASIONAL_AFTERNOON_THUNDERSHOWERS:
-        photoName = WXBgs.CLOUD_WITH_THUNDERSTORMS
+        photoName = WXBgs.Temp_Rain
         break;
       case WXType.CLEAR_WITH_OCCASIONAL_AFTERNOON_THUNDERSHOWERS:
         photoName = WXBgs.MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS
