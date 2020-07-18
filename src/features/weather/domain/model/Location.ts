@@ -19,6 +19,7 @@ export type LocationValue =
   YilanLocationValue |
   TaoyuanLocationValue |
   HsinchuLocationValue |
+  ChiayiLocationValue |
   TaipeiLocationValue |
   NewTaipeiLocationValue |
   TaiNanValue;
@@ -88,6 +89,26 @@ export enum HsinchuLocationValue { // 新竹
   Beipu = '北埔鄉',
   Emei = '峨眉鄉',
   Wufeng = '五峰鄉',
+};
+export enum ChiayiLocationValue { // 嘉義
+  Dalin = '大林鎮',
+  Xikou = '溪口鄉',
+  Alishan = '阿里山鄉',
+  Meishan = '梅山鄉',
+  Xingang = '新港鄉',
+  Minxiong = '民雄鄉',
+  Liujiao = '六腳鄉',
+  Zhuqi = '竹崎鄉',
+  Dongshi = '東石鄉',
+  Taibao = '太保市',
+  Fanlu = '番路鄉',
+  Puzishi = '朴子市',
+  Shuishang = '水上鄉',
+  Zhongpu = '中埔鄉',
+  Budai = '布袋鎮',
+  Lucao = '鹿草鄉',
+  Yizhu = '義竹鄉',
+  Dapu = '大埔鄉',
 };
 export enum TaipeiLocationValue { // 台北
   Zhongzheng = '中正區',
