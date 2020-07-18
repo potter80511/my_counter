@@ -20,6 +20,7 @@ export type LocationValue =
   TaoyuanLocationValue |
   HsinchuLocationValue |
   ChiayiLocationValue |
+  KeelungLocationValue |
   TaipeiLocationValue |
   NewTaipeiLocationValue |
   TaiNanValue;
@@ -109,6 +110,15 @@ export enum ChiayiLocationValue { // 嘉義
   Lucao = '鹿草鄉',
   Yizhu = '義竹鄉',
   Dapu = '大埔鄉',
+};
+export enum KeelungLocationValue { // 基隆
+  Anle = '安樂區',
+  Zhongshan = '中山區',
+  Zhongzheng = '中正區',
+  Qidu = '七堵區',
+  Xinyi = '信義區',
+  RenAi = '仁愛區',
+  Nuannuan = '暖暖區',
 };
 export enum TaipeiLocationValue { // 台北
   Zhongzheng = '中正區',
