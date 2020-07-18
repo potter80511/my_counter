@@ -96,7 +96,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
       >
         <span className="hour">{item.hourName}</span>
         <span className="wx">
-          <img src={item.wXIcon} height="16" />
+          <img src={item.wXIcon} height="16" alt={item.wX} />
         </span>
         <span className="t">{TemperatureHelper.CalculateTemperature(item.temperature, temperatureType)}</span>
       </div>

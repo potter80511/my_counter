@@ -19,6 +19,7 @@ export enum WXType {
 
 export interface TodayEveryHour {
   hourName: string;
+  wX: WXType;
   wXIcon: string;
   temperature: string;
 }
