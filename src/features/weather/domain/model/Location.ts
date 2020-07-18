@@ -23,6 +23,7 @@ export type LocationValue =
   KeelungLocationValue |
   TaipeiLocationValue |
   NewTaipeiLocationValue |
+  TaichungLocationValue |
   TaiNanValue;
 
 export enum TaiwanCities {
@@ -164,6 +165,37 @@ export enum NewTaipeiLocationValue { // 新北
   Tamsui = '淡水區',
   Sanzhi = '三芝區',
   Shimen = '石門區',
+};
+export enum TaichungLocationValue { // 台中
+  Beitun = '北屯區',
+  Xitun = '西屯區',
+  North = '北區',
+  Nantun = '南屯區',
+  Western = '西區',
+  East = '東區',
+  Central = '中區',
+  South = '南區',
+  Heping = '和平區',
+  Dajia = '大甲區',
+  Daan = '大安區',
+  Waipu = '外埔區',
+  Houli = '后里區',
+  Qingshui = '清水區',
+  Dongshi = '東勢區',
+  Shengang = '神岡區',
+  Longjing = '龍井區',
+  Shigang = '石岡區',
+  Fengyuan = '豐原區',
+  Wuqi = '梧棲區',
+  Xinshe = '新社區',
+  Shalu = '沙鹿區',
+  Daya = '大雅區',
+  Tanzi = '潭子區',
+  Dadu = '大肚區',
+  Taiping = '太平區',
+  Uri = '烏日區',
+  Dali = '大里區',
+  Wufeng = '霧峰區',
 };
 export enum TaiNanValue { // 台南
   Annan = '安南區',
