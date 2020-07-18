@@ -1,0 +1,106 @@
+.show-list-enter {
+  opacity: 0;
+  transform: translateX(-57px);
+}
+.show-list-enter-active {
+  opacity: 1;
+  transform: translateX(0px);
+  transition: all .3s;
+}
+.show-list-exit {
+  opacity: 1;
+  transform: translateX(0px);
+}
+.show-list-exit-active {
+  opacity: 0;
+  transform: translateX(-57px);
+  transition: all .3s;
+}
+
+#mobile-menu {
+  .menu-list-bg {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,.5);
+  }
+  .menu-bars {
+    padding: 0;
+    position: fixed;
+    right: 15px;
+    bottom: 10%;
+    z-index: 1;
+    background: #333;
+    border-radius: 100em;
+    width: 40px;
+    height: 40px;
+    box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+    transition: all .3s;
+    &:hover {
+      transform: scale(1.2);
+      color: #fff
+    }
+    svg {
+      color: #eee;
+      font-size: 18px;
+      height: 18px;
+      transition: all .3s;
+      // &:hover {
+      //   color: #eee;
+      // }
+    }
+  }
+  .menu-list {
+    position: fixed;
+    left: 15px;
+    top: 20%;
+    z-index: 1;
+    .items {
+      display: flex;
+      flex-direction: column;
+      a {
+        background: #1a8273;
+        border-radius: 2px;
+        padding: 8px;
+        width: 42px;
+        height: 42px;
+        position: relative;
+        transition: all .3s;
+        box-shadow: 2px 2px 5px rgba(0,0,0,.2);
+        &:hover {
+          transform: scale(1.2);
+        }
+        &:not(:last-child) {
+          margin-bottom: 20px;
+        }
+        &::before {
+          content: '';
+          display: block;
+          position: absolute;
+          left: 0;
+          transform: translateX(-100%);
+          height: 2px;
+          width: 15px;
+          background-color: #888;
+        }
+      }
+      svg {
+        color: #fff;
+        height: 22px;
+        font-size: 22px;
+      }
+      .menu-home {
+
+      }
+      .menu-counter {
+        background: #313131;
+      }
+      .menu-weather {
+        background: #1692c1;
+      }
+    }
+  }
+}

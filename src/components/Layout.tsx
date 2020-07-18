@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Meta from './Meta';
 import { MetaType } from './Meta';
+import MobileMenu from 'src/components/MobileMenu';
 
 type LayoutProps = {
   id?: string;
@@ -28,6 +29,7 @@ const Layout = (props: LayoutProps) => {
   return (
     <>
       <Meta meta={meta} />
+      <MobileMenu/>
       <div
         id={id}
         style={{minHeight: minHeight ? viewHeight : 'unset'}}
