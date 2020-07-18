@@ -30,7 +30,6 @@ export interface CurrentDayDetails {
   locationType: WeatherLocationType;
   city?: TaiwanCities;
   wX: WXType;
-  wXIcon: string;
   currentTemperature: string;
   minT: string;
   maxT: string;

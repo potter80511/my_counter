@@ -19,9 +19,6 @@ export class LocationWeatherDataFactory {
 
     const wX = this.getCurrentWx(weatherElement);
 
-    const wXNight = this.getCurrentWxNight(weatherElement);
-    const wXIcon = WeatherDataFactory.createWXIcon(wX, wXNight);
-
     const currentTemperature = this.getLocationT(weatherElement);
     const minT = this.getExtremeT(weatherElement, ElementName.MinT);
     const maxT = this.getExtremeT(weatherElement, ElementName.MaxT);
@@ -32,7 +29,6 @@ export class LocationWeatherDataFactory {
     return {
       locationName: newLocationName,
       wX,
-      wXIcon,
       currentTemperature,
       minT,
       maxT,
