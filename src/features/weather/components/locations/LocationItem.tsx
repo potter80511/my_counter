@@ -83,6 +83,7 @@ const LocationItem = (props: LocationItemProps) => {
         paddingTop: morePaddingTop,
       }}
     >
+      <div className="bg"></div>
       {!spread && (
         <div className="overview" onClick={onItemClick}>
           <div className="flex-left">

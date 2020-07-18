@@ -146,7 +146,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
       unmountOnExit
     >
       <div className="location-details">
-        <div className="bg"></div>
+        <div className="details-bg"></div>
         {everyTimeFixed && (
           <div className="location-wx-fixed location-wx-common">
             <h2>{locationData.locationName}</h2>
