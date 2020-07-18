@@ -147,8 +147,12 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
     >
       <div className="location-details">
         <div className="details-bg"></div>
-        {everyTimeFixed && (
-          <div className="location-wx-fixed location-wx-common">
+          <div
+            className="location-wx-fixed location-wx-common"
+            style={{
+              display: everyTimeFixed ? 'flex' : 'none',
+            }}
+          >
             <h2>{locationData.locationName}</h2>
             <span className="wx">
               {locationData.wX}
@@ -159,7 +163,6 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
               {everyTimeItem}
             </div>
           </div>
-        )}
         <div className="content" onScroll={onWeekScroll} ref={contentRef}>
           {!everyTimeFixed && (
             <div className="location-wx location-wx-common" style={{top: (translateD + 15) + 'px'}}>
