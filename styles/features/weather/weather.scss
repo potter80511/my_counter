@@ -1,0 +1,14 @@
+#weather {
+  align-items: flex-start;
+  button {
+    color: #fff;
+  }
+  .weather {
+    overflow: hidden;
+  }
+  @media (max-width: 1023px) {
+    .main-title {
+      display: none;
+    }
+  }
+}

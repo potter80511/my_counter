@@ -1,0 +1,16 @@
+.create-input {
+  display: flex;
+  input, button {
+    color: #fff;
+    border: 1px solid #888;
+  }
+  input {
+    background: #555;
+    &:focus {
+      outline: none;
+      border-color: #eee;
+    }
+  }
+  button {
+  }
+}

@@ -1,0 +1,14 @@
+.todo-list {
+  text-align: left;
+  padding: 20px 0;
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    svg {
+      font-size: 15px;
+      height: 15px;
+      color: #fff;
+    }
+  }
+}
