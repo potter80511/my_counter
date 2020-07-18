@@ -17,9 +17,10 @@ export enum WeatherLocationType {
 export type LocationValue =
   TaiwanCities |
   YilanLocationValue |
+  TaoyuanLocationValue |
+  HsinchuLocationValue |
   TaipeiLocationValue |
   NewTaipeiLocationValue |
-  TaoyuanLocationValue |
   TaiNanValue;
 
 export enum TaiwanCities {
@@ -72,6 +73,21 @@ export enum TaoyuanLocationValue { // 桃園
   Fuxing = '復興區',
   Dayuan = '大園區',
   Luzhu = '蘆竹區',
+};
+export enum HsinchuLocationValue { // 新竹
+  Xinfeng = '新豐鄉',
+  Hukou = '湖口鄉',
+  Xinpu = '新埔鎮',
+  Zhubei = '竹北市',
+  Kansai = '關西鎮',
+  Qionglin = '芎林鄉',
+  Zhudong = '竹東鎮',
+  Baoshan = '寶山鄉',
+  Jianshi = '尖石鄉',
+  Hengshan = '橫山鄉',
+  Beipu = '北埔鄉',
+  Emei = '峨眉鄉',
+  Wufeng = '五峰鄉',
 };
 export enum TaipeiLocationValue { // 台北
   Zhongzheng = '中正區',

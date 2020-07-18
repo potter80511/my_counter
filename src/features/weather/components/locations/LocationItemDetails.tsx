@@ -4,6 +4,10 @@ import WeekItem from 'src/features/weather/components/locations/WeekItem';
 import { CurrentDayDetails, WeekTemperature } from 'src/features/weather/domain/model/Weather';
 import { TemperatureHelper } from 'src/features/weather/helper';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
+import {
+  locationsDataSelector,
+} from 'src/features/weather/selectors';
+import { useSelector } from 'react-redux';
 import Link from 'next/link';
 
 import {
@@ -53,6 +57,9 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
   const todayEveryTimeRef = useRef(null);
   const moreRef = useRef(null);
 
+  const locationsData = useSelector(locationsDataSelector);
+  const locationsLength = locationsData.length;
+
   const onWeekScroll = () => {
     const scrollTop = contentRef.current.scrollTop;
     const opacityRate = 1 - (scrollTop / opacityDistance);
@@ -69,7 +76,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
     if (todayEveryTimeRef.current && todayEveryTimeHeight === 0) {
       onSetTodayEveryTimeHeight(todayEveryTimeRef.current.clientHeight);
     }
-    setMoreHeight(oriMoreHeight + 143)
+    setMoreHeight(oriMoreHeight + 40 + (15 * (locationsLength - 1)) + (81 * (locationsLength - 1)))
   });
   useEffect(() => {
     if (moreRef.current && weekTemperatureArray.length > 0 && oriMoreHeight === 0) {
@@ -89,7 +96,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
       >
         <span className="hour">{item.hourName}</span>
         <span className="wx">
-          <img src={item.wXIcon} height="16" />
+          <img src={item.wXIcon} height="16" alt={item.wX} />
         </span>
         <span className="t">{TemperatureHelper.CalculateTemperature(item.temperature, temperatureType)}</span>
       </div>
@@ -124,6 +131,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
     <WeekItem
       key={'week-item-' + index}
       dayName={item.dayName}
+      wX={item.wX}
       wXIcon={item.wXIcon}
       minT={TemperatureHelper.CalculateTemperature(item.minT, temperatureType)}
       maxT={TemperatureHelper.CalculateTemperature(item.maxT, temperatureType)}
@@ -138,11 +146,14 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
       unmountOnExit
     >
       <div className="location-details">
-        <div className="bg"></div>
+        <div className="details-bg"></div>
         {everyTimeFixed && (
           <div className="location-wx-fixed location-wx-common">
             <h2>{locationData.locationName}</h2>
-            <span className="wx">{locationData.wX}</span>
+            <span className="wx flex-center">
+              <img src={locationData.wXIcon} />
+              <span>{locationData.wX}</span>
+            </span>
             <div
               className="today-every-time"
             >
@@ -154,7 +165,10 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
           {!everyTimeFixed && (
             <div className="location-wx location-wx-common" style={{top: (translateD + 15) + 'px'}}>
               <h2>{locationData.locationName}</h2>
-              <span className="wx">{locationData.wX}</span>
+              <span className="wx flex-center">
+                <img src={locationData.wXIcon} />
+                <span>{locationData.wX}</span>
+              </span>
               <span
                 className="current-temperature"
                 style={{ opacity: opacityValue }}

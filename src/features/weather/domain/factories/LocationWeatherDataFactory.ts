@@ -5,7 +5,6 @@ import {
   WeatherDataFactory,
 } from 'src/features/weather/domain/factories/WeatherDataFactory';
 import moment from 'moment';
-import { WXIcons } from 'src/features/weather/domain/model/WXIcons';
 import { FindExtremeNumber } from 'src/features/weather/helper';
 
 export class LocationWeatherDataFactory {
@@ -14,10 +13,15 @@ export class LocationWeatherDataFactory {
       locationName,
       weatherElement,
     } = data;
+    // console.log(locationName)
 
     const newLocationName = locationName.search('臺') != -1 ? locationName.replace('臺', '台') : locationName;
 
     const wX = this.getCurrentWx(weatherElement);
+
+    const wXNight = this.getCurrentWxNight(weatherElement);
+    const wXIcon = WeatherDataFactory.createWXIcon(wX, wXNight);
+
     const currentTemperature = this.getLocationT(weatherElement);
     const minT = this.getExtremeT(weatherElement, ElementName.MinT);
     const maxT = this.getExtremeT(weatherElement, ElementName.MaxT);
@@ -28,6 +32,7 @@ export class LocationWeatherDataFactory {
     return {
       locationName: newLocationName,
       wX,
+      wXIcon,
       currentTemperature,
       minT,
       maxT,
@@ -42,6 +47,15 @@ export class LocationWeatherDataFactory {
     if (wxData) {
       const wx = wxData.time[0].elementValue[0].value as WXType
       return wx;
+    }
+  }
+
+  static getCurrentWxNight(weatherElement: WeatherElementItem[]): boolean {
+    const wxData = weatherElement.find(item => item.elementName === ElementName.Wx);
+    if (wxData) {
+      const wxHour = Number(moment(wxData.time[0].startTime).format('HH'));
+      const night = wxHour === 21 || wxHour === 0 || wxHour === 3
+      return night;
     }
   }
 
@@ -89,13 +103,22 @@ export class LocationWeatherDataFactory {
     let wxArray = [];
     const wxData = weatherElement.find(item => item.elementName === ElementName.Wx);
     if (wxData) {
-      wxArray = wxData.time.map(item => WeatherDataFactory.createWXIcon(item.elementValue[0].value as WXType));
+      wxArray = wxData.time.map(item => {
+        // console.log(item)
+        const hour = Number(moment(item.startTime).format('HH'));
+        const night = hour === 21 || hour === 0 || hour === 3 ? true : false;
+        return {
+          wXIcon: WeatherDataFactory.createWXIcon(item.elementValue[0].value as WXType, night),
+          wX: item.elementValue[0].value,
+        }
+      });
     }
 
     const tData = weatherElement.find(item => item.elementName === ElementName.T);
     if (tData) {
       const tempArray = tData.time.map(item => {
         const temperature = WeatherDataFactory.createTemperature(item.elementValue[0].value);
+        // console.log(item)
         return {
           hourName: WeatherDataFactory.createEachHour(item.dataTime),
           temperature,
@@ -105,10 +128,10 @@ export class LocationWeatherDataFactory {
       const result = tempArray.map((item, index) => (
         {
           ...item,
-          wXIcon: wxArray[index],
+          wXIcon: wxArray[index].wXIcon,
+          wX: wxArray[index].wX,
         }
       ));
-      // console.log(result)
       return result;
     }
     return [];
