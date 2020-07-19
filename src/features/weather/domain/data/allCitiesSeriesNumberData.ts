@@ -64,6 +64,14 @@ export const currentDayCitiesSeriesNumberData: SeriesNumberItem[] = [
     seriesNumber: SeriesNumber.Keelung,
   },
   {
+    name: TaiwanCities.HsinchuCity,
+    seriesNumber: SeriesNumber.HsinchuCity,
+  },
+  {
+    name: TaiwanCities.ChiayiCity,
+    seriesNumber: SeriesNumber.ChiayiCity,
+  },
+  {
     name: TaiwanCities.Taipei,
     seriesNumber: SeriesNumber.Taipei,
   },

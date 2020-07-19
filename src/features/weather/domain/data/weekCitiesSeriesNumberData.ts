@@ -60,6 +60,14 @@ export const weekCitiesSeriesNumberData: SeriesNumberItem[] = [
     seriesNumber: WeekSeriesNumber.Keelung,
   },
   {
+    name: TaiwanCities.HsinchuCity,
+    seriesNumber: WeekSeriesNumber.HsinchuCity,
+  },
+  {
+    name: TaiwanCities.ChiayiCity,
+    seriesNumber: WeekSeriesNumber.ChiayiCity,
+  },
+  {
     name: TaiwanCities.Taipei,
     seriesNumber: WeekSeriesNumber.Taipei,
   },

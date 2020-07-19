@@ -422,6 +422,36 @@ export const allLocationsData: LocationData[] = [
     value: KeelungLocationValue.Nuannuan,
     type: WeatherLocationType.Location,
   },
+  { // 新竹市
+    city: TaiwanCities.HsinchuCity,
+    name: TaiwanCities.HsinchuCity + HsinchuLocationValue.North,
+    value: HsinchuLocationValue.North,
+    type: WeatherLocationType.Location,
+  },
+  {
+    city: TaiwanCities.HsinchuCity,
+    name: TaiwanCities.HsinchuCity + HsinchuLocationValue.Xiangshan,
+    value: HsinchuLocationValue.Xiangshan,
+    type: WeatherLocationType.Location,
+  },
+  {
+    city: TaiwanCities.HsinchuCity,
+    name: TaiwanCities.HsinchuCity + HsinchuLocationValue.Eastern,
+    value: HsinchuLocationValue.Eastern,
+    type: WeatherLocationType.Location,
+  },
+  { // 嘉義市
+    city: TaiwanCities.ChiayiCity,
+    name: TaiwanCities.ChiayiCity + ChiayiLocationValue.Eastern,
+    value: ChiayiLocationValue.Eastern,
+    type: WeatherLocationType.Location,
+  },
+  {
+    city: TaiwanCities.ChiayiCity,
+    name: TaiwanCities.ChiayiCity + ChiayiLocationValue.West,
+    value: ChiayiLocationValue.West,
+    type: WeatherLocationType.Location,
+  },
   { // 台北
     city: TaiwanCities.Taipei,
     name: TaiwanCities.Taipei,

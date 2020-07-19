@@ -40,6 +40,8 @@ export enum TaiwanCities {
   Hualien = '花蓮縣',
   Penghu = '澎湖縣',
   Keelung = '基隆市',
+  HsinchuCity = '新竹市',
+  ChiayiCity = '嘉義市',
   Taipei = '臺北市',
   Kaohsiung = '高雄市',
   NewTaipei = '新北市',
@@ -91,6 +93,9 @@ export enum HsinchuLocationValue { // 新竹
   Beipu = '北埔鄉',
   Emei = '峨眉鄉',
   Wufeng = '五峰鄉',
+  North = '北區',
+  Xiangshan = '香山區',
+  Eastern = '東區',
 };
 export enum ChiayiLocationValue { // 嘉義
   Dalin = '大林鎮',
@@ -111,6 +116,8 @@ export enum ChiayiLocationValue { // 嘉義
   Lucao = '鹿草鄉',
   Yizhu = '義竹鄉',
   Dapu = '大埔鄉',
+  Eastern = '東區',
+  West = '西區',
 };
 export enum KeelungLocationValue { // 基隆
   Anle = '安樂區',
