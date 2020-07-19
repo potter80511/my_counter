@@ -54,12 +54,15 @@ $border: 1px solid rgba(255, 255, 255, .3);
       align-items: center;
       padding: 5px 0;
       position: relative;
-      * {
+      .moment, .location-name {
         display: block;
       }
       .flex-left {
         .location-name {
           font-size: 24px;
+          .city-name {
+            font-size: 15px;
+          }
         }
       }
       .temperature {

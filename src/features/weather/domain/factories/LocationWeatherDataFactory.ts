@@ -9,7 +9,7 @@ import { FindExtremeNumber } from 'src/features/weather/helper';
 import { TaiwanCities } from '../model/Location';
 
 export class LocationWeatherDataFactory {
-  static createCurrentDayDataFromNet(data, city: TaiwanCities): Omit<CurrentDayDetails, 'locationType' | 'city' | 'inputIndex'> {
+  static createCurrentDayDataFromNet(data, city: TaiwanCities, showCity: boolean): Omit<CurrentDayDetails, 'locationType' | 'city' | 'inputIndex'> {
     const {
       locationName,
       weatherElement,
@@ -30,7 +30,7 @@ export class LocationWeatherDataFactory {
 
     return {
       locationName: newLocationName,
-      cityName: newCityName.substring(0, newCityName.length - 1),
+      cityName: showCity ? newCityName.substring(0, newCityName.length - 1) : '',
       wX,
       currentTemperature,
       minT,

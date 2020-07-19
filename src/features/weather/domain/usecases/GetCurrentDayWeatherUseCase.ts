@@ -21,6 +21,7 @@ export class GetCurrentDayWeatherUseCase implements GetCurrentDayWeather.UseCase
       locationName,
       city,
     } = inputData;
+    const showCity = locationType === WeatherLocationType.Location ? true : false;
 
     const seriesNumber = locationType === WeatherLocationType.Location
       ? currentDayCitiesSeriesNumberData.find(item =>
@@ -32,6 +33,7 @@ export class GetCurrentDayWeatherUseCase implements GetCurrentDayWeather.UseCase
         const currentDayDetails = LocationWeatherDataFactory.createCurrentDayDataFromNet(
           result.records.locations[0].location[0],
           city,
+          showCity,
         );
         callbacks.onSuccess({
           currentDayDetails: {
