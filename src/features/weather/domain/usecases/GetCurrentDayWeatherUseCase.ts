@@ -21,6 +21,7 @@ export class GetCurrentDayWeatherUseCase implements GetCurrentDayWeather.UseCase
       locationName,
       city,
     } = inputData;
+    const showCity = locationType === WeatherLocationType.Location ? true : false;
 
     const seriesNumber = locationType === WeatherLocationType.Location
       ? currentDayCitiesSeriesNumberData.find(item =>
@@ -29,8 +30,11 @@ export class GetCurrentDayWeatherUseCase implements GetCurrentDayWeather.UseCase
       : 'F-D0047-089';
     this.fetcher.get(`https://opendata.cwb.gov.tw/api/v1/rest/datastore/${seriesNumber}`, {
       onSuccess: result => {
-        const currentDayDetails = LocationWeatherDataFactory.createCurrentDayDataFromNet(result.records.locations[0].location[0]);
-
+        const currentDayDetails = LocationWeatherDataFactory.createCurrentDayDataFromNet(
+          result.records.locations[0].location[0],
+          city,
+          showCity,
+        );
         callbacks.onSuccess({
           currentDayDetails: {
             ...currentDayDetails,

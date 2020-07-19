@@ -88,7 +88,12 @@ const LocationItem = (props: LocationItemProps) => {
         <div className="overview" onClick={onItemClick}>
           <div className="flex-left">
             <span className="moment">{moment().format("HH:mm")}</span>
-            <strong className="location-name">{locationData.locationName}</strong>
+            <strong className="location-name">
+              {locationData.locationName}
+              {locationData.cityName && (
+                <span className="city-name">（{locationData.cityName}）</span>
+              )}
+            </strong>
           </div>
           <span className="temperature">{TemperatureHelper.CalculateTemperature(locationData.currentTemperature, temperatureType)}</span>
           <button
