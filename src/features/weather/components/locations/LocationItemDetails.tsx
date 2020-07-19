@@ -146,6 +146,9 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
       unmountOnExit
     >
       <div className="location-details">
+        {locationData.cityName && (
+          <span className="city-name">（{locationData.cityName}）</span>
+        )}
         <div className="details-bg"></div>
           <div
             className="location-wx-fixed location-wx-common"
