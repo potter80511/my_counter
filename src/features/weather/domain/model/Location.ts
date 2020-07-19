@@ -19,6 +19,7 @@ export type LocationValue =
   YilanLocationValue |
   TaoyuanLocationValue |
   HsinchuLocationValue |
+  ChanghuaLocationValue |
   ChiayiLocationValue |
   KeelungLocationValue |
   TaipeiLocationValue |
@@ -96,6 +97,34 @@ export enum HsinchuLocationValue { // 新竹
   North = '北區',
   Xiangshan = '香山區',
   Eastern = '東區',
+};
+export enum ChanghuaLocationValue { // 彰化
+  Shengang = '伸港鄉',
+  Hemei = '和美鎮',
+  Xianxixiang = '線西鄉',
+  Lugang = '鹿港鎮',
+  ChanghuaCity = '彰化市',
+  Xiushui = '秀水鄉',
+  Fuxing = '福興鄉',
+  Huatan = '花壇鄉',
+  Fenyuan = '芬園鄉',
+  Fangyuan = '芳苑鄉',
+  Puyan = '埔鹽鄉',
+  Dacun = '大村鄉',
+  Erlin = '二林鎮',
+  Yuanlin = '員林市',
+  Xihu = '溪湖鎮',
+  Puxin = '埔心鄉',
+  Yongjing = '永靖鄉',
+  Shetou = '社頭鄉',
+  Pitou = '埤頭鄉',
+  Tianwei = '田尾鄉',
+  Dacheng = '大城鄉',
+  Tianzhong = '田中鎮',
+  Beidou = '北斗鎮',
+  Zhutang = '竹塘鄉',
+  Xizhou = '溪州鄉',
+  Ershui = '二水鄉',
 };
 export enum ChiayiLocationValue { // 嘉義
   Dalin = '大林鎮',
