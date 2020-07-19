@@ -6,16 +6,18 @@ import {
 } from 'src/features/weather/domain/factories/WeatherDataFactory';
 import moment from 'moment';
 import { FindExtremeNumber } from 'src/features/weather/helper';
+import { TaiwanCities } from '../model/Location';
 
 export class LocationWeatherDataFactory {
-  static createCurrentDayDataFromNet(data): Omit<CurrentDayDetails, 'locationType' | 'inputIndex'> {
+  static createCurrentDayDataFromNet(data, city: TaiwanCities, showCity: boolean): Omit<CurrentDayDetails, 'locationType' | 'city' | 'inputIndex'> {
     const {
       locationName,
       weatherElement,
     } = data;
-    // console.log(locationName)
-
+    // console.log(city)
+    
     const newLocationName = locationName.search('臺') != -1 ? locationName.replace('臺', '台') : locationName;
+    const newCityName = city.search('臺') != -1 ? city.replace('臺', '台') : city;
 
     const wX = this.getCurrentWx(weatherElement);
 
@@ -28,6 +30,7 @@ export class LocationWeatherDataFactory {
 
     return {
       locationName: newLocationName,
+      cityName: showCity ? newCityName.substring(0, newCityName.length - 1) : '',
       wX,
       currentTemperature,
       minT,
