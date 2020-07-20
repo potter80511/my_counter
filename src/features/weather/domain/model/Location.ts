@@ -21,6 +21,7 @@ export type LocationValue =
   HsinchuLocationValue |
   ChanghuaLocationValue |
   ChiayiLocationValue |
+  HualienLocationValue |
   KeelungLocationValue |
   TaipeiLocationValue |
   NewTaipeiLocationValue |
@@ -147,6 +148,21 @@ export enum ChiayiLocationValue { // 嘉義
   Dapu = '大埔鄉',
   Eastern = '東區',
   West = '西區',
+};
+export enum HualienLocationValue { // 花蓮
+  Xiulin = '秀林鄉',
+  Xincheng = '新城鄉',
+  HualienCity = '花蓮市',
+  Jian = '吉安鄉',
+  Shoufeng = '壽豐鄉',
+  Wanrung = '萬榮鄉',
+  Fenglin = '鳳林鎮',
+  Fengbin = '豐濱鄉',
+  Guangfu = '光復鄉',
+  Zhuoxi = '卓溪鄉',
+  Ruisui = '瑞穗鄉',
+  Yuli = '玉里鎮',
+  Fuli = '富里鄉',
 };
 export enum KeelungLocationValue { // 基隆
   Anle = '安樂區',
