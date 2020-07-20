@@ -21,6 +21,7 @@ export type LocationValue =
   HsinchuLocationValue |
   MiaoliLocationValue |
   ChanghuaLocationValue |
+  YunlinLocationValue |
   ChiayiLocationValue |
   PingtungLocationValue |
   HualienLocationValue |
@@ -148,6 +149,28 @@ export enum ChanghuaLocationValue { // 彰化
   Zhutang = '竹塘鄉',
   Xizhou = '溪州鄉',
   Ershui = '二水鄉',
+};
+export enum YunlinLocationValue { // 雲林
+  Mailiao = '麥寮鄉',
+  Erlun = '二崙鄉',
+  Lunbei = '崙背鄉',
+  Xiluo = '西螺鎮',
+  Cihtong = '莿桐鄉',
+  Linnei = '林內鄉',
+  Taixi = '臺西鄉',
+  Tukuzhen = '土庫鎮',
+  Huwei = '虎尾鎮',
+  Baozhong = '褒忠鄉',
+  Dongshi = '東勢鄉',
+  Dounan = '斗南鎮',
+  Sihu = '四湖鄉',
+  Gukeng = '古坑鄉',
+  Yuanchang = '元長鄉',
+  Dapi = '大埤鄉',
+  Kouhu = '口湖鄉',
+  Beigang = '北港鎮',
+  Shuilin = '水林鄉',
+  Douliu = '斗六市',
 };
 export enum ChiayiLocationValue { // 嘉義
   Dalin = '大林鎮',
