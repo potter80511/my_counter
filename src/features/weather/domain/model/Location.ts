@@ -21,6 +21,7 @@ export type LocationValue =
   HsinchuLocationValue |
   ChanghuaLocationValue |
   ChiayiLocationValue |
+  PingtungLocationValue |
   HualienLocationValue |
   KeelungLocationValue |
   TaipeiLocationValue |
@@ -148,6 +149,41 @@ export enum ChiayiLocationValue { // 嘉義
   Dapu = '大埔鄉',
   Eastern = '東區',
   West = '西區',
+};
+export enum PingtungLocationValue { // 屏東
+  Gaoshu = '高樹鄉',
+  Sandimen = '三地門鄉',
+  Wutai = '霧臺鄉',
+  Ligang = '里港鄉',
+  Yanpu = '鹽埔鄉',
+  Jiuru = '九如鄉',
+  Changzhi = '長治鄉',
+  Majia = '瑪家鄉',
+  PingtungCity = '屏東市',
+  Neipu = '內埔鄉',
+  Linluo = '麟洛鄉',
+  Taiwu = '泰武鄉',
+  Wanluan = '萬巒鄉',
+  Zhutian = '竹田鄉',
+  Wandan = '萬丹鄉',
+  Laiyi = '來義鄉',
+  Chaozhou = '潮州鎮',
+  Xinyuan = '新園鄉',
+  Kanding = '崁頂鄉',
+  Xinpi = '新埤鄉',
+  Nanzhou = '南州鄉',
+  Donggang = '東港鎮',
+  Linbian = '林邊鄉',
+  Jiadong = '佳冬鄉',
+  Chunri = '春日鄉',
+  Lion = '獅子鄉',
+  Liuqiu = '琉球鄉',
+  Fangshan = '枋山鄉',
+  Mudan = '牡丹鄉',
+  Manzhou = '滿州鄉',
+  Checheng = '車城鄉',
+  Hengchun = '恆春鎮',
+  Fangliao = '枋寮鄉',
 };
 export enum HualienLocationValue { // 花蓮
   Xiulin = '秀林鄉',
