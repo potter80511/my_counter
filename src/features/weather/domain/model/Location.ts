@@ -19,6 +19,7 @@ export type LocationValue =
   YilanLocationValue |
   TaoyuanLocationValue |
   HsinchuLocationValue |
+  MiaoliLocationValue |
   ChanghuaLocationValue |
   ChiayiLocationValue |
   PingtungLocationValue |
@@ -99,6 +100,26 @@ export enum HsinchuLocationValue { // 新竹
   North = '北區',
   Xiangshan = '香山區',
   Eastern = '東區',
+};
+export enum MiaoliLocationValue { // 苗栗
+  Zhunan = '竹南鎮',
+  Toufen = '頭份市',
+  Sanwan = '三灣鄉',
+  Zaoqiao = '造橋鄉',
+  Houlong = '後龍鎮',
+  Nanzhuang = '南庄鄉',
+  Touwu = '頭屋鄉',
+  Shitan = '獅潭鄉',
+  MiaoliCity = '苗栗市',
+  Xihu = '西湖鄉',
+  Tongxiao = '通霄鎮',
+  Gongguan = '公館鄉',
+  Tongluo = '銅鑼鄉',
+  Taian = '泰安鄉',
+  Yuanli = '苑裡鎮',
+  Dahu = '大湖鄉',
+  Sanyi = '三義鄉',
+  Zhuolan = '卓蘭鎮',
 };
 export enum ChanghuaLocationValue { // 彰化
   Shengang = '伸港鄉',
