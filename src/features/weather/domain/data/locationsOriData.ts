@@ -195,6 +195,83 @@ export const locationsOriData: OriLocation[] = [
     ],
   },
   {
+    city: TaiwanCities.Miaoli,
+    districts: [
+      {
+        name: MiaoliLocationValue.Zhunan,
+        zip: '350',
+      },
+      {
+        name: MiaoliLocationValue.Toufen,
+        zip: '351',
+      },
+      {
+        name: MiaoliLocationValue.Sanwan,
+        zip: '352',
+      },
+      {
+        name: MiaoliLocationValue.Nanzhuang,
+        zip: '353',
+      },
+      {
+        name: MiaoliLocationValue.Shitan,
+        zip: '354',
+      },
+      {
+        name: MiaoliLocationValue.Houlong,
+        zip: '356',
+      },
+      {
+        name: MiaoliLocationValue.Tongxiao,
+        zip: '357',
+      },
+      {
+        name: MiaoliLocationValue.Yuanli,
+        zip: '358',
+      },
+      {
+        name: MiaoliLocationValue.MiaoliCity,
+        zip: '360',
+      },
+      {
+        name: MiaoliLocationValue.Zaoqiao,
+        zip: '361',
+      },
+      {
+        name: MiaoliLocationValue.Touwu,
+        zip: '362',
+      },
+      {
+        name: MiaoliLocationValue.Gongguan,
+        zip: '363',
+      },
+      {
+        name: MiaoliLocationValue.Dahu,
+        zip: '364',
+      },
+      {
+        name: MiaoliLocationValue.Taian,
+        zip: '365',
+      },
+      {
+        name: MiaoliLocationValue.Tongluo,
+        zip: '366',
+      },
+      {
+        name: MiaoliLocationValue.Sanyi,
+        zip: '367',
+      },
+      {
+        name: MiaoliLocationValue.Xihu,
+        zip: '368',
+      },
+      {
+        name: MiaoliLocationValue.Zhuolan,
+        zip: '369',
+      },
+    ],
+  },
+  {
     city: TaiwanCities.Taipei,
     districts: [
       {
