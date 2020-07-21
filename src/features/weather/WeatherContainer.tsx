@@ -46,7 +46,7 @@ const WeatherContainer = () => {
   const translateY = useSelector(translateYSelector);
   const openedLocationIndex = useSelector(openedLocationIndexSelector);
   const weekTemperatureArray = useSelector(weekTemperatureArraySelector);
-  
+
   const temperatureType = useSelector(temperatureTypeSelector);
   const locationItemInputDataArray = useSelector(locationItemInputDataArraySelector);
   const locationsData = useSelector(locationsDataSelector);
@@ -126,7 +126,7 @@ const WeatherContainer = () => {
   useEffect(() => {
     setViewHeight(window.innerHeight);
     dispatch(clearLocationsDataAction());
-    
+
     if (weather_settings && !stateIsInitial) {
       console.log(weather_settings, 'weather_settings2')
       dispatch(initialToolsState());
