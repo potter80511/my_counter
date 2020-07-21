@@ -737,6 +737,39 @@ export const locationsOriData: OriLocation[] = [
     ],
   },
   {
+    city: TaiwanCities.Keelung,
+    districts: [
+      {
+        name: KeelungLocationValue.RenAi,
+        zip: '200',
+      },
+      {
+        name: KeelungLocationValue.Xinyi,
+        zip: '201',
+      },
+      {
+        name: KeelungLocationValue.Zhongzheng,
+        zip: '202',
+      },
+      {
+        name: KeelungLocationValue.Zhongshan,
+        zip: '203',
+      },
+      {
+        name: KeelungLocationValue.Anle,
+        zip: '204',
+      },
+      {
+        name: KeelungLocationValue.Nuannuan,
+        zip: '205',
+      },
+      {
+        name: KeelungLocationValue.Qidu,
+        zip: '206',
+      },
+    ],
+  },
+  {
     city: TaiwanCities.Taipei,
     districts: [
       {
