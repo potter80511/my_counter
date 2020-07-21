@@ -680,6 +680,63 @@ export const locationsOriData: OriLocation[] = [
     ],
   },
   {
+    city: TaiwanCities.Hualien,
+    districts: [
+      {
+        name: HualienLocationValue.HualienCity,
+        zip: '970',
+      },
+      {
+        name: HualienLocationValue.Xincheng,
+        zip: '971',
+      },
+      {
+        name: HualienLocationValue.Xiulin,
+        zip: '972',
+      },
+      {
+        name: HualienLocationValue.Jian,
+        zip: '973',
+      },
+      {
+        name: HualienLocationValue.Shoufeng,
+        zip: '974',
+      },
+      {
+        name: HualienLocationValue.Fenglin,
+        zip: '975',
+      },
+      {
+        name: HualienLocationValue.Guangfu,
+        zip: '976',
+      },
+      {
+        name: HualienLocationValue.Fengbin,
+        zip: '977',
+      },
+      {
+        name: HualienLocationValue.Ruisui,
+        zip: '978',
+      },
+      {
+        name: HualienLocationValue.Wanrung,
+        zip: '979',
+      },
+      {
+        name: HualienLocationValue.Yuli,
+        zip: '981',
+      },
+      {
+        name: HualienLocationValue.Zhuoxi,
+        zip: '982',
+      },
+      {
+        name: HualienLocationValue.Fuli,
+        zip: '983',
+      },
+    ],
+  },
+  {
     city: TaiwanCities.Taipei,
     districts: [
       {
