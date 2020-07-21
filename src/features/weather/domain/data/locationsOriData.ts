@@ -543,6 +543,143 @@ export const locationsOriData: OriLocation[] = [
     ],
   },
   {
+    city: TaiwanCities.Pingtung,
+    districts: [
+      {
+        name: PingtungLocationValue.PingtungCity,
+        zip: '900',
+      },
+      {
+        name: PingtungLocationValue.Sandimen,
+        zip: '901',
+      },
+      {
+        name: PingtungLocationValue.Wutai,
+        zip: '902',
+      },
+      {
+        name: PingtungLocationValue.Majia,
+        zip: '903',
+      },
+      {
+        name: PingtungLocationValue.Jiuru,
+        zip: '904',
+      },
+      {
+        name: PingtungLocationValue.Ligang,
+        zip: '905',
+      },
+      {
+        name: PingtungLocationValue.Gaoshu,
+        zip: '906',
+      },
+      {
+        name: PingtungLocationValue.Yanpu,
+        zip: '907',
+      },
+      {
+        name: PingtungLocationValue.Changzhi,
+        zip: '908',
+      },
+      {
+        name: PingtungLocationValue.Linluo,
+        zip: '909',
+      },
+      {
+        name: PingtungLocationValue.Zhutian,
+        zip: '911',
+      },
+      {
+        name: PingtungLocationValue.Neipu,
+        zip: '912',
+      },
+      {
+        name: PingtungLocationValue.Wandan,
+        zip: '913',
+      },
+      {
+        name: PingtungLocationValue.Chaozhou,
+        zip: '920',
+      },
+      {
+        name: PingtungLocationValue.Taiwu,
+        zip: '921',
+      },
+      {
+        name: PingtungLocationValue.Laiyi,
+        zip: '922',
+      },
+      {
+        name: PingtungLocationValue.Wanluan,
+        zip: '923',
+      },
+      {
+        name: PingtungLocationValue.Kanding,
+        zip: '924',
+      },
+      {
+        name: PingtungLocationValue.Xinpi,
+        zip: '925',
+      },
+      {
+        name: PingtungLocationValue.Nanzhou,
+        zip: '926',
+      },
+      {
+        name: PingtungLocationValue.Linbian,
+        zip: '927',
+      },
+      {
+        name: PingtungLocationValue.Donggang,
+        zip: '928',
+      },
+      {
+        name: PingtungLocationValue.Liuqiu,
+        zip: '929',
+      },
+      {
+        name: PingtungLocationValue.Jiadong,
+        zip: '931',
+      },
+      {
+        name: PingtungLocationValue.Xinyuan,
+        zip: '932',
+      },
+      {
+        name: PingtungLocationValue.Fangliao,
+        zip: '940',
+      },
+      {
+        name: PingtungLocationValue.Fangshan,
+        zip: '941',
+      },
+      {
+        name: PingtungLocationValue.Chunri,
+        zip: '942',
+      },
+      {
+        name: PingtungLocationValue.Lion,
+        zip: '943',
+      },
+      {
+        name: PingtungLocationValue.Checheng,
+        zip: '944',
+      },
+      {
+        name: PingtungLocationValue.Mudan,
+        zip: '945',
+      },
+      {
+        name: PingtungLocationValue.Hengchun,
+        zip: '946',
+      },
+      {
+        name: PingtungLocationValue.Manzhou,
+        zip: '947',
+      },
+    ],
+  },
+  {
     city: TaiwanCities.Taipei,
     districts: [
       {
