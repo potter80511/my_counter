@@ -27,6 +27,7 @@ export type LocationValue =
   HualienLocationValue |
   KeelungLocationValue |
   TaipeiLocationValue |
+  KaohsiungLocationValue |
   NewTaipeiLocationValue |
   TaichungLocationValue |
   TaiNanValue;
@@ -266,6 +267,46 @@ export enum TaipeiLocationValue { // 台北
   Neihu = '內湖區',
   Nangang = '南港區',
   Wenshan = '文山區',
+};
+export enum KaohsiungLocationValue { // 高雄
+  Nanzi = '楠梓區',
+  Zuoying = '左營區',
+  Sanmin = '三民區',
+  Gushan = '鼓山區',
+  Lingya = '苓雅區',
+  Xinxing = '新興區',
+  Qianjin = '前金區',
+  Yancheng = '鹽埕區',
+  Qianzhen = '前鎮區',
+  Qijin = '旗津區',
+  Xiaogang = '小港區',
+  Namasia = '那瑪夏區',
+  Jiaxian = '甲仙區',
+  Liugui = '六龜區',
+  Shanlin = '杉林區',
+  Neimen = '內門區',
+  Maolin = '茂林區',
+  Mino = '美濃區',
+  Qishan = '旗山區',
+  Tianliao = '田寮區',
+  Hunei = '湖內區',
+  Qieding = '茄萣區',
+  Alian = '阿蓮區',
+  Luzhu = '路竹區',
+  Yongan = '永安區',
+  Gangshan = '岡山區',
+  Yanchao = '燕巢區',
+  Mido = '彌陀區',
+  Qiaotou = '橋頭區',
+  Dashu = '大樹區',
+  Ziguan = '梓官區',
+  Dashe = '大社區',
+  Renwu = '仁武區',
+  Niaosong = '鳥松區',
+  Daliao = '大寮區',
+  Fengshan = '鳳山區',
+  Linyuan = '林園區',
+  Taoyuan = '桃源區',
 };
 export enum NewTaipeiLocationValue { // 新北
   Wanli = '萬里區',
