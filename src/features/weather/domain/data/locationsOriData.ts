@@ -466,6 +466,83 @@ export const locationsOriData: OriLocation[] = [
     ],
   },
   {
+    city: TaiwanCities.Chiayi,
+    districts: [
+      {
+        name: ChiayiLocationValue.Fanlu,
+        zip: '602',
+      },
+      {
+        name: ChiayiLocationValue.Meishan,
+        zip: '603',
+      },
+      {
+        name: ChiayiLocationValue.Zhuqi,
+        zip: '604',
+      },
+      {
+        name: ChiayiLocationValue.Alishan,
+        zip: '605',
+      },
+      {
+        name: ChiayiLocationValue.Zhongpu,
+        zip: '606',
+      },
+      {
+        name: ChiayiLocationValue.Dapu,
+        zip: '607',
+      },
+      {
+        name: ChiayiLocationValue.Shuishang,
+        zip: '608',
+      },
+      {
+        name: ChiayiLocationValue.Lucao,
+        zip: '611',
+      },
+      {
+        name: ChiayiLocationValue.Taibao,
+        zip: '612',
+      },
+      {
+        name: ChiayiLocationValue.Puzishi,
+        zip: '613',
+      },
+      {
+        name: ChiayiLocationValue.Dongshi,
+        zip: '614',
+      },
+      {
+        name: ChiayiLocationValue.Liujiao,
+        zip: '615',
+      },
+      {
+        name: ChiayiLocationValue.Xingang,
+        zip: '616',
+      },
+      {
+        name: ChiayiLocationValue.Minxiong,
+        zip: '621',
+      },
+      {
+        name: ChiayiLocationValue.Dalin,
+        zip: '622',
+      },
+      {
+        name: ChiayiLocationValue.Xikou,
+        zip: '623',
+      },
+      {
+        name: ChiayiLocationValue.Yizhu,
+        zip: '624',
+      },
+      {
+        name: ChiayiLocationValue.Budai,
+        zip: '625',
+      },
+    ],
+  },
+  {
     city: TaiwanCities.Taipei,
     districts: [
       {
