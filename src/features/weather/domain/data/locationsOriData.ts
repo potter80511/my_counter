@@ -381,6 +381,91 @@ export const locationsOriData: OriLocation[] = [
     ],
   },
   {
+    city: TaiwanCities.Yunlin,
+    districts: [
+      {
+        name: YunlinLocationValue.Dounan,
+        zip: '630',
+      },
+      {
+        name: YunlinLocationValue.Dapi,
+        zip: '631',
+      },
+      {
+        name: YunlinLocationValue.Huwei,
+        zip: '632',
+      },
+      {
+        name: YunlinLocationValue.Tukuzhen,
+        zip: '633',
+      },
+      {
+        name: YunlinLocationValue.Baozhong,
+        zip: '634',
+      },
+      {
+        name: YunlinLocationValue.Dongshi,
+        zip: '635',
+      },
+      {
+        name: YunlinLocationValue.Taixi,
+        zip: '636',
+      },
+      {
+        name: YunlinLocationValue.Lunbei,
+        zip: '637',
+      },
+      {
+        name: YunlinLocationValue.Mailiao,
+        zip: '638',
+      },
+      {
+        name: YunlinLocationValue.Douliu,
+        zip: '640',
+      },
+      {
+        name: YunlinLocationValue.Linnei,
+        zip: '643',
+      },
+      {
+        name: YunlinLocationValue.Gukeng,
+        zip: '646',
+      },
+      {
+        name: YunlinLocationValue.Cihtong,
+        zip: '647',
+      },
+      {
+        name: YunlinLocationValue.Xiluo,
+        zip: '648',
+      },
+      {
+        name: YunlinLocationValue.Erlun,
+        zip: '649',
+      },
+      {
+        name: YunlinLocationValue.Beigang,
+        zip: '651',
+      },
+      {
+        name: YunlinLocationValue.Shuilin,
+        zip: '652',
+      },
+      {
+        name: YunlinLocationValue.Kouhu,
+        zip: '653',
+      },
+      {
+        name: YunlinLocationValue.Sihu,
+        zip: '654',
+      },
+      {
+        name: YunlinLocationValue.Yuanchang,
+        zip: '655',
+      },
+    ],
+  },
+  {
     city: TaiwanCities.Taipei,
     districts: [
       {
