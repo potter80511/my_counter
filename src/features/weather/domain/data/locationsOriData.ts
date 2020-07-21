@@ -2,7 +2,19 @@ import {
   TaiwanCities,
   LocationValue,
   YilanLocationValue,
+  TaoyuanLocationValue,
+  HsinchuLocationValue,
+  MiaoliLocationValue,
+  ChanghuaLocationValue,
+  YunlinLocationValue,
+  ChiayiLocationValue,
+  PingtungLocationValue,
+  HualienLocationValue,
+  KeelungLocationValue,
   TaipeiLocationValue,
+  NewTaipeiLocationValue,
+  TaichungLocationValue,
+  TaiNanValue,
 } from "src/features/weather/domain/model/Location";
 
 export interface OriLocation {
@@ -65,6 +77,63 @@ export const locationsOriData: OriLocation[] = [
       {
         name: YilanLocationValue.NanAo,
         zip: '272',
+      },
+    ],
+  },
+  {
+    city: TaiwanCities.Taoyuan,
+    districts: [
+      {
+        name: TaoyuanLocationValue.Zhongli,
+        zip: '320',
+      },
+      {
+        name: TaoyuanLocationValue.Pingzhen,
+        zip: '324',
+      },
+      {
+        name: TaoyuanLocationValue.Longtan,
+        zip: '325',
+      },
+      {
+        name: TaoyuanLocationValue.Yangmei,
+        zip: '326',
+      },
+      {
+        name: TaoyuanLocationValue.Xinwu,
+        zip: '327',
+      },
+      {
+        name: TaoyuanLocationValue.Guanyin,
+        zip: '328',
+      },
+      {
+        name: TaoyuanLocationValue.TaoyuanArea,
+        zip: '330',
+      },
+      {
+        name: TaoyuanLocationValue.Guishan,
+        zip: '333',
+      },
+      {
+        name: TaoyuanLocationValue.Bade,
+        zip: '334',
+      },
+      {
+        name: TaoyuanLocationValue.Daxi,
+        zip: '335',
+      },
+      {
+        name: TaoyuanLocationValue.Fuxing,
+        zip: '336',
+      },
+      {
+        name: TaoyuanLocationValue.Dayuan,
+        zip: '337',
+      },
+      {
+        name: TaoyuanLocationValue.Luzhu,
+        zip: '338',
       },
     ],
   },
