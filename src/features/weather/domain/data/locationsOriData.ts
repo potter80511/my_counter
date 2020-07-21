@@ -272,6 +272,115 @@ export const locationsOriData: OriLocation[] = [
     ],
   },
   {
+    city: TaiwanCities.Changhua,
+    districts: [
+      {
+        name: ChanghuaLocationValue.ChanghuaCity,
+        zip: '500',
+      },
+      {
+        name: ChanghuaLocationValue.Fenyuan,
+        zip: '502',
+      },
+      {
+        name: ChanghuaLocationValue.Huatan,
+        zip: '503',
+      },
+      {
+        name: ChanghuaLocationValue.Xiushui,
+        zip: '504',
+      },
+      {
+        name: ChanghuaLocationValue.Lugang,
+        zip: '505',
+      },
+      {
+        name: ChanghuaLocationValue.Fuxing,
+        zip: '506',
+      },
+      {
+        name: ChanghuaLocationValue.Xianxixiang,
+        zip: '507',
+      },
+      {
+        name: ChanghuaLocationValue.Hemei,
+        zip: '508',
+      },
+      {
+        name: ChanghuaLocationValue.Shengang,
+        zip: '509',
+      },
+      {
+        name: ChanghuaLocationValue.Yuanlin,
+        zip: '510',
+      },
+      {
+        name: ChanghuaLocationValue.Shetou,
+        zip: '511',
+      },
+      {
+        name: ChanghuaLocationValue.Yongjing,
+        zip: '512',
+      },
+      {
+        name: ChanghuaLocationValue.Puxin,
+        zip: '513',
+      },
+      {
+        name: ChanghuaLocationValue.Xihu,
+        zip: '514',
+      },
+      {
+        name: ChanghuaLocationValue.Dacun,
+        zip: '515',
+      },
+      {
+        name: ChanghuaLocationValue.Puyan,
+        zip: '516',
+      },
+      {
+        name: ChanghuaLocationValue.Tianzhong,
+        zip: '520',
+      },
+      {
+        name: ChanghuaLocationValue.Beidou,
+        zip: '521',
+      },
+      {
+        name: ChanghuaLocationValue.Tianwei,
+        zip: '522',
+      },
+      {
+        name: ChanghuaLocationValue.Pitou,
+        zip: '523',
+      },
+      {
+        name: ChanghuaLocationValue.Xizhou,
+        zip: '524',
+      },
+      {
+        name: ChanghuaLocationValue.Zhutang,
+        zip: '525',
+      },
+      {
+        name: ChanghuaLocationValue.Erlin,
+        zip: '526',
+      },
+      {
+        name: ChanghuaLocationValue.Dacheng,
+        zip: '527',
+      },
+      {
+        name: ChanghuaLocationValue.Fangyuan,
+        zip: '528',
+      },
+      {
+        name: ChanghuaLocationValue.Ershui,
+        zip: '530',
+      },
+    ],
+  },
+  {
     city: TaiwanCities.Taipei,
     districts: [
       {
