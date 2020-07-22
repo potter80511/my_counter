@@ -17,7 +17,7 @@ export class WeatherDataFactory {
         photoName = WXBgs.PARTLY_CLEAR
         break;
       case WXType.PARTLY_CLOUDY:
-        photoName = WXBgs.PARTLY_CLOUDY
+        photoName = isNight ? WXBgs.PartlyCloudyNight : WXBgs.PARTLY_CLOUDY
         break;
       case WXType.MOSTLY_CLOUDY:
         photoName = WXBgs.MOSTLY_CLOUDY
