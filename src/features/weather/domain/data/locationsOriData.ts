@@ -15,6 +15,7 @@ import {
   NewTaipeiLocationValue,
   TaichungLocationValue,
   TaiNanValue,
+  KaohsiungLocationValue,
 } from "src/features/weather/domain/model/Location";
 
 export interface OriLocation {
@@ -819,6 +820,163 @@ export const locationsOriData: OriLocation[] = [
       {
         name: TaipeiLocationValue.Wenshan,
         zip: '116',
+      },
+    ],
+  },
+  {
+    city: TaiwanCities.Kaohsiung,
+    districts: [
+      {
+        name: KaohsiungLocationValue.Xinxing,
+        zip: '800',
+      },
+      {
+        name: KaohsiungLocationValue.Qianjin,
+        zip: '801',
+      },
+      {
+        name: KaohsiungLocationValue.Lingya,
+        zip: '802',
+      },
+      {
+        name: KaohsiungLocationValue.Yancheng,
+        zip: '803',
+      },
+      {
+        name: KaohsiungLocationValue.Gushan,
+        zip: '804',
+      },
+      {
+        name: KaohsiungLocationValue.Qijin,
+        zip: '805',
+      },
+      {
+        name: KaohsiungLocationValue.Qianzhen,
+        zip: '806',
+      },
+      {
+        name: KaohsiungLocationValue.Sanmin,
+        zip: '807',
+      },
+      {
+        name: KaohsiungLocationValue.Nanzi,
+        zip: '811',
+      },
+      {
+        name: KaohsiungLocationValue.Xiaogang,
+        zip: '812',
+      },
+      {
+        name: KaohsiungLocationValue.Zuoying,
+        zip: '813',
+      },
+      {
+        name: KaohsiungLocationValue.Renwu,
+        zip: '814',
+      },
+      {
+        name: KaohsiungLocationValue.Dashe,
+        zip: '815',
+      },
+      {
+        name: KaohsiungLocationValue.Gangshan,
+        zip: '820',
+      },
+      {
+        name: KaohsiungLocationValue.Luzhu,
+        zip: '821',
+      },
+      {
+        name: KaohsiungLocationValue.Alian,
+        zip: '822',
+      },
+      {
+        name: KaohsiungLocationValue.Tianliao,
+        zip: '823',
+      },
+      {
+        name: KaohsiungLocationValue.Yanchao,
+        zip: '824',
+      },
+      {
+        name: KaohsiungLocationValue.Qiaotou,
+        zip: '825',
+      },
+      {
+        name: KaohsiungLocationValue.Ziguan,
+        zip: '826',
+      },
+      {
+        name: KaohsiungLocationValue.Mido,
+        zip: '827',
+      },
+      {
+        name: KaohsiungLocationValue.Yongan,
+        zip: '828',
+      },
+      {
+        name: KaohsiungLocationValue.Hunei,
+        zip: '829',
+      },
+      {
+        name: KaohsiungLocationValue.Fengshan,
+        zip: '830',
+      },
+      {
+        name: KaohsiungLocationValue.Daliao,
+        zip: '831',
+      },
+      {
+        name: KaohsiungLocationValue.Linyuan,
+        zip: '832',
+      },
+      {
+        name: KaohsiungLocationValue.Niaosong,
+        zip: '833',
+      },
+      {
+        name: KaohsiungLocationValue.Dashu,
+        zip: '840',
+      },
+      {
+        name: KaohsiungLocationValue.Qishan,
+        zip: '842',
+      },
+      {
+        name: KaohsiungLocationValue.Mino,
+        zip: '843',
+      },
+      {
+        name: KaohsiungLocationValue.Liugui,
+        zip: '844',
+      },
+      {
+        name: KaohsiungLocationValue.Neimen,
+        zip: '845',
+      },
+      {
+        name: KaohsiungLocationValue.Shanlin,
+        zip: '846',
+      },
+      {
+        name: KaohsiungLocationValue.Jiaxian,
+        zip: '847',
+      },
+      {
+        name: KaohsiungLocationValue.Taoyuan,
+        zip: '848',
+      },
+      {
+        name: KaohsiungLocationValue.Namasia,
+        zip: '849',
+      },
+      {
+        name: KaohsiungLocationValue.Maolin,
+        zip: '851',
+      },
+      {
+        name: KaohsiungLocationValue.Qieding,
+        zip: '852',
       },
     ],
   },
