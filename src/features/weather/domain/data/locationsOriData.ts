@@ -1132,15 +1132,136 @@ export const locationsOriData: OriLocation[] = [
     ],
   },
   {
-    city: TaiwanCities.Taipei,
+    city: TaiwanCities.Taichung,
     districts: [
       {
-        name: TaipeiLocationValue.Neihu,
-        zip: '114',
+        name: TaichungLocationValue.Central,
+        zip: '400',
       },
       {
-        name: TaipeiLocationValue.Zhongzheng,
-        zip: '100',
+        name: TaichungLocationValue.East,
+        zip: '401',
+      },
+      {
+        name: TaichungLocationValue.South,
+        zip: '402',
+      },
+      {
+        name: TaichungLocationValue.Western,
+        zip: '403',
+      },
+      {
+        name: TaichungLocationValue.North,
+        zip: '404',
+      },
+      {
+        name: TaichungLocationValue.Beitun,
+        zip: '406',
+      },
+      {
+        name: TaichungLocationValue.Xitun,
+        zip: '407',
+      },
+      {
+        name: TaichungLocationValue.Nantun,
+        zip: '408',
+      },
+      {
+        name: TaichungLocationValue.Taiping,
+        zip: '411',
+      },
+      {
+        name: TaichungLocationValue.Dali,
+        zip: '412',
+      },
+      {
+        name: TaichungLocationValue.Wufeng,
+        zip: '413',
+      },
+      {
+        name: TaichungLocationValue.Uri,
+        zip: '414',
+      },
+      {
+        name: TaichungLocationValue.Fengyuan,
+        zip: '420',
+      },
+      {
+        name: TaichungLocationValue.Houli,
+        zip: '421',
+      },
+      {
+        name: TaichungLocationValue.Shigang,
+        zip: '422',
+      },
+      {
+        name: TaichungLocationValue.Dongshi,
+        zip: '423',
+      },
+      {
+        name: TaichungLocationValue.Heping,
+        zip: '424',
+      },
+      {
+        name: TaichungLocationValue.Xinshe,
+        zip: '426',
+      },
+      {
+        name: TaichungLocationValue.Tanzi,
+        zip: '427',
+      },
+      {
+        name: TaichungLocationValue.Daya,
+        zip: '428',
+      },
+      {
+        name: TaichungLocationValue.Shengang,
+        zip: '429',
+      },
+      {
+        name: TaichungLocationValue.Dadu,
+        zip: '432',
+      },
+      {
+        name: TaichungLocationValue.Shalu,
+        zip: '433',
+      },
+      {
+        name: TaichungLocationValue.Longjing,
+        zip: '434',
+      },
+      {
+        name: TaichungLocationValue.Wuqi,
+        zip: '435',
+      },
+      {
+        name: TaichungLocationValue.Qingshui,
+        zip: '436',
+      },
+      {
+        name: TaichungLocationValue.Dajia,
+        zip: '437',
+      },
+      {
+        name: TaichungLocationValue.Waipu,
+        zip: '438',
+      },
+      {
+        name: TaichungLocationValue.Daan,
+        zip: '439',
+      },
+    ],
+  },
+  {
+    city: TaiwanCities.Taichung,
+    districts: [
+      {
+        name: TaichungLocationValue.Western,
+        zip: '',
+      },
+      {
+        name: TaichungLocationValue.East,
+        zip: '',
       },
     ],
   },
