@@ -139,6 +139,23 @@ export const locationsOriData: OriLocation[] = [
     ],
   },
   {
+    city: TaiwanCities.HsinchuCity,
+    districts: [
+      {
+        name: HsinchuLocationValue.Eastern,
+        zip: '300',
+      },
+      {
+        name: HsinchuLocationValue.North,
+        zip: '300',
+      },
+      {
+        name: HsinchuLocationValue.Xiangshan,
+        zip: '300',
+      },
+    ],
+  },
+  {
     city: TaiwanCities.Hsinchu,
     districts: [
       {
@@ -463,6 +480,19 @@ export const locationsOriData: OriLocation[] = [
       {
         name: YunlinLocationValue.Yuanchang,
         zip: '655',
+      },
+    ],
+  },
+  {
+    city: TaiwanCities.ChiayiCity,
+    districts: [
+      {
+        name: ChiayiLocationValue.West,
+        zip: '600',
+      },
+      {
+        name: ChiayiLocationValue.Eastern,
+        zip: '601',
       },
     ],
   },

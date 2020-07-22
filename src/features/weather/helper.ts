@@ -75,7 +75,7 @@ export class LocationHelper {
     const result = districts.map(item => (
       {
         city: city,
-        name: item.zip + city + item.name,
+        name: item.zip + ' ' + city + item.name,
         value: item.name,
         type: WeatherLocationType.Location,
       }
