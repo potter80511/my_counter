@@ -773,6 +773,59 @@ export const locationsOriData: OriLocation[] = [
     city: TaiwanCities.Taipei,
     districts: [
       {
+        name: TaipeiLocationValue.Zhongzheng,
+        zip: '100',
+      },
+      {
+        name: TaipeiLocationValue.Datong,
+        zip: '103',
+      },
+      {
+        name: TaipeiLocationValue.Zhongshan,
+        zip: '104',
+      },
+      {
+        name: TaipeiLocationValue.Songshan,
+        zip: '105',
+      },
+      {
+        name: TaipeiLocationValue.Daan,
+        zip: '106',
+      },
+      {
+        name: TaipeiLocationValue.Wanhua,
+        zip: '108',
+      },
+      {
+        name: TaipeiLocationValue.Xinyi,
+        zip: '110',
+      },
+      {
+        name: TaipeiLocationValue.Shilin,
+        zip: '111',
+      },
+      {
+        name: TaipeiLocationValue.Beitou,
+        zip: '112',
+      },
+      {
+        name: TaipeiLocationValue.Neihu,
+        zip: '114',
+      },
+      {
+        name: TaipeiLocationValue.Nangang,
+        zip: '115',
+      },
+      {
+        name: TaipeiLocationValue.Wenshan,
+        zip: '116',
+      },
+    ],
+  },
+  {
+    city: TaiwanCities.Taipei,
+    districts: [
+      {
         name: TaipeiLocationValue.Neihu,
         zip: '114',
       },
