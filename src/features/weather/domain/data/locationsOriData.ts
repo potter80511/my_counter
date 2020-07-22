@@ -981,6 +981,127 @@ export const locationsOriData: OriLocation[] = [
     ],
   },
   {
+    city: TaiwanCities.NewTaipei,
+    districts: [
+      {
+        name: NewTaipeiLocationValue.Wanli,
+        zip: '207',
+      },
+      {
+        name: NewTaipeiLocationValue.Jinshan,
+        zip: '208',
+      },
+      {
+        name: NewTaipeiLocationValue.Banqiao,
+        zip: '220',
+      },
+      {
+        name: NewTaipeiLocationValue.Xizhi,
+        zip: '221',
+      },
+      {
+        name: NewTaipeiLocationValue.Shenkeng,
+        zip: '222',
+      },
+      {
+        name: NewTaipeiLocationValue.Shiding,
+        zip: '223',
+      },
+      {
+        name: NewTaipeiLocationValue.Ruifang,
+        zip: '224',
+      },
+      {
+        name: NewTaipeiLocationValue.Pingxi,
+        zip: '226',
+      },
+      {
+        name: NewTaipeiLocationValue.Shuangxi,
+        zip: '227',
+      },
+      {
+        name: NewTaipeiLocationValue.Gongliao,
+        zip: '228',
+      },
+      {
+        name: NewTaipeiLocationValue.Xindian,
+        zip: '231',
+      },
+      {
+        name: NewTaipeiLocationValue.Pinglin,
+        zip: '232',
+      },
+      {
+        name: NewTaipeiLocationValue.Wulai,
+        zip: '233',
+      },
+      {
+        name: NewTaipeiLocationValue.Yonghe,
+        zip: '234',
+      },
+      {
+        name: NewTaipeiLocationValue.Zhonghe,
+        zip: '235',
+      },
+      {
+        name: NewTaipeiLocationValue.Tucheng,
+        zip: '236',
+      },
+      {
+        name: NewTaipeiLocationValue.Sanxia,
+        zip: '237',
+      },
+      {
+        name: NewTaipeiLocationValue.Woodland,
+        zip: '238',
+      },
+      {
+        name: NewTaipeiLocationValue.Yingge,
+        zip: '239',
+      },
+      {
+        name: NewTaipeiLocationValue.Sanchong,
+        zip: '241',
+      },
+      {
+        name: NewTaipeiLocationValue.Xinzhuang,
+        zip: '242',
+      },
+      {
+        name: NewTaipeiLocationValue.Taishan,
+        zip: '243',
+      },
+      {
+        name: NewTaipeiLocationValue.Linkou,
+        zip: '244',
+      },
+      {
+        name: NewTaipeiLocationValue.Luzhou,
+        zip: '247',
+      },
+      {
+        name: NewTaipeiLocationValue.Wugu,
+        zip: '248',
+      },
+      {
+        name: NewTaipeiLocationValue.Bali,
+        zip: '249',
+      },
+      {
+        name: NewTaipeiLocationValue.Tamsui,
+        zip: '251',
+      },
+      {
+        name: NewTaipeiLocationValue.Sanzhi,
+        zip: '252',
+      },
+      {
+        name: NewTaipeiLocationValue.Shimen,
+        zip: '253',
+      },
+    ],
+  },
+  {
     city: TaiwanCities.Taipei,
     districts: [
       {
