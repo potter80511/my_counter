@@ -12,6 +12,7 @@ import {
   PingtungLocationValue,
   TaitungLocationValue,
   HualienLocationValue,
+  PenghuLocationValue,
   KeelungLocationValue,
   TaipeiLocationValue,
   NewTaipeiLocationValue,
@@ -823,6 +824,35 @@ export const locationsOriData: OriLocation[] = [
       {
         name: HualienLocationValue.Fuli,
         zip: '983',
+      },
+    ],
+  },
+  {
+    city: TaiwanCities.Penghu,
+    districts: [
+      {
+        name: PenghuLocationValue.Magong,
+        zip: '880',
+      },
+      {
+        name: PenghuLocationValue.Siyu,
+        zip: '881',
+      },
+      {
+        name: PenghuLocationValue.Wangan,
+        zip: '882',
+      },
+      {
+        name: PenghuLocationValue.Qimei,
+        zip: '883',
+      },
+      {
+        name: PenghuLocationValue.Baisha,
+        zip: '884',
+      },
+      {
+        name: PenghuLocationValue.Huxi,
+        zip: '885',
       },
     ],
   },

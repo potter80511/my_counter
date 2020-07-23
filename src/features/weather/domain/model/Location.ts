@@ -27,6 +27,7 @@ export type LocationValue =
   PingtungLocationValue |
   TaitungLocationValue |
   HualienLocationValue |
+  PenghuLocationValue |
   KeelungLocationValue |
   TaipeiLocationValue |
   KaohsiungLocationValue |
@@ -279,6 +280,14 @@ export enum HualienLocationValue { // 花蓮
   Ruisui = '瑞穗鄉',
   Yuli = '玉里鎮',
   Fuli = '富里鄉',
+};
+export enum PenghuLocationValue { // 澎湖
+  Baisha = '白沙鄉',
+  Siyu = '西嶼鄉',
+  Huxi = '湖西鄉',
+  Magong = '馬公市',
+  Wangan = '望安鄉',
+  Qimei = '七美鄉',
 };
 export enum KeelungLocationValue { // 基隆
   Anle = '安樂區',
