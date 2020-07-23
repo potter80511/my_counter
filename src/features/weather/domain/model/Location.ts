@@ -24,6 +24,7 @@ export type LocationValue =
   YunlinLocationValue |
   ChiayiLocationValue |
   PingtungLocationValue |
+  TaitungLocationValue |
   HualienLocationValue |
   KeelungLocationValue |
   TaipeiLocationValue |
@@ -229,6 +230,24 @@ export enum PingtungLocationValue { // 屏東
   Checheng = '車城鄉',
   Hengchun = '恆春鎮',
   Fangliao = '枋寮鄉',
+};
+export enum TaitungLocationValue { // 台東
+  Changbin = '長濱鄉',
+  Haiduan = '海端鄉',
+  Chishang = '池上鄉',
+  Chenggong = '成功鎮',
+  Guanshan = '關山鎮',
+  Donghe = '東河鄉',
+  Luye = '鹿野鄉',
+  Yanping = '延平鄉',
+  Beinan = '卑南鄉',
+  TaitungCity = '臺東市',
+  Taimali = '太麻里鄉',
+  Ludao = '綠島鄉',
+  Daren = '達仁鄉',
+  Dawu = '大武鄉',
+  Lanyu = '蘭嶼鄉',
+  Jinfeng = '金峰鄉',
 };
 export enum HualienLocationValue { // 花蓮
   Xiulin = '秀林鄉',

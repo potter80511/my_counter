@@ -9,6 +9,7 @@ import {
   YunlinLocationValue,
   ChiayiLocationValue,
   PingtungLocationValue,
+  TaitungLocationValue,
   HualienLocationValue,
   KeelungLocationValue,
   TaipeiLocationValue,
@@ -1402,6 +1403,75 @@ export const locationsOriData: OriLocation[] = [
       {
         name: TaiNanValue.Anding,
         zip: '745',
+      },
+    ],
+  },
+  {
+    city: TaiwanCities.Taitung,
+    districts: [
+      {
+        name: TaitungLocationValue.TaitungCity,
+        zip: '950',
+      },
+      {
+        name: TaitungLocationValue.Ludao,
+        zip: '951',
+      },
+      {
+        name: TaitungLocationValue.Lanyu,
+        zip: '952',
+      },
+      {
+        name: TaitungLocationValue.Yanping,
+        zip: '953',
+      },
+      {
+        name: TaitungLocationValue.Beinan,
+        zip: '954',
+      },
+      {
+        name: TaitungLocationValue.Luye,
+        zip: '955',
+      },
+      {
+        name: TaitungLocationValue.Guanshan,
+        zip: '956',
+      },
+      {
+        name: TaitungLocationValue.Haiduan,
+        zip: '957',
+      },
+      {
+        name: TaitungLocationValue.Chishang,
+        zip: '958',
+      },
+      {
+        name: TaitungLocationValue.Donghe,
+        zip: '959',
+      },
+      {
+        name: TaitungLocationValue.Chenggong,
+        zip: '961',
+      },
+      {
+        name: TaitungLocationValue.Changbin,
+        zip: '962',
+      },
+      {
+        name: TaitungLocationValue.Taimali,
+        zip: '963',
+      },
+      {
+        name: TaitungLocationValue.Jinfeng,
+        zip: '964',
+      },
+      {
+        name: TaitungLocationValue.Dawu,
+        zip: '965',
+      },
+      {
+        name: TaitungLocationValue.Daren,
+        zip: '966',
       },
     ],
   },
