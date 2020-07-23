@@ -1253,6 +1253,159 @@ export const locationsOriData: OriLocation[] = [
     ],
   },
   {
+    city: TaiwanCities.Tainan,
+    districts: [
+      {
+        name: TaiNanValue.WestCentral,
+        zip: '700',
+      },
+      {
+        name: TaiNanValue.Eastern,
+        zip: '701',
+      },
+      {
+        name: TaiNanValue.South,
+        zip: '702',
+      },
+      {
+        name: TaiNanValue.North,
+        zip: '704',
+      },
+      {
+        name: TaiNanValue.Anping,
+        zip: '708',
+      },
+      {
+        name: TaiNanValue.Annan,
+        zip: '709',
+      },
+      {
+        name: TaiNanValue.Yongkang,
+        zip: '710',
+      },
+      {
+        name: TaiNanValue.Guiren,
+        zip: '711',
+      },
+      {
+        name: TaiNanValue.Xinhua,
+        zip: '712',
+      },
+      {
+        name: TaiNanValue.Zuozhen,
+        zip: '713',
+      },
+      {
+        name: TaiNanValue.Yujing,
+        zip: '714',
+      },
+      {
+        name: TaiNanValue.Nanxi,
+        zip: '715',
+      },
+      {
+        name: TaiNanValue.Nanhua,
+        zip: '716',
+      },
+      {
+        name: TaiNanValue.Rende,
+        zip: '717',
+      },
+      {
+        name: TaiNanValue.Guanmiao,
+        zip: '718',
+      },
+      {
+        name: TaiNanValue.Longci,
+        zip: '719',
+      },
+      {
+        name: TaiNanValue.Guantian,
+        zip: '720',
+      },
+      {
+        name: TaiNanValue.Madou,
+        zip: '721',
+      },
+      {
+        name: TaiNanValue.Jiali,
+        zip: '722',
+      },
+      {
+        name: TaiNanValue.Westport,
+        zip: '723',
+      },
+      {
+        name: TaiNanValue.Qigu,
+        zip: '724',
+      },
+      {
+        name: TaiNanValue.Jiangjun,
+        zip: '725',
+      },
+      {
+        name: TaiNanValue.Xuejia,
+        zip: '726',
+      },
+      {
+        name: TaiNanValue.Beimen,
+        zip: '727',
+      },
+      {
+        name: TaiNanValue.Xinying,
+        zip: '730',
+      },
+      {
+        name: TaiNanValue.Houbi,
+        zip: '731',
+      },
+      {
+        name: TaiNanValue.Baihe,
+        zip: '732',
+      },
+      {
+        name: TaiNanValue.Dongshan,
+        zip: '733',
+      },
+      {
+        name: TaiNanValue.Liujia,
+        zip: '734',
+      },
+      {
+        name: TaiNanValue.Xiaying,
+        zip: '735',
+      },
+      {
+        name: TaiNanValue.Liuying,
+        zip: '736',
+      },
+      {
+        name: TaiNanValue.Yanshuei,
+        zip: '737',
+      },
+      {
+        name: TaiNanValue.Shanhua,
+        zip: '741',
+      },
+      {
+        name: TaiNanValue.Xinshi,
+        zip: '744',
+      },
+      {
+        name: TaiNanValue.Danei,
+        zip: '742',
+      },
+      {
+        name: TaiNanValue.Shanshang,
+        zip: '743',
+      },
+      {
+        name: TaiNanValue.Anding,
+        zip: '745',
+      },
+    ],
+  },
+  {
     city: TaiwanCities.Taichung,
     districts: [
       {
