@@ -6,6 +6,7 @@ import {
   HsinchuLocationValue,
   MiaoliLocationValue,
   ChanghuaLocationValue,
+  NantouLocationValue,
   YunlinLocationValue,
   ChiayiLocationValue,
   PingtungLocationValue,
@@ -396,6 +397,63 @@ export const locationsOriData: OriLocation[] = [
       {
         name: ChanghuaLocationValue.Ershui,
         zip: '530',
+      },
+    ],
+  },
+  {
+    city: TaiwanCities.Nantou,
+    districts: [
+      {
+        name: NantouLocationValue.NantouCity,
+        zip: '540',
+      },
+      {
+        name: NantouLocationValue.Zhongliao,
+        zip: '541',
+      },
+      {
+        name: NantouLocationValue.Caotun,
+        zip: '542',
+      },
+      {
+        name: NantouLocationValue.Guoxing,
+        zip: '544',
+      },
+      {
+        name: NantouLocationValue.Puli,
+        zip: '545',
+      },
+      {
+        name: NantouLocationValue.Renai,
+        zip: '546',
+      },
+      {
+        name: NantouLocationValue.Mingjian,
+        zip: '551',
+      },
+      {
+        name: NantouLocationValue.Jiji,
+        zip: '552',
+      },
+      {
+        name: NantouLocationValue.Shuili,
+        zip: '553',
+      },
+      {
+        name: NantouLocationValue.Yuchi,
+        zip: '555',
+      },
+      {
+        name: NantouLocationValue.Xinyi,
+        zip: '556',
+      },
+      {
+        name: NantouLocationValue.Zhushan,
+        zip: '557',
+      },
+      {
+        name: NantouLocationValue.Lugu,
+        zip: '558',
       },
     ],
   },

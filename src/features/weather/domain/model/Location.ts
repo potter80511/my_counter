@@ -21,6 +21,7 @@ export type LocationValue =
   HsinchuLocationValue |
   MiaoliLocationValue |
   ChanghuaLocationValue |
+  NantouLocationValue |
   YunlinLocationValue |
   ChiayiLocationValue |
   PingtungLocationValue |
@@ -151,6 +152,21 @@ export enum ChanghuaLocationValue { // 彰化
   Zhutang = '竹塘鄉',
   Xizhou = '溪州鄉',
   Ershui = '二水鄉',
+};
+export enum NantouLocationValue { // 南投
+  Renai = '仁愛鄉',
+  Guoxing = '國姓鄉',
+  Puli = '埔里鎮',
+  Caotun = '草屯鎮',
+  Zhongliao = '中寮鄉',
+  NantouCity = '南投市',
+  Yuchi = '魚池鄉',
+  Shuili = '水里鄉',
+  Mingjian = '名間鄉',
+  Xinyi = '信義鄉',
+  Jiji = '集集鎮',
+  Zhushan = '竹山鎮',
+  Lugu = '鹿谷鄉',
 };
 export enum YunlinLocationValue { // 雲林
   Mailiao = '麥寮鄉',
