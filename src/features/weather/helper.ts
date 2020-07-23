@@ -1,5 +1,6 @@
 import { WeatherDataFactory } from "src/features/weather/domain/factories/WeatherDataFactory";
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
+import moment from "moment";
 
 export class WeatherHelper {
   static switchTemperatureToFahrenheit(value: string, noUnit?: boolean): string {
@@ -11,6 +12,12 @@ export class WeatherHelper {
     const tempNumber = Number(value.substring(0, value.length - 1));
     const newNumber = Math.round((tempNumber - 32) * 5/9);
     return WeatherDataFactory.createTemperature(String(newNumber), noUnit)
+  }
+  static isNight(time: string): boolean {
+    const hour = Number(moment(time).format('HH'));
+    const isNight = hour === 18 || hour === 21 || hour === 0 || hour === 3
+      ? true : false;
+    return isNight
   }
 };
 
