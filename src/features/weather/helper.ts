@@ -1,5 +1,7 @@
 import { WeatherDataFactory } from "src/features/weather/domain/factories/WeatherDataFactory";
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
+import { WeatherLocationType, LocationData, TaiwanCities } from "src/features/weather/domain/model/Location";
+import { OriLocation, Districts } from "src/features/weather/domain/data/locationsOriData";
 import moment from "moment";
 
 export class WeatherHelper {
@@ -59,3 +61,32 @@ export class TemperatureHelper {
     }
   }
 };
+
+export class LocationHelper {
+  static createLocationOptions(oriData: OriLocation[]): LocationData[] {
+    let result: LocationData[] = [];
+    oriData.forEach(item => {
+      const city: LocationData = {
+        city: item.city,
+        name: item.city,
+        value: item.city,
+        type: WeatherLocationType.City,
+      };
+      const districts = this.createDistrictArray(item.districts, item.city);
+      result.push(city)
+      result = result.concat(districts);
+    });
+    return result
+  }
+  static createDistrictArray(districts: Districts[], city: TaiwanCities): LocationData[] {
+    const result = districts.map(item => (
+      {
+        city: city,
+        name: item.zip + ' ' + city + item.name,
+        value: item.name,
+        type: WeatherLocationType.Location,
+      }
+    ));
+    return result;
+  }
+}
