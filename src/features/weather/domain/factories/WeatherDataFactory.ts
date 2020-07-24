@@ -4,26 +4,26 @@ import { WXBgs } from 'src/features/weather/domain/model/WXBgs';
 import moment, { Moment } from 'moment';
 
 export class WeatherDataFactory {
-  static createBackground(wX: WXType): string {
+  static createBackground(wX: WXType, isNight?: boolean): string {
     let photoName = '';
     switch (wX) {
       case WXType.CLEAR:
-        photoName = WXBgs.CLEAR
+        photoName = isNight ? WXBgs.ClearNight : WXBgs.CLEAR
         break;
       case WXType.MOSTLY_CLEAR:
-        photoName = WXBgs.MOSTLY_CLEAR
+        photoName = isNight ? WXBgs.ClearNight : WXBgs.MOSTLY_CLEAR
         break;
       case WXType.PARTLY_CLEAR:
         photoName = WXBgs.PARTLY_CLEAR
         break;
       case WXType.PARTLY_CLOUDY:
-        photoName = WXBgs.PARTLY_CLOUDY
+        photoName = isNight ? WXBgs.PartlyCloudyNight : WXBgs.PARTLY_CLOUDY
         break;
       case WXType.MOSTLY_CLOUDY:
         photoName = WXBgs.MOSTLY_CLOUDY
         break;
       case WXType.CLOUDY:
-        photoName = WXBgs.CLOUDY
+        photoName = isNight ? WXBgs.CloudyNight : WXBgs.CLOUDY
         break;
       case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS:
         photoName = WXBgs.MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS
