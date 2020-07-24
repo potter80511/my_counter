@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   faTimes,
+  faSearch,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -51,6 +52,7 @@ const CreateLocationItemModal = (props: CreateLocationItemModal) => {
             <label>輸入城市或鄉鎮名字</label>
             <div className="input-block">
               <div className="input-group">
+                <FontAwesomeIcon icon={faSearch}/>
                 <input
                   type="text"
                   placeholder="搜尋"
