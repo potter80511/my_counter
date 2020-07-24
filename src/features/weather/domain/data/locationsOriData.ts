@@ -15,10 +15,11 @@ import {
   PenghuLocationValue,
   KeelungLocationValue,
   TaipeiLocationValue,
+  KaohsiungLocationValue,
   NewTaipeiLocationValue,
   TaichungLocationValue,
   TaiNanValue,
-  KaohsiungLocationValue,
+  KinmenValue,
 } from "src/features/weather/domain/model/Location";
 
 export interface OriLocation {
@@ -1564,15 +1565,31 @@ export const locationsOriData: OriLocation[] = [
     ],
   },
   {
-    city: TaiwanCities.Taichung,
+    city: TaiwanCities.Kinmen,
     districts: [
       {
-        name: TaichungLocationValue.Western,
-        zip: '',
+        name: KinmenValue.Jinsha,
+        zip: '890',
       },
       {
-        name: TaichungLocationValue.East,
-        zip: '',
+        name: KinmenValue.Jinhu,
+        zip: '891',
+      },
+      {
+        name: KinmenValue.Jinning,
+        zip: '892',
+      },
+      {
+        name: KinmenValue.Golden,
+        zip: '893',
+      },
+      {
+        name: KinmenValue.Lieyu,
+        zip: '894',
+      },
+      {
+        name: KinmenValue.Wuqiu,
+        zip: '896',
       },
     ],
   },
