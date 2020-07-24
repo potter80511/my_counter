@@ -9,8 +9,8 @@ export interface WeatherElementItem {
 };
 
 export interface ElementTime {
-  startTime?: Moment;
-  endTime?: Moment;
+  startTime?: string;
+  endTime?: string;
   elementValue: parameter[];
   dataTime?: Moment;
 };

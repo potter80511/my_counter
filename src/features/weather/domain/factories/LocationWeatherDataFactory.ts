@@ -5,8 +5,13 @@ import {
   WeatherDataFactory,
 } from 'src/features/weather/domain/factories/WeatherDataFactory';
 import moment from 'moment';
-import { FindExtremeNumber } from 'src/features/weather/helper';
+import { FindExtremeNumber, WeatherHelper } from 'src/features/weather/helper';
 import { TaiwanCities } from '../model/Location';
+
+interface CurrentWx {
+  wX: WXType;
+  currentTime: string;
+}
 
 export class LocationWeatherDataFactory {
   static createCurrentDayDataFromNet(data, city: TaiwanCities, showCity: boolean): Omit<CurrentDayDetails, 'locationType' | 'city' | 'inputIndex'> {
@@ -15,18 +20,19 @@ export class LocationWeatherDataFactory {
       weatherElement,
     } = data;
     // console.log(city)
-    
+
     const newLocationName = locationName.search('臺') != -1 ? locationName.replace('臺', '台') : locationName;
     const newCityName = city.search('臺') != -1 ? city.replace('臺', '台') : city;
 
-    const wX = this.getCurrentWx(weatherElement);
+    const wX = this.getCurrentWx(weatherElement).wX;
+    const nowIsNight = WeatherHelper.isNight(this.getCurrentWx(weatherElement).currentTime);
 
     const currentTemperature = this.getLocationT(weatherElement);
     const minT = this.getExtremeT(weatherElement, ElementName.MinT);
     const maxT = this.getExtremeT(weatherElement, ElementName.MaxT);
     const todayEveryHourArray = this.createLocationTodayEveryHourArray(weatherElement);
     const othersDataArray = this.createOthersDataArray(weatherElement);
-    const weatherBackgroundImage = WeatherDataFactory.createBackground(wX);
+    const weatherBackgroundImage = WeatherDataFactory.createBackground(wX, nowIsNight);
 
     return {
       locationName: newLocationName,
@@ -41,22 +47,23 @@ export class LocationWeatherDataFactory {
     };
   }
 
-  static getCurrentWx(weatherElement: WeatherElementItem[]): WXType {
+  static getCurrentWx(weatherElement: WeatherElementItem[]): CurrentWx {
     const wxData = weatherElement.find(item => item.elementName === ElementName.Wx);
     if (wxData) {
-      const wx = wxData.time[0].elementValue[0].value as WXType
-      return wx;
+      const wX = wxData.time[0].elementValue[0].value as WXType
+      const currentTime = wxData.time[0].startTime
+      return { wX, currentTime };
     }
   }
 
-  static getCurrentWxNight(weatherElement: WeatherElementItem[]): boolean {
-    const wxData = weatherElement.find(item => item.elementName === ElementName.Wx);
-    if (wxData) {
-      const wxHour = Number(moment(wxData.time[0].startTime).format('HH'));
-      const night = wxHour === 21 || wxHour === 0 || wxHour === 3
-      return night;
-    }
-  }
+  // static getCurrentWxNight(weatherElement: WeatherElementItem[]): boolean {
+  //   const wxData = weatherElement.find(item => item.elementName === ElementName.Wx);
+  //   if (wxData) {
+  //     const wxHour = Number(moment(wxData.time[0].startTime).format('HH'));
+  //     const night = wxHour === 21 || wxHour === 0 || wxHour === 3
+  //     return night;
+  //   }
+  // }
 
   static getLocationT(weatherElement: WeatherElementItem[]): string {
     const tData = weatherElement.find(item => item.elementName === ElementName.T);
@@ -104,8 +111,8 @@ export class LocationWeatherDataFactory {
     if (wxData) {
       wxArray = wxData.time.map(item => {
         // console.log(item)
-        const hour = Number(moment(item.startTime).format('HH'));
-        const night = hour === 21 || hour === 0 || hour === 3 ? true : false;
+        const hour = item.startTime;
+        const night = WeatherHelper.isNight(hour);
         return {
           wXIcon: WeatherDataFactory.createWXIcon(item.elementValue[0].value as WXType, night),
           wX: item.elementValue[0].value,
@@ -139,7 +146,7 @@ export class LocationWeatherDataFactory {
   static createOthersDataArray(weatherElement: WeatherElementItem[]): OthersData[] {
     const currentPoP = this.createPoPData(weatherElement, ElementName.PoP12H, 0);
     const nextPoP = this.createPoPData(weatherElement, ElementName.PoP12H, 1);
-    
+
     const rH = this.createOtherDataItem(weatherElement, ElementName.RH);
 
     const wS = this.createOtherDataItem(weatherElement, ElementName.WS);
@@ -168,7 +175,7 @@ export class LocationWeatherDataFactory {
     const poP = element.time[timeIndex]
     const timeRange = '降雨機率：' + moment(poP.startTime).format('M/DD，HH:mm') + ' ~ ' + moment(poP.endTime).format('M/DD，HH:mm');
     const value = poP.elementValue[0].value;
-    
+
     return {
       name: timeRange,
       value,

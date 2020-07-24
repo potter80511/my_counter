@@ -26,8 +26,8 @@ export interface WeatherElementItem {
 };
 
 export interface ElementTime {
-  startTime: Moment;
-  endTime: Moment;
+  startTime: string;
+  endTime: string;
   parameter?: parameter;
   elementValue?: ElementValueValue[];
 };

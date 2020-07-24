@@ -1,9 +1,13 @@
 export enum WXBgs {
   CLEAR = 'clear',
+  ClearNight = 'clear_night',
   MOSTLY_CLEAR = 'mostly_clear',
+  MostlyClearNight = 'mostly_clear_night',
   PARTLY_CLEAR = 'partly_clear',
   CLOUDY = 'cloudy',
+  CloudyNight = 'cloudy_night',
   PARTLY_CLOUDY = 'partly_cloudy',
+  PartlyCloudyNight = 'partly_cloudy_night',
   MOSTLY_CLOUDY = 'mostly_cloudy',
   PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS_OR_THUNDERSHOWERS = 'partly_cloudy_with_occational_showers_or_thundershowers',
   MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS = 'mostly_cloudy_with_occational_showers',
