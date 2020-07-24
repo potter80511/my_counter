@@ -1,9 +1,5 @@
 import {
-  LocationData,
-  WeatherLocationType,
   TaiwanCities,
-  TaipeiLocationValue,
-  TaoyuanLocationValue,
 } from 'src/features/weather/domain/model/Location';
 import {
   SeriesNumber,
@@ -90,6 +86,10 @@ export const currentDayCitiesSeriesNumberData: SeriesNumberItem[] = [
   {
     name: TaiwanCities.Tainan,
     seriesNumber: SeriesNumber.Tainan,
+  },
+  {
+    name: TaiwanCities.Lianjiang,
+    seriesNumber: SeriesNumber.Lianjiang,
   },
   {
     name: TaiwanCities.Kinmen,

@@ -19,6 +19,7 @@ import {
   NewTaipeiLocationValue,
   TaichungLocationValue,
   TaiNanValue,
+  LianjiangValue,
   KinmenValue,
 } from "src/features/weather/domain/model/Location";
 
@@ -1561,6 +1562,27 @@ export const locationsOriData: OriLocation[] = [
       {
         name: TaitungLocationValue.Daren,
         zip: '966',
+      },
+    ],
+  },
+  {
+    city: TaiwanCities.Lianjiang,
+    districts: [
+      {
+        name: LianjiangValue.Nangan,
+        zip: '209',
+      },
+      {
+        name: LianjiangValue.Beigan,
+        zip: '210',
+      },
+      {
+        name: LianjiangValue.Jyuguang,
+        zip: '211',
+      },
+      {
+        name: LianjiangValue.Dongyin,
+        zip: '212',
       },
     ],
   },

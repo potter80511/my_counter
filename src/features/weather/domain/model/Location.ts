@@ -34,6 +34,7 @@ export type LocationValue =
   NewTaipeiLocationValue |
   TaichungLocationValue |
   TaiNanValue |
+  LianjiangValue |
   KinmenValue;
 
 export enum TaiwanCities {
@@ -57,6 +58,7 @@ export enum TaiwanCities {
   NewTaipei = '新北市',
   Taichung = '臺中市',
   Tainan = '臺南市',
+  Lianjiang = '連江縣',
   Kinmen = '金門縣',
 };
 
@@ -453,6 +455,12 @@ export enum TaiNanValue { // 台南
   Guanmiao = '關廟區',
   Longci = '龍崎區',
   Rende = '仁德區',
+}
+export enum LianjiangValue { // 連江
+  Nangan = '南竿鄉',
+  Beigan = '北竿鄉',
+  Jyuguang = '莒光鄉',
+  Dongyin = '東引鄉',
 }
 export enum KinmenValue { // 金門
   Golden = '金城鎮',

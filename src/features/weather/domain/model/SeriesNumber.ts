@@ -23,6 +23,7 @@ export enum SeriesNumber {
   NewTaipei = 'F-D0047-069',
   Taichung = 'F-D0047-073',
   Tainan = 'F-D0047-077',
+  Lianjiang = 'F-D0047-081',
   Kinmen = 'F-D0047-085',
 };
 
@@ -47,6 +48,7 @@ export enum WeekSeriesNumber {
   NewTaipei = 'F-D0047-071',
   Taichung = 'F-D0047-075',
   Tainan = 'F-D0047-079',
+  Lianjiang = 'F-D0047-083',
   Kinmen = 'F-D0047-087',
 };
 

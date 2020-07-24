@@ -88,6 +88,10 @@ export const weekCitiesSeriesNumberData: SeriesNumberItem[] = [
     seriesNumber: WeekSeriesNumber.Tainan,
   },
   {
+    name: TaiwanCities.Lianjiang,
+    seriesNumber: WeekSeriesNumber.Lianjiang,
+  },
+  {
     name: TaiwanCities.Kinmen,
     seriesNumber: WeekSeriesNumber.Kinmen,
   },
