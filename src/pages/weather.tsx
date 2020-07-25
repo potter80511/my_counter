@@ -4,14 +4,14 @@ import WeatherContainer from 'src/features/weather/WeatherContainer';
 import '@styles/features/weather/weather.scss';
 
 const meta = {
-  title: "Johnny's App - Weather",
-  description: "Johnny's App - Weather",
-  keywords: "Johnny's App - Weather",
-  ogtitle: "Johnny's App - Weather",
-  ogdescription: "Johnny's App - Weather",
+  title: "Johnny's App - 天氣 Weather",
+  description: "Johnny's App - 天氣 Weather",
+  keywords: "Johnny's App - 天氣 Weather",
+  ogtitle: "Johnny's App - 天氣 Weather",
+  ogdescription: "Johnny's App - 天氣 Weather",
   ogtype: 'website',
   ogimage: '',
-  ogsitename: "Johnny's App - Weather",
+  ogsitename: "Johnny's App - 天氣 Weather",
   ogurl: '',
 };
 
