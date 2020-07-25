@@ -22,14 +22,14 @@ import '@styles/counter/Counter.scss';
 import '@styles/transition_group.scss';
 
 const meta = {
-  title: "Johnny's App - Counter",
-  description: "Johnny's App - Counter",
-  keywords: "Johnny's App - Counter",
-  ogtitle: "Johnny's App - Counter",
-  ogdescription: "Johnny's App - Counter",
+  title: "Johnny's App - 倒數計時器 Counter",
+  description: "Johnny's App - 倒數計時器 Counter",
+  keywords: "Johnny's App - 倒數計時器 Counter",
+  ogtitle: "Johnny's App - 倒數計時器 Counter",
+  ogdescription: "Johnny's App - 倒數計時器 Counter",
   ogtype: 'website',
   ogimage: '',
-  ogsitename: "Johnny's App - Counter",
+  ogsitename: "Johnny's App - 倒數計時器 Counter",
   ogurl: '',
 };
 
