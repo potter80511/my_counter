@@ -30,7 +30,7 @@ const MobileMenu = () => {
         className="menu-bars"
         onClick={onShowList}
       >
-        <FontAwesomeIcon icon={faBars} />
+        Menu
       </button>
       <CSSTransition
         in={showList}
