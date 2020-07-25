@@ -60,6 +60,14 @@ export const weekCitiesSeriesNumberData: SeriesNumberItem[] = [
     seriesNumber: WeekSeriesNumber.Keelung,
   },
   {
+    name: TaiwanCities.HsinchuCity,
+    seriesNumber: WeekSeriesNumber.HsinchuCity,
+  },
+  {
+    name: TaiwanCities.ChiayiCity,
+    seriesNumber: WeekSeriesNumber.ChiayiCity,
+  },
+  {
     name: TaiwanCities.Taipei,
     seriesNumber: WeekSeriesNumber.Taipei,
   },
@@ -78,6 +86,10 @@ export const weekCitiesSeriesNumberData: SeriesNumberItem[] = [
   {
     name: TaiwanCities.Tainan,
     seriesNumber: WeekSeriesNumber.Tainan,
+  },
+  {
+    name: TaiwanCities.Lianjiang,
+    seriesNumber: WeekSeriesNumber.Lianjiang,
   },
   {
     name: TaiwanCities.Kinmen,

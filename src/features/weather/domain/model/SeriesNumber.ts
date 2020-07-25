@@ -16,11 +16,14 @@ export enum SeriesNumber {
   Hualien = 'F-D0047-041',
   Penghu = 'F-D0047-045',
   Keelung = 'F-D0047-049',
+  HsinchuCity = 'F-D0047-053',
+  ChiayiCity = 'F-D0047-057',
   Taipei = 'F-D0047-061',
   Kaohsiung = 'F-D0047-065',
   NewTaipei = 'F-D0047-069',
   Taichung = 'F-D0047-073',
   Tainan = 'F-D0047-077',
+  Lianjiang = 'F-D0047-081',
   Kinmen = 'F-D0047-085',
 };
 
@@ -38,11 +41,14 @@ export enum WeekSeriesNumber {
   Hualien = 'F-D0047-043',
   Penghu = 'F-D0047-047',
   Keelung = 'F-D0047-051',
+  HsinchuCity = 'F-D0047-055',
+  ChiayiCity = 'F-D0047-059',
   Taipei = 'F-D0047-063',
   Kaohsiung = 'F-D0047-067',
   NewTaipei = 'F-D0047-071',
   Taichung = 'F-D0047-075',
   Tainan = 'F-D0047-079',
+  Lianjiang = 'F-D0047-083',
   Kinmen = 'F-D0047-087',
 };
 

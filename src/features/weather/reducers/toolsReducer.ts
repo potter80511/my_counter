@@ -6,9 +6,11 @@ import {
   WeatherLocationType,
   TaoyuanLocationValue
 } from 'src/features/weather/domain/model/Location';
-import { allLocationsData } from 'src/features/weather/domain/data/allLocationsData';
-import { CurrentDayDetails } from '../domain/model/Weather';
+// import { allLocationsData } from 'src/features/weather/domain/data/allLocationsData';
+import { CurrentDayDetails } from 'src/features/weather/domain/model/Weather';
 import { Cookies } from 'react-cookie';
+import { LocationHelper } from 'src/features/weather/helper';
+import { locationsOriData } from 'src/features/weather/domain/data/locationsOriData';
 
 export type State = {
   temperatureType: TemperatureType;
@@ -198,6 +200,7 @@ const reducer = (state: State = defaultState, action: Action) => {
       }
     }
     case ActionType.SearchInputChange: {
+      const allLocationsData = LocationHelper.createLocationOptions(locationsOriData);
       const filterData = allLocationsData.map(item => {
         return item.name.search('臺') != -1 ? {
           ...item,

@@ -36,7 +36,7 @@ export class LocationWeatherDataFactory {
 
     return {
       locationName: newLocationName,
-      cityName: showCity ? newCityName.substring(0, newCityName.length - 1) : '',
+      cityName: showCity ? newCityName : '',
       wX,
       currentTemperature,
       minT,

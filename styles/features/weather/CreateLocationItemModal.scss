@@ -33,6 +33,12 @@
         align-items: center;
         position: relative;
         transition: all .3s;
+        >svg {
+          color: #b0b1b8;
+          font-size: 13px;
+          height: 13px;
+          margin-right: 5px;
+        }
         &:hover {
           background-color: #666d6f;
         }
