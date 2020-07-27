@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import NormalSelect from 'src/components/form_elements/NormalSelect';
 import { optionType } from 'src/types/common';
 import { TimeSelectChangeType } from 'src/types/counter';
@@ -18,7 +18,12 @@ type TimeSettingToolsType = {
   prevMinutesSeconds: number;
   prevHoursSeconds: number;
   settingsTotalSeconds: number;
-  onTotalSecondsChange(s: number, type: string, viewTimes: number, numberTimes: number): void;
+  onTotalSecondsChange(
+    s: number,
+    type: string,
+    viewTimes: number,
+    numberTimes: number,
+  ): void;
 };
 
 const toolDatas: TimeSettingToolDatas = {
@@ -55,10 +60,12 @@ const TimeSettingTools = (props: TimeSettingToolsType) => {
     settingsTotalSeconds,
     onTotalSecondsChange,
   } = props;
-  const [tempTotalSeconds, setTempTotalSeconds] = useState<number>(settingsTotalSeconds);
+  const [tempTotalSeconds, setTempTotalSeconds] = useState<number>(
+    settingsTotalSeconds,
+  );
 
   const onTimeChange = (t: string, type: string) => {
-    let numberTimes= Number(t);
+    let numberTimes = Number(t);
     let newTotalSeconds: number;
     switch (type) {
       case TimeSelectChangeType.seconds:
@@ -99,21 +106,21 @@ const TimeSettingTools = (props: TimeSettingToolsType) => {
           unit="小時"
           value={hours}
           optionDatas={toolDatas.hours}
-          onSelectChange={(t) => onTimeChange(t, TimeSelectChangeType.hour)}
+          onSelectChange={t => onTimeChange(t, TimeSelectChangeType.hour)}
         />
         <NormalSelect
           className="minutes"
           unit="分鐘"
           value={minutes}
           optionDatas={toolDatas.minutes}
-          onSelectChange={(t) => onTimeChange(t, TimeSelectChangeType.minutes)}
+          onSelectChange={t => onTimeChange(t, TimeSelectChangeType.minutes)}
         />
         <NormalSelect
           className="seconds"
           unit="秒鐘"
           value={seconds}
           optionDatas={toolDatas.seconds}
-          onSelectChange={(t) => onTimeChange(t, TimeSelectChangeType.seconds)}
+          onSelectChange={t => onTimeChange(t, TimeSelectChangeType.seconds)}
         />
       </div>
     </div>

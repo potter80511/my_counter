@@ -15,4 +15,4 @@ export enum WXBgs {
   Temp_Rain = 'temp_rain',
   OCCASIONAL_SHOWERS_OR_THUNDERSTORMS = 'mostly_cloudy_with_occational_showers',
   OCCASIONAL_AFTERNOON_THUNDERSHOWERS = '',
-};
+}

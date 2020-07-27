@@ -13,4 +13,4 @@ export class WeatherProvider {
   static get GetWeekWeatherUseCase(): GetWeekWeather.UseCase {
     return new GetWeekWeatherUseCase(appProvider.fetcher);
   }
-};
+}

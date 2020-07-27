@@ -18,10 +18,7 @@ const meta = {
 
 const TodoListView = () => {
   return (
-    <Layout
-      meta={meta}
-      className="flex-center"
-    >
+    <Layout meta={meta} className="flex-center">
       <TodoListContainer />
     </Layout>
   );

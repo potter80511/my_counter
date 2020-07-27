@@ -17,14 +17,9 @@ const meta = {
 };
 
 const index = () => {
-
   return (
-    <Layout
-      id={'index'}
-      meta={meta}
-      className="flex-center"
-    >
-      <div className='index'>
+    <Layout id={'index'} meta={meta} className="flex-center">
+      <div className="index">
         <h2>Johnny's App</h2>
         <nav>
           <Link href="/">

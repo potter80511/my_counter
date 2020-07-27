@@ -1,6 +1,4 @@
-import {
-  TaiwanCities,
-} from 'src/features/weather/domain/model/Location';
+import { TaiwanCities } from 'src/features/weather/domain/model/Location';
 import {
   SeriesNumber,
   SeriesNumberItem,
