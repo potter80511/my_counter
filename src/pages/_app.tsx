@@ -9,7 +9,7 @@ import '@styles/theme.scss';
 
 export default class JohnnyApp extends App {
   render() {
-    const { Component, pageProps} = this.props;
+    const { Component, pageProps } = this.props;
     return (
       <Provider store={store}>
         <Component {...pageProps} />

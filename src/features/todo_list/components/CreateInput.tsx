@@ -3,8 +3,7 @@ import '@styles/features/todo_list/CreateInput.scss';
 
 type CreateInputProps = {
   onSubmit: (newValue: string) => void;
-}
-
+};
 
 const CreateInput = (props: CreateInputProps) => {
   const [value, setValue] = useState<string>('');
@@ -14,14 +13,14 @@ const CreateInput = (props: CreateInputProps) => {
   };
   const onSubmit = (value: string) => {
     setValue('');
-    props.onSubmit(value)
+    props.onSubmit(value);
   };
   return (
     <div className="create-input">
       <input
         type="text"
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={e => onChange(e.target.value)}
       />
       <button onClick={() => onSubmit(value)}>新增</button>
     </div>

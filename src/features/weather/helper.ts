@@ -1,27 +1,37 @@
-import { WeatherDataFactory } from "src/features/weather/domain/factories/WeatherDataFactory";
+import { WeatherDataFactory } from 'src/features/weather/domain/factories/WeatherDataFactory';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
-import { WeatherLocationType, LocationData, TaiwanCities } from "src/features/weather/domain/model/Location";
-import { OriLocation, Districts } from "src/features/weather/domain/data/locationsOriData";
-import moment from "moment";
+import {
+  WeatherLocationType,
+  LocationData,
+  TaiwanCities,
+} from 'src/features/weather/domain/model/Location';
+import {
+  OriLocation,
+  Districts,
+} from 'src/features/weather/domain/data/locationsOriData';
+import moment from 'moment';
 
 export class WeatherHelper {
-  static switchTemperatureToFahrenheit(value: string, noUnit?: boolean): string {
+  static switchTemperatureToFahrenheit(
+    value: string,
+    noUnit?: boolean,
+  ): string {
     const tempNumber = Number(value.substring(0, value.length - 1));
-    const newNumber = Math.round((tempNumber * (9/5)) + 32);
-    return WeatherDataFactory.createTemperature(String(newNumber), noUnit)
+    const newNumber = Math.round(tempNumber * (9 / 5) + 32);
+    return WeatherDataFactory.createTemperature(String(newNumber), noUnit);
   }
   static switchTemperatureToCelsius(value: string, noUnit?: boolean): string {
     const tempNumber = Number(value.substring(0, value.length - 1));
-    const newNumber = Math.round((tempNumber - 32) * 5/9);
-    return WeatherDataFactory.createTemperature(String(newNumber), noUnit)
+    const newNumber = Math.round(((tempNumber - 32) * 5) / 9);
+    return WeatherDataFactory.createTemperature(String(newNumber), noUnit);
   }
   static isNight(time: string): boolean {
     const hour = Number(moment(time).format('HH'));
-    const isNight = hour === 18 || hour === 21 || hour === 0 || hour === 3
-      ? true : false;
-    return isNight
+    const isNight =
+      hour === 18 || hour === 21 || hour === 0 || hour === 3 ? true : false;
+    return isNight;
   }
-};
+}
 
 export class FindExtremeNumber {
   static findMax(inputArray: number[]) {
@@ -49,18 +59,24 @@ export class FindExtremeNumber {
 }
 
 export class TemperatureHelper {
-  static CalculateTemperature(value: string, type: TemperatureType, noUnit?: boolean): string {
+  static CalculateTemperature(
+    value: string,
+    type: TemperatureType,
+    noUnit?: boolean,
+  ): string {
     switch (type) {
       case TemperatureType.Celsius:
         return value;
       case TemperatureType.Fahrenheit:
         let num = 0;
-        num = noUnit ? Number(value) : Number(value.substring(0, value.length - 1))
-        const newValue = String(Math.round((num * (9/5)) + 32))
+        num = noUnit
+          ? Number(value)
+          : Number(value.substring(0, value.length - 1));
+        const newValue = String(Math.round(num * (9 / 5) + 32));
         return noUnit ? newValue : newValue + '˚';
     }
   }
-};
+}
 
 export class LocationHelper {
   static createLocationOptions(oriData: OriLocation[]): LocationData[] {
@@ -73,20 +89,21 @@ export class LocationHelper {
         type: WeatherLocationType.City,
       };
       const districts = this.createDistrictArray(item.districts, item.city);
-      result.push(city)
+      result.push(city);
       result = result.concat(districts);
     });
-    return result
+    return result;
   }
-  static createDistrictArray(districts: Districts[], city: TaiwanCities): LocationData[] {
-    const result = districts.map(item => (
-      {
-        city: city,
-        name: item.zip + ' ' + city + item.name,
-        value: item.name,
-        type: WeatherLocationType.Location,
-      }
-    ));
+  static createDistrictArray(
+    districts: Districts[],
+    city: TaiwanCities,
+  ): LocationData[] {
+    const result = districts.map(item => ({
+      city: city,
+      name: item.zip + ' ' + city + item.name,
+      value: item.name,
+      type: WeatherLocationType.Location,
+    }));
     return result;
   }
 }

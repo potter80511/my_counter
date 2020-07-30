@@ -4,7 +4,7 @@ import {
   TaiwanCities,
   TaipeiLocationValue,
   WeatherLocationType,
-  TaoyuanLocationValue
+  TaoyuanLocationValue,
 } from 'src/features/weather/domain/model/Location';
 // import { allLocationsData } from 'src/features/weather/domain/data/allLocationsData';
 import { CurrentDayDetails } from 'src/features/weather/domain/model/Weather';
@@ -109,41 +109,39 @@ export type ClearLocationsDataAction = {
   type: ActionType.ClearLocationsData;
 };
 
-
 export type Action =
-  SaveSettingsToCookieAction |
-  InitialToolsStateAction |
-  SwitchTemperatureTypeAction |
-  CurrentDayWeatherLoadedAction |
-  CreateNewLocationInputAction |
-  DeleteLocationInputAction |
-  ShowCreateLocationItemModalAction |
-  SearchInputChangeAction |
-  ClearLocationsDataAction;
+  | SaveSettingsToCookieAction
+  | InitialToolsStateAction
+  | SwitchTemperatureTypeAction
+  | CurrentDayWeatherLoadedAction
+  | CreateNewLocationInputAction
+  | DeleteLocationInputAction
+  | ShowCreateLocationItemModalAction
+  | SearchInputChangeAction
+  | ClearLocationsDataAction;
 
 const reducer = (state: State = defaultState, action: Action) => {
   const cookies = new Cookies();
-  const weather_settings = cookies.get('weather_settings') ? cookies.get('weather_settings') : {};
+  const weather_settings = cookies.get('weather_settings')
+    ? cookies.get('weather_settings')
+    : {};
   switch (action.type) {
     case ActionType.SaveSettingsToCookie: {
-      cookies.set(
-        'weather_settings',
-        {
-          ...weather_settings,
-          temperatureType: state.temperatureType,
-          locationItemInputDataArray: state.locationItemInputDataArray,
-        },
-      );
+      cookies.set('weather_settings', {
+        ...weather_settings,
+        temperatureType: state.temperatureType,
+        locationItemInputDataArray: state.locationItemInputDataArray,
+      });
       return {
         ...state,
-      }
+      };
     }
     case ActionType.InitialToolsState: {
       return {
         ...state,
         temperatureType: weather_settings.temperatureType,
         locationItemInputDataArray: weather_settings.locationItemInputDataArray,
-      }
+      };
     }
     case ActionType.SwitchTemperatureType: {
       return {
@@ -154,11 +152,8 @@ const reducer = (state: State = defaultState, action: Action) => {
     case ActionType.CurrentDayWeatherLoaded: {
       return {
         ...state,
-        locationsData: [
-          ...state.locationsData,
-          action.data,
-        ],
-      }
+        locationsData: [...state.locationsData, action.data],
+      };
     }
     case ActionType.CreateNewLocationInput: {
       const newLocationItemArray = [...state.locationItemInputDataArray];
@@ -167,64 +162,71 @@ const reducer = (state: State = defaultState, action: Action) => {
         locationItemInputDataArray: [
           ...state.locationItemInputDataArray,
           action.newLocation,
-        ]
-      }
+        ],
+      };
     }
     case ActionType.DeleteLocationInput: {
-      const newLocationInputData = state.locationItemInputDataArray.filter((item, index) =>
-        index !== action.deleteIndex
+      const newLocationInputData = state.locationItemInputDataArray.filter(
+        (item, index) => index !== action.deleteIndex,
       );
 
-      const newLoaciotionsData = state.locationsData.map((item, index) => {
-        const correctItem = state.locationsData.find(c => c.inputIndex === index);
-        return correctItem
-      }).filter((item) =>
-        item.inputIndex !== action.deleteIndex
-      ).map((item, index) =>
-        ({
+      const newLoaciotionsData = state.locationsData
+        .map((item, index) => {
+          const correctItem = state.locationsData.find(
+            c => c.inputIndex === index,
+          );
+          return correctItem;
+        })
+        .filter(item => item.inputIndex !== action.deleteIndex)
+        .map((item, index) => ({
           ...item,
           inputIndex: index,
-        })
-      );
+        }));
 
       return {
         ...state,
         locationItemInputDataArray: newLocationInputData,
         locationsData: newLoaciotionsData,
-      }
+      };
     }
     case ActionType.ShowCreateLocationItemModal: {
       return {
         ...state,
         showCreateLocationItemModal: action.show,
-      }
+      };
     }
     case ActionType.SearchInputChange: {
-      const allLocationsData = LocationHelper.createLocationOptions(locationsOriData);
-      const filterData = allLocationsData.map(item => {
-        return item.name.search('臺') != -1 ? {
-          ...item,
-          name: item.name.replace('臺', '台')
-        } : item;
-      }).filter(item => {
-        return item.name.search(action.value) != -1;
-      });
+      const allLocationsData = LocationHelper.createLocationOptions(
+        locationsOriData,
+      );
+      const filterData = allLocationsData
+        .map(item => {
+          return item.name.search('臺') != -1
+            ? {
+                ...item,
+                name: item.name.replace('臺', '台'),
+              }
+            : item;
+        })
+        .filter(item => {
+          return item.name.search(action.value) != -1;
+        });
       return {
         ...state,
         locationOptions: filterData,
         searchValue: action.value,
-      }
+      };
     }
     case ActionType.ClearLocationsData: {
       return {
         ...state,
         locationsData: [],
-      }
+      };
     }
     default: {
       return state;
     }
-  };
+  }
 };
 
 export default reducer;

@@ -5,7 +5,11 @@ import {
   UseCase as BaseUseCase,
 } from 'src/domain/usecases/base/UseCase';
 import { CurrentDayDetails } from 'src/features/weather/domain/model/Weather';
-import { LocationValue, WeatherLocationType, TaiwanCities } from 'src/features/weather/domain/model/Location';
+import {
+  LocationValue,
+  WeatherLocationType,
+  TaiwanCities,
+} from 'src/features/weather/domain/model/Location';
 
 export namespace GetCurrentDayWeather {
   export interface InputData extends UseCaseInputData {

@@ -1,5 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosInstance } from 'axios';
-import { ErrorCallback, SuccessCallback } from 'src/domain/source/base/RepositoryCallbacks';
+import {
+  ErrorCallback,
+  SuccessCallback,
+} from 'src/domain/source/base/RepositoryCallbacks';
 
 type FetcherRequestConfig = {
   params?: object;
@@ -12,13 +15,29 @@ interface FetcherCallbacks<T> {
 }
 
 export interface IFetcher {
-  get<T = any>(path: string, callbacks: FetcherCallbacks<T>, config?: FetcherRequestConfig): Promise<void>;
-  post<T = any>(path: string, callbacks: FetcherCallbacks<T>, body?: any): Promise<void>;
-  put<T = any>(path: string, callbacks: FetcherCallbacks<T>, body?: any): Promise<void>;
-  delete<T = any>(path: string, callbacks: FetcherCallbacks<T>, body?: any): Promise<void>;
+  get<T = any>(
+    path: string,
+    callbacks: FetcherCallbacks<T>,
+    config?: FetcherRequestConfig,
+  ): Promise<void>;
+  post<T = any>(
+    path: string,
+    callbacks: FetcherCallbacks<T>,
+    body?: any,
+  ): Promise<void>;
+  put<T = any>(
+    path: string,
+    callbacks: FetcherCallbacks<T>,
+    body?: any,
+  ): Promise<void>;
+  delete<T = any>(
+    path: string,
+    callbacks: FetcherCallbacks<T>,
+    body?: any,
+  ): Promise<void>;
 }
 
-const DOMAIN = 'localhost:8080'
+const DOMAIN = 'localhost:8080';
 
 export default class Fetcher implements IFetcher {
   private static theOne: null | Fetcher = null;
@@ -32,7 +51,7 @@ export default class Fetcher implements IFetcher {
     axios.defaults.headers.common['Content-Type'] = 'application/json';
     axios.defaults.timeout = 60000;
 
-    this.client = axios
+    this.client = axios;
   }
   static instance(): IFetcher {
     if (Fetcher.theOne === null) {
@@ -50,34 +69,52 @@ export default class Fetcher implements IFetcher {
     return Fetcher.theFetcher;
   }
 
-  async get<T = any>(path: string, callbacks: FetcherCallbacks<T>, config?: FetcherRequestConfig): Promise<void> {
-    await this.client.get(path, config)
+  async get<T = any>(
+    path: string,
+    callbacks: FetcherCallbacks<T>,
+    config?: FetcherRequestConfig,
+  ): Promise<void> {
+    await this.client
+      .get(path, config)
       .then(res => callbacks.onSuccess(res.data))
       .catch(error => callbacks.onError(error));
   }
 
-  async post<T = any>(path: string, callbacks: FetcherCallbacks<T>, body?: any): Promise<void> {
-    await this.client.post(path, body)
+  async post<T = any>(
+    path: string,
+    callbacks: FetcherCallbacks<T>,
+    body?: any,
+  ): Promise<void> {
+    await this.client
+      .post(path, body)
       .then(res => {
-        callbacks.onSuccess(res.data)
+        callbacks.onSuccess(res.data);
       })
       .catch(error => callbacks.onError(error));
   }
 
-  async put<T = any>(path: string, callbacks: FetcherCallbacks<T>, body?: any): Promise<void> {
-    await this.client.put(path, body)
+  async put<T = any>(
+    path: string,
+    callbacks: FetcherCallbacks<T>,
+    body?: any,
+  ): Promise<void> {
+    await this.client
+      .put(path, body)
       .then(res => callbacks.onSuccess(res.data))
       .catch(error => callbacks.onError(error));
   }
 
-  async delete<T = any>(path: string, callbacks: FetcherCallbacks<T>, body?: any): Promise<void> {
+  async delete<T = any>(
+    path: string,
+    callbacks: FetcherCallbacks<T>,
+    body?: any,
+  ): Promise<void> {
     const options: AxiosRequestConfig = {
       data: body,
     };
-    await this.client.delete(path, options)
+    await this.client
+      .delete(path, options)
       .then(res => callbacks.onSuccess(res.data))
       .catch(error => callbacks.onError(error));
   }
-
 }
-

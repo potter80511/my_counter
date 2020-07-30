@@ -23,21 +23,21 @@ export enum ElementName {
 export interface WeatherElementItem {
   elementName: ElementName;
   time: ElementTime[];
-};
+}
 
 export interface ElementTime {
   startTime: string;
   endTime: string;
   parameter?: parameter;
   elementValue?: ElementValueValue[];
-};
+}
 
 interface ElementValueValue {
   value: string;
   measures: string;
-};
+}
 
 interface parameter {
   parameterName: string | WXType;
   parameterValue: string;
-};
+}

@@ -16,4 +16,4 @@ export enum WXIcons {
   Partly_Cloud_Shower = 'partly_cloud_shower',
   // OCCASIONAL_SHOWERS_OR_THUNDERSTORMS = '',
   // OCCASIONAL_AFTERNOON_THUNDERSHOWERS = '',
-};
+}

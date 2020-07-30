@@ -29,7 +29,7 @@ const Meta = (props: MetaProps) => {
       ogimage,
       ogsitename,
       ogurl,
-    }
+    },
   } = props;
   return (
     <Head>
@@ -47,7 +47,7 @@ const Meta = (props: MetaProps) => {
       <meta property="og:url" content={ogurl} />
       <link rel="shortcut icon" href="/favicon.ico" />
     </Head>
-  )
+  );
 };
 
 export default Meta;

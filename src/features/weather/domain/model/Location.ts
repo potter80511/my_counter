@@ -15,27 +15,27 @@ export enum WeatherLocationType {
 }
 
 export type LocationValue =
-  TaiwanCities |
-  YilanLocationValue |
-  TaoyuanLocationValue |
-  HsinchuLocationValue |
-  MiaoliLocationValue |
-  ChanghuaLocationValue |
-  NantouLocationValue |
-  YunlinLocationValue |
-  ChiayiLocationValue |
-  PingtungLocationValue |
-  TaitungLocationValue |
-  HualienLocationValue |
-  PenghuLocationValue |
-  KeelungLocationValue |
-  TaipeiLocationValue |
-  KaohsiungLocationValue |
-  NewTaipeiLocationValue |
-  TaichungLocationValue |
-  TaiNanValue |
-  LianjiangValue |
-  KinmenValue;
+  | TaiwanCities
+  | YilanLocationValue
+  | TaoyuanLocationValue
+  | HsinchuLocationValue
+  | MiaoliLocationValue
+  | ChanghuaLocationValue
+  | NantouLocationValue
+  | YunlinLocationValue
+  | ChiayiLocationValue
+  | PingtungLocationValue
+  | TaitungLocationValue
+  | HualienLocationValue
+  | PenghuLocationValue
+  | KeelungLocationValue
+  | TaipeiLocationValue
+  | KaohsiungLocationValue
+  | NewTaipeiLocationValue
+  | TaichungLocationValue
+  | TaiNanValue
+  | LianjiangValue
+  | KinmenValue;
 
 export enum TaiwanCities {
   Yilan = '宜蘭縣',
@@ -60,7 +60,7 @@ export enum TaiwanCities {
   Tainan = '臺南市',
   Lianjiang = '連江縣',
   Kinmen = '金門縣',
-};
+}
 
 export enum YilanLocationValue { // 宜蘭
   YilanCity = '宜蘭市',
@@ -75,7 +75,7 @@ export enum YilanLocationValue { // 宜蘭
   Sunshin = '三星鄉',
   Datong = '大同鄉',
   NanAo = '南澳鄉',
-};
+}
 export enum TaoyuanLocationValue { // 桃園
   Zhongli = '中壢區',
   Pingzhen = '平鎮區',
@@ -90,7 +90,7 @@ export enum TaoyuanLocationValue { // 桃園
   Fuxing = '復興區',
   Dayuan = '大園區',
   Luzhu = '蘆竹區',
-};
+}
 export enum HsinchuLocationValue { // 新竹
   Xinfeng = '新豐鄉',
   Hukou = '湖口鄉',
@@ -108,7 +108,7 @@ export enum HsinchuLocationValue { // 新竹
   North = '北區',
   Xiangshan = '香山區',
   Eastern = '東區',
-};
+}
 export enum MiaoliLocationValue { // 苗栗
   Zhunan = '竹南鎮',
   Toufen = '頭份市',
@@ -128,7 +128,7 @@ export enum MiaoliLocationValue { // 苗栗
   Dahu = '大湖鄉',
   Sanyi = '三義鄉',
   Zhuolan = '卓蘭鎮',
-};
+}
 export enum ChanghuaLocationValue { // 彰化
   Shengang = '伸港鄉',
   Hemei = '和美鎮',
@@ -156,7 +156,7 @@ export enum ChanghuaLocationValue { // 彰化
   Zhutang = '竹塘鄉',
   Xizhou = '溪州鄉',
   Ershui = '二水鄉',
-};
+}
 export enum NantouLocationValue { // 南投
   Renai = '仁愛鄉',
   Guoxing = '國姓鄉',
@@ -171,7 +171,7 @@ export enum NantouLocationValue { // 南投
   Jiji = '集集鎮',
   Zhushan = '竹山鎮',
   Lugu = '鹿谷鄉',
-};
+}
 export enum YunlinLocationValue { // 雲林
   Mailiao = '麥寮鄉',
   Erlun = '二崙鄉',
@@ -193,7 +193,7 @@ export enum YunlinLocationValue { // 雲林
   Beigang = '北港鎮',
   Shuilin = '水林鄉',
   Douliu = '斗六市',
-};
+}
 export enum ChiayiLocationValue { // 嘉義
   Dalin = '大林鎮',
   Xikou = '溪口鄉',
@@ -215,7 +215,7 @@ export enum ChiayiLocationValue { // 嘉義
   Dapu = '大埔鄉',
   Eastern = '東區',
   West = '西區',
-};
+}
 export enum PingtungLocationValue { // 屏東
   Gaoshu = '高樹鄉',
   Sandimen = '三地門鄉',
@@ -250,7 +250,7 @@ export enum PingtungLocationValue { // 屏東
   Checheng = '車城鄉',
   Hengchun = '恆春鎮',
   Fangliao = '枋寮鄉',
-};
+}
 export enum TaitungLocationValue { // 台東
   Changbin = '長濱鄉',
   Haiduan = '海端鄉',
@@ -268,7 +268,7 @@ export enum TaitungLocationValue { // 台東
   Dawu = '大武鄉',
   Lanyu = '蘭嶼鄉',
   Jinfeng = '金峰鄉',
-};
+}
 export enum HualienLocationValue { // 花蓮
   Xiulin = '秀林鄉',
   Xincheng = '新城鄉',
@@ -283,7 +283,7 @@ export enum HualienLocationValue { // 花蓮
   Ruisui = '瑞穗鄉',
   Yuli = '玉里鎮',
   Fuli = '富里鄉',
-};
+}
 export enum PenghuLocationValue { // 澎湖
   Baisha = '白沙鄉',
   Siyu = '西嶼鄉',
@@ -291,7 +291,7 @@ export enum PenghuLocationValue { // 澎湖
   Magong = '馬公市',
   Wangan = '望安鄉',
   Qimei = '七美鄉',
-};
+}
 export enum KeelungLocationValue { // 基隆
   Anle = '安樂區',
   Zhongshan = '中山區',
@@ -300,7 +300,7 @@ export enum KeelungLocationValue { // 基隆
   Xinyi = '信義區',
   RenAi = '仁愛區',
   Nuannuan = '暖暖區',
-};
+}
 export enum TaipeiLocationValue { // 台北
   Zhongzheng = '中正區',
   Datong = '大同區',
@@ -314,7 +314,7 @@ export enum TaipeiLocationValue { // 台北
   Neihu = '內湖區',
   Nangang = '南港區',
   Wenshan = '文山區',
-};
+}
 export enum KaohsiungLocationValue { // 高雄
   Nanzi = '楠梓區',
   Zuoying = '左營區',
@@ -354,7 +354,7 @@ export enum KaohsiungLocationValue { // 高雄
   Fengshan = '鳳山區',
   Linyuan = '林園區',
   Taoyuan = '桃源區',
-};
+}
 export enum NewTaipeiLocationValue { // 新北
   Wanli = '萬里區',
   Jinshan = '金山區',
@@ -385,7 +385,7 @@ export enum NewTaipeiLocationValue { // 新北
   Tamsui = '淡水區',
   Sanzhi = '三芝區',
   Shimen = '石門區',
-};
+}
 export enum TaichungLocationValue { // 台中
   Beitun = '北屯區',
   Xitun = '西屯區',
@@ -416,7 +416,7 @@ export enum TaichungLocationValue { // 台中
   Uri = '烏日區',
   Dali = '大里區',
   Wufeng = '霧峰區',
-};
+}
 export enum TaiNanValue { // 台南
   Annan = '安南區',
   WestCentral = '中西區',

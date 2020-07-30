@@ -1,6 +1,4 @@
-import {
-  TaiwanCities,
-} from 'src/features/weather/domain/model/Location';
+import { TaiwanCities } from 'src/features/weather/domain/model/Location';
 
 export enum SeriesNumber {
   Yilan = 'F-D0047-001',
@@ -25,7 +23,7 @@ export enum SeriesNumber {
   Tainan = 'F-D0047-077',
   Lianjiang = 'F-D0047-081',
   Kinmen = 'F-D0047-085',
-};
+}
 
 export enum WeekSeriesNumber {
   Yilan = 'F-D0047-003',
@@ -50,9 +48,9 @@ export enum WeekSeriesNumber {
   Tainan = 'F-D0047-079',
   Lianjiang = 'F-D0047-083',
   Kinmen = 'F-D0047-087',
-};
+}
 
 export interface SeriesNumberItem {
   name: TaiwanCities;
   seriesNumber: string;
-};
+}

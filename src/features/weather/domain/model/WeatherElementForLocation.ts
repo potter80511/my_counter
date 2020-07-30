@@ -6,16 +6,16 @@ export interface WeatherElementItem {
   elementName: ElementName;
   description: string;
   time: ElementTime[];
-};
+}
 
 export interface ElementTime {
   startTime?: string;
   endTime?: string;
   elementValue: parameter[];
   dataTime?: Moment;
-};
+}
 
 interface parameter {
   value: string | WXType;
   measures: string;
-};
+}
