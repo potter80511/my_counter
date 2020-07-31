@@ -26,13 +26,13 @@ export class LocationWeatherDataFactory {
     // console.log(city)
 
     const newLocationName =
-      locationName.search('臺') != -1
+      locationName.search('臺') !== -1
         ? locationName.replace('臺', '台')
         : locationName;
     const newCityName =
-      city.search('臺') != -1 ? city.replace('臺', '台') : city;
+      city.search('臺') !== -1 ? city.replace('臺', '台') : city;
 
-    const wX = this.getCurrentWx(weatherElement).wX;
+    const { wX } = this.getCurrentWx(weatherElement);
     const nowIsNight = WeatherHelper.isNight(
       this.getCurrentWx(weatherElement).currentTime,
     );
@@ -124,6 +124,8 @@ export class LocationWeatherDataFactory {
         const result = FindExtremeNumber.findMax(tArray);
         return String(result);
       }
+      default:
+        break;
     }
   }
 
@@ -208,12 +210,10 @@ export class LocationWeatherDataFactory {
     // 降雨機率
     const element = weatherElement.find(item => item.elementName === type);
     const poP = element.time[timeIndex];
-    const timeRange =
-      '降雨機率：' +
-      moment(poP.startTime).format('M/DD，HH:mm') +
-      ' ~ ' +
-      moment(poP.endTime).format('M/DD，HH:mm');
-    const value = poP.elementValue[0].value;
+    const timeRange = `降雨機率：${moment(poP.startTime).format(
+      'M/DD，HH:mm',
+    )} ~ ${moment(poP.endTime).format('M/DD，HH:mm')}`;
+    const { value } = poP.elementValue[0];
 
     return {
       name: timeRange,
@@ -227,13 +227,13 @@ export class LocationWeatherDataFactory {
     type: ElementName,
   ): OthersData {
     const element = weatherElement.find(item => item.elementName === type);
-    const value = element.time[0].elementValue[0].value;
+    const { value } = element.time[0].elementValue[0];
     const value2 =
       element.time[0].elementValue.length >= 2
         ? element.time[0].elementValue[1].value
         : undefined;
-    const measures = element.time[0].elementValue[0].measures;
-    const description = element.description;
+    const { measures } = element.time[0].elementValue[0];
+    const { description } = element;
 
     switch (type) {
       case ElementName.PoP6H: {
@@ -253,7 +253,7 @@ export class LocationWeatherDataFactory {
       case ElementName.WS: {
         return {
           name: '風',
-          value: ' ' + value,
+          value: ` ${value}`,
           unit: measures,
         };
       }
@@ -278,6 +278,8 @@ export class LocationWeatherDataFactory {
           unit: '',
         };
       }
+      default:
+        break;
     }
   }
 }

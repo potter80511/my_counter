@@ -50,8 +50,10 @@ export class WeatherDataFactory {
       case WXType.CLEAR_WITH_OCCASIONAL_AFTERNOON_THUNDERSHOWERS:
         photoName = WXBgs.MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS;
         break;
+      default:
+        break;
     }
-    return '/img/weather/' + photoName + '.jpg';
+    return `/img/weather/${photoName}.jpg`;
   }
 
   static createWXIcon(wx: WXType, night?: boolean): string {
@@ -99,20 +101,22 @@ export class WeatherDataFactory {
       case WXType.CLEAR_WITH_OCCASIONAL_AFTERNOON_THUNDERSHOWERS:
         iconName = WXIcons.Thunder_Storm_Shower_Afternoon;
         break;
+      default:
+        break;
     }
-    return '/img/weather/wx_icons/' + iconName + '.svg';
+    return `/img/weather/wx_icons/${iconName}.svg`;
   }
 
   static createTemperature(t: string, noUnit?: boolean): string {
     const result = noUnit
       ? String(Math.round(Number(t)))
-      : Math.round(Number(t)) + '˚';
+      : `${Math.round(Number(t))}˚`;
     return result;
   }
 
   static createEachHour(time: Moment): string {
     const hour = moment(time).format('HH');
-    const newHour = String(Number(hour)) + '時';
+    const newHour = `${String(Number(hour))}時`;
     return newHour;
   }
 }

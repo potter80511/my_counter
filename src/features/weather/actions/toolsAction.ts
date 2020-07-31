@@ -1,7 +1,6 @@
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import { ActionType } from 'src/features/weather/reducers/toolsReducer';
 import { LocationData } from 'src/features/weather/domain/model/Location';
-import { WeatherCookie } from 'src/features/weather/domain/model/WeatherCookie';
 
 export const saveSettingsToCookie = () => ({
   type: ActionType.SaveSettingsToCookie,

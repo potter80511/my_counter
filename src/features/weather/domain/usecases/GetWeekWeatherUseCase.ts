@@ -1,7 +1,7 @@
 import { GetWeekWeather } from 'src/features/weather/domain/usecases/base/GetWeekWeatherUseCaseItf';
 import { IFetcher } from 'src/api/Fetcher';
 import { WeatherLocationType } from 'src/features/weather/domain/model/Location';
-import { weekCitiesSeriesNumberData } from 'src/features/weather/domain/data/weekCitiesSeriesNumberData';
+import weekCitiesSeriesNumberData from 'src/features/weather/domain/data/weekCitiesSeriesNumberData';
 import { WeekWeatherDataFactory } from '../factories/WeekWeatherDataFactory';
 
 export class GetWeekWeatherUseCase implements GetWeekWeather.UseCase {

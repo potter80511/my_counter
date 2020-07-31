@@ -24,9 +24,9 @@ const MobileMenu = () => {
         timeout={300}
         unmountOnExit
       >
-        <div className="menu-list-bg" onClick={() => setShowList(false)}></div>
+        <div className="menu-list-bg" onClick={() => setShowList(false)} />
       </CSSTransition>
-      <button className="menu-bars" onClick={onShowList}>
+      <button className="menu-bars" onClick={onShowList} type="button">
         Menu
       </button>
       <CSSTransition

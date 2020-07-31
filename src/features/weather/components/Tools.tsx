@@ -17,7 +17,7 @@ const SwitchButton = (props: SwitchButtonProps) => {
   const { currentType, value, name, onClick } = props;
   const className = currentType === value ? 'active' : '';
   return (
-    <button className={className} onClick={() => onClick(value)}>
+    <button className={className} onClick={() => onClick(value)} type="button">
       {name}
     </button>
   );
@@ -28,7 +28,6 @@ type ToolsProps = {
   temperatureType: TemperatureType;
   showCreateItemModal: (show: boolean) => void;
   onSwitchTemperatureType: (value: TemperatureType) => void;
-  // onCreateLocationItem: (newItem: LocationData) => void;
 };
 
 const Tools = (props: ToolsProps) => {
@@ -59,7 +58,11 @@ const Tools = (props: ToolsProps) => {
         <Link href="/">
           <a className="home">Johnny's App</a>
         </Link>
-        <button id="add-location" onClick={() => showCreateItemModal(true)}>
+        <button
+          id="add-location"
+          onClick={() => showCreateItemModal(true)}
+          type="button"
+        >
           <FontAwesomeIcon icon={faPlus} />
         </button>
       </div>

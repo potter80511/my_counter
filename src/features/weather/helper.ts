@@ -20,15 +20,16 @@ export class WeatherHelper {
     const newNumber = Math.round(tempNumber * (9 / 5) + 32);
     return WeatherDataFactory.createTemperature(String(newNumber), noUnit);
   }
+
   static switchTemperatureToCelsius(value: string, noUnit?: boolean): string {
     const tempNumber = Number(value.substring(0, value.length - 1));
     const newNumber = Math.round(((tempNumber - 32) * 5) / 9);
     return WeatherDataFactory.createTemperature(String(newNumber), noUnit);
   }
+
   static isNight(time: string): boolean {
     const hour = Number(moment(time).format('HH'));
-    const isNight =
-      hour === 18 || hour === 21 || hour === 0 || hour === 3 ? true : false;
+    const isNight = !!(hour === 18 || hour === 21 || hour === 0 || hour === 3);
     return isNight;
   }
 }
@@ -47,6 +48,7 @@ export class FindExtremeNumber {
     // 返回最大的值
     return max;
   }
+
   static findMin(inputArray: number[]) {
     let min = inputArray[0];
     for (let i = 1; i < inputArray.length; i++) {
@@ -73,7 +75,9 @@ export class TemperatureHelper {
           ? Number(value)
           : Number(value.substring(0, value.length - 1));
         const newValue = String(Math.round(num * (9 / 5) + 32));
-        return noUnit ? newValue : newValue + '˚';
+        return noUnit ? newValue : `${newValue}˚`;
+      default:
+        break;
     }
   }
 }
@@ -94,13 +98,14 @@ export class LocationHelper {
     });
     return result;
   }
+
   static createDistrictArray(
     districts: Districts[],
     city: TaiwanCities,
   ): LocationData[] {
     const result = districts.map(item => ({
-      city: city,
-      name: item.zip + ' ' + city + item.name,
+      city,
+      name: `${item.zip} ${city}${item.name}`,
       value: item.name,
       type: WeatherLocationType.Location,
     }));

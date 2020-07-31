@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import LocationItemDetails from 'src/features/weather/components/locations/LocationItemDetails';
 import {
-  WXType,
   CurrentDayDetails,
   WeekTemperature,
 } from 'src/features/weather/domain/model/Weather';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import { TemperatureHelper } from 'src/features/weather/helper';
 import moment from 'moment';
-import { Transition, CSSTransition } from 'react-transition-group';
 import {
   TaiwanCities,
   WeatherLocationType,
@@ -63,7 +61,6 @@ const LocationItem = (props: LocationItemProps) => {
   };
 
   const [viewHeight, setViewHeight] = useState<number>(0);
-  const [spreadOutDistance, setSpreadOutDistance] = useState<number>(0);
   const [itemHeight, setItemHeight] = useState<number>(91);
   const [everyTimeFixed, setTodayEveryTimeFixed] = useState<boolean>(false);
   const [todayEveryTimeHeight, setTodayEveryTimeHeight] = useState<number>(0);
@@ -74,23 +71,22 @@ const LocationItem = (props: LocationItemProps) => {
   useEffect(() => {
     setViewHeight(window.innerHeight);
     spread ? setItemHeight(viewHeight) : setItemHeight(91);
-    // window.innerWidth >= 1024 ? setSpreadOutDistance(122) : setSpreadOutDistance(0);
   });
 
   const itemSpreadClass = spread ? ' item-spread' : '';
 
   return (
     <div
-      className={'location-item' + itemSpreadClass}
+      className={`location-item${itemSpreadClass}`}
       ref={ref}
       style={{
         backgroundImage: `url(${locationData.weatherBackgroundImage})`,
-        minHeight: itemHeight + 'px',
-        maxHeight: itemHeight + 'px',
+        minHeight: `${itemHeight}px`,
+        maxHeight: `${itemHeight}px`,
         paddingTop: morePaddingTop,
       }}
     >
-      <div className="bg"></div>
+      <div className="bg" />
       {!spread && (
         <div className="overview" onClick={onItemClick}>
           <div className="flex-left">
@@ -108,7 +104,11 @@ const LocationItem = (props: LocationItemProps) => {
               temperatureType,
             )}
           </span>
-          <button className="delete" onClick={e => onDeleteLocation(e, index)}>
+          <button
+            className="delete"
+            onClick={e => onDeleteLocation(e, index)}
+            type="button"
+          >
             <FontAwesomeIcon icon={faTimes} />
           </button>
         </div>

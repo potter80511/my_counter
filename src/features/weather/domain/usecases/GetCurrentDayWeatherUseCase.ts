@@ -2,7 +2,7 @@ import { IFetcher } from 'src/api/Fetcher';
 import { GetCurrentDayWeather } from 'src/features/weather/domain/usecases/base/GetCurrentDayWeatherUseCaseItf';
 import { WeatherLocationType } from 'src/features/weather/domain/model/Location';
 import { LocationWeatherDataFactory } from 'src/features/weather/domain/factories/LocationWeatherDataFactory';
-import { currentDayCitiesSeriesNumberData } from 'src/features/weather/domain/data/allCitiesSeriesNumberData';
+import currentDayCitiesSeriesNumberData from 'src/features/weather/domain/data/allCitiesSeriesNumberData';
 
 export class GetCurrentDayWeatherUseCase
   implements GetCurrentDayWeather.UseCase {
@@ -17,8 +17,7 @@ export class GetCurrentDayWeatherUseCase
     callbacks: GetCurrentDayWeather.Callbacks,
   ) {
     const { inputIndex, locationType, locationName, city } = inputData;
-    const showCity =
-      locationType === WeatherLocationType.Location ? true : false;
+    const showCity = locationType === WeatherLocationType.Location;
 
     const seriesNumber =
       locationType === WeatherLocationType.Location

@@ -19,15 +19,13 @@ export const locationItemInputDataArraySelector = (store: StoreState) =>
 
 export const locationsDataSelector = (store: StoreState) => {
   const loading =
-    store.weather.tools.locationsData.length ===
-    store.weather.tools.locationItemInputDataArray.length
-      ? false
-      : true;
+    store.weather.tools.locationsData.length !==
+    store.weather.tools.locationItemInputDataArray.length;
   const data = store.weather.tools.locationsData;
 
   const newData = data.map((item, index) => {
     const newItem = data.find(correctItem => correctItem.inputIndex === index);
-    return newItem ? newItem : {};
+    return newItem || {};
   });
   return loading ? [] : newData;
 };

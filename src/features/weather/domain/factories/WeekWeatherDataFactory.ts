@@ -7,9 +7,8 @@ import {
   WeatherElementItem,
   ElementTime,
 } from 'src/features/weather/domain/model/WeatherElement';
-import moment, { Moment } from 'moment';
+import moment from 'moment';
 import { WeatherDataFactory } from './WeatherDataFactory';
-import { time } from 'console';
 
 interface WXArray {
   dayName: string;
@@ -54,7 +53,7 @@ export class WeekWeatherDataFactory {
       // 轉成「星期幾」
       const dayName = moment(date).locale('zh-tw').format('dddd');
       return {
-        dayName: dayName,
+        dayName,
         wX: filterDay[0].elementValue[0].value as WXType,
         wXIcon: WeatherDataFactory.createWXIcon(
           filterDay[0].elementValue[0].value as WXType,
@@ -73,7 +72,7 @@ export class WeekWeatherDataFactory {
     // 每天的日期
     const dateArray = this.createDateArray(timeArray);
 
-    let averageTArray = [];
+    const averageTArray = [];
 
     dateArray.forEach(date => {
       const filterDay = timeArray.filter(time => {
@@ -85,7 +84,7 @@ export class WeekWeatherDataFactory {
       let sum = 0;
 
       filterDay.forEach(item => {
-        sum = sum + Number(item.elementValue[0].value);
+        sum += Number(item.elementValue[0].value);
       });
       const averageT = sum / filterDay.length;
       averageTArray.push(String(averageT));
