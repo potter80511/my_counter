@@ -22,7 +22,6 @@ import {
   clearLocationsDataAction,
 } from 'src/features/weather/actions/toolsAction';
 import {
-  saveSettingsToCookie as saveSettingsToLocationsCookie,
   spreadOut,
   initialLocationsState,
 } from 'src/features/weather/actions/locationsActions';
@@ -178,7 +177,7 @@ const WeatherContainer = () => {
   return (
     <div
       className="weather wrap"
-      style={{ height: locationSpread ? viewHeight + 'px' : 'auto' }}
+      style={{ height: locationSpread ? `${viewHeight}px` : 'auto' }}
     >
       {/* <h1 className="main-title">Weather</h1> */}
       <Locations
@@ -213,7 +212,7 @@ const WeatherContainer = () => {
       />
       <Alert
         show={showDeleteAlert}
-        message={'確定要刪除' + deleteLocationName + '嗎？'}
+        message={`確定要刪除${deleteLocationName}嗎？`}
         viewHeight={viewHeight}
         yesText="確定"
         noText="取消"
@@ -222,7 +221,7 @@ const WeatherContainer = () => {
       />
       <Alert
         show={showCannotDeleteAlert}
-        message={'請至少保留一項地區天氣'}
+        message="請至少保留一項地區天氣"
         viewHeight={viewHeight}
         yes={() => setShowCannotDeleteAlert(false)}
         yesText="確定"

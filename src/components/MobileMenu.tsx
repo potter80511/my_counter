@@ -1,11 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import {
-  faBars,
-  faHome,
-  faCloudSun,
-  faStopwatch,
-} from '@fortawesome/free-solid-svg-icons';
+import { faHome, faStopwatch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CSSTransition } from 'react-transition-group';
 
@@ -24,9 +19,9 @@ const MobileMenu = () => {
         timeout={300}
         unmountOnExit
       >
-        <div className="menu-list-bg" onClick={() => setShowList(false)}></div>
+        <div className="menu-list-bg" onClick={() => setShowList(false)} />
       </CSSTransition>
-      <button className="menu-bars" onClick={onShowList}>
+      <button className="menu-bars" onClick={onShowList} type="button">
         Menu
       </button>
       <CSSTransition

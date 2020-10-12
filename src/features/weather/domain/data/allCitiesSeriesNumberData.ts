@@ -4,7 +4,7 @@ import {
   SeriesNumberItem,
 } from 'src/features/weather/domain/model/SeriesNumber';
 
-export const currentDayCitiesSeriesNumberData: SeriesNumberItem[] = [
+const currentDayCitiesSeriesNumberData: SeriesNumberItem[] = [
   {
     name: TaiwanCities.Yilan,
     seriesNumber: SeriesNumber.Yilan,
@@ -94,3 +94,5 @@ export const currentDayCitiesSeriesNumberData: SeriesNumberItem[] = [
     seriesNumber: SeriesNumber.Kinmen,
   },
 ];
+
+export default currentDayCitiesSeriesNumberData;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { optionType } from 'src/types/common';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,7 +13,7 @@ type NormalSelectProps = {
 };
 
 const NormalSelect = (props: NormalSelectProps) => {
-  const className = props.className ? ' ' + props.className : '';
+  const className = props.className ? ` ${props.className}` : '';
   const { unit, value, optionDatas, onSelectChange } = props;
   const options = optionDatas.map(num => (
     <option value={num.value} key={num.label}>

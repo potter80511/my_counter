@@ -11,9 +11,9 @@ const CreateInput = (props: CreateInputProps) => {
   const onChange = (newValue: string) => {
     setValue(newValue);
   };
-  const onSubmit = (value: string) => {
+  const onSubmit = (val: string) => {
     setValue('');
-    props.onSubmit(value);
+    props.onSubmit(val);
   };
   return (
     <div className="create-input">
@@ -22,7 +22,9 @@ const CreateInput = (props: CreateInputProps) => {
         value={value}
         onChange={e => onChange(e.target.value)}
       />
-      <button onClick={() => onSubmit(value)}>新增</button>
+      <button type="button" onClick={() => onSubmit(value)}>
+        新增
+      </button>
     </div>
   );
 };

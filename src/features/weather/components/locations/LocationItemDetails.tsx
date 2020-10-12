@@ -58,7 +58,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
   const locationsLength = locationsData.length;
 
   const onWeekScroll = () => {
-    const scrollTop = contentRef.current.scrollTop;
+    const { scrollTop } = contentRef.current;
     const opacityRate = 1 - scrollTop / opacityDistance;
     const opacity = opacityRate >= 0 ? opacityRate : 0;
     setOpacityValue(opacity);
@@ -92,13 +92,13 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
 
   const todayEveryTimePosition = everyTimeFixed ? 'fixed' : 'unset';
   const todayEveryTimeTop = everyTimeFixed
-    ? translateD + todayEveryTimeHeight + 3 + 'px'
+    ? `${translateD + todayEveryTimeHeight + 3}px`
     : 'auto';
   const morePaddingTop = everyTimeFixed ? 63 : 143;
 
   const everyTimeItem = locationData.todayEveryHourArray.map((item, index) => {
     return (
-      <div className="item" key={'location-item-' + index}>
+      <div className="item" key={`location-item-${index + 1}`}>
         <span className="hour">{item.hourName}</span>
         <span className="wx">
           <img src={item.wXIcon} height="16" alt={item.wX} />
@@ -122,27 +122,26 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
       );
       return (
         <OthersDataItem
-          key={name + '_' + index}
+          key={`${item.name}_${index + 1}`}
           name={item.name}
           value={value}
           unit={item.unit}
         />
       );
-    } else {
-      return (
-        <OthersDataItem
-          key={name + '_' + index}
-          name={item.name}
-          value={item.value}
-          unit={item.unit}
-        />
-      );
     }
+    return (
+      <OthersDataItem
+        key={`${item.name}_${index + 1}`}
+        name={item.name}
+        value={item.value}
+        unit={item.unit}
+      />
+    );
   });
 
   const weekItems = weekTemperatureArray.map((item, index) => (
     <WeekItem
-      key={'week-item-' + index}
+      key={`week-item-${index + 1}`}
       dayName={item.dayName}
       wX={item.wX}
       wXIcon={item.wXIcon}
@@ -157,7 +156,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
         {locationData.cityName && (
           <span className="city-name">（{locationData.cityName}）</span>
         )}
-        <div className="details-bg"></div>
+        <div className="details-bg" />
         <div
           className="location-wx-fixed location-wx-common"
           style={{
@@ -172,7 +171,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
           {!everyTimeFixed && (
             <div
               className="location-wx location-wx-common"
-              style={{ top: translateD + 15 + 'px' }}
+              style={{ top: `${translateD + 15}px` }}
             >
               <h2>{locationData.locationName}</h2>
               <span className="wx">{locationData.wX}</span>
@@ -265,7 +264,7 @@ const LocationItemDetails = (props: LocationItemDetailsProps) => {
               <FontAwesomeIcon icon={faHome} />
             </a>
           </Link>
-          <button className="close" onClick={onCloseSpread}>
+          <button className="close" onClick={onCloseSpread} type="button">
             <FontAwesomeIcon icon={faListUl} />
           </button>
         </div>

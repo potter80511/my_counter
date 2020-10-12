@@ -1,4 +1,3 @@
-import { Moment } from 'moment';
 import { WXType } from 'src/features/weather/domain/model/Weather';
 
 export enum ExtremeType {

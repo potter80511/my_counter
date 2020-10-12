@@ -2,11 +2,8 @@ import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import {
   LocationData,
   TaiwanCities,
-  TaipeiLocationValue,
   WeatherLocationType,
-  TaoyuanLocationValue,
 } from 'src/features/weather/domain/model/Location';
-// import { allLocationsData } from 'src/features/weather/domain/data/allLocationsData';
 import { CurrentDayDetails } from 'src/features/weather/domain/model/Weather';
 import { Cookies } from 'react-cookie';
 import { LocationHelper } from 'src/features/weather/helper';
@@ -156,7 +153,6 @@ const reducer = (state: State = defaultState, action: Action) => {
       };
     }
     case ActionType.CreateNewLocationInput: {
-      const newLocationItemArray = [...state.locationItemInputDataArray];
       return {
         ...state,
         locationItemInputDataArray: [
@@ -201,7 +197,7 @@ const reducer = (state: State = defaultState, action: Action) => {
       );
       const filterData = allLocationsData
         .map(item => {
-          return item.name.search('臺') != -1
+          return item.name.search('臺') !== -1
             ? {
                 ...item,
                 name: item.name.replace('臺', '台'),
@@ -209,7 +205,7 @@ const reducer = (state: State = defaultState, action: Action) => {
             : item;
         })
         .filter(item => {
-          return item.name.search(action.value) != -1;
+          return item.name.search(action.value) !== -1;
         });
       return {
         ...state,

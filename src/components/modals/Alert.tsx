@@ -28,16 +28,16 @@ const Alert = (props: AlertProps) => {
     no,
   } = props;
 
-  const viewHeight = props.viewHeight + 'px';
+  const viewHeight = `${props.viewHeight}px`;
+
+  const onClose = () => {
+    no ? no() : yes();
+  };
 
   const onYes = () => {
     yes();
     onClose();
   };
-  const onClose = () => {
-    no ? no() : yes();
-  };
-
   const fade = useTransition(show, null, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
@@ -54,24 +54,28 @@ const Alert = (props: AlertProps) => {
   return (
     <>
       {fade.map(
-        ({ item, key, props }) =>
+        ({ item, key, props: props2 }) =>
           item && (
             <animated.div
               id={id}
               className={`alert-modal${className}`}
-              style={{ height: viewHeight, ...props }}
+              style={{ height: viewHeight, ...props2 }}
               key={key}
             >
-              <div className="background" onClick={onClose}></div>
+              <div className="background" onClick={onClose} />
               {fadeScale.map(
-                ({ item, key, props }) =>
-                  item && (
+                ({
+                  item: fadeScaleItem,
+                  key: fadeScaleKey,
+                  props: fadeScaleProps,
+                }) =>
+                  fadeScaleItem && (
                     <animated.div
-                      className={`modal-block`}
-                      style={props}
-                      key={key}
+                      className="modal-block"
+                      style={fadeScaleProps}
+                      key={fadeScaleKey}
                     >
-                      <button className="close" onClick={onClose}>
+                      <button className="close" onClick={onClose} type="button">
                         <FontAwesomeIcon icon={faTimes} />
                       </button>
                       <div className="modal-content">
@@ -81,11 +85,12 @@ const Alert = (props: AlertProps) => {
                         className="yes"
                         onClick={onYes}
                         style={{ marginRight: no ? 10 : 0 }}
+                        type="button"
                       >
                         {yesText}
                       </button>
                       {no && (
-                        <button className="no" onClick={onClose}>
+                        <button className="no" onClick={onClose} type="button">
                           {noText}
                         </button>
                       )}

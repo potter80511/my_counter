@@ -1,5 +1,5 @@
 import React from 'react';
-import { TodoItem } from '../domain/models/TodoList';
+import { TodoItem } from 'src/features/todo_list/domain/models/TodoList';
 import '@styles/features/todo_list/TodoList.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -14,10 +14,9 @@ const Todo = (props: TodoItemProps) => {
   return (
     <div className="item">
       <span>
-        {position}. {text}
-        {id}
+        {position}, {text}, {id}
       </span>
-      <button onClick={() => onDelete(id)}>
+      <button type="button" onClick={() => onDelete(id)}>
         <FontAwesomeIcon icon={faTimes} />
       </button>
     </div>
@@ -35,7 +34,7 @@ const TodoList = (props: TodoListProps) => {
     return (
       <Todo
         id={item.id}
-        key={index}
+        key={item.id}
         text={item.text}
         position={index + 1}
         onDelete={id => onDelete(id)}
