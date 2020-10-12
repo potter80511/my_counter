@@ -1,11 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import {
-  faBars,
-  faHome,
-  faCloudSun,
-  faStopwatch,
-} from '@fortawesome/free-solid-svg-icons';
+import { faHome, faStopwatch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CSSTransition } from 'react-transition-group';
 

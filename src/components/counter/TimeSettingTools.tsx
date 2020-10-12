@@ -69,16 +69,17 @@ const TimeSettingTools = (props: TimeSettingToolsType) => {
     let newTotalSeconds: number;
     switch (type) {
       case TimeSelectChangeType.seconds:
-        numberTimes = numberTimes;
         newTotalSeconds = tempTotalSeconds - prevSeconds + numberTimes;
         break;
       case TimeSelectChangeType.minutes:
-        numberTimes = numberTimes * 60;
+        numberTimes *= 60;
         newTotalSeconds = tempTotalSeconds - prevMinutesSeconds + numberTimes;
         break;
       case TimeSelectChangeType.hour:
-        numberTimes = numberTimes * 3600;
+        numberTimes *= 3600;
         newTotalSeconds = tempTotalSeconds - prevHoursSeconds + numberTimes;
+        break;
+      default:
         break;
     }
 
