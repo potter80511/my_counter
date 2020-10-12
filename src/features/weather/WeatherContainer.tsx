@@ -22,7 +22,6 @@ import {
   clearLocationsDataAction,
 } from 'src/features/weather/actions/toolsAction';
 import {
-  saveSettingsToCookie as saveSettingsToLocationsCookie,
   spreadOut,
   initialLocationsState,
 } from 'src/features/weather/actions/locationsActions';

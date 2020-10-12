@@ -2,7 +2,6 @@ import React from 'react';
 import LocationItem from 'src/features/weather/components/locations/LocationItem';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
 import {
-  WXType,
   CurrentDayDetails,
   WeekTemperature,
 } from 'src/features/weather/domain/model/Weather';

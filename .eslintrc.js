@@ -36,6 +36,7 @@ module.exports = {
     'max-classes-per-file': 'off',
     'no-plusplus': 'off',
     'no-case-declarations': 'off',
+    '@typescript-eslint/no-namespace': 'off',
     'camelcase': 'off',
     'consistent-return': 'off',
     'react/prop-types': 'off',
