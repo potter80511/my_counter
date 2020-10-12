@@ -1,10 +1,6 @@
-export interface UseCaseInputData {
+export interface UseCaseInputData {}
 
-}
-
-export interface UseCaseOutputData {
-
-}
+export interface UseCaseOutputData {}
 
 export interface UseCaseCallbacks<R, E = Error> {
   onSuccess: (result: R) => void;
@@ -14,7 +10,7 @@ export interface UseCaseCallbacks<R, E = Error> {
 export abstract class UseCase<
   I extends UseCaseInputData,
   O extends UseCaseOutputData,
-  E = Error,
+  E = Error
 > {
   abstract execute(inputData: I, callbacks: UseCaseCallbacks<O, E>): void;
 }
@@ -22,7 +18,7 @@ export abstract class UseCase<
 export interface UseCase2<
   I extends UseCaseInputData,
   O extends UseCaseOutputData,
-  E = Error,
+  E = Error
 > {
   execute(inputData: I, callbacks: UseCaseCallbacks<O, E>): void;
 }

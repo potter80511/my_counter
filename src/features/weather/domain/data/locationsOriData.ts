@@ -21,7 +21,7 @@ import {
   TaiNanValue,
   LianjiangValue,
   KinmenValue,
-} from "src/features/weather/domain/model/Location";
+} from 'src/features/weather/domain/model/Location';
 
 export interface OriLocation {
   city: TaiwanCities;

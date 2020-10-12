@@ -1,4 +1,4 @@
-import { ActionType } from "../reducers/todoListReducer";
+import { ActionType } from '../reducers/todoListReducer';
 
 export const createTodo = (text: string, maxId: number) => ({
   type: ActionType.CreateTodo,

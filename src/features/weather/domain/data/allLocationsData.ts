@@ -19,7 +19,8 @@ import {
 } from 'src/features/weather/domain/model/Location';
 
 export const allLocationsData: LocationData[] = [
-  { // 宜蘭
+  {
+    // 宜蘭
     city: TaiwanCities.Yilan,
     name: TaiwanCities.Yilan,
     value: TaiwanCities.Yilan,
@@ -97,7 +98,8 @@ export const allLocationsData: LocationData[] = [
     value: YilanLocationValue.NanAo,
     type: WeatherLocationType.Location,
   },
-  { // 桃園
+  {
+    // 桃園
     city: TaiwanCities.Taoyuan,
     name: TaiwanCities.Taoyuan,
     value: TaiwanCities.Taoyuan,
@@ -181,7 +183,8 @@ export const allLocationsData: LocationData[] = [
     value: TaoyuanLocationValue.Luzhu,
     type: WeatherLocationType.Location,
   },
-  { // 新竹縣
+  {
+    // 新竹縣
     city: TaiwanCities.Hsinchu,
     name: TaiwanCities.Hsinchu,
     value: TaiwanCities.Hsinchu,
@@ -265,7 +268,8 @@ export const allLocationsData: LocationData[] = [
     value: HsinchuLocationValue.Wufeng,
     type: WeatherLocationType.Location,
   },
-  { // 苗栗
+  {
+    // 苗栗
     city: TaiwanCities.Miaoli,
     name: TaiwanCities.Miaoli,
     value: TaiwanCities.Miaoli,
@@ -379,7 +383,8 @@ export const allLocationsData: LocationData[] = [
     value: MiaoliLocationValue.Zhuolan,
     type: WeatherLocationType.Location,
   },
-  { // 彰化
+  {
+    // 彰化
     city: TaiwanCities.Changhua,
     name: TaiwanCities.Changhua,
     value: TaiwanCities.Changhua,
@@ -541,7 +546,8 @@ export const allLocationsData: LocationData[] = [
     value: ChanghuaLocationValue.Ershui,
     type: WeatherLocationType.Location,
   },
-  { // 雲林
+  {
+    // 雲林
     city: TaiwanCities.Yunlin,
     name: TaiwanCities.Yunlin,
     value: TaiwanCities.Yunlin,
@@ -667,7 +673,8 @@ export const allLocationsData: LocationData[] = [
     value: YunlinLocationValue.Douliu,
     type: WeatherLocationType.Location,
   },
-  { // 嘉義縣
+  {
+    // 嘉義縣
     city: TaiwanCities.Chiayi,
     name: TaiwanCities.Chiayi,
     value: TaiwanCities.Chiayi,
@@ -781,7 +788,8 @@ export const allLocationsData: LocationData[] = [
     value: ChiayiLocationValue.Dapu,
     type: WeatherLocationType.Location,
   },
-  { // 屏東
+  {
+    // 屏東
     city: TaiwanCities.Pingtung,
     name: TaiwanCities.Pingtung,
     value: TaiwanCities.Pingtung,
@@ -985,7 +993,8 @@ export const allLocationsData: LocationData[] = [
     value: PingtungLocationValue.Fangliao,
     type: WeatherLocationType.Location,
   },
-  { // 花蓮
+  {
+    // 花蓮
     city: TaiwanCities.Hualien,
     name: TaiwanCities.Hualien,
     value: TaiwanCities.Hualien,
@@ -1069,7 +1078,8 @@ export const allLocationsData: LocationData[] = [
     value: HualienLocationValue.Fuli,
     type: WeatherLocationType.Location,
   },
-  { // 基隆
+  {
+    // 基隆
     city: TaiwanCities.Keelung,
     name: TaiwanCities.Keelung,
     value: TaiwanCities.Keelung,
@@ -1117,7 +1127,8 @@ export const allLocationsData: LocationData[] = [
     value: KeelungLocationValue.Nuannuan,
     type: WeatherLocationType.Location,
   },
-  { // 新竹市
+  {
+    // 新竹市
     city: TaiwanCities.HsinchuCity,
     name: TaiwanCities.HsinchuCity + HsinchuLocationValue.North,
     value: HsinchuLocationValue.North,
@@ -1135,7 +1146,8 @@ export const allLocationsData: LocationData[] = [
     value: HsinchuLocationValue.Eastern,
     type: WeatherLocationType.Location,
   },
-  { // 嘉義市
+  {
+    // 嘉義市
     city: TaiwanCities.ChiayiCity,
     name: TaiwanCities.ChiayiCity + ChiayiLocationValue.Eastern,
     value: ChiayiLocationValue.Eastern,
@@ -1147,7 +1159,8 @@ export const allLocationsData: LocationData[] = [
     value: ChiayiLocationValue.West,
     type: WeatherLocationType.Location,
   },
-  { // 台北
+  {
+    // 台北
     city: TaiwanCities.Taipei,
     name: TaiwanCities.Taipei,
     value: TaiwanCities.Taipei,
@@ -1225,7 +1238,8 @@ export const allLocationsData: LocationData[] = [
     value: TaipeiLocationValue.Wenshan,
     type: WeatherLocationType.Location,
   },
-  { // 新北
+  {
+    // 新北
     city: TaiwanCities.NewTaipei,
     name: TaiwanCities.NewTaipei,
     value: TaiwanCities.NewTaipei,
@@ -1405,7 +1419,8 @@ export const allLocationsData: LocationData[] = [
     value: NewTaipeiLocationValue.Shimen,
     type: WeatherLocationType.Location,
   },
-  { // 台中
+  {
+    // 台中
     city: TaiwanCities.Taichung,
     name: TaiwanCities.Taichung,
     value: TaiwanCities.Taichung,
@@ -1585,7 +1600,8 @@ export const allLocationsData: LocationData[] = [
     value: TaichungLocationValue.Wufeng,
     type: WeatherLocationType.Location,
   },
-  { // 台南
+  {
+    // 台南
     city: TaiwanCities.Tainan,
     name: TaiwanCities.Tainan,
     value: TaiwanCities.Tainan,

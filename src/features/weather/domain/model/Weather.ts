@@ -1,4 +1,8 @@
-import { WeatherLocationType, TaiwanCities, LocationValue } from "src/features/weather/domain/model/Location";
+import {
+  WeatherLocationType,
+  TaiwanCities,
+  LocationValue,
+} from 'src/features/weather/domain/model/Location';
 
 export enum WXType {
   CLEAR = '晴',
@@ -37,7 +41,7 @@ export interface CurrentDayDetails {
   todayEveryHourArray: TodayEveryHour[];
   othersDataArray: OthersData[];
   weatherBackgroundImage: string;
-};
+}
 
 export interface WeekTemperature {
   dayName: string;
@@ -45,10 +49,10 @@ export interface WeekTemperature {
   wX: WXType;
   minT: string;
   maxT: string;
-};
+}
 
 export interface OthersData {
   name: string;
   value: string;
   unit: string;
-};
+}

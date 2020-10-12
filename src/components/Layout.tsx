@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import Meta from './Meta';
-import { MetaType } from './Meta';
 import MobileMenu from 'src/components/MobileMenu';
+import Meta, { MetaType } from 'src/components/Meta';
 
 type LayoutProps = {
   id?: string;
   className?: string;
   children?: React.ReactNode;
   meta?: MetaType;
-  minHeight? :boolean;
+  minHeight?: boolean;
 };
 
 const Layout = (props: LayoutProps) => {
@@ -18,24 +17,18 @@ const Layout = (props: LayoutProps) => {
     setViewHeight(window.innerHeight);
   });
 
-  const {
-    id,
-    className,
-    children,
-    meta,
-    minHeight = true,
-  } = props;
+  const { id, className, children, meta, minHeight = true } = props;
 
   return (
     <>
       <Meta meta={meta} />
-      <MobileMenu/>
+      <MobileMenu />
       <div
         id={id}
-        style={{minHeight: minHeight ? viewHeight : 'unset'}}
+        style={{ minHeight: minHeight ? viewHeight : 'unset' }}
         className={className}
       >
-        { children }
+        {children}
       </div>
     </>
   );

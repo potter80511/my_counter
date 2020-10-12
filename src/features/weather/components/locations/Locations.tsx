@@ -1,8 +1,15 @@
 import React from 'react';
 import LocationItem from 'src/features/weather/components/locations/LocationItem';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
-import { WXType, CurrentDayDetails, WeekTemperature } from 'src/features/weather/domain/model/Weather';
-import { LocationValue, WeatherLocationType, TaiwanCities } from 'src/features/weather/domain/model/Location';
+import {
+  CurrentDayDetails,
+  WeekTemperature,
+} from 'src/features/weather/domain/model/Weather';
+import {
+  LocationValue,
+  WeatherLocationType,
+  TaiwanCities,
+} from 'src/features/weather/domain/model/Location';
 import '@styles/features/weather/Locations.scss';
 
 type LocationsProps = {
@@ -13,9 +20,13 @@ type LocationsProps = {
   locationsData: CurrentDayDetails[];
   weekTemperatureArray: WeekTemperature[];
   spreadOut: (tlY: number, spreadIndex: number | null) => void;
-  getWeekWeather: (locationName: LocationValue, locationType: WeatherLocationType, city: TaiwanCities) => void;
+  getWeekWeather: (
+    locationName: LocationValue,
+    locationType: WeatherLocationType,
+    city: TaiwanCities,
+  ) => void;
   onDelete: (deleteIndex: number) => void;
-}
+};
 
 const Locations = (props: LocationsProps) => {
   const {
@@ -32,29 +43,28 @@ const Locations = (props: LocationsProps) => {
 
   const locationItem = locationsData.map((item, index) => (
     <LocationItem
-      key={'location-item-' + index}
+      key={`location-item- + ${index + 1}`}
       locationData={item}
       weekTemperatureArray={weekTemperatureArray}
       index={index}
       temperatureType={temperatureType}
       translateD={translateY}
-      spread={openedLocationIndex === index ? true : false}
+      spread={openedLocationIndex === index}
       spreadOut={(tlY, spreadIndex) => spreadOut(tlY, spreadIndex)}
-      getWeekWeather={(locationName, locationType, city) => getWeekWeather(locationName, locationType, city)}
-      onDelete={(deleteIndex) => onDelete(deleteIndex)}
+      getWeekWeather={(locationName, locationType, city) =>
+        getWeekWeather(locationName, locationType, city)
+      }
+      onDelete={deleteIndex => onDelete(deleteIndex)}
     />
   ));
   const spreadClass = spread ? ' spread' : '';
 
   return (
     <div
-      className={'locations' + spreadClass}
+      className={`locations${spreadClass}`}
       style={{ transform: `translateY(-${translateY}px)` }}
     >
-      {locationsData.length > 0 ?
-        locationItem : (
-        <div>loading</div>
-      )}
+      {locationsData.length > 0 ? locationItem : <div>loading</div>}
     </div>
   );
 };

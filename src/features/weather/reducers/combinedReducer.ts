@@ -9,7 +9,7 @@ import locationsReducer, {
 export interface CombinedState {
   tools: ToolsState;
   locations: LocationsState;
-};
+}
 
 const combinedReducer: Reducer<CombinedState> = combineReducers({
   tools: toolsReducer,

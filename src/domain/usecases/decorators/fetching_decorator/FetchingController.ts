@@ -11,7 +11,6 @@ export interface FetchingController {
 }
 
 export class Controller implements FetchingController {
-
   static _INSTANCE: Nullable<FetchingController> = null;
 
   static get INSTANCE(): FetchingController {

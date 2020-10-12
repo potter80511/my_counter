@@ -4,13 +4,7 @@ import { WeekTemperature } from 'src/features/weather/domain/model/Weather';
 type WeekItemProps = WeekTemperature;
 
 const WeekItem = (props: WeekItemProps) => {
-  const {
-    dayName,
-    wX,
-    wXIcon,
-    maxT,
-    minT,
-  } = props;
+  const { dayName, wX, wXIcon, maxT, minT } = props;
   return (
     <div className="week-item flex">
       <div className="day-name">{dayName}</div>

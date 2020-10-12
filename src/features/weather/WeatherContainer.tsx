@@ -22,7 +22,6 @@ import {
   clearLocationsDataAction,
 } from 'src/features/weather/actions/toolsAction';
 import {
-  saveSettingsToCookie as saveSettingsToLocationsCookie,
   spreadOut,
   initialLocationsState,
 } from 'src/features/weather/actions/locationsActions';
@@ -36,8 +35,13 @@ import Tools from 'src/features/weather/components/Tools';
 import CreateLocationItemModal from 'src/features/weather/components/CreateLocationItemModal';
 import Alert from 'src/components/modals/Alert';
 import { TemperatureType } from 'src/features/weather/domain/model/ToolsTypes';
-import { LocationData, TaiwanCities, WeatherLocationType, LocationValue } from 'src/features/weather/domain/model/Location';
-import { SpreadIndex } from "src/features/weather/domain/model/SpreadIndex";
+import {
+  LocationData,
+  TaiwanCities,
+  WeatherLocationType,
+  LocationValue,
+} from 'src/features/weather/domain/model/Location';
+import { SpreadIndex } from 'src/features/weather/domain/model/SpreadIndex';
 import { Cookies } from 'react-cookie';
 import '@styles/features/weather/weather.scss';
 
@@ -48,40 +52,52 @@ const WeatherContainer = () => {
   const weekTemperatureArray = useSelector(weekTemperatureArraySelector);
 
   const temperatureType = useSelector(temperatureTypeSelector);
-  const locationItemInputDataArray = useSelector(locationItemInputDataArraySelector);
+  const locationItemInputDataArray = useSelector(
+    locationItemInputDataArraySelector,
+  );
   const locationsData = useSelector(locationsDataSelector);
-  console.log(locationsData, 'locationsData')
-  console.log(locationItemInputDataArray)
-  const isShowCreateLocationItemModal = useSelector(showCreateLocationItemModalSelector);
+  console.log(locationsData, 'locationsData');
+  console.log(locationItemInputDataArray);
+  const isShowCreateLocationItemModal = useSelector(
+    showCreateLocationItemModalSelector,
+  );
   const locationOptions = useSelector(locationOptionsSelector);
   const searchValue = useSelector(searchValueSelector);
 
   const [viewHeight, setViewHeight] = useState<number>(0);
   const [stateIsInitial, setStateIsInitial] = useState<boolean>(false);
-  const [deleteLocationIndex, setDeleteLocationIndex] = useState<number | undefined>(undefined);
+  const [deleteLocationIndex, setDeleteLocationIndex] = useState<
+    number | undefined
+  >(undefined);
   const [showDeleteAlert, setShowDeleteAlert] = useState<boolean>(false);
-  const [showCannotDeleteAlert, setShowCannotDeleteAlert] = useState<boolean>(false);
-  const deleteLocationName = deleteLocationIndex !== undefined
-    ? locationsData.find((item, index) =>
-        index === deleteLocationIndex
-      ).locationName
-    : '';
+  const [showCannotDeleteAlert, setShowCannotDeleteAlert] = useState<boolean>(
+    false,
+  );
+  const deleteLocationName =
+    deleteLocationIndex !== undefined
+      ? locationsData.find((item, index) => index === deleteLocationIndex)
+          .locationName
+      : '';
   // const [translateY, setTranslateY] = useState<number>(0);  //  122 是title到頂部的距離
   // const [translateY, setTranslateY] = useState<number>(0 + 182);  //  122 是title到頂部的距離
 
-  const locationSpread = openedLocationIndex >= 0
+  const locationSpread = openedLocationIndex >= 0;
 
   const onSpreadOut = (tlY: number, spreadIndex: SpreadIndex) => {
     dispatch(spreadOut(tlY, spreadIndex));
   };
 
-  const onGetWeekWeather = (locationName: LocationValue, locationType: WeatherLocationType, city: TaiwanCities) => {
+  const onGetWeekWeather = (
+    locationName: LocationValue,
+    locationType: WeatherLocationType,
+    city: TaiwanCities,
+  ) => {
     dispatch(getWeekWeather(locationName, locationType, city));
   };
 
   const onSwitchTemperatureType = (value: TemperatureType) => {
     dispatch(switchTemperatureType(value));
-  }
+  };
 
   const onShowCreateLocationItemModal = (show: boolean) => {
     dispatch(showCreateLocationItemModal(show));
@@ -89,14 +105,10 @@ const WeatherContainer = () => {
 
   const onSearchInputChange = (value: string) => {
     dispatch(searchInputChange(value));
-  }
+  };
 
   const onCreateLocation = (newLocation: LocationData, nextIndex: number) => {
-    const {
-      value,
-      type,
-      city,
-    } = newLocation;
+    const { value, type, city } = newLocation;
     dispatch(searchInputChange(''));
     dispatch(showCreateLocationItemModal(false));
     dispatch(createNewLocationInputAction(newLocation));
@@ -121,14 +133,16 @@ const WeatherContainer = () => {
   };
 
   const cookies = new Cookies();
-  const weather_settings = cookies.get('weather_settings') ? cookies.get('weather_settings') : undefined;
+  const weather_settings = cookies.get('weather_settings')
+    ? cookies.get('weather_settings')
+    : undefined;
   // console.log(weather_settings)
   useEffect(() => {
     setViewHeight(window.innerHeight);
     dispatch(clearLocationsDataAction());
 
     if (weather_settings && !stateIsInitial) {
-      console.log(weather_settings, 'weather_settings2')
+      console.log(weather_settings, 'weather_settings2');
       dispatch(initialToolsState());
       dispatch(initialLocationsState());
     }
@@ -144,17 +158,13 @@ const WeatherContainer = () => {
   }, [stateIsInitial]);
 
   useEffect(() => {
-    dispatch(saveSettingsToToolsCookie())
+    dispatch(saveSettingsToToolsCookie());
     // dispatch(saveSettingsToLocationsCookie())
     if (openedLocationIndex !== undefined) {
-      const openInputData = locationItemInputDataArray.find((item, index) =>
-        index === openedLocationIndex
+      const openInputData = locationItemInputDataArray.find(
+        (item, index) => index === openedLocationIndex,
       );
-      const {
-        value,
-        type,
-        city
-      } = openInputData;
+      const { value, type, city } = openInputData;
       dispatch(getWeekWeather(value, type, city));
     }
   }, [
@@ -167,23 +177,25 @@ const WeatherContainer = () => {
   return (
     <div
       className="weather wrap"
-      style={{ height: locationSpread ? viewHeight + 'px' : 'auto' }}
+      style={{ height: locationSpread ? `${viewHeight}px` : 'auto' }}
     >
       {/* <h1 className="main-title">Weather</h1> */}
       <Locations
         spread={locationSpread}
-        getWeekWeather={(locationName, locationType, city) => onGetWeekWeather(locationName, locationType, city)}
+        getWeekWeather={(locationName, locationType, city) =>
+          onGetWeekWeather(locationName, locationType, city)
+        }
         translateY={translateY}
         openedLocationIndex={openedLocationIndex}
         temperatureType={temperatureType}
         locationsData={locationsData}
         weekTemperatureArray={weekTemperatureArray}
         spreadOut={(tlY, spreadIndex) => onSpreadOut(tlY, spreadIndex)}
-        onDelete={(deleteIndex) => onDeleteLocation(deleteIndex)}
+        onDelete={deleteIndex => onDeleteLocation(deleteIndex)}
       />
       <Tools
         show={!locationSpread}
-        showCreateItemModal={(show) => onShowCreateLocationItemModal(show)}
+        showCreateItemModal={show => onShowCreateLocationItemModal(show)}
         temperatureType={temperatureType}
         onSwitchTemperatureType={onSwitchTemperatureType}
       />
@@ -192,15 +204,15 @@ const WeatherContainer = () => {
         locationOptions={locationOptions}
         searchValue={searchValue}
         nextIndex={locationItemInputDataArray.length}
-        onCancel={(show) => onShowCreateLocationItemModal(show)}
-        onSearchInputChange={(value) => onSearchInputChange(value)}
-        onCreateLocation={(newLocation, nextIndex) => onCreateLocation(newLocation, nextIndex)}
+        onCancel={show => onShowCreateLocationItemModal(show)}
+        onSearchInputChange={value => onSearchInputChange(value)}
+        onCreateLocation={(newLocation, nextIndex) =>
+          onCreateLocation(newLocation, nextIndex)
+        }
       />
       <Alert
         show={showDeleteAlert}
-        message={
-          '確定要刪除' + deleteLocationName + '嗎？'
-        }
+        message={`確定要刪除${deleteLocationName}嗎？`}
         viewHeight={viewHeight}
         yesText="確定"
         noText="取消"
@@ -209,7 +221,7 @@ const WeatherContainer = () => {
       />
       <Alert
         show={showCannotDeleteAlert}
-        message={'請至少保留一項地區天氣'}
+        message="請至少保留一項地區天氣"
         viewHeight={viewHeight}
         yes={() => setShowCannotDeleteAlert(false)}
         yesText="確定"
