@@ -1,0 +1,16 @@
+.screen {
+  background-color: #111;
+  border: 2px solid;
+  border-color: transparent #555 #555 transparent;
+  border-radius: 2px;
+  .screen-inner {
+    border-radius: 3px;
+    padding: 5px;
+    border: 1px solid;
+    border-color: #333 transparent transparent #333;
+  }
+  .screen-head {
+    display: flex;
+    justify-content: space-between;
+  }
+}
