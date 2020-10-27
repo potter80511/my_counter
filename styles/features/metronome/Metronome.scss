@@ -2,20 +2,28 @@
   background-color: #444;
   width: 100%;
   max-width: 404px;
+  padding-bottom: 30px;
   .metronome-head {
-    padding: 10px;
+    padding: 15px 10px;
     background-color: #222;
   }
   .metronome-body {
     padding: 10px;
     border-top: 1px solid #777;
-    .adjusting-tools {
+    text-align: center;
+    .adjusting-tools,
+    .other-tools {
       display: flex;
+    }
+    .adjusting-tools {
       justify-content: space-between;
+      margin-bottom: 30px;
       .adjusting-tool {
         flex: 1;
-        text-align: center;
       }
+    }
+    .other-tools {
+      justify-content: center;
     }
   }
 }
