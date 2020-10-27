@@ -1,0 +1,24 @@
+.adjusting-tool {
+  max-width: 150px;
+  label {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #aaa;
+  }
+  .tool-buttons {
+    display: flex;
+    justify-content: center;
+    button {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid #111;
+      font-size: 32px;
+      text-shadow: 1px 1px 2px #888;
+      box-shadow: inset 1px 1px 2px #888;
+      &:first-child {
+        margin-right: 10px;
+      }
+    }
+  }
+}
