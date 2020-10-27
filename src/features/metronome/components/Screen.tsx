@@ -6,14 +6,17 @@ const Screen = () => {
     <div className="screen">
       <div className="screen-inner">
         <div className="screen-head">
-          <div className="tempo">
-            <span>拍子</span>
-            <span className="square" />
+          <div className="tempo-group">
+            <span className="tempo">拍子</span>
+            <span className="play-status stop" />
           </div>
           <div className="time-signature">
             <span>4/4</span>
           </div>
-          <span className="">Andante</span>
+          <div className="speed-group">
+            <span className="speed-name">Andante</span>
+            <span className="speed">108</span>
+          </div>
         </div>
       </div>
     </div>
