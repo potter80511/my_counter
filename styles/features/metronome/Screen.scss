@@ -12,5 +12,51 @@
   .screen-head {
     display: flex;
     justify-content: space-between;
+    span {
+      display: block;
+    }
+    .tempo-group {
+      .tempo {
+        margin-bottom: 15px;
+      }
+      .play-status {
+        margin-left: 10px;
+        &.stop {
+          width: 5px;
+          height: 5px;
+          background-color: red;
+        }
+      }
+    }
+    .time-signature {
+      span {
+        position: relative;
+        padding: 2px 20px 2px 5px;
+        border-radius: 3px;
+        transition: all 0.3s;
+        &:hover {
+          background-color: #222;
+          cursor: default;
+        }
+        &:after {
+          content: '';
+          border-width: 10px 5px;
+          border-style: solid;
+          border-color: white transparent transparent transparent;
+          position: absolute;
+          right: 5px;
+          top: 5px;
+        }
+      }
+    }
+    .speed-group {
+      text-align: right;
+      .speed-name {
+        margin-bottom: 20px;
+      }
+      .speed {
+        font-size: 30px;
+      }
+    }
   }
 }
