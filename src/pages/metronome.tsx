@@ -1,7 +1,6 @@
 import React from 'react';
 import Layout from 'src/components/Layout';
 import MetronomeContainer from 'src/features/metronome/MetronomeContainer';
-import '@styles/features/weather/weather.scss';
 
 const meta = {
   title: "Johnny's App - 節拍器 Metronome",
@@ -15,7 +14,7 @@ const meta = {
   ogurl: '',
 };
 
-const weather = () => {
+const metronome = () => {
   return (
     <Layout id="metronome" meta={meta} className="flex-center">
       <MetronomeContainer />
@@ -23,4 +22,4 @@ const weather = () => {
   );
 };
 
-export default weather;
+export default metronome;

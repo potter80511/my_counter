@@ -4,8 +4,12 @@ import AdjustingTool from 'src/features/metronome/components/AdjustingTool';
 import TempoTypeSwitch from 'src/features/metronome/components/TempoTypeSwitch';
 import StartField from 'src/features/metronome/components/StartField';
 import '@styles/features/metronome/metronome.scss';
+import { AddReduce } from 'src/domain/model/AddReduce';
 
 const MetronomeContainer = () => {
+  const click = (type: AddReduce) => {
+    console.log(type);
+  };
   return (
     <div className="metronome">
       <div className="metronome-head">
@@ -13,7 +17,7 @@ const MetronomeContainer = () => {
       </div>
       <div className="metronome-body">
         <div className="adjusting-tools">
-          <AdjustingTool label="速度" />
+          <AdjustingTool label="速度" onClick={type => click(type)} />
           <AdjustingTool label="拍子" />
         </div>
         <div className="other-tools">
