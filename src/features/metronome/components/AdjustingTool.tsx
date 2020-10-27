@@ -1,11 +1,11 @@
 import React from 'react';
 import '@styles/features/metronome/AdjustingTool.scss';
 
-type AdjustingTool = {
+type AdjustingToolProp = {
   label: string;
 };
 
-const AdjustingTool = (props: AdjustingTool) => {
+const AdjustingTool = (props: AdjustingToolProp) => {
   const { label } = props;
 
   return (

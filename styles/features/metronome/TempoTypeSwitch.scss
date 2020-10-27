@@ -1,0 +1,27 @@
+.tempo-type-switch {
+  margin-right: 30px;
+  label {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #aaa;
+  }
+  .switch-group {
+    border: 5px solid #44feff;
+    border-radius: 50%;
+    width: 80px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    .switch {
+      border: 5px solid #000;
+      box-shadow: 0 0 5px #000;
+      width: 70px;
+      border-radius: 50%;
+      button {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #aaa;
+        box-shadow: inset 2px 2px 2px #fff;
+      }
+    }
+  }
+}
