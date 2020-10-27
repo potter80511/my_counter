@@ -1,9 +1,21 @@
 .metronome {
-  background-color: #555;
+  background-color: #444;
   width: 100%;
   max-width: 404px;
   .metronome-head {
     padding: 10px;
     background-color: #222;
+  }
+  .metronome-body {
+    padding: 10px;
+    border-top: 1px solid #777;
+    .adjusting-tools {
+      display: flex;
+      justify-content: space-between;
+      .adjusting-tool {
+        flex: 1;
+        text-align: center;
+      }
+    }
   }
 }
