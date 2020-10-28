@@ -8,6 +8,10 @@ import todoListReducer, {
 import weatherReducer, {
   CombinedState as WeatherState,
 } from 'src/features/weather/reducers/combinedReducer';
+import {
+  combinedReducer as metronomeReducer,
+  CombinedState as Metronome,
+} from 'src/features/metronome/combinedReducer';
 
 const composeEnhancers = composeWithDevTools({
   // options like actionSanitizer, stateSanitizer
@@ -16,11 +20,13 @@ const composeEnhancers = composeWithDevTools({
 export const appReducer = combineReducers<StoreState>({
   todoList: todoListReducer,
   weather: weatherReducer,
+  metronome: metronomeReducer,
 });
 
 export interface StoreState {
   todoList: TodoListState;
   weather: WeatherState;
+  metronome: Metronome;
 }
 
 export const store = createStore(
