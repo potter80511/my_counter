@@ -125,7 +125,7 @@ const Counter = () => {
     presetRingTones,
   );
 
-  var sound = new Howl({
+  const sound = new Howl({
     src: [selectedRingTone.url],
     loop: true,
     autoPlay: false,
@@ -135,6 +135,54 @@ const Counter = () => {
   let countingSeconds: string | number = 0;
   let countingMinutes: string | number = 0;
   let countingHours: string | number = 0;
+
+  const calculateSettingsTime = (totalSeconds: number) => {
+    // 一分鐘60秒 60分鐘3600秒(1小時) 24小時86400秒
+    let newViewSeconds = '00';
+    let numberSeconds = 0;
+    let stringSeconds = '00';
+    numberSeconds = totalSeconds % 60; // 餘分
+
+    stringSeconds = String(numberSeconds);
+    newViewSeconds = numberSeconds < 10 ? `0${stringSeconds}` : stringSeconds;
+    setViewSeconds(newViewSeconds);
+
+    let newViewMinutes = '00';
+    let numberMinutes = 0;
+    let stringMinutes = '00';
+
+    numberMinutes = Math.floor(totalSeconds / 60); // 餘分
+    numberMinutes = numberMinutes > 59 ? numberMinutes % 60 : numberMinutes;
+
+    stringMinutes = String(numberMinutes);
+    newViewMinutes = numberMinutes < 10 ? `0${stringMinutes}` : stringMinutes;
+    setViewMinutes(newViewMinutes);
+
+    let newViewHours = '00';
+    let numberHours = 0;
+    let stringHours = '00';
+
+    numberHours = Math.floor(totalSeconds / 3600); // 餘小時
+    stringHours = String(numberHours);
+    newViewHours = numberHours < 10 ? `0${stringHours}` : stringHours;
+    setViewHours(newViewHours);
+  };
+
+  const calculateTotalSeconds = (t: number) => {
+    calculateSettingsTime(t);
+    setRemainTotalSeconds(t);
+  };
+
+  const reset = () => {
+    calculateSettingsTime(settingsTotalSeconds);
+  };
+
+  const onRing = () => {
+    const sound1 = sound.play();
+    sound.fade(0.0, 1.0, 1000, sound1);
+    setShowCircleBar(false); // 為了重新刷動畫，要讓動畫的spring重新render
+    setTempRemainTotalSeconds(remainTotalSeconds);
+  };
 
   const myTimer = () => {
     t -= 1;
@@ -146,10 +194,10 @@ const Counter = () => {
     countingHours = Math.floor(t / 3600);
 
     countingSeconds =
-      countingSeconds < 10 ? '0' + countingSeconds : countingSeconds;
+      countingSeconds < 10 ? `0${countingSeconds}` : countingSeconds;
     countingMinutes =
-      countingMinutes < 10 ? '0' + countingMinutes : countingMinutes;
-    countingHours = countingHours < 10 ? '0' + countingHours : countingHours;
+      countingMinutes < 10 ? `0${countingMinutes}` : countingMinutes;
+    countingHours = countingHours < 10 ? `0${countingHours}` : countingHours;
 
     setRemainTotalSeconds(t);
     setViewSeconds(countingSeconds as string);
@@ -167,33 +215,39 @@ const Counter = () => {
     }
   };
 
+  const onShowSettingAlert = () => {
+    setShowSettingAlert(true);
+  };
+
   const startCounting = () => {
     if (remainTotalSeconds < 1) {
       onShowSettingAlert();
       return;
     }
     switch (startStatus) {
-      case StartStatus.start: //按暫停
+      case StartStatus.start: // 按暫停
         clearInterval(counting);
         setTempRemainTotalSeconds(remainTotalSeconds);
         setShowCircleBar(false);
         setStartStatus(StartStatus.pause);
         setStartText(StartText.continue);
         break;
-      case StartStatus.pause: //按繼續
+      case StartStatus.pause: // 按繼續
         setTempRemainTotalSeconds(remainTotalSeconds);
         setStartStatus(StartStatus.start);
         setShowCircleBar(true);
         setStartText(StartText.pause);
         counting = setInterval(myTimer, 1000);
         break;
-      case StartStatus.stop: //按開始
+      case StartStatus.stop: // 按開始
         setTempRemainTotalSeconds(remainTotalSeconds);
         setShowCircleBar(true);
         setStartStatus(StartStatus.start);
         setStartText(StartText.pause);
         setShowViewTimes(true);
         counting = setInterval(myTimer, 1000);
+        break;
+      default:
         break;
     }
   };
@@ -207,47 +261,6 @@ const Counter = () => {
     setStartText(StartText.start);
   };
 
-  const reset = () => {
-    calculateSettingsTime(settingsTotalSeconds);
-  };
-
-  const calculateSettingsTime = (totalSeconds: number) => {
-    //一分鐘60秒 60分鐘3600秒(1小時) 24小時86400秒
-    let newViewSeconds = '00';
-    let numberSeconds = 0;
-    let stringSeconds = '00';
-    numberSeconds = totalSeconds % 60; //餘分
-
-    stringSeconds = String(numberSeconds);
-    newViewSeconds = numberSeconds < 10 ? '0' + stringSeconds : stringSeconds;
-    setViewSeconds(newViewSeconds);
-
-    let newViewMinutes = '00';
-    let numberMinutes = 0;
-    let stringMinutes = '00';
-
-    numberMinutes = Math.floor(totalSeconds / 60); //餘分
-    numberMinutes = numberMinutes > 59 ? numberMinutes % 60 : numberMinutes;
-
-    stringMinutes = String(numberMinutes);
-    newViewMinutes = numberMinutes < 10 ? '0' + stringMinutes : stringMinutes;
-    setViewMinutes(newViewMinutes);
-
-    let newViewHours = '00';
-    let numberHours = 0;
-    let stringHours = '00';
-
-    numberHours = Math.floor(totalSeconds / 3600); //餘小時
-    stringHours = String(numberHours);
-    newViewHours = numberHours < 10 ? '0' + stringHours : stringHours;
-    setViewHours(newViewHours);
-  };
-
-  const calculateTotalSeconds = (t: number) => {
-    calculateSettingsTime(t);
-    setRemainTotalSeconds(t);
-  };
-
   const onTotalSecondsChange = (
     t: number,
     type: string,
@@ -258,7 +271,7 @@ const Counter = () => {
     calculateTotalSeconds(t);
     let newSettingCookie: CounterCookie;
     const stringViewTimes =
-      viewTimes < 10 ? '0' + viewTimes : String(viewTimes);
+      viewTimes < 10 ? `0${viewTimes}` : String(viewTimes);
 
     switch (type) {
       case TimeSelectChangeType.seconds:
@@ -288,24 +301,15 @@ const Counter = () => {
           viewHours: stringViewTimes,
         };
         break;
+      default:
+        break;
     }
     onSetCookie(newSettingCookie);
-  };
-
-  const onShowSettingAlert = () => {
-    setShowSettingAlert(true);
   };
 
   const onShowTotalSeconds = () => {
     const newShow = !showTotalSeconds;
     setShowTotalSeconds(newShow);
-  };
-
-  const onRing = () => {
-    const sound1 = sound.play();
-    sound.fade(0.0, 1.0, 1000, sound1);
-    setShowCircleBar(false); // 為了重新刷動畫，要讓動畫的spring重新render
-    setTempRemainTotalSeconds(remainTotalSeconds);
   };
 
   const onCloseTimesUpAlert = () => {
@@ -352,9 +356,13 @@ const Counter = () => {
   }, [remainTotalSeconds]);
 
   return (
-    <Layout id={'counter'} meta={meta} className="flex-center">
+    <Layout id="counter" meta={meta} className="flex-center">
       <div className="counter">
-        <button className="show_total_seconds" onClick={onShowTotalSeconds}>
+        <button
+          className="show_total_seconds"
+          type="button"
+          onClick={onShowTotalSeconds}
+        >
           show totalSeconds
         </button>
         <div className="content">
@@ -390,10 +398,10 @@ const Counter = () => {
             </CSSTransition>
           </SwitchTransition>
           <div className="buttons">
-            <button className="cancel" onClick={cancelCounting}>
+            <button className="cancel" onClick={cancelCounting} type="button">
               取消
             </button>
-            <button className={stopClass} onClick={startCounting}>
+            <button className={stopClass} onClick={startCounting} type="button">
               {startText}
             </button>
           </div>
@@ -416,14 +424,14 @@ const Counter = () => {
           onCancel={() => setShowRingToneSelect(false)}
         />
         <Alert
-          message={'請設定時間再開始計時！'}
+          message="請設定時間再開始計時！"
           show={showSettingAlert}
           yes={alertOk}
           viewHeight={viewHeight}
         />
         <TimesUpAlertModal
           viewHeight={viewHeight}
-          message={'時間到'}
+          message="時間到"
           show={showTimesUpAlert}
           yes={onTimesUpOk}
           onRecount={onRecount}
