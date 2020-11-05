@@ -24,3 +24,8 @@ export const computedTimeSignatureSelector = createSelector(
     };
   },
 );
+
+export const perBeatSecondsSelector = createSelector(
+  settingSelector,
+  ({ speed }) => (60 / speed) * 1000,
+);
