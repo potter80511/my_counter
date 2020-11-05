@@ -18,7 +18,6 @@ import {
 } from 'src/features/metronome/selectors';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { timeSignatureData } from './domain/model/TimeSignature';
 
 let beating;
 
@@ -85,8 +84,6 @@ const MetronomeContainer = () => {
         <div className="adjusting-tools">
           <AdjustingTool
             label="速度"
-            minValue={30}
-            maxValue={240}
             currentValue={setting.speed}
             onClick={newValue =>
               dispatch(settingActions.update({ speed: newValue }))
@@ -94,8 +91,6 @@ const MetronomeContainer = () => {
           />
           <AdjustingTool
             label="拍子"
-            minValue={0}
-            maxValue={timeSignatureData.length - 1}
             currentValue={currentTimeSignatureIndex}
             onClick={newValue =>
               dispatch(settingActions.adjustedTimeSignature(newValue))
