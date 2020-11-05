@@ -1,6 +1,7 @@
 import { StoreState } from 'src/Store';
 import { createSelector } from 'reselect';
 import { timeSignatureData } from 'src/features/metronome/domain/model/TimeSignature';
+import { SpeedExpression } from 'src/features/metronome/domain/model/SpeedExpression';
 
 export const settingSelector = (state: StoreState) => state.metronome.setting;
 
@@ -35,4 +36,26 @@ export const perBeatSecondsSelector = createSelector(
 export const beatingNumberSelector = createSelector(
   beatingSelector,
   beatingNumber => beatingNumber,
+);
+
+export const speedExpressionSelector = createSelector(
+  settingSelector,
+  ({ speed }) => {
+    if (speed < 40) {
+      return SpeedExpression.Adagissimo;
+    }
+    if (speed > 39 && speed < 61) {
+      return SpeedExpression.Largo;
+    }
+    if (speed > 59 && speed < 67) {
+      return SpeedExpression.Larghetto;
+    }
+    if (speed > 65 && speed < 77) {
+      return SpeedExpression.Adagio;
+    }
+    if (speed > 75 && speed < 109) {
+      return SpeedExpression.Andante;
+    }
+    return 'no';
+  },
 );
