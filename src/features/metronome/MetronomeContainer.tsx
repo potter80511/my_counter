@@ -8,16 +8,23 @@ import '@styles/features/metronome/metronome.scss';
 import { actions as settingActions } from 'src/features/metronome/slices/settingSlice';
 import {
   settingSelector,
+  timeSignatureSelector,
+  currentTimeSignatureIndexSelector,
   computedTimeSignatureSelector,
 } from 'src/features/metronome/selectors';
 
 import { useSelector, useDispatch } from 'react-redux';
+import { timeSignatureData } from './domain/model/TimeSignature';
 
 let beating;
 
 const MetronomeContainer = () => {
   const dispatch = useDispatch();
   const setting = useSelector(settingSelector);
+  const timeSignature = useSelector(timeSignatureSelector);
+  const currentTimeSignatureIndex = useSelector(
+    currentTimeSignatureIndexSelector,
+  );
   const computedTimeSignature = useSelector(computedTimeSignatureSelector);
 
   const maxBeatNumber = computedTimeSignature.beatingPerSignature;
@@ -25,10 +32,6 @@ const MetronomeContainer = () => {
   const [startStatus, setStartStatus] = useState<boolean>(false);
 
   console.log(beatNumber, 'beat');
-
-  const click = (newValue: number) => {
-    console.log(newValue);
-  };
 
   let tempBeatNumber = beatNumber;
 
@@ -49,6 +52,7 @@ const MetronomeContainer = () => {
       }
       beating = setInterval(counter, 1000);
     } else {
+      setBeatNumber(maxBeatNumber);
       clearInterval(beating);
     }
     setStartStatus(status);
@@ -60,7 +64,7 @@ const MetronomeContainer = () => {
         <Screen
           startStatus={startStatus}
           beatNumber={beatNumber}
-          timeSignature={setting.timeSignature}
+          timeSignature={timeSignature}
           speed={setting.speed}
         />
       </div>
@@ -78,9 +82,11 @@ const MetronomeContainer = () => {
           <AdjustingTool
             label="拍子"
             minValue={1}
-            maxValue={4}
-            currentValue={1}
-            onClick={newValue => click(newValue)}
+            maxValue={timeSignatureData.length - 1}
+            currentValue={currentTimeSignatureIndex}
+            onClick={newValue =>
+              dispatch(settingActions.adjustedTimeSignature(newValue))
+            }
           />
         </div>
         <div className="other-tools">
