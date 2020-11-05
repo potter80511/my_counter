@@ -6,7 +6,10 @@ import StartField from 'src/features/metronome/components/StartField';
 import '@styles/features/metronome/metronome.scss';
 
 import { actions as settingActions } from 'src/features/metronome/slices/settingSlice';
-import { settingSelector } from 'src/features/metronome/selectors';
+import {
+  settingSelector,
+  computedTimeSignatureSelector,
+} from 'src/features/metronome/selectors';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -15,11 +18,12 @@ let beating;
 const MetronomeContainer = () => {
   const dispatch = useDispatch();
   const setting = useSelector(settingSelector);
+  const computedTimeSignature = useSelector(computedTimeSignatureSelector);
 
-  const [beatNumber, setBeatNumber] = useState<number>(4);
+  const maxBeatNumber = computedTimeSignature.beatingPerSignature;
+  const [beatNumber, setBeatNumber] = useState<number>(maxBeatNumber);
   const [startStatus, setStartStatus] = useState<boolean>(false);
 
-  const maxBeatNumber = 4;
   console.log(beatNumber, 'beat');
 
   const click = (newValue: number) => {
