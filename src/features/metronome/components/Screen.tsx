@@ -2,10 +2,13 @@ import React from 'react';
 import '@styles/features/metronome/Screen.scss';
 import { Metronome } from 'src/features/metronome/domain/model/Metronome';
 
-type ScreenProp = Metronome;
+type ScreenProp = Metronome & {
+  startStatus: boolean;
+  beatNumber: number;
+};
 
 const Screen = (props: ScreenProp) => {
-  const { timeSignature, speed } = props;
+  const { startStatus, timeSignature, beatNumber, speed } = props;
 
   return (
     <div className="screen">
@@ -17,6 +20,7 @@ const Screen = (props: ScreenProp) => {
           </div>
           <div className="time-signature">
             <span>{timeSignature}</span>
+            {startStatus && <span>{beatNumber}</span>}
           </div>
           <div className="speed-group">
             <span className="speed-name">Andante</span>

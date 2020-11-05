@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Screen from 'src/features/metronome/components/Screen';
 import AdjustingTool from 'src/features/metronome/components/AdjustingTool';
 import TempoTypeSwitch from 'src/features/metronome/components/TempoTypeSwitch';
@@ -10,17 +10,55 @@ import { settingSelector } from 'src/features/metronome/selectors';
 
 import { useSelector, useDispatch } from 'react-redux';
 
+let beating;
+
 const MetronomeContainer = () => {
   const dispatch = useDispatch();
   const setting = useSelector(settingSelector);
 
+  const [beatNumber, setBeatNumber] = useState<number>(4);
+  const [startStatus, setStartStatus] = useState<boolean>(false);
+
+  const maxBeatNumber = 4;
+  console.log(beatNumber, 'beat');
+
   const click = (newValue: number) => {
     console.log(newValue);
   };
+
+  let tempBeatNumber = beatNumber;
+
+  const counter = () => {
+    if (tempBeatNumber === maxBeatNumber) {
+      tempBeatNumber = 1;
+    } else {
+      tempBeatNumber += 1;
+    }
+    setBeatNumber(tempBeatNumber);
+  };
+
+  const onStartStop = (status: boolean) => {
+    if (status) {
+      if (tempBeatNumber === maxBeatNumber) {
+        tempBeatNumber = 1;
+        setBeatNumber(tempBeatNumber);
+      }
+      beating = setInterval(counter, 1000);
+    } else {
+      clearInterval(beating);
+    }
+    setStartStatus(status);
+  };
+
   return (
     <div className="metronome">
       <div className="metronome-head">
-        <Screen timeSignature={setting.timeSignature} speed={setting.speed} />
+        <Screen
+          startStatus={startStatus}
+          beatNumber={beatNumber}
+          timeSignature={setting.timeSignature}
+          speed={setting.speed}
+        />
       </div>
       <div className="metronome-body">
         <div className="adjusting-tools">
@@ -43,7 +81,7 @@ const MetronomeContainer = () => {
         </div>
         <div className="other-tools">
           <TempoTypeSwitch />
-          <StartField />
+          <StartField startStatus={startStatus} onStartStop={onStartStop} />
         </div>
       </div>
     </div>
