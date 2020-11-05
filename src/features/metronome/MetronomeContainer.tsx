@@ -11,6 +11,7 @@ import {
   timeSignatureSelector,
   currentTimeSignatureIndexSelector,
   computedTimeSignatureSelector,
+  perBeatSecondsSelector,
 } from 'src/features/metronome/selectors';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -26,6 +27,7 @@ const MetronomeContainer = () => {
     currentTimeSignatureIndexSelector,
   );
   const computedTimeSignature = useSelector(computedTimeSignatureSelector);
+  const perBeatSeconds = useSelector(perBeatSecondsSelector);
 
   const maxBeatNumber = computedTimeSignature.beatingPerSignature;
   const [beatNumber, setBeatNumber] = useState<number>(maxBeatNumber);
@@ -50,7 +52,7 @@ const MetronomeContainer = () => {
         tempBeatNumber = 1;
         setBeatNumber(tempBeatNumber);
       }
-      beating = setInterval(counter, 1000);
+      beating = setInterval(counter, perBeatSeconds);
     } else {
       setBeatNumber(maxBeatNumber);
       clearInterval(beating);
