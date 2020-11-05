@@ -4,6 +4,8 @@ import { timeSignatureData } from 'src/features/metronome/domain/model/TimeSigna
 
 export const settingSelector = (state: StoreState) => state.metronome.setting;
 
+export const beatingSelector = (state: StoreState) => state.metronome.beating;
+
 export const timeSignatureSelector = createSelector(
   settingSelector,
   ({ timeSignature }) => timeSignature,
@@ -28,4 +30,9 @@ export const computedTimeSignatureSelector = createSelector(
 export const perBeatSecondsSelector = createSelector(
   settingSelector,
   ({ speed }) => (60 / speed) * 1000,
+);
+
+export const beatingNumberSelector = createSelector(
+  beatingSelector,
+  beatingNumber => beatingNumber,
 );

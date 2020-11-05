@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Screen from 'src/features/metronome/components/Screen';
 import AdjustingTool from 'src/features/metronome/components/AdjustingTool';
 import TempoTypeSwitch from 'src/features/metronome/components/TempoTypeSwitch';
@@ -6,12 +6,14 @@ import StartField from 'src/features/metronome/components/StartField';
 import '@styles/features/metronome/metronome.scss';
 
 import { actions as settingActions } from 'src/features/metronome/slices/settingSlice';
+import { actions as beatingActions } from 'src/features/metronome/slices/beatingSlice';
 import {
   settingSelector,
   timeSignatureSelector,
   currentTimeSignatureIndexSelector,
   computedTimeSignatureSelector,
   perBeatSecondsSelector,
+  beatingNumberSelector,
 } from 'src/features/metronome/selectors';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -21,6 +23,7 @@ let beating;
 
 const MetronomeContainer = () => {
   const dispatch = useDispatch();
+
   const setting = useSelector(settingSelector);
   const timeSignature = useSelector(timeSignatureSelector);
   const currentTimeSignatureIndex = useSelector(
@@ -30,7 +33,7 @@ const MetronomeContainer = () => {
   const perBeatSeconds = useSelector(perBeatSecondsSelector);
 
   const maxBeatNumber = computedTimeSignature.beatingPerSignature;
-  const [beatNumber, setBeatNumber] = useState<number>(maxBeatNumber);
+  const beatNumber = useSelector(beatingNumberSelector);
   const [startStatus, setStartStatus] = useState<boolean>(false);
 
   console.log(beatNumber, 'beat');
@@ -43,22 +46,26 @@ const MetronomeContainer = () => {
     } else {
       tempBeatNumber += 1;
     }
-    setBeatNumber(tempBeatNumber);
+    dispatch(beatingActions.beat(tempBeatNumber));
   };
 
   const onStartStop = (status: boolean) => {
     if (status) {
       if (tempBeatNumber === maxBeatNumber) {
         tempBeatNumber = 1;
-        setBeatNumber(tempBeatNumber);
+        dispatch(beatingActions.beat(tempBeatNumber));
       }
       beating = setInterval(counter, perBeatSeconds);
     } else {
-      setBeatNumber(maxBeatNumber);
+      dispatch(beatingActions.beat(maxBeatNumber));
       clearInterval(beating);
     }
     setStartStatus(status);
   };
+
+  useEffect(() => {
+    dispatch(beatingActions.beat(maxBeatNumber));
+  }, [maxBeatNumber]);
 
   return (
     <div className="metronome">
@@ -83,7 +90,7 @@ const MetronomeContainer = () => {
           />
           <AdjustingTool
             label="拍子"
-            minValue={1}
+            minValue={0}
             maxValue={timeSignatureData.length - 1}
             currentValue={currentTimeSignatureIndex}
             onClick={newValue =>
