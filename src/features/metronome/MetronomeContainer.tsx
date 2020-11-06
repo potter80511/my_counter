@@ -78,6 +78,9 @@ const MetronomeContainer = () => {
           timeSignature={timeSignature}
           speed={setting.speed}
           speedExpression={speedExpression}
+          onSpeedChange={newValue =>
+            dispatch(settingActions.update({ speed: newValue }))
+          }
         />
       </div>
       <div className="metronome-body">
