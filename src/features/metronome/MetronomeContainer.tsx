@@ -78,6 +78,7 @@ const MetronomeContainer = () => {
           timeSignature={timeSignature}
           speed={setting.speed}
           speedExpression={speedExpression}
+          errorMessages={setting.errorMessages}
           onSpeedChange={newValue =>
             dispatch(settingActions.update({ speed: newValue }))
           }

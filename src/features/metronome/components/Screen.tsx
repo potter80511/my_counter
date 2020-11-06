@@ -7,6 +7,7 @@ type ScreenProp = Metronome & {
   startStatus: boolean;
   beatNumber: number;
   speedExpression: SpeedExpression;
+  errorMessages: string;
   onSpeedChange: (newSpeed: number) => void;
 };
 
@@ -17,6 +18,7 @@ const Screen = (props: ScreenProp) => {
     beatNumber,
     speed,
     speedExpression,
+    errorMessages,
     onSpeedChange,
   } = props;
 
@@ -41,6 +43,9 @@ const Screen = (props: ScreenProp) => {
                   onSpeedChange(Number(currentTarget.value))
                 }
               />
+              {errorMessages && (
+                <span className="error-messages">{errorMessages}</span>
+              )}
             </span>
           </div>
         </div>

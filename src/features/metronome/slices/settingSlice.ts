@@ -5,11 +5,14 @@ import {
   timeSignatureData,
 } from 'src/features/metronome/domain/model/TimeSignature';
 
-export type State = Metronome;
+export type State = Metronome & {
+  errorMessages: string;
+};
 
 export const defaultState: State = {
   timeSignature: TimeSignature.FourFour,
   speed: 80,
+  errorMessages: '',
 };
 
 export type CaseReducer = {
@@ -26,17 +29,29 @@ export const { actions, reducer } = createSlice<State, CaseReducer>({
     loaded: (_state, action) => action.payload,
     update: (state, action: PayloadAction<Partial<State>>) => {
       const { speed } = action.payload;
+      const validate = /^\+?[1-9][0-9]*$/.test(String(speed)) || speed === 0;
+      if (!validate) {
+        return {
+          ...state,
+          errorMessages: '請輸入合理數字',
+        };
+      }
       if (speed < 30) {
-        console.log('已達最低速度30');
-        return;
+        return {
+          ...state,
+          errorMessages: '已達最低速度30',
+        };
       }
       if (speed > 300) {
-        console.log('已達最高速度300');
-        return;
+        return {
+          ...state,
+          errorMessages: '已達最高速度300',
+        };
       }
 
       return {
         ...state,
+        errorMessages: '',
         ...action.payload,
       };
     },
