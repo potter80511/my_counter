@@ -4,6 +4,7 @@ import {
   TimeSignature,
   timeSignatureData,
 } from 'src/features/metronome/domain/model/TimeSignature';
+import { positiveIntegerPattern } from 'src/helpers/regPatterns';
 
 export type State = Metronome & {
   originalSpeed: string;
@@ -32,7 +33,7 @@ export const { actions, reducer } = createSlice<State, CaseReducer>({
     loaded: (_state, action) => action.payload,
     update: (state, action: PayloadAction<Partial<State>>) => {
       const { speed } = action.payload;
-      const validate = /^\+?[1-9][0-9]*$/.test(speed);
+      const validate = positiveIntegerPattern.test(speed);
 
       if (speed !== '') {
         if (!validate) {
