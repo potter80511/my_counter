@@ -82,6 +82,9 @@ const MetronomeContainer = () => {
           onSpeedChange={newValue =>
             dispatch(settingActions.update({ speed: newValue }))
           }
+          onSpeedCheck={newValue =>
+            dispatch(settingActions.onBlurChecked(newValue))
+          }
         />
       </div>
       <div className="metronome-body">
@@ -89,9 +92,10 @@ const MetronomeContainer = () => {
           <AdjustingTool
             label="速度"
             currentValue={setting.speed}
-            onClick={newValue =>
-              dispatch(settingActions.update({ speed: newValue }))
-            }
+            onClick={newValue => {
+              dispatch(settingActions.update({ speed: String(newValue) }));
+              dispatch(settingActions.onBlurChecked(String(newValue)));
+            }}
           />
           <AdjustingTool
             label="拍子"

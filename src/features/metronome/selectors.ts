@@ -7,6 +7,10 @@ export const settingSelector = (state: StoreState) => state.metronome.setting;
 
 export const beatingSelector = (state: StoreState) => state.metronome.beating;
 
+export const speedSelector = createSelector(settingSelector, ({ speed }) =>
+  Number(speed),
+);
+
 export const timeSignatureSelector = createSelector(
   settingSelector,
   ({ timeSignature }) => timeSignature,
@@ -29,8 +33,8 @@ export const computedTimeSignatureSelector = createSelector(
 );
 
 export const perBeatSecondsSelector = createSelector(
-  settingSelector,
-  ({ speed }) => (60 / speed) * 1000,
+  speedSelector,
+  speed => (60 / speed) * 1000,
 );
 
 export const beatingNumberSelector = createSelector(
@@ -38,24 +42,21 @@ export const beatingNumberSelector = createSelector(
   beatingNumber => beatingNumber,
 );
 
-export const speedExpressionSelector = createSelector(
-  settingSelector,
-  ({ speed }) => {
-    if (speed < 40) {
-      return SpeedExpression.Adagissimo;
-    }
-    if (speed > 39 && speed < 61) {
-      return SpeedExpression.Largo;
-    }
-    if (speed > 59 && speed < 67) {
-      return SpeedExpression.Larghetto;
-    }
-    if (speed > 65 && speed < 77) {
-      return SpeedExpression.Adagio;
-    }
-    if (speed > 75 && speed < 109) {
-      return SpeedExpression.Andante;
-    }
-    return 'no';
-  },
-);
+export const speedExpressionSelector = createSelector(speedSelector, speed => {
+  if (speed < 40) {
+    return SpeedExpression.Adagissimo;
+  }
+  if (speed > 39 && speed < 61) {
+    return SpeedExpression.Largo;
+  }
+  if (speed > 59 && speed < 67) {
+    return SpeedExpression.Larghetto;
+  }
+  if (speed > 65 && speed < 77) {
+    return SpeedExpression.Adagio;
+  }
+  if (speed > 75 && speed < 109) {
+    return SpeedExpression.Andante;
+  }
+  return 'no';
+});

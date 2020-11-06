@@ -1,4 +1,4 @@
 export type Metronome = {
   timeSignature: string;
-  speed: number;
+  speed: string;
 };
