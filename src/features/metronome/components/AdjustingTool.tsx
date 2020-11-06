@@ -3,7 +3,7 @@ import '@styles/features/metronome/AdjustingTool.scss';
 
 type AdjustingToolProp = {
   label: string;
-  currentValue: number;
+  currentValue: string | number;
   onClick?: (newValue: number) => void;
 };
 
@@ -14,10 +14,10 @@ const AdjustingTool = (props: AdjustingToolProp) => {
     <div className="adjusting-tool">
       <label>{label}</label>
       <div className="tool-buttons">
-        <button type="button" onClick={() => onClick(currentValue + 1)}>
+        <button type="button" onClick={() => onClick(Number(currentValue) + 1)}>
           ＋
         </button>
-        <button type="button" onClick={() => onClick(currentValue - 1)}>
+        <button type="button" onClick={() => onClick(Number(currentValue) - 1)}>
           －
         </button>
       </div>
