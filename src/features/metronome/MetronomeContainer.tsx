@@ -19,6 +19,8 @@ import {
 
 import { useSelector, useDispatch } from 'react-redux';
 
+import { Howl, Howler } from 'howler';
+
 let beating;
 
 const MetronomeContainer = () => {
@@ -40,9 +42,16 @@ const MetronomeContainer = () => {
 
   console.log(beatNumber, 'beat', speedExpression);
 
+  const sound = new Howl({
+    src: ['/audios/click.mp3'],
+    loop: false,
+    autoPlay: false,
+  });
+
   let tempBeatNumber = beatNumber;
 
   const counter = () => {
+    sound.play();
     if (tempBeatNumber === maxBeatNumber) {
       tempBeatNumber = 1;
     } else {
@@ -53,12 +62,15 @@ const MetronomeContainer = () => {
 
   const onStartStop = (status: boolean) => {
     if (status) {
+      sound.play();
+
       if (tempBeatNumber === maxBeatNumber) {
         tempBeatNumber = 1;
         dispatch(beatingActions.beat(tempBeatNumber));
       }
       beating = setInterval(counter, perBeatSeconds);
     } else {
+      Howler.stop();
       dispatch(beatingActions.beat(maxBeatNumber));
       clearInterval(beating);
     }
