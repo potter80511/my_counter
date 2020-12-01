@@ -1,3 +1,17 @@
+@keyframes fadeOutSlowly {
+  0% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
 .screen {
   background-color: #111;
   border: 2px solid;
@@ -55,6 +69,9 @@
         margin-bottom: 20px;
       }
       .speed {
+        position: relative;
+        padding-bottom: 20px;
+        width: 86px;
         input {
           font-size: 30px;
           color: #fff;
@@ -72,8 +89,13 @@
           }
         }
         .error-messages {
+          position: absolute;
+          right: 0;
+          bottom: 0;
           font-size: 9px;
           color: red;
+          opacity: 0;
+          animation: fadeOutSlowly 2s ease-in-out;
         }
       }
     }
