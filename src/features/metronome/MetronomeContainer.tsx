@@ -5,7 +5,7 @@ import TempoTypeSwitch from 'src/features/metronome/components/TempoTypeSwitch';
 import TempoTypeModal from 'src/features/metronome/components/TempoTypeModal';
 import StartField from 'src/features/metronome/components/StartField';
 import { TimeSignature } from 'src/features/metronome/domain/model/TimeSignature';
-import '@styles/features/metronome/metronome.scss';
+import '@styles/features/metronome/Metronome.scss';
 
 import { actions as settingActions } from 'src/features/metronome/slices/settingSlice';
 import { actions as beatingActions } from 'src/features/metronome/slices/beatingSlice';
