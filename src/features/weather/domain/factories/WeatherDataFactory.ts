@@ -31,6 +31,20 @@ export class WeatherDataFactory {
       case WXType.OCCASIONAL_SHOWERS:
         photoName = WXBgs.MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS;
         break;
+      case WXType.OCCASIONAL_RAIN:
+        photoName = WXBgs.MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS;
+        break;
+      case WXType.CLOUDY_WITH_OCCASIONAL_RAIN:
+        photoName = WXBgs.CLOUDY_RAIN;
+        break;
+      case WXType.MOSTLY_CLOUDY_WITH_OCCASIONAL_RAIN:
+        photoName = WXBgs.CLOUDY_RAIN;
+        break;
+      case WXType.MOSTLY_CLOUDY_WITH_OCCASIONAL_RAIN2:
+        photoName = WXBgs.CLOUDY_RAIN;
+        break;
+      case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_RAIN:
+        photoName = WXBgs.CLOUDY_RAIN;
       case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS_OR_THUNDERSHOWERS:
         photoName =
           WXBgs.PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS_OR_THUNDERSHOWERS;
@@ -82,6 +96,21 @@ export class WeatherDataFactory {
         break;
       case WXType.OCCASIONAL_SHOWERS:
         iconName = WXIcons.Cloud_Shower;
+        break;
+      case WXType.OCCASIONAL_RAIN:
+        iconName = WXIcons.Partly_Cloud_Shower;
+        break;
+      case WXType.CLOUDY_WITH_OCCASIONAL_RAIN:
+        iconName = WXIcons.Cloud_Shower;
+        break;
+      case WXType.MOSTLY_CLOUDY_WITH_OCCASIONAL_RAIN:
+        iconName = WXIcons.Cloudy_Shower;
+        break;
+      case WXType.MOSTLY_CLOUDY_WITH_OCCASIONAL_RAIN2:
+        iconName = WXIcons.Cloudy_Shower;
+        break;
+      case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_RAIN:
+        iconName = WXIcons.Cloudy_Shower;
         break;
       case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS_OR_THUNDERSHOWERS:
         iconName = WXIcons.Cloud_Thunder_Shower;
