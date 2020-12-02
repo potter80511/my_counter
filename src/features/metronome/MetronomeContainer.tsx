@@ -107,16 +107,15 @@ const MetronomeContainer = () => {
             dispatch(settingActions.onBlurChecked(newValue))
           }
         />
-        {showTempoTypeModal && (
-          <TempoTypeModal
-            currentTimeSignature={timeSignature}
-            onSignatureChange={(signature: TimeSignature) => {
-              dispatch(settingActions.timeSignatureChange(signature));
-              closeModal();
-            }}
-            closeModal={closeModal}
-          />
-        )}
+        <TempoTypeModal
+          show={showTempoTypeModal}
+          currentTimeSignature={timeSignature}
+          onSignatureChange={(signature: TimeSignature) => {
+            dispatch(settingActions.timeSignatureChange(signature));
+            closeModal();
+          }}
+          closeModal={closeModal}
+        />
       </div>
       <div className="metronome-body">
         <div className="adjusting-tools">
