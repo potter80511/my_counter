@@ -16,7 +16,7 @@ const meta = {
 
 const metronome = () => {
   return (
-    <Layout id="metronome" meta={meta} className="flex-center">
+    <Layout id="metronome" meta={meta} className="flex-center" height>
       <MetronomeContainer />
     </Layout>
   );
