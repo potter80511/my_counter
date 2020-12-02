@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Screen from 'src/features/metronome/components/Screen';
 import AdjustingTool from 'src/features/metronome/components/AdjustingTool';
 import TempoTypeSwitch from 'src/features/metronome/components/TempoTypeSwitch';
+import TempoTypeModal from 'src/features/metronome/components/TempoTypeModal';
 import StartField from 'src/features/metronome/components/StartField';
+import { TimeSignature } from 'src/features/metronome/domain/model/TimeSignature';
 import '@styles/features/metronome/metronome.scss';
 
 import { actions as settingActions } from 'src/features/metronome/slices/settingSlice';
@@ -10,6 +12,7 @@ import { actions as beatingActions } from 'src/features/metronome/slices/beating
 import {
   settingSelector,
   timeSignatureSelector,
+  showTempoTypeModalSelector,
   currentTimeSignatureIndexSelector,
   computedTimeSignatureSelector,
   perBeatSecondsSelector,
@@ -28,6 +31,7 @@ const MetronomeContainer = () => {
 
   const setting = useSelector(settingSelector);
   const timeSignature = useSelector(timeSignatureSelector);
+  const showTempoTypeModal = useSelector(showTempoTypeModalSelector);
   const currentTimeSignatureIndex = useSelector(
     currentTimeSignatureIndexSelector,
   );
@@ -77,6 +81,8 @@ const MetronomeContainer = () => {
     setStartStatus(status);
   };
 
+  const closeModal = () => dispatch(settingActions.onShowTempoTypeModal(false));
+
   useEffect(() => {
     dispatch(beatingActions.beat(maxBeatNumber));
   }, [maxBeatNumber]);
@@ -91,6 +97,9 @@ const MetronomeContainer = () => {
           speed={setting.speed}
           speedExpression={speedExpression}
           errorMessages={setting.errorMessages}
+          onShowTempoTypeModal={() =>
+            dispatch(settingActions.onShowTempoTypeModal(true))
+          }
           onSpeedChange={newValue =>
             dispatch(settingActions.update({ speed: newValue }))
           }
@@ -98,6 +107,16 @@ const MetronomeContainer = () => {
             dispatch(settingActions.onBlurChecked(newValue))
           }
         />
+        {showTempoTypeModal && (
+          <TempoTypeModal
+            currentTimeSignature={timeSignature}
+            onSignatureChange={(signature: TimeSignature) => {
+              dispatch(settingActions.timeSignatureChange(signature));
+              closeModal();
+            }}
+            closeModal={closeModal}
+          />
+        )}
       </div>
       <div className="metronome-body">
         <div className="adjusting-tools">

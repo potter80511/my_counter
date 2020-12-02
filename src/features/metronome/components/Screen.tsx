@@ -8,6 +8,7 @@ type ScreenProp = Metronome & {
   beatNumber: number;
   speedExpression: SpeedExpression;
   errorMessages: string;
+  onShowTempoTypeModal: () => void;
   onSpeedChange: (newSpeed: string) => void;
   onSpeedCheck: (newSpeed: string) => void;
 };
@@ -20,6 +21,7 @@ const Screen = (props: ScreenProp) => {
     speed,
     speedExpression,
     errorMessages,
+    onShowTempoTypeModal,
     onSpeedChange,
     onSpeedCheck,
   } = props;
@@ -33,7 +35,7 @@ const Screen = (props: ScreenProp) => {
             <span className="play-status stop" />
           </div>
           <div className="time-signature">
-            <span>{timeSignature}</span>
+            <span onClick={onShowTempoTypeModal}>{timeSignature}</span>
             {startStatus && <span>{beatNumber}</span>}
           </div>
           <div className="speed-group">
