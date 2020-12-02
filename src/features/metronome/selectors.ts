@@ -16,6 +16,11 @@ export const timeSignatureSelector = createSelector(
   ({ timeSignature }) => timeSignature,
 );
 
+export const showTempoTypeModalSelector = createSelector(
+  settingSelector,
+  ({ showTempoTypeModal }) => showTempoTypeModal,
+);
+
 export const currentTimeSignatureIndexSelector = createSelector(
   timeSignatureSelector,
   timeSignature => timeSignatureData.findIndex(item => item === timeSignature),

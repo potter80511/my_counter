@@ -1,4 +1,6 @@
+import { TimeSignature } from 'src/features/metronome/domain/model/TimeSignature';
+
 export type Metronome = {
-  timeSignature: string;
+  timeSignature: TimeSignature;
   speed: string;
 };
