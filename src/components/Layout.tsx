@@ -8,6 +8,7 @@ type LayoutProps = {
   children?: React.ReactNode;
   meta?: MetaType;
   minHeight?: boolean;
+  height?: boolean;
 };
 
 const Layout = (props: LayoutProps) => {
@@ -17,7 +18,7 @@ const Layout = (props: LayoutProps) => {
     setViewHeight(window.innerHeight);
   });
 
-  const { id, className, children, meta, minHeight = true } = props;
+  const { id, className, children, meta, minHeight = true, height } = props;
 
   return (
     <>
@@ -25,7 +26,10 @@ const Layout = (props: LayoutProps) => {
       <MobileMenu />
       <div
         id={id}
-        style={{ minHeight: minHeight ? viewHeight : 'unset' }}
+        style={{
+          minHeight: minHeight ? viewHeight : 'unset',
+          height: height ? viewHeight : 'auto',
+        }}
         className={className}
       >
         {children}
