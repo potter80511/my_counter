@@ -35,6 +35,13 @@
       }
       .play-status {
         margin-left: 10px;
+        &.start {
+          width: 0;
+          height: 0;
+          border-width: 4px 7px;
+          border-style: solid;
+          border-color: transparent transparent transparent #3fea6c;
+        }
         &.stop {
           width: 5px;
           height: 5px;
@@ -44,8 +51,12 @@
     }
     .time-signature {
       span {
+        text-align: center;
+      }
+      .signature {
         position: relative;
         padding: 2px 20px 2px 5px;
+        margin-bottom: 20px;
         border-radius: 3px;
         transition: all 0.3s;
         &:hover {
