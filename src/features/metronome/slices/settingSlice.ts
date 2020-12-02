@@ -9,6 +9,7 @@ import { nonNegativeIntegerPattern } from 'src/helpers/regPatterns';
 export type State = Metronome & {
   originalSpeed: string;
   errorMessages: string;
+  showTempoTypeModal: boolean;
 };
 
 export const defaultState: State = {
@@ -16,6 +17,7 @@ export const defaultState: State = {
   speed: '80',
   originalSpeed: '80',
   errorMessages: '',
+  showTempoTypeModal: false,
 };
 
 export type CaseReducer = {
@@ -23,6 +25,11 @@ export type CaseReducer = {
   update: (state: State, action: PayloadAction<Partial<State>>) => State;
   onBlurChecked: (state: State, action: PayloadAction<string>) => State;
   adjustedTimeSignature: (state: State, action: PayloadAction<number>) => State;
+  timeSignatureChange: (
+    state: State,
+    action: PayloadAction<TimeSignature>,
+  ) => State;
+  onShowTempoTypeModal: (state: State, action: PayloadAction<boolean>) => State;
   reset: (state: State, action: Action) => State;
 };
 
@@ -97,6 +104,21 @@ export const { actions, reducer } = createSlice<State, CaseReducer>({
       return {
         ...state,
         timeSignature: newTimeSignature,
+      };
+    },
+    timeSignatureChange: (
+      state: State,
+      action: PayloadAction<TimeSignature>,
+    ) => {
+      return {
+        ...state,
+        timeSignature: action.payload,
+      };
+    },
+    onShowTempoTypeModal: (state: State, action: PayloadAction<boolean>) => {
+      return {
+        ...state,
+        showTempoTypeModal: action.payload,
       };
     },
     reset: () => defaultState,
