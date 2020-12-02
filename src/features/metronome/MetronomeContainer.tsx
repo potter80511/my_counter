@@ -17,6 +17,7 @@ import {
   computedTimeSignatureSelector,
   perBeatSecondsSelector,
   beatingNumberSelector,
+  beatingStatusSelector,
   speedExpressionSelector,
 } from 'src/features/metronome/selectors';
 
@@ -40,9 +41,8 @@ const MetronomeContainer = () => {
 
   const maxBeatNumber = computedTimeSignature.beatingPerSignature;
   const beatNumber = useSelector(beatingNumberSelector);
+  const startStatus = useSelector(beatingStatusSelector);
   const speedExpression = useSelector(speedExpressionSelector);
-
-  const [startStatus, setStartStatus] = useState<boolean>(false);
 
   console.log(beatNumber, 'beat', speedExpression);
 
@@ -78,7 +78,7 @@ const MetronomeContainer = () => {
       dispatch(beatingActions.beat(maxBeatNumber));
       clearInterval(beating);
     }
-    setStartStatus(status);
+    dispatch(beatingActions.statusChanged(status));
   };
 
   const closeModal = () => dispatch(settingActions.onShowTempoTypeModal(false));

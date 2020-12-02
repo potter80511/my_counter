@@ -44,7 +44,12 @@ export const perBeatSecondsSelector = createSelector(
 
 export const beatingNumberSelector = createSelector(
   beatingSelector,
-  beatingNumber => beatingNumber,
+  beating => beating.beatNumber,
+);
+
+export const beatingStatusSelector = createSelector(
+  beatingSelector,
+  ({ startStatus }) => startStatus,
 );
 
 export const speedExpressionSelector = createSelector(speedSelector, speed => {

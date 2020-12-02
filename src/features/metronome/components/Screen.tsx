@@ -26,16 +26,20 @@ const Screen = (props: ScreenProp) => {
     onSpeedCheck,
   } = props;
 
+  const statusClass = startStatus ? ' start' : ' stop';
+
   return (
     <div className="screen">
       <div className="screen-inner">
         <div className="screen-head">
           <div className="tempo-group">
             <span className="tempo">拍子</span>
-            <span className="play-status stop" />
+            <span className={`play-status${statusClass}`} />
           </div>
           <div className="time-signature">
-            <span onClick={onShowTempoTypeModal}>{timeSignature}</span>
+            <span className="signature" onClick={onShowTempoTypeModal}>
+              {timeSignature}
+            </span>
             {startStatus && <span>{beatNumber}</span>}
           </div>
           <div className="speed-group">
