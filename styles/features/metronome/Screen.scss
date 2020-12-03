@@ -147,5 +147,24 @@
     .right-light {
       background-color: #3fea6c;
     }
+    .lights {
+      flex: 1;
+      display: flex;
+      justify-content: space-around;
+      position: relative;
+      bottom: 4px;
+      .bar {
+        width: 2px;
+        height: 10px;
+        background: #6cc5fb;
+        opacity: 0.2;
+        transition: all 0.3s;
+        &.active {
+          box-shadow: 0 0 2px #1291e0;
+          background: #76c1f0;
+          opacity: 1;
+        }
+      }
+    }
   }
 }
