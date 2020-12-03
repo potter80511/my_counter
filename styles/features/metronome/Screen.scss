@@ -12,6 +12,20 @@
   }
 }
 
+@keyframes lightsOn {
+  0% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.5;
+  }
+}
+
 .screen {
   background-color: #111;
   border: 2px solid;
@@ -19,7 +33,7 @@
   border-radius: 4px;
   .screen-inner {
     border-radius: 3px;
-    padding: 5px;
+    padding: 5px 15px;
     border: 1px solid;
     border-color: #333 transparent transparent #333;
   }
@@ -109,6 +123,29 @@
           animation: fadeOutSlowly 2s ease-in-out;
         }
       }
+    }
+  }
+  .beating-lights {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0;
+    .left-light,
+    .right-light {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      box-shadow: 0 0 5px black;
+      opacity: 0.5;
+      &.active {
+        animation-name: lightsOn;
+        animation-iteration-count: infinite;
+      }
+    }
+    .left-light {
+      background-color: #58beea;
+    }
+    .right-light {
+      background-color: #3fea6c;
     }
   }
 }

@@ -6,6 +6,7 @@ import { SpeedExpression } from 'src/features/metronome/domain/model/SpeedExpres
 type ScreenProp = Metronome & {
   startStatus: boolean;
   beatNumber: number;
+  perBeatSeconds: number;
   speedExpression: SpeedExpression;
   errorMessages: string;
   onShowTempoTypeModal: () => void;
@@ -18,6 +19,7 @@ const Screen = (props: ScreenProp) => {
     startStatus,
     timeSignature,
     beatNumber,
+    perBeatSeconds,
     speed,
     speedExpression,
     errorMessages,
@@ -27,6 +29,8 @@ const Screen = (props: ScreenProp) => {
   } = props;
 
   const statusClass = startStatus ? ' start' : ' stop';
+  const blueActiveClass = startStatus && beatNumber > 0 ? ' active' : '';
+  const greenActiveClass = beatNumber === 1 ? ' active' : '';
 
   return (
     <div className="screen">
@@ -59,6 +63,19 @@ const Screen = (props: ScreenProp) => {
               )}
             </span>
           </div>
+        </div>
+        <div className="beating-lights">
+          <div
+            className={`left-light${blueActiveClass}`}
+            style={{
+              animationDuration: `${String(perBeatSeconds)}ms`,
+            }}
+          />
+          <div className="lights">fds</div>
+          <div
+            className={`right-light${greenActiveClass}`}
+            style={{ animationDuration: `${String(perBeatSeconds)}ms` }}
+          />
         </div>
       </div>
     </div>

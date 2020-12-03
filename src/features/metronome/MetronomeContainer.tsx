@@ -93,6 +93,7 @@ const MetronomeContainer = () => {
         <Screen
           startStatus={startStatus}
           beatNumber={beatNumber}
+          perBeatSeconds={perBeatSeconds}
           timeSignature={timeSignature}
           speed={setting.speed}
           speedExpression={speedExpression}
