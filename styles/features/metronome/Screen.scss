@@ -105,7 +105,7 @@
       .speed {
         position: relative;
         padding-bottom: 20px;
-        width: 86px;
+        width: 120px;
         input {
           font-size: 30px;
           color: #fff;
@@ -147,7 +147,8 @@
       opacity: 0.5;
       &.active {
         animation-name: lightsOn;
-        animation-iteration-count: infinite;
+        animation-iteration-count: forwards;
+        animation-duration: 0.3s;
       }
     }
     .left-light {

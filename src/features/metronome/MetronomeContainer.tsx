@@ -56,6 +56,7 @@ const MetronomeContainer = () => {
 
   const counter = () => {
     sound.play();
+    dispatch(beatingActions.setBlueLightActive(true));
     if (tempBeatNumber === maxBeatNumber) {
       tempBeatNumber = 1;
     } else {
@@ -67,6 +68,7 @@ const MetronomeContainer = () => {
   const onStartStop = (status: boolean) => {
     if (status) {
       sound.play();
+      dispatch(beatingActions.setBlueLightActive(true));
 
       if (tempBeatNumber === maxBeatNumber) {
         tempBeatNumber = 1;

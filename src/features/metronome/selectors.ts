@@ -52,6 +52,11 @@ export const beatingStatusSelector = createSelector(
   ({ startStatus }) => startStatus,
 );
 
+export const blueLightActiveSelector = createSelector(
+  beatingSelector,
+  ({ blueLightActive }) => blueLightActive,
+);
+
 export const speedExpressionSelector = createSelector(speedSelector, speed => {
   if (speed < 40) {
     return SpeedExpression.Adagissimo;
