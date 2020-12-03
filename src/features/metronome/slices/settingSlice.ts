@@ -33,6 +33,9 @@ export type CaseReducer = {
   reset: (state: State, action: Action) => State;
 };
 
+const minSpeed = 30;
+const maxSpeed = 240;
+
 export const { actions, reducer } = createSlice<State, CaseReducer>({
   name: 'metronome/setting/',
   initialState: defaultState,
@@ -71,14 +74,14 @@ export const { actions, reducer } = createSlice<State, CaseReducer>({
         return {
           ...state,
           speed: state.originalSpeed,
-          errorMessages: '已達最低速度30',
+          errorMessages: `不得低於最低速度 ${minSpeed}`,
         };
       }
-      if (numSpeed > 300) {
+      if (numSpeed > maxSpeed) {
         return {
           ...state,
           speed: state.originalSpeed,
-          errorMessages: '已達最高速度300',
+          errorMessages: `不得高於最高速度 ${maxSpeed}`,
         };
       }
       return {
@@ -88,15 +91,14 @@ export const { actions, reducer } = createSlice<State, CaseReducer>({
       };
     },
     adjustedTimeSignature: (state, action: PayloadAction<number>) => {
-      const newIndex = action.payload;
+      const inputIndex = action.payload;
       const maxIndex = timeSignatureData.length - 1;
-      if (newIndex > maxIndex) {
-        console.log('已是最後一個！');
-        return;
+      let newIndex = inputIndex;
+      if (inputIndex > maxIndex) {
+        newIndex = 0;
       }
-      if (newIndex < 0) {
-        console.log('已是第一個！');
-        return;
+      if (inputIndex < 0) {
+        newIndex = maxIndex;
       }
       const newTimeSignature = timeSignatureData.find(
         (_item, index) => index === newIndex,

@@ -12,6 +12,20 @@
   }
 }
 
+@keyframes lightsOn {
+  0% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.5;
+  }
+}
+
 .screen {
   background-color: #111;
   border: 2px solid;
@@ -19,7 +33,7 @@
   border-radius: 4px;
   .screen-inner {
     border-radius: 3px;
-    padding: 5px;
+    padding: 5px 15px;
     border: 1px solid;
     border-color: #333 transparent transparent #333;
   }
@@ -55,13 +69,16 @@
       }
       .signature {
         position: relative;
-        padding: 2px 20px 2px 5px;
-        margin-bottom: 20px;
-        border-radius: 3px;
-        transition: all 0.3s;
-        &:hover {
-          background-color: #222;
-          cursor: default;
+        padding-left: 20px;
+        margin-bottom: 15px;
+        > span {
+          border-radius: 3px;
+          transition: all 0.3s;
+          padding: 2px 20px 2px 5px;
+          &:hover {
+            background-color: #222;
+            cursor: default;
+          }
         }
         &:after {
           content: '';
@@ -71,6 +88,12 @@
           position: absolute;
           right: 5px;
           top: 5px;
+          pointer-events: none;
+        }
+      }
+      .beat-number {
+        .please-choose {
+          font-size: 14px;
         }
       }
     }
@@ -82,7 +105,7 @@
       .speed {
         position: relative;
         padding-bottom: 20px;
-        width: 86px;
+        width: 120px;
         input {
           font-size: 30px;
           color: #fff;
@@ -107,6 +130,68 @@
           color: red;
           opacity: 0;
           animation: fadeOutSlowly 2s ease-in-out;
+        }
+      }
+    }
+  }
+  .beating-lights {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0;
+    .left-light,
+    .right-light {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      box-shadow: 0 0 5px black;
+      opacity: 0.5;
+      position: relative;
+      transition: all 0.3s;
+      &.active {
+        animation-name: lightsOn;
+        animation-iteration-count: forwards;
+        animation-duration: 0.3s;
+      }
+      &:after {
+        content: '';
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: white;
+        opacity: 0.5;
+        position: absolute;
+        right: 4px;
+        top: 1px;
+      }
+    }
+    .left-light {
+      background-color: #58beea;
+      &.active {
+        box-shadow: 0 0 5px #7bcdf0;
+      }
+    }
+    .right-light {
+      background-color: #3fea6c;
+      &.active {
+        box-shadow: 0 0 5px #7df79d;
+      }
+    }
+    .lights {
+      flex: 1;
+      display: flex;
+      justify-content: space-around;
+      position: relative;
+      bottom: 4px;
+      .bar {
+        width: 2px;
+        height: 10px;
+        background: #6cc5fb;
+        opacity: 0.2;
+        transition: all 0.3s;
+        &.active {
+          box-shadow: 0 0 2px #1291e0;
+          background: #76c1f0;
+          opacity: 1;
         }
       }
     }
