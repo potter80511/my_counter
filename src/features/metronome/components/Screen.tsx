@@ -46,9 +46,19 @@ const Screen = (props: ScreenProp) => {
           </div>
           <div className="time-signature">
             <span className="signature" onClick={onShowTempoTypeModal}>
-              {timeSignature}
+              <span>{timeSignature}</span>
             </span>
-            {startStatus && <span>{beatNumber}</span>}
+            <span className="beat-number">
+              {startStatus ? (
+                <>{beatNumber}</>
+              ) : (
+                <span className="please-choose">
+                  點擊
+                  <br />
+                  選定拍號
+                </span>
+              )}
+            </span>
           </div>
           <div className="speed-group">
             <span className="speed-name">{speedExpression}</span>
