@@ -7,6 +7,7 @@ type ScreenProp = Metronome & {
   startStatus: boolean;
   beatNumber: number;
   perBeatSeconds: number;
+  maxBeatNumber: number;
   speedExpression: SpeedExpression;
   errorMessages: string;
   onShowTempoTypeModal: () => void;
@@ -20,6 +21,7 @@ const Screen = (props: ScreenProp) => {
     timeSignature,
     beatNumber,
     perBeatSeconds,
+    maxBeatNumber,
     speed,
     speedExpression,
     errorMessages,
@@ -31,6 +33,8 @@ const Screen = (props: ScreenProp) => {
   const statusClass = startStatus ? ' start' : ' stop';
   const blueActiveClass = startStatus && beatNumber > 0 ? ' active' : '';
   const greenActiveClass = beatNumber === 1 ? ' active' : '';
+
+  const barArray = Array.from(Array(maxBeatNumber).keys());
 
   return (
     <div className="screen">
@@ -71,7 +75,19 @@ const Screen = (props: ScreenProp) => {
               animationDuration: `${String(perBeatSeconds)}ms`,
             }}
           />
-          <div className="lights">fds</div>
+          <div className="lights">
+            {barArray.map(barIndex => {
+              const currentBar = barIndex + 1;
+              const barActiveClass =
+                startStatus && currentBar <= beatNumber ? ' active' : '';
+              return (
+                <div
+                  key={`bar-${barIndex}`}
+                  className={`bar${barActiveClass}`}
+                />
+              );
+            })}
+          </div>
           <div
             className={`right-light${greenActiveClass}`}
             style={{ animationDuration: `${String(perBeatSeconds)}ms` }}

@@ -94,6 +94,7 @@ const MetronomeContainer = () => {
           startStatus={startStatus}
           beatNumber={beatNumber}
           perBeatSeconds={perBeatSeconds}
+          maxBeatNumber={maxBeatNumber}
           timeSignature={timeSignature}
           speed={setting.speed}
           speedExpression={speedExpression}
