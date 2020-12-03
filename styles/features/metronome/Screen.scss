@@ -145,17 +145,36 @@
       border-radius: 50%;
       box-shadow: 0 0 5px black;
       opacity: 0.5;
+      position: relative;
+      transition: all 0.3s;
       &.active {
         animation-name: lightsOn;
         animation-iteration-count: forwards;
         animation-duration: 0.3s;
       }
+      &:after {
+        content: '';
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: white;
+        opacity: 0.5;
+        position: absolute;
+        right: 4px;
+        top: 1px;
+      }
     }
     .left-light {
       background-color: #58beea;
+      &.active {
+        box-shadow: 0 0 5px #7bcdf0;
+      }
     }
     .right-light {
       background-color: #3fea6c;
+      &.active {
+        box-shadow: 0 0 5px #7df79d;
+      }
     }
     .lights {
       flex: 1;
