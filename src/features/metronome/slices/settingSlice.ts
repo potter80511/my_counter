@@ -91,15 +91,14 @@ export const { actions, reducer } = createSlice<State, CaseReducer>({
       };
     },
     adjustedTimeSignature: (state, action: PayloadAction<number>) => {
-      const newIndex = action.payload;
+      const inputIndex = action.payload;
       const maxIndex = timeSignatureData.length - 1;
-      if (newIndex > maxIndex) {
-        console.log('已是最後一個！');
-        return;
+      let newIndex = inputIndex;
+      if (inputIndex > maxIndex) {
+        newIndex = 0;
       }
-      if (newIndex < 0) {
-        console.log('已是第一個！');
-        return;
+      if (inputIndex < 0) {
+        newIndex = maxIndex;
       }
       const newTimeSignature = timeSignatureData.find(
         (_item, index) => index === newIndex,
