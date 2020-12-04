@@ -50,21 +50,24 @@ const MetronomeContainer = () => {
   const countingTimes = useSelector(countingTimesSelector);
 
   // console.log(beatNumber, 'beat', speedExpression);
-
-  const sound = new Howl({
-    src: ['/audios/click.mp3'],
-    loop: false,
-    autoPlay: false,
-  });
+  const sounds = {
+    common: new Howl({
+      src: ['/audios/metronome/click.mp3'],
+    }),
+    ding: new Howl({
+      src: ['/audios/metronome/ding.mp3'],
+    }),
+  };
 
   let tempBeatNumber = beatNumber;
 
   const beater = () => {
-    sound.play();
     dispatch(beatingActions.setBlueLightActive(true));
     if (tempBeatNumber === maxBeatNumber) {
+      sounds.ding.play();
       tempBeatNumber = 1;
     } else {
+      sounds.common.play();
       tempBeatNumber += 1;
     }
     dispatch(beatingActions.beat(tempBeatNumber));
@@ -79,7 +82,7 @@ const MetronomeContainer = () => {
 
   const onStartStop = (status: boolean) => {
     if (status) {
-      sound.play();
+      sounds.ding.play();
       dispatch(beatingActions.setBlueLightActive(true));
 
       if (tempBeatNumber === maxBeatNumber) {
