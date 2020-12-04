@@ -2,6 +2,7 @@ import { StoreState } from 'src/Store';
 import { createSelector } from 'reselect';
 import { timeSignatureData } from 'src/features/metronome/domain/model/TimeSignature';
 import { SpeedExpression } from 'src/features/metronome/domain/model/SpeedExpression';
+import { voiceData } from 'src/features/metronome/domain/model/Metronome';
 
 export const settingSelector = (state: StoreState) => state.metronome.setting;
 
@@ -92,3 +93,10 @@ export const speedExpressionSelector = createSelector(speedSelector, speed => {
   }
   return 'no';
 });
+
+export const currentVoiceSelector = createSelector(
+  settingSelector,
+  ({ currentVoice }) => {
+    return voiceData.find(v => v.value === currentVoice.value);
+  },
+);

@@ -1,15 +1,21 @@
 import { createSlice, PayloadAction, Action } from '@reduxjs/toolkit';
-import { Metronome } from 'src/features/metronome/domain/model/Metronome';
+import {
+  Metronome,
+  Voice,
+  voiceData,
+} from 'src/features/metronome/domain/model/Metronome';
 import {
   TimeSignature,
   timeSignatureData,
 } from 'src/features/metronome/domain/model/TimeSignature';
+
 import { nonNegativeIntegerPattern } from 'src/helpers/regPatterns';
 
 export type State = Metronome & {
   originalSpeed: string;
   errorMessages: string;
   showTempoTypeModal: boolean;
+  currentVoice: Voice;
 };
 
 export const defaultState: State = {
@@ -18,6 +24,7 @@ export const defaultState: State = {
   originalSpeed: '80',
   errorMessages: '',
   showTempoTypeModal: false,
+  currentVoice: { value: 'w', label: '木' },
 };
 
 export type CaseReducer = {
@@ -30,6 +37,7 @@ export type CaseReducer = {
     action: PayloadAction<TimeSignature>,
   ) => State;
   onShowTempoTypeModal: (state: State, action: PayloadAction<boolean>) => State;
+  voiceChanged: (state: State, action: PayloadAction<string>) => State;
   reset: (state: State, action: Action) => State;
 };
 
@@ -121,6 +129,17 @@ export const { actions, reducer } = createSlice<State, CaseReducer>({
       return {
         ...state,
         showTempoTypeModal: action.payload,
+      };
+    },
+    voiceChanged: (state: State, action: PayloadAction<string>) => {
+      const voiceIndex = voiceData.findIndex(v => v.value === action.payload);
+      const newVoice =
+        voiceIndex === voiceData.length - 1
+          ? voiceData[0]
+          : voiceData[voiceIndex + 1];
+      return {
+        ...state,
+        currentVoice: newVoice,
       };
     },
     reset: () => defaultState,
