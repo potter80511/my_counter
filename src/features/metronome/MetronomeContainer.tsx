@@ -111,12 +111,20 @@ const MetronomeContainer = () => {
   const closeModal = () => dispatch(settingActions.onShowTempoTypeModal(false));
 
   useEffect(() => {
+    dispatch(settingActions.loaded());
+  }, []);
+
+  useEffect(() => {
     dispatch(beatingActions.beat(maxBeatNumber));
   }, [maxBeatNumber]);
 
   useEffect(() => {
     onStartStop(false);
   }, [setting]);
+
+  useEffect(() => {
+    dispatch(settingActions.setLocalStorage());
+  }, [timeSignature, setting.originalSpeed, currentVoice]);
 
   return (
     <div className="metronome">
