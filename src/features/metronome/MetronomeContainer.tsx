@@ -19,6 +19,8 @@ import {
   beatingNumberSelector,
   beatingStatusSelector,
   speedExpressionSelector,
+  countingSecondsSelector,
+  countingTimesSelector,
 } from 'src/features/metronome/selectors';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -26,6 +28,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Howl, Howler } from 'howler';
 
 let beating;
+let counting;
 
 const MetronomeContainer = () => {
   const dispatch = useDispatch();
@@ -43,6 +46,8 @@ const MetronomeContainer = () => {
   const beatNumber = useSelector(beatingNumberSelector);
   const startStatus = useSelector(beatingStatusSelector);
   const speedExpression = useSelector(speedExpressionSelector);
+  const countingSeconds = useSelector(countingSecondsSelector);
+  const countingTimes = useSelector(countingTimesSelector);
 
   // console.log(beatNumber, 'beat', speedExpression);
 
@@ -54,7 +59,7 @@ const MetronomeContainer = () => {
 
   let tempBeatNumber = beatNumber;
 
-  const counter = () => {
+  const beater = () => {
     sound.play();
     dispatch(beatingActions.setBlueLightActive(true));
     if (tempBeatNumber === maxBeatNumber) {
@@ -63,6 +68,13 @@ const MetronomeContainer = () => {
       tempBeatNumber += 1;
     }
     dispatch(beatingActions.beat(tempBeatNumber));
+  };
+
+  let tempSeconds = countingSeconds;
+
+  const counter = () => {
+    tempSeconds += 1;
+    dispatch(beatingActions.countingTime(tempSeconds));
   };
 
   const onStartStop = (status: boolean) => {
@@ -74,11 +86,17 @@ const MetronomeContainer = () => {
         tempBeatNumber = 1;
         dispatch(beatingActions.beat(tempBeatNumber));
       }
-      beating = setInterval(counter, perBeatSeconds);
+      beating = setInterval(beater, perBeatSeconds);
+
+      // 秒數計時
+      dispatch(beatingActions.countingTime(0)); // 剛點開始要reset為0
+      tempSeconds = 0; // 剛點開始要reset為0
+      counting = setInterval(counter, 1000);
     } else {
       Howler.stop();
       dispatch(beatingActions.beat(maxBeatNumber));
       clearInterval(beating);
+      clearInterval(counting);
     }
     dispatch(beatingActions.statusChanged(status));
   };
@@ -141,7 +159,11 @@ const MetronomeContainer = () => {
         </div>
         <div className="other-tools">
           <TempoTypeSwitch />
-          <StartField startStatus={startStatus} onStartStop={onStartStop} />
+          <StartField
+            startStatus={startStatus}
+            countingTimes={countingTimes}
+            onStartStop={onStartStop}
+          />
         </div>
       </div>
     </div>

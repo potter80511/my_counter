@@ -4,15 +4,17 @@ import '@styles/features/metronome/StartField.scss';
 type StartFieldProp = {
   label?: string;
   startStatus: boolean;
+  countingTimes: string;
   onStartStop: (status: boolean) => void;
 };
 
 const StartField = (props: StartFieldProp) => {
-  const { startStatus, onStartStop } = props;
+  const { startStatus, countingTimes, onStartStop } = props;
+
   return (
     <div className="start-field">
       <div className="time-screen">
-        <span>00:00</span>
+        <span>{countingTimes}</span>
       </div>
       <div className="start-group">
         <div className="start-border">

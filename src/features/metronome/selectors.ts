@@ -57,6 +57,23 @@ export const blueLightActiveSelector = createSelector(
   ({ blueLightActive }) => blueLightActive,
 );
 
+export const countingSecondsSelector = createSelector(
+  beatingSelector,
+  ({ countingSeconds }) => countingSeconds,
+);
+
+export const countingTimesSelector = createSelector(
+  countingSecondsSelector,
+  countingSeconds => {
+    const minuteNumber = Math.floor(countingSeconds / 60);
+    const secondNumber = countingSeconds % 60;
+
+    const minute = minuteNumber < 10 ? `0${minuteNumber}` : minuteNumber;
+    const second = secondNumber < 10 ? `0${secondNumber}` : secondNumber;
+    return `${minute} : ${second}`;
+  },
+);
+
 export const speedExpressionSelector = createSelector(speedSelector, speed => {
   if (speed < 40) {
     return SpeedExpression.Adagissimo;
