@@ -1,19 +1,40 @@
 import React from 'react';
+import {
+  Voice,
+  voiceData,
+} from 'src/features/metronome/domain/model/Metronome';
+
 import '@styles/features/metronome/TempoTypeSwitch.scss';
 
 type TempoTypeSwitchProp = {
-  label?: string;
+  currentVoice: Voice;
+  switchDeg: string;
+  onVoiceChange: (value: string) => void;
 };
 
 const TempoTypeSwitch = (props: TempoTypeSwitchProp) => {
-  const { label } = props;
+  const { currentVoice, switchDeg, onVoiceChange } = props;
 
   return (
     <div className="tempo-type-switch">
       <label>拍子機聲音</label>
       <div className="switch-group">
+        {voiceData.map((g, i) => {
+          const { value } = g;
+          return <span key={value} className={`graduate graduate${i + 1}`} />;
+        })}
         <div className="switch">
-          <button type="button">－</button>
+          <div className="button-wrap">
+            <span className="white" />
+            <button
+              type="button"
+              className="pointer"
+              style={{ transform: `rotateZ(${switchDeg})` }}
+              onClick={() => onVoiceChange(currentVoice.value)}
+            >
+              test
+            </button>
+          </div>
         </div>
       </div>
     </div>

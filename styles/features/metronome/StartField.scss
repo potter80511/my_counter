@@ -1,19 +1,29 @@
 .start-field {
+  width: 160px;
+  > div {
+    width: 100%;
+  }
   .time-screen {
-    width: 140px;
     background-color: #111;
     border: 2px solid;
     border-color: #111 #666 #666 #111;
     box-shadow: -1px -1px 3px #000;
     margin-bottom: 15px;
-    span {
-      padding: 10px 0;
+    .time-block {
+      padding: 3px 0;
       display: block;
       border-width: 0 2px 2px 0;
       border-style: solid;
       border-color: transparent #111 #111 transparent;
       box-shadow: inset 1px 1px 2px #888;
       color: #79c6ff;
+      span {
+        display: block;
+        font-size: 18px;
+        &.label {
+          font-size: 9px;
+        }
+      }
     }
   }
   .start-group {

@@ -19,6 +19,7 @@ type ScreenProp = Metronome & {
   onShowTempoTypeModal: () => void;
   onSpeedChange: (newSpeed: string) => void;
   onSpeedCheck: (newSpeed: string) => void;
+  onInputFucus: () => void;
 };
 
 const Screen = (props: ScreenProp) => {
@@ -36,6 +37,7 @@ const Screen = (props: ScreenProp) => {
     onShowTempoTypeModal,
     onSpeedChange,
     onSpeedCheck,
+    onInputFucus,
   } = props;
 
   const statusClass = startStatus ? ' start' : ' stop';
@@ -88,6 +90,7 @@ const Screen = (props: ScreenProp) => {
                 onBlur={({ currentTarget }) =>
                   onSpeedCheck(currentTarget.value)
                 }
+                onFocus={onInputFucus}
               />
               {errorMessages && (
                 <span className="error-messages">{errorMessages}</span>

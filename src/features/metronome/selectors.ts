@@ -2,6 +2,10 @@ import { StoreState } from 'src/Store';
 import { createSelector } from 'reselect';
 import { timeSignatureData } from 'src/features/metronome/domain/model/TimeSignature';
 import { SpeedExpression } from 'src/features/metronome/domain/model/SpeedExpression';
+import {
+  VoiceCode,
+  voiceData,
+} from 'src/features/metronome/domain/model/Metronome';
 
 export const settingSelector = (state: StoreState) => state.metronome.setting;
 
@@ -57,6 +61,23 @@ export const blueLightActiveSelector = createSelector(
   ({ blueLightActive }) => blueLightActive,
 );
 
+export const countingSecondsSelector = createSelector(
+  beatingSelector,
+  ({ countingSeconds }) => countingSeconds,
+);
+
+export const countingTimesSelector = createSelector(
+  countingSecondsSelector,
+  countingSeconds => {
+    const minuteNumber = Math.floor(countingSeconds / 60);
+    const secondNumber = countingSeconds % 60;
+
+    const minute = minuteNumber < 10 ? `0${minuteNumber}` : minuteNumber;
+    const second = secondNumber < 10 ? `0${secondNumber}` : secondNumber;
+    return `${minute} : ${second}`;
+  },
+);
+
 export const speedExpressionSelector = createSelector(speedSelector, speed => {
   if (speed < 40) {
     return SpeedExpression.Adagissimo;
@@ -75,3 +96,30 @@ export const speedExpressionSelector = createSelector(speedSelector, speed => {
   }
   return 'no';
 });
+
+export const currentVoiceSelector = createSelector(
+  settingSelector,
+  ({ currentVoice }) => {
+    return voiceData.find(v => v.value === currentVoice.value);
+  },
+);
+
+export const voiceSwitchDegSelector = createSelector(
+  currentVoiceSelector,
+  ({ value }) => {
+    switch (value) {
+      case VoiceCode.Voice1:
+        return '0deg';
+      case VoiceCode.Voice2:
+        return '-45deg';
+      case VoiceCode.Voice3:
+        return '-90deg';
+      case VoiceCode.Voice4:
+        return '-135deg';
+      case VoiceCode.Voice5:
+        return '-180deg';
+      default:
+        break;
+    }
+  },
+);

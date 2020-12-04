@@ -19,6 +19,10 @@ import {
   beatingNumberSelector,
   beatingStatusSelector,
   speedExpressionSelector,
+  countingSecondsSelector,
+  countingTimesSelector,
+  currentVoiceSelector,
+  voiceSwitchDegSelector,
 } from 'src/features/metronome/selectors';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -26,6 +30,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Howl, Howler } from 'howler';
 
 let beating;
+let counting;
 
 const MetronomeContainer = () => {
   const dispatch = useDispatch();
@@ -43,42 +48,62 @@ const MetronomeContainer = () => {
   const beatNumber = useSelector(beatingNumberSelector);
   const startStatus = useSelector(beatingStatusSelector);
   const speedExpression = useSelector(speedExpressionSelector);
+  const countingSeconds = useSelector(countingSecondsSelector);
+  const countingTimes = useSelector(countingTimesSelector);
+  const currentVoice = useSelector(currentVoiceSelector);
+  const voiceSwitchDeg = useSelector(voiceSwitchDegSelector);
 
   // console.log(beatNumber, 'beat', speedExpression);
-
-  const sound = new Howl({
-    src: ['/audios/click.mp3'],
-    loop: false,
-    autoPlay: false,
-  });
+  const sounds = {
+    common: new Howl({
+      src: ['/audios/metronome/click.mp3'],
+    }),
+    ding: new Howl({
+      src: ['/audios/metronome/ding.mp3'],
+    }),
+  };
 
   let tempBeatNumber = beatNumber;
 
-  const counter = () => {
-    sound.play();
+  const beater = () => {
     dispatch(beatingActions.setBlueLightActive(true));
     if (tempBeatNumber === maxBeatNumber) {
+      sounds.ding.play();
       tempBeatNumber = 1;
     } else {
+      sounds.common.play();
       tempBeatNumber += 1;
     }
     dispatch(beatingActions.beat(tempBeatNumber));
   };
 
+  let tempSeconds = countingSeconds;
+
+  const counter = () => {
+    tempSeconds += 1;
+    dispatch(beatingActions.countingTime(tempSeconds));
+  };
+
   const onStartStop = (status: boolean) => {
     if (status) {
-      sound.play();
+      sounds.ding.play();
       dispatch(beatingActions.setBlueLightActive(true));
 
       if (tempBeatNumber === maxBeatNumber) {
         tempBeatNumber = 1;
         dispatch(beatingActions.beat(tempBeatNumber));
       }
-      beating = setInterval(counter, perBeatSeconds);
+      beating = setInterval(beater, perBeatSeconds);
+
+      // 秒數計時
+      dispatch(beatingActions.countingTime(0)); // 剛點開始要reset為0
+      tempSeconds = 0; // 剛點開始要reset為0
+      counting = setInterval(counter, 1000);
     } else {
       Howler.stop();
       dispatch(beatingActions.beat(maxBeatNumber));
       clearInterval(beating);
+      clearInterval(counting);
     }
     dispatch(beatingActions.statusChanged(status));
   };
@@ -88,6 +113,10 @@ const MetronomeContainer = () => {
   useEffect(() => {
     dispatch(beatingActions.beat(maxBeatNumber));
   }, [maxBeatNumber]);
+
+  useEffect(() => {
+    onStartStop(false);
+  }, [setting]);
 
   return (
     <div className="metronome">
@@ -110,6 +139,7 @@ const MetronomeContainer = () => {
           onSpeedCheck={newValue =>
             dispatch(settingActions.onBlurChecked(newValue))
           }
+          onInputFucus={() => onStartStop(false)}
         />
         <TempoTypeModal
           show={showTempoTypeModal}
@@ -140,8 +170,19 @@ const MetronomeContainer = () => {
           />
         </div>
         <div className="other-tools">
-          <TempoTypeSwitch />
-          <StartField startStatus={startStatus} onStartStop={onStartStop} />
+          <TempoTypeSwitch
+            currentVoice={currentVoice}
+            switchDeg={voiceSwitchDeg}
+            onVoiceChange={value =>
+              dispatch(settingActions.voiceChanged(value))
+            }
+          />
+          <StartField
+            startStatus={startStatus}
+            countingTimes={countingTimes}
+            currentVoice={currentVoice}
+            onStartStop={onStartStop}
+          />
         </div>
       </div>
     </div>
