@@ -56,17 +56,19 @@ const AdjustingTool = (props: AdjustingToolProp) => {
         >
           <button
             type="button"
+            className="add"
             onClick={() => onClick(Number(currentValue) + 1)}
           >
-            ＋
+            <span />
           </button>
         </ClickNHold>
         <ClickNHold time={pressingTime} onClickNHold={clickNHold} onEnd={end}>
           <button
             type="button"
+            className="reduce"
             onClick={() => onClick(Number(currentValue) - 1)}
           >
-            －
+            <span />
           </button>
         </ClickNHold>
       </div>
