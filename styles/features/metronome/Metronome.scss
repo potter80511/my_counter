@@ -6,7 +6,7 @@
   max-width: 404px;
   padding-bottom: 30px;
   touch-action: manipulation;
-  label {
+  * {
     user-select: none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
