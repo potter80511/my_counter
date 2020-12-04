@@ -44,7 +44,7 @@ const MetronomeContainer = () => {
   const startStatus = useSelector(beatingStatusSelector);
   const speedExpression = useSelector(speedExpressionSelector);
 
-  console.log(beatNumber, 'beat', speedExpression);
+  // console.log(beatNumber, 'beat', speedExpression);
 
   const sound = new Howl({
     src: ['/audios/click.mp3'],
