@@ -1,5 +1,5 @@
 .tempo-type-switch {
-  margin-right: 30px;
+  margin-right: 55px;
   label {
     display: inline-block;
     margin-bottom: 10px;
@@ -10,17 +10,93 @@
     border-radius: 50%;
     width: 80px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    position: relative;
+    .graduate {
+      display: inline-block;
+      height: 2px;
+      width: 10px;
+      position: absolute;
+      background-color: #aaa;
+      &.graduate1,
+      &.graduate5 {
+        bottom: 50%;
+        transform: translateY(50%);
+      }
+      &.graduate2,
+      &.graduate4 {
+        bottom: 0;
+      }
+      &.graduate1 {
+        left: -18px;
+      }
+      &.graduate2 {
+        left: calc(25% - 17px);
+        transform: translate(-50%, 50%) rotateZ(-45deg);
+      }
+      &.graduate3 {
+        transform: translate(-50%, 50%) rotateZ(-90deg);
+        bottom: -15px;
+        left: 50%;
+      }
+      &.graduate4 {
+        right: calc(25% - 17px);
+        transform: translate(50%, 50%) rotateZ(45deg);
+      }
+      &.graduate5 {
+        right: -18px;
+      }
+    }
     .switch {
       border: 5px solid #000;
       box-shadow: 0 0 5px #000;
       width: 70px;
       border-radius: 50%;
-      button {
+      .button-wrap {
+        position: relative;
+        overflow: hidden;
         width: 60px;
         height: 60px;
         border-radius: 50%;
-        background-color: #aaa;
-        box-shadow: inset 3px 2px 1px #fff;
+        &:after,
+        .white,
+        .pointer {
+          display: block;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+        }
+        &:after {
+          content: '';
+          background-color: #aaa;
+          position: absolute;
+          left: 2px;
+          top: 2px;
+          z-index: 1;
+          pointer-events: none;
+        }
+        .white {
+          background-color: white;
+          position: relative;
+        }
+        .pointer {
+          position: absolute;
+          left: 0;
+          top: 0;
+          z-index: 10;
+          transition: all 0.3s ease-in-out;
+          font-size: 0;
+          &:after {
+            content: '';
+            display: inline-block;
+            width: 10px;
+            height: 2px;
+            background-color: #333;
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
       }
     }
   }

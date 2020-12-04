@@ -21,6 +21,8 @@ import {
   speedExpressionSelector,
   countingSecondsSelector,
   countingTimesSelector,
+  currentVoiceSelector,
+  voiceSwitchDegSelector,
 } from 'src/features/metronome/selectors';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -48,6 +50,8 @@ const MetronomeContainer = () => {
   const speedExpression = useSelector(speedExpressionSelector);
   const countingSeconds = useSelector(countingSecondsSelector);
   const countingTimes = useSelector(countingTimesSelector);
+  const currentVoice = useSelector(currentVoiceSelector);
+  const voiceSwitchDeg = useSelector(voiceSwitchDegSelector);
 
   // console.log(beatNumber, 'beat', speedExpression);
   const sounds = {
@@ -166,10 +170,17 @@ const MetronomeContainer = () => {
           />
         </div>
         <div className="other-tools">
-          <TempoTypeSwitch />
+          <TempoTypeSwitch
+            currentVoice={currentVoice}
+            switchDeg={voiceSwitchDeg}
+            onVoiceChange={value =>
+              dispatch(settingActions.voiceChanged(value))
+            }
+          />
           <StartField
             startStatus={startStatus}
             countingTimes={countingTimes}
+            currentVoice={currentVoice}
             onStartStop={onStartStop}
           />
         </div>
