@@ -1,3 +1,6 @@
+$lightOnBlue: #61caf7;
+$lightOnGreen: #7df79d;
+
 @keyframes fadeOutSlowly {
   0% {
     opacity: 1;
@@ -23,6 +26,34 @@
 
   100% {
     opacity: 0.5;
+  }
+}
+
+@keyframes blueLightsOn {
+  0% {
+    box-shadow: 0 0 5px black;
+  }
+
+  50% {
+    box-shadow: 0 0 5px $lightOnBlue;
+  }
+
+  100% {
+    box-shadow: 0 0 5px black;
+  }
+}
+
+@keyframes greenLightsOn {
+  0% {
+    box-shadow: 0 0 5px black;
+  }
+
+  50% {
+    box-shadow: 0 0 5px $lightOnGreen;
+  }
+
+  100% {
+    box-shadow: 0 0 5px black;
   }
 }
 
@@ -148,9 +179,7 @@
       position: relative;
       transition: all 0.3s;
       &.active {
-        animation-name: lightsOn;
         animation-iteration-count: forwards;
-        animation-duration: 0.3s;
       }
       &:after {
         content: '';
@@ -167,13 +196,13 @@
     .left-light {
       background-color: #58beea;
       &.active {
-        box-shadow: 0 0 5px #7bcdf0;
+        animation-name: lightsOn, blueLightsOn;
       }
     }
     .right-light {
       background-color: #3fea6c;
       &.active {
-        box-shadow: 0 0 5px #7df79d;
+        animation-name: lightsOn, greenLightsOn;
       }
     }
     .lights {

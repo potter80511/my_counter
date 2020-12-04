@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Screen from 'src/features/metronome/components/Screen';
 import AdjustingTool from 'src/features/metronome/components/AdjustingTool';
 import TempoTypeSwitch from 'src/features/metronome/components/TempoTypeSwitch';
@@ -44,7 +44,7 @@ const MetronomeContainer = () => {
   const startStatus = useSelector(beatingStatusSelector);
   const speedExpression = useSelector(speedExpressionSelector);
 
-  console.log(beatNumber, 'beat', speedExpression);
+  // console.log(beatNumber, 'beat', speedExpression);
 
   const sound = new Howl({
     src: ['/audios/click.mp3'],

@@ -7,6 +7,8 @@ import { actions as beatingActions } from 'src/features/metronome/slices/beating
 import { blueLightActiveSelector } from 'src/features/metronome/selectors';
 import { useSelector, useDispatch } from 'react-redux';
 
+const commonLightLong = 400;
+
 type ScreenProp = Metronome & {
   startStatus: boolean;
   beatNumber: number;
@@ -44,10 +46,10 @@ const Screen = (props: ScreenProp) => {
   const barArray = Array.from(Array(maxBeatNumber).keys());
 
   useEffect(() => {
-    if (startStatus && Number(speed) < 200) {
+    if (startStatus && perBeatSeconds >= commonLightLong) {
       setTimeout(() => {
         dispatch(beatingActions.setBlueLightActive(false));
-      }, 300);
+      }, commonLightLong);
     }
   }, [startStatus, beatNumber]);
 
@@ -99,9 +101,11 @@ const Screen = (props: ScreenProp) => {
             style={{
               animationName: !startStatus ? 'none' : '',
               animationIterationCount:
-                Number(speed) > 199 ? 'infinite' : 'forwards',
+                perBeatSeconds < commonLightLong ? 'infinite' : 'forwards',
               animationDuration:
-                Number(speed) > 199 ? `${String(perBeatSeconds)}ms` : '0.3s',
+                perBeatSeconds < commonLightLong
+                  ? `${String(perBeatSeconds)}ms`
+                  : `${commonLightLong}ms`,
             }}
           />
           <div className="lights">
@@ -117,7 +121,12 @@ const Screen = (props: ScreenProp) => {
               );
             })}
           </div>
-          <div className={`right-light${greenActiveClass}`} />
+          <div
+            className={`right-light${greenActiveClass}`}
+            style={{
+              animationDuration: `${commonLightLong}ms`,
+            }}
+          />
         </div>
       </div>
     </div>
