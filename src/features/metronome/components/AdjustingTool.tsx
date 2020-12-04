@@ -19,16 +19,11 @@ const AdjustingTool = (props: AdjustingToolProp) => {
 
   const addStart = () => {
     setIsAdding(true);
-    onClick(Number(currentValue) + 1);
   };
 
   const end = () => {
     setLongClick(false);
     setIsAdding(false);
-  };
-
-  const reduceStart = () => {
-    onClick(Number(currentValue) - 1);
   };
 
   const clickNHold = () => {
@@ -59,15 +54,20 @@ const AdjustingTool = (props: AdjustingToolProp) => {
           onClickNHold={clickNHold}
           onEnd={end}
         >
-          <button type="button">＋</button>
+          <button
+            type="button"
+            onClick={() => onClick(Number(currentValue) + 1)}
+          >
+            ＋
+          </button>
         </ClickNHold>
-        <ClickNHold
-          time={pressingTime}
-          onStart={reduceStart}
-          onClickNHold={clickNHold}
-          onEnd={end}
-        >
-          <button type="button">－</button>
+        <ClickNHold time={pressingTime} onClickNHold={clickNHold} onEnd={end}>
+          <button
+            type="button"
+            onClick={() => onClick(Number(currentValue) - 1)}
+          >
+            －
+          </button>
         </ClickNHold>
       </div>
     </div>
