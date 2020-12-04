@@ -24,11 +24,12 @@ export const defaultState: State = {
   originalSpeed: '80',
   errorMessages: '',
   showTempoTypeModal: false,
-  currentVoice: { value: 'w', label: '木' },
+  currentVoice: voiceData[0],
 };
 
 export type CaseReducer = {
-  loaded: (state: State, action: PayloadAction<State>) => State;
+  loaded: (state: State, action: Action) => State;
+  setLocalStorage: (state: State, action: PayloadAction<State>) => State;
   update: (state: State, action: PayloadAction<Partial<State>>) => State;
   onBlurChecked: (state: State, action: PayloadAction<string>) => State;
   adjustedTimeSignature: (state: State, action: PayloadAction<number>) => State;
@@ -48,7 +49,43 @@ export const { actions, reducer } = createSlice<State, CaseReducer>({
   name: 'metronome/setting/',
   initialState: defaultState,
   reducers: {
-    loaded: (_state, action) => action.payload,
+    loaded: (state, _action) => {
+      const metronome_settings: any = localStorage.getItem('metronome_settings')
+        ? JSON.parse(localStorage.getItem('metronome_settings'))
+        : defaultState;
+      const {
+        timeSignature,
+        speed,
+        originalSpeed,
+        currentVoice,
+      } = metronome_settings;
+      return {
+        ...state,
+        timeSignature,
+        speed,
+        originalSpeed,
+        currentVoice,
+      };
+    },
+    setLocalStorage: (state, _action) => {
+      const { timeSignature, speed, originalSpeed, currentVoice } = state;
+
+      const metronome_settings: any = localStorage.getItem('metronome_settings')
+        ? JSON.parse(localStorage.getItem('metronome_settings'))
+        : defaultState;
+      const newSettings = {
+        ...metronome_settings,
+        timeSignature,
+        speed,
+        originalSpeed,
+        currentVoice,
+      };
+
+      localStorage.setItem('metronome_settings', JSON.stringify(newSettings));
+      return {
+        ...state,
+      };
+    },
     update: (state, action: PayloadAction<Partial<State>>) => {
       const { speed } = action.payload;
       const validate = nonNegativeIntegerPattern.test(speed);
