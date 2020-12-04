@@ -107,6 +107,10 @@ const MetronomeContainer = () => {
     dispatch(beatingActions.beat(maxBeatNumber));
   }, [maxBeatNumber]);
 
+  useEffect(() => {
+    onStartStop(false);
+  }, [setting]);
+
   return (
     <div className="metronome">
       <div className="metronome-head">
@@ -128,6 +132,7 @@ const MetronomeContainer = () => {
           onSpeedCheck={newValue =>
             dispatch(settingActions.onBlurChecked(newValue))
           }
+          onInputFucus={() => onStartStop(false)}
         />
         <TempoTypeModal
           show={showTempoTypeModal}
