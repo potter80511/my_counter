@@ -32,15 +32,20 @@ const VoiceSwitch = (props: VoiceSwitchProp) => {
       <div className="switch-group">
         {voiceData.map((g, i) => {
           const { common } = g;
+          const activeClass = common === currentVoice.common ? ' active' : '';
           return (
-            <span
+            <div
               key={common}
-              className={`graduate graduate${i + 1}`}
+              className={`graduate graduate${i + 1}${activeClass}`}
               onClick={() => onVoiceChange(common)}
-            />
+            >
+              <span className="grade-bar" />
+              <span className="active-light" />
+            </div>
           );
         })}
         <div className="switch">
+          <div className="bright" />
           <div className="button-wrap">
             <span className="white" />
             <button
@@ -49,7 +54,7 @@ const VoiceSwitch = (props: VoiceSwitchProp) => {
               style={{ transform: `rotateZ(${switchDeg})` }}
               onClick={() => onVoiceNextChange(currentVoice.common)}
             >
-              test
+              <span />
             </button>
           </div>
         </div>
