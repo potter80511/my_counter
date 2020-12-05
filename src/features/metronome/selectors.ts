@@ -94,6 +94,18 @@ export const speedExpressionSelector = createSelector(speedSelector, speed => {
   if (speed > 75 && speed < 109) {
     return SpeedExpression.Andante;
   }
+  if (speed > 108 && speed < 120) {
+    return SpeedExpression.Moderato;
+  }
+  if (speed > 119 && speed < 168) {
+    return SpeedExpression.Allegro;
+  }
+  if (speed > 167 && speed < 200) {
+    return SpeedExpression.Presto;
+  }
+  if (speed > 199) {
+    return SpeedExpression.Prestissimo;
+  }
   return 'no';
 });
 

@@ -4,4 +4,8 @@ export enum SpeedExpression {
   Larghetto = 'Larghetto',
   Adagio = 'Adagio',
   Andante = 'Andante',
+  Moderato = 'Moderato',
+  Allegro = 'Allegro',
+  Presto = 'Presto',
+  Prestissimo = 'Prestissimo',
 }
