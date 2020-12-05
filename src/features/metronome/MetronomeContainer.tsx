@@ -118,7 +118,9 @@ const MetronomeContainer = () => {
   }, [maxBeatNumber]);
 
   useEffect(() => {
-    onStartStop(false);
+    if (startStatus) {
+      onStartStop(false);
+    }
   }, [setting]);
 
   useEffect(() => {

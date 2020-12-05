@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import ClickNHold from 'react-click-n-hold';
+import { Howl } from 'howler';
 import '@styles/features/metronome/AdjustingTool.scss';
 
 const pressingTime = 1;
+const buttonClickSound = new Howl({
+  src: [`/audios/metronome/bubble.mp3`],
+});
 
 type AdjustingToolProp = {
   label: string;
@@ -38,11 +42,17 @@ const AdjustingTool = (props: AdjustingToolProp) => {
       } else {
         onClick(Number(currentValue) - 1);
       }
+      buttonClickSound.play();
       setTimeout(() => {
         setTemp(!temp);
       }, 100);
     }
   }, [temp]);
+
+  const click = (newValue: number) => {
+    buttonClickSound.play();
+    onClick(newValue);
+  };
 
   return (
     <div className="adjusting-tool">
@@ -57,7 +67,7 @@ const AdjustingTool = (props: AdjustingToolProp) => {
           <button
             type="button"
             className="add"
-            onClick={() => onClick(Number(currentValue) + 1)}
+            onClick={() => click(Number(currentValue) + 1)}
           >
             <span />
           </button>
@@ -66,7 +76,7 @@ const AdjustingTool = (props: AdjustingToolProp) => {
           <button
             type="button"
             className="reduce"
-            onClick={() => onClick(Number(currentValue) - 1)}
+            onClick={() => click(Number(currentValue) - 1)}
           >
             <span />
           </button>
