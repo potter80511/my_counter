@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 import { timeSignatureData } from 'src/features/metronome/domain/model/TimeSignature';
 import { SpeedExpression } from 'src/features/metronome/domain/model/SpeedExpression';
 import {
-  VoiceCode,
+  VoiceName,
   voiceData,
 } from 'src/features/metronome/domain/model/Metronome';
 
@@ -108,15 +108,15 @@ export const voiceSwitchDegSelector = createSelector(
   currentVoiceSelector,
   ({ value }) => {
     switch (value) {
-      case VoiceCode.Voice1:
+      case VoiceName.Voice1:
         return '0deg';
-      case VoiceCode.Voice2:
+      case VoiceName.Voice2:
         return '-45deg';
-      case VoiceCode.Voice3:
+      case VoiceName.Voice3:
         return '-90deg';
-      case VoiceCode.Voice4:
+      case VoiceName.Voice4:
         return '-135deg';
-      case VoiceCode.Voice5:
+      case VoiceName.Voice5:
         return '-180deg';
       default:
         break;

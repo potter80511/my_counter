@@ -56,10 +56,10 @@ const MetronomeContainer = () => {
   // console.log(beatNumber, 'beat', speedExpression);
   const sounds = {
     common: new Howl({
-      src: ['/audios/metronome/click.mp3'],
+      src: [`/audios/metronome/${currentVoice.value}.mp3`],
     }),
     ding: new Howl({
-      src: ['/audios/metronome/ding.mp3'],
+      src: ['/audios/metronome/default_ding.mp3'],
     }),
   };
 
