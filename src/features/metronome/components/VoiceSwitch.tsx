@@ -4,8 +4,13 @@ import {
   voiceData,
   VoiceName,
 } from 'src/features/metronome/domain/model/Metronome';
+import {
+  faAngleDoubleLeft,
+  faAngleDoubleRight,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import '@styles/features/metronome/TempoTypeSwitch.scss';
+import '@styles/features/metronome/VoiceSwitch.scss';
 
 type VoiceSwitchProp = {
   currentVoice: Voice;
@@ -18,8 +23,12 @@ const VoiceSwitch = (props: VoiceSwitchProp) => {
   const { currentVoice, switchDeg, onVoiceChange, onVoiceNextChange } = props;
 
   return (
-    <div className="tempo-type-switch">
-      <label>拍子機聲音</label>
+    <div className="voice-switch">
+      <label>節拍器聲音</label>
+      <div className="arrows">
+        <FontAwesomeIcon icon={faAngleDoubleLeft} className="left" />
+        <FontAwesomeIcon icon={faAngleDoubleRight} className="right" />
+      </div>
       <div className="switch-group">
         {voiceData.map((g, i) => {
           const { common } = g;
