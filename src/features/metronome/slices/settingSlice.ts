@@ -3,6 +3,7 @@ import {
   Metronome,
   Voice,
   voiceData,
+  VoiceName,
 } from 'src/features/metronome/domain/model/Metronome';
 import {
   TimeSignature,
@@ -38,8 +39,8 @@ export type CaseReducer = {
     action: PayloadAction<TimeSignature>,
   ) => State;
   onShowTempoTypeModal: (state: State, action: PayloadAction<boolean>) => State;
-  voiceChanged: (state: State, action: PayloadAction<string>) => State;
-  voiceNextChanged: (state: State, action: PayloadAction<string>) => State;
+  voiceChanged: (state: State, action: PayloadAction<VoiceName>) => State;
+  voiceNextChanged: (state: State, action: PayloadAction<VoiceName>) => State;
   reset: (state: State, action: Action) => State;
 };
 
@@ -169,15 +170,15 @@ export const { actions, reducer } = createSlice<State, CaseReducer>({
         showTempoTypeModal: action.payload,
       };
     },
-    voiceChanged: (state: State, action: PayloadAction<string>) => {
-      const newVoice = voiceData.find(v => v.value === action.payload);
+    voiceChanged: (state: State, action: PayloadAction<VoiceName>) => {
+      const newVoice = voiceData.find(v => v.common === action.payload);
       return {
         ...state,
         currentVoice: newVoice,
       };
     },
-    voiceNextChanged: (state: State, action: PayloadAction<string>) => {
-      const voiceIndex = voiceData.findIndex(v => v.value === action.payload);
+    voiceNextChanged: (state: State, action: PayloadAction<VoiceName>) => {
+      const voiceIndex = voiceData.findIndex(v => v.common === action.payload);
       const newVoice =
         voiceIndex === voiceData.length - 1
           ? voiceData[0]

@@ -1,9 +1,23 @@
-.tempo-type-switch {
-  margin-right: 55px;
+.voice-switch {
+  margin-right: 65px;
+  position: relative;
   label {
     display: inline-block;
-    margin-bottom: 10px;
+    padding-bottom: 40px;
     color: #aaa;
+  }
+  .arrows {
+    display: flex;
+    justify-content: space-between;
+    width: 110px;
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    svg {
+      height: 20px;
+      color: #333;
+    }
   }
   .switch-group {
     border: 5px solid #44feff;
