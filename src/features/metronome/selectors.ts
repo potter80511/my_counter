@@ -100,14 +100,14 @@ export const speedExpressionSelector = createSelector(speedSelector, speed => {
 export const currentVoiceSelector = createSelector(
   settingSelector,
   ({ currentVoice }) => {
-    return voiceData.find(v => v.value === currentVoice.value);
+    return voiceData.find(v => v.common === currentVoice.common);
   },
 );
 
 export const voiceSwitchDegSelector = createSelector(
   currentVoiceSelector,
-  ({ value }) => {
-    switch (value) {
+  ({ common }) => {
+    switch (common) {
       case VoiceName.Voice1:
         return '0deg';
       case VoiceName.Voice2:

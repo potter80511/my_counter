@@ -53,13 +53,12 @@ const MetronomeContainer = () => {
   const currentVoice = useSelector(currentVoiceSelector);
   const voiceSwitchDeg = useSelector(voiceSwitchDegSelector);
 
-  // console.log(beatNumber, 'beat', speedExpression);
   const sounds = {
     common: new Howl({
-      src: [`/audios/metronome/${currentVoice.value}.mp3`],
+      src: [`/audios/metronome/${currentVoice.common}.mp3`],
     }),
     ding: new Howl({
-      src: ['/audios/metronome/default_ding.mp3'],
+      src: [`/audios/metronome/${currentVoice.ding}.mp3`],
     }),
   };
 

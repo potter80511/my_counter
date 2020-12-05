@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Voice,
   voiceData,
+  VoiceName,
 } from 'src/features/metronome/domain/model/Metronome';
 
 import '@styles/features/metronome/TempoTypeSwitch.scss';
@@ -9,8 +10,8 @@ import '@styles/features/metronome/TempoTypeSwitch.scss';
 type TempoTypeSwitchProp = {
   currentVoice: Voice;
   switchDeg: string;
-  onVoiceChange: (value: string) => void;
-  onVoiceNextChange: (value: string) => void;
+  onVoiceChange: (value: VoiceName) => void;
+  onVoiceNextChange: (value: VoiceName) => void;
 };
 
 const TempoTypeSwitch = (props: TempoTypeSwitchProp) => {
@@ -21,12 +22,12 @@ const TempoTypeSwitch = (props: TempoTypeSwitchProp) => {
       <label>拍子機聲音</label>
       <div className="switch-group">
         {voiceData.map((g, i) => {
-          const { value } = g;
+          const { common } = g;
           return (
             <span
-              key={value}
+              key={common}
               className={`graduate graduate${i + 1}`}
-              onClick={() => onVoiceChange(value)}
+              onClick={() => onVoiceChange(common)}
             />
           );
         })}
@@ -37,7 +38,7 @@ const TempoTypeSwitch = (props: TempoTypeSwitchProp) => {
               type="button"
               className="pointer"
               style={{ transform: `rotateZ(${switchDeg})` }}
-              onClick={() => onVoiceNextChange(currentVoice.value)}
+              onClick={() => onVoiceNextChange(currentVoice.common)}
             >
               test
             </button>
