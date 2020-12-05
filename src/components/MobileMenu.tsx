@@ -83,6 +83,11 @@ const MobileMenu = () => {
                 </svg>
               </a>
             </Link>
+            <Link href="/metronome">
+              <a className="menu-metronome flex-center">
+                <img src="/img/metronome/metronome.svg" />
+              </a>
+            </Link>
           </div>
         </div>
       </CSSTransition>
