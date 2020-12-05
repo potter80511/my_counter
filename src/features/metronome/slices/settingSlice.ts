@@ -39,6 +39,7 @@ export type CaseReducer = {
   ) => State;
   onShowTempoTypeModal: (state: State, action: PayloadAction<boolean>) => State;
   voiceChanged: (state: State, action: PayloadAction<string>) => State;
+  voiceNextChanged: (state: State, action: PayloadAction<string>) => State;
   reset: (state: State, action: Action) => State;
 };
 
@@ -169,6 +170,13 @@ export const { actions, reducer } = createSlice<State, CaseReducer>({
       };
     },
     voiceChanged: (state: State, action: PayloadAction<string>) => {
+      const newVoice = voiceData.find(v => v.value === action.payload);
+      return {
+        ...state,
+        currentVoice: newVoice,
+      };
+    },
+    voiceNextChanged: (state: State, action: PayloadAction<string>) => {
       const voiceIndex = voiceData.findIndex(v => v.value === action.payload);
       const newVoice =
         voiceIndex === voiceData.length - 1

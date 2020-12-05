@@ -184,6 +184,9 @@ const MetronomeContainer = () => {
             onVoiceChange={value =>
               dispatch(settingActions.voiceChanged(value))
             }
+            onVoiceNextChange={value =>
+              dispatch(settingActions.voiceNextChanged(value))
+            }
           />
           <StartField
             startStatus={startStatus}
