@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Screen from 'src/features/metronome/components/Screen';
 import AdjustingTool from 'src/features/metronome/components/AdjustingTool';
-import TempoTypeSwitch from 'src/features/metronome/components/TempoTypeSwitch';
+import VoiceSwitch from 'src/features/metronome/components/VoiceSwitch';
 import TempoTypeModal from 'src/features/metronome/components/TempoTypeModal';
 import StartField from 'src/features/metronome/components/StartField';
 import { TimeSignature } from 'src/features/metronome/domain/model/TimeSignature';
@@ -177,7 +177,7 @@ const MetronomeContainer = () => {
           />
         </div>
         <div className="other-tools">
-          <TempoTypeSwitch
+          <VoiceSwitch
             currentVoice={currentVoice}
             switchDeg={voiceSwitchDeg}
             onVoiceChange={value =>

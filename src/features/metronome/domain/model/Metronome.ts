@@ -29,7 +29,7 @@ export type Voice = {
 
 export const voiceData: Voice[] = [
   {
-    label: '預設',
+    label: '一般',
     common: VoiceName.Voice1,
     ding: DingName.Ding1,
   },

@@ -7,14 +7,14 @@ import {
 
 import '@styles/features/metronome/TempoTypeSwitch.scss';
 
-type TempoTypeSwitchProp = {
+type VoiceSwitchProp = {
   currentVoice: Voice;
   switchDeg: string;
   onVoiceChange: (value: VoiceName) => void;
   onVoiceNextChange: (value: VoiceName) => void;
 };
 
-const TempoTypeSwitch = (props: TempoTypeSwitchProp) => {
+const VoiceSwitch = (props: VoiceSwitchProp) => {
   const { currentVoice, switchDeg, onVoiceChange, onVoiceNextChange } = props;
 
   return (
@@ -49,4 +49,4 @@ const TempoTypeSwitch = (props: TempoTypeSwitchProp) => {
   );
 };
 
-export default TempoTypeSwitch;
+export default VoiceSwitch;
