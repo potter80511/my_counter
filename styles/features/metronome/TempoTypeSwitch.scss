@@ -13,10 +13,11 @@
     position: relative;
     .graduate {
       display: inline-block;
-      height: 2px;
+      height: 3px;
       width: 10px;
       position: absolute;
       background-color: #aaa;
+      cursor: pointer;
       &.graduate1,
       &.graduate5 {
         bottom: 50%;
