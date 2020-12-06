@@ -111,12 +111,10 @@
       }
       .button-wrap {
         position: relative;
-        overflow: hidden;
         width: 60px;
         height: 60px;
         border-radius: 50%;
         &:after,
-        .white,
         .pointer {
           display: block;
           width: 60px;
@@ -127,14 +125,11 @@
           content: '';
           background-color: #aaa;
           position: absolute;
-          left: 2px;
-          top: 2px;
+          left: 0;
+          top: 0;
           z-index: 1;
           pointer-events: none;
-        }
-        .white {
-          background-color: white;
-          position: relative;
+          box-shadow: inset 2px 2px 0 white;
         }
         .pointer {
           position: absolute;

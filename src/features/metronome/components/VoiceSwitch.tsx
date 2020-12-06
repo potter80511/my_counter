@@ -59,6 +59,7 @@ const VoiceSwitch = (props: VoiceSwitchProp) => {
             setOnLeft(true);
             next.play();
           }}
+          onTouchEnd={() => setOnLeft(false)}
         >
           <FontAwesomeIcon icon={faAngleDoubleLeft} className="left" />
         </button>
@@ -77,6 +78,7 @@ const VoiceSwitch = (props: VoiceSwitchProp) => {
             setOnRight(true);
             next.play();
           }}
+          onTouchEnd={() => setOnRight(false)}
         >
           <FontAwesomeIcon icon={faAngleDoubleRight} className="right" />
         </button>
@@ -102,7 +104,6 @@ const VoiceSwitch = (props: VoiceSwitchProp) => {
         <div className="switch">
           <div className="bright" />
           <div className="button-wrap">
-            <span className="white" />
             <button
               type="button"
               className="pointer"
