@@ -8,9 +8,9 @@ export type Metronome = {
 export enum VoiceName {
   Voice1 = 'default_common',
   Voice2 = 'low_frequency',
-  Voice3 = 'voice3',
-  Voice4 = 'voice4',
-  Voice5 = 'voice5',
+  Voice3 = 'voice4',
+  Voice4 = 'voice5',
+  Voice5 = 'bubble',
 }
 
 export enum DingName {
@@ -18,7 +18,7 @@ export enum DingName {
   Ding2 = 'glass_ding',
   Ding3 = 'ding3',
   Ding4 = 'voice4',
-  Ding5 = 'voice5',
+  Ding5 = 'bubble',
 }
 
 export type Voice = {
@@ -44,12 +44,12 @@ export const voiceData: Voice[] = [
     ding: DingName.Ding3,
   },
   {
-    label: '普通節拍器1',
+    label: '普通節拍器',
     common: VoiceName.Voice4,
     ding: DingName.Ding4,
   },
   {
-    label: '普通節拍器2',
+    label: '泡泡',
     common: VoiceName.Voice5,
     ding: DingName.Ding5,
   },
