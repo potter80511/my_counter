@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { soundSelector } from 'src/features/metronome/selectors';
 
+import { Sound } from 'src/features/metronome/domain/model/Sound';
 import ClickNHold from 'react-click-n-hold';
-import { Howl } from 'howler';
 import '@styles/features/metronome/AdjustingTool.scss';
 
 const pressingTime = 1;
@@ -11,13 +9,17 @@ const pressingTime = 1;
 type AdjustingToolProp = {
   label: string;
   currentValue: string | number;
+  sound: Sound;
   onClick?: (newValue: number) => void;
 };
 
 const AdjustingTool = (props: AdjustingToolProp) => {
-  const { label, currentValue, onClick } = props;
-
-  const sound = useSelector(soundSelector).addjust;
+  const {
+    label,
+    currentValue,
+    sound: { adjust },
+    onClick,
+  } = props;
 
   const [longClick, setLongClick] = useState<boolean>(false);
   const [isAdding, setIsAdding] = useState<boolean>(false);
@@ -44,7 +46,7 @@ const AdjustingTool = (props: AdjustingToolProp) => {
       } else {
         onClick(Number(currentValue) - 1);
       }
-      sound.play();
+      adjust.play();
       setTimeout(() => {
         setTemp(!temp);
       }, 100);
@@ -52,7 +54,7 @@ const AdjustingTool = (props: AdjustingToolProp) => {
   }, [temp]);
 
   const click = (newValue: number) => {
-    sound.play();
+    adjust.play();
     onClick(newValue);
   };
 

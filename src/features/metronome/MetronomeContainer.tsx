@@ -160,6 +160,7 @@ const MetronomeContainer = () => {
           <AdjustingTool
             label="速度"
             currentValue={setting.speed}
+            sound={sound}
             onClick={newValue => {
               dispatch(settingActions.update({ speed: String(newValue) }));
               dispatch(settingActions.onBlurChecked(String(newValue)));
@@ -168,6 +169,7 @@ const MetronomeContainer = () => {
           <AdjustingTool
             label="拍子"
             currentValue={currentTimeSignatureIndex}
+            sound={sound}
             onClick={newValue =>
               dispatch(settingActions.adjustedTimeSignature(newValue))
             }
@@ -177,6 +179,7 @@ const MetronomeContainer = () => {
           <VoiceSwitch
             currentVoice={currentVoice}
             switchDeg={voiceSwitchDeg}
+            sound={sound}
             onVoiceChange={value =>
               dispatch(settingActions.voiceChanged(value))
             }

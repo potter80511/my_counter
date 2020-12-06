@@ -14,9 +14,18 @@
     top: 32px;
     left: 50%;
     transform: translateX(-50%);
-    svg {
-      height: 20px;
-      color: #333;
+    button {
+      svg {
+        transition: transform 0.3s ease-in-out;
+        height: 20px;
+        color: #333;
+      }
+      &.active {
+        svg {
+          transform: scale(1.3);
+          color: #44feff;
+        }
+      }
     }
   }
   .switch-group {

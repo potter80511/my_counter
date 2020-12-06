@@ -5,5 +5,6 @@ export type Sound = {
   ding: Howl;
   show: Howl;
   select: Howl;
-  addjust: Howl;
+  adjust: Howl;
+  next: Howl;
 };

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Voice,
   voiceData,
   VoiceName,
 } from 'src/features/metronome/domain/model/Metronome';
+import { Sound } from 'src/features/metronome/domain/model/Sound';
 import {
   faAngleDoubleLeft,
   faAngleDoubleRight,
@@ -15,12 +16,22 @@ import '@styles/features/metronome/VoiceSwitch.scss';
 type VoiceSwitchProp = {
   currentVoice: Voice;
   switchDeg: string;
+  sound: Sound;
   onVoiceChange: (name: VoiceName) => void;
   onVoiceNextChange: (name: VoiceName, backWards?: boolean) => void;
 };
 
 const VoiceSwitch = (props: VoiceSwitchProp) => {
-  const { currentVoice, switchDeg, onVoiceChange, onVoiceNextChange } = props;
+  const {
+    currentVoice,
+    switchDeg,
+    sound: { next },
+    onVoiceChange,
+    onVoiceNextChange,
+  } = props;
+
+  const [onLeft, setOnLeft] = useState<boolean>(false);
+  const [onRight, setOnRight] = useState<boolean>(false);
 
   return (
     <div className="voice-switch">
@@ -29,12 +40,24 @@ const VoiceSwitch = (props: VoiceSwitchProp) => {
         <button
           type="button"
           onClick={() => onVoiceNextChange(currentVoice.common, true)}
+          className={onLeft ? 'active' : ''}
+          onMouseDown={() => {
+            setOnLeft(true);
+            next.play();
+          }}
+          onMouseUp={() => setOnLeft(false)}
         >
           <FontAwesomeIcon icon={faAngleDoubleLeft} className="left" />
         </button>
         <button
           type="button"
           onClick={() => onVoiceNextChange(currentVoice.common)}
+          className={onRight ? 'active' : ''}
+          onMouseDown={() => {
+            setOnRight(true);
+            next.play();
+          }}
+          onMouseUp={() => setOnRight(false)}
         >
           <FontAwesomeIcon icon={faAngleDoubleRight} className="right" />
         </button>
