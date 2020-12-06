@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   TimeSignature,
   timeSignatureData,
 } from 'src/features/metronome/domain/model/TimeSignature';
+import { Sound } from 'src/features/metronome/domain/model/Sound';
+
 import { Transition, CSSTransition } from 'react-transition-group';
 import '@styles/features/metronome/TempoTypeModal.scss';
 import '@styles/transition_group.scss';
@@ -26,12 +28,25 @@ const TimeSignatureOption = (props: TimeSignatureOptionProp) => {
 type TempoTypeModalProp = {
   show: boolean;
   currentTimeSignature: TimeSignature;
+  sound: Sound;
   onSignatureChange: (signature: TimeSignature) => void;
   closeModal: () => void;
 };
 
 const TempoTypeModal = (props: TempoTypeModalProp) => {
-  const { show, currentTimeSignature, onSignatureChange, closeModal } = props;
+  const {
+    show,
+    currentTimeSignature,
+    sound: { show: showSound, select },
+    onSignatureChange,
+    closeModal,
+  } = props;
+
+  useEffect(() => {
+    if (show) {
+      showSound.play();
+    }
+  }, [show]);
 
   return (
     <Transition in={show} timeout={600} unmountOnExit>
@@ -66,7 +81,10 @@ const TempoTypeModal = (props: TempoTypeModalProp) => {
                     key={signature}
                     name={signature}
                     active={signature === currentTimeSignature}
-                    onClick={() => onSignatureChange(signature)}
+                    onClick={() => {
+                      select.play();
+                      onSignatureChange(signature);
+                    }}
                   />
                 );
               })}

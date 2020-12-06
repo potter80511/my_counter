@@ -6,6 +6,7 @@ import {
   VoiceName,
   voiceData,
 } from 'src/features/metronome/domain/model/Metronome';
+import { Howl } from 'howler';
 
 export const settingSelector = (state: StoreState) => state.metronome.setting;
 
@@ -133,5 +134,28 @@ export const voiceSwitchDegSelector = createSelector(
       default:
         break;
     }
+  },
+);
+
+export const soundSelector = createSelector(
+  currentVoiceSelector,
+  ({ common, ding }) => {
+    return {
+      common: new Howl({
+        src: [`/audios/metronome/${common}.mp3`],
+      }),
+      ding: new Howl({
+        src: [`/audios/metronome/${ding}.mp3`],
+      }),
+      select: new Howl({
+        src: [`/audios/metronome/beap1.mp3`],
+      }),
+      show: new Howl({
+        src: [`/audios/metronome/show.mp3`],
+      }),
+      addjust: new Howl({
+        src: [`/audios/metronome/beap2.mp3`],
+      }),
+    };
   },
 );

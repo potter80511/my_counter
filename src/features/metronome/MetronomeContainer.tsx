@@ -23,6 +23,7 @@ import {
   countingTimesSelector,
   currentVoiceSelector,
   voiceSwitchDegSelector,
+  soundSelector,
 } from 'src/features/metronome/selectors';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -53,24 +54,17 @@ const MetronomeContainer = () => {
   const currentVoice = useSelector(currentVoiceSelector);
   const voiceSwitchDeg = useSelector(voiceSwitchDegSelector);
 
-  const sounds = {
-    common: new Howl({
-      src: [`/audios/metronome/${currentVoice.common}.mp3`],
-    }),
-    ding: new Howl({
-      src: [`/audios/metronome/${currentVoice.ding}.mp3`],
-    }),
-  };
+  const sound = useSelector(soundSelector);
 
   let tempBeatNumber = beatNumber;
 
   const beater = () => {
     dispatch(beatingActions.setBlueLightActive(true));
     if (tempBeatNumber === maxBeatNumber) {
-      sounds.ding.play();
+      sound.ding.play();
       tempBeatNumber = 1;
     } else {
-      sounds.common.play();
+      sound.common.play();
       tempBeatNumber += 1;
     }
     dispatch(beatingActions.beat(tempBeatNumber));
@@ -85,7 +79,7 @@ const MetronomeContainer = () => {
 
   const onStartStop = (status: boolean) => {
     if (status) {
-      sounds.ding.play();
+      sound.ding.play();
       dispatch(beatingActions.setBlueLightActive(true));
 
       if (tempBeatNumber === maxBeatNumber) {
@@ -153,6 +147,7 @@ const MetronomeContainer = () => {
         <TempoTypeModal
           show={showTempoTypeModal}
           currentTimeSignature={timeSignature}
+          sound={sound}
           onSignatureChange={(signature: TimeSignature) => {
             dispatch(settingActions.timeSignatureChange(signature));
             closeModal();
