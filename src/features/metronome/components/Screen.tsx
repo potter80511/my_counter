@@ -60,7 +60,7 @@ const Screen = (props: ScreenProp) => {
       <div className="screen-inner">
         <div className="screen-head">
           <div className="tempo-group">
-            <span className="tempo">拍子</span>
+            <span className="tempo">拍號</span>
             <span className={`play-status${statusClass}`} />
           </div>
           <div className="time-signature">
