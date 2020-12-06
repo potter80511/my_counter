@@ -21,6 +21,8 @@ const AdjustingTool = (props: AdjustingToolProp) => {
     onClick,
   } = props;
 
+  const [onLeft, setOnLeft] = useState<boolean>(false);
+  const [onRight, setOnRight] = useState<boolean>(false);
   const [longClick, setLongClick] = useState<boolean>(false);
   const [isAdding, setIsAdding] = useState<boolean>(false);
   const [temp, setTemp] = useState<boolean>(false);
@@ -70,8 +72,10 @@ const AdjustingTool = (props: AdjustingToolProp) => {
         >
           <button
             type="button"
-            className="add"
             onClick={() => click(Number(currentValue) + 1)}
+            className={`add${onLeft ? ' active' : ''}`}
+            onMouseDown={() => setOnLeft(true)}
+            onMouseUp={() => setOnLeft(false)}
           >
             <span />
           </button>
@@ -79,8 +83,10 @@ const AdjustingTool = (props: AdjustingToolProp) => {
         <ClickNHold time={pressingTime} onClickNHold={clickNHold} onEnd={end}>
           <button
             type="button"
-            className="reduce"
             onClick={() => click(Number(currentValue) - 1)}
+            className={`reduce${onRight ? ' active' : ''}`}
+            onMouseDown={() => setOnRight(true)}
+            onMouseUp={() => setOnRight(false)}
           >
             <span />
           </button>

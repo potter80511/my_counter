@@ -33,6 +33,12 @@
           content: '－';
         }
       }
+      &.active {
+        &:after {
+          color: #44feff;
+          text-shadow: 0 0 5px #44feff;
+        }
+      }
     }
   }
 }
