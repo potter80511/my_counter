@@ -25,13 +25,19 @@ const VoiceSwitch = (props: VoiceSwitchProp) => {
   const {
     currentVoice,
     switchDeg,
-    sound: { next },
+    sound: { next, switch: buttonSwitch },
     onVoiceChange,
     onVoiceNextChange,
   } = props;
 
   const [onLeft, setOnLeft] = useState<boolean>(false);
   const [onRight, setOnRight] = useState<boolean>(false);
+
+  const onSwitchSound = () => {
+    setTimeout(() => {
+      buttonSwitch.play();
+    }, 200);
+  };
 
   return (
     <div className="voice-switch">
@@ -70,7 +76,10 @@ const VoiceSwitch = (props: VoiceSwitchProp) => {
             <div
               key={common}
               className={`graduate graduate${i + 1}${activeClass}`}
-              onClick={() => onVoiceChange(common)}
+              onClick={() => {
+                onVoiceChange(common);
+                onSwitchSound();
+              }}
             >
               <span className="grade-bar" />
               <span className="active-light" />
@@ -85,7 +94,10 @@ const VoiceSwitch = (props: VoiceSwitchProp) => {
               type="button"
               className="pointer"
               style={{ transform: `rotateZ(${switchDeg})` }}
-              onClick={() => onVoiceNextChange(currentVoice.common)}
+              onClick={() => {
+                onSwitchSound();
+                onVoiceNextChange(currentVoice.common);
+              }}
             >
               <span />
             </button>

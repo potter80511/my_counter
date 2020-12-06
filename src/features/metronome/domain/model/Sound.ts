@@ -7,4 +7,5 @@ export type Sound = {
   select: Howl;
   adjust: Howl;
   next: Howl;
+  switch: Howl;
 };
