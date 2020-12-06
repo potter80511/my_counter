@@ -213,13 +213,18 @@ $lightOnGreen: #7df79d;
       bottom: 4px;
       .bar {
         width: 2px;
-        height: 10px;
-        background: #6cc5fb;
-        opacity: 0.2;
-        transition: all 0.3s;
+        height: 12px;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 26, 47, 1) 0%,
+          rgba(9, 129, 219, 1) 25%,
+          rgba(128, 202, 255, 1) 50%,
+          rgba(9, 129, 219, 1) 75%,
+          rgba(0, 26, 47, 1) 100%
+        );
+        opacity: 0;
         &.active {
           box-shadow: 0 0 2px #1291e0;
-          background: #76c1f0;
           opacity: 1;
         }
       }
