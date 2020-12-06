@@ -33,6 +33,14 @@
           content: '－';
         }
       }
+      &.active {
+        background: #49595f;
+        box-shadow: inset 2px 3px 2px #2f3c41;
+        &:after {
+          color: #44feff;
+          text-shadow: 0 0 5px #44feff;
+        }
+      }
     }
   }
 }

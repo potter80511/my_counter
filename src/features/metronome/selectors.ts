@@ -6,6 +6,8 @@ import {
   VoiceName,
   voiceData,
 } from 'src/features/metronome/domain/model/Metronome';
+import { Sound } from 'src/features/metronome/domain/model/Sound';
+import { Howl } from 'howler';
 
 export const settingSelector = (state: StoreState) => state.metronome.setting;
 
@@ -94,6 +96,18 @@ export const speedExpressionSelector = createSelector(speedSelector, speed => {
   if (speed > 75 && speed < 109) {
     return SpeedExpression.Andante;
   }
+  if (speed > 108 && speed < 120) {
+    return SpeedExpression.Moderato;
+  }
+  if (speed > 119 && speed < 168) {
+    return SpeedExpression.Allegro;
+  }
+  if (speed > 167 && speed < 200) {
+    return SpeedExpression.Presto;
+  }
+  if (speed > 199) {
+    return SpeedExpression.Prestissimo;
+  }
   return 'no';
 });
 
@@ -121,5 +135,34 @@ export const voiceSwitchDegSelector = createSelector(
       default:
         break;
     }
+  },
+);
+
+export const soundSelector = createSelector(
+  currentVoiceSelector,
+  ({ common, ding }): Sound => {
+    return {
+      common: new Howl({
+        src: [`/audios/metronome/${common}.mp3`],
+      }),
+      ding: new Howl({
+        src: [`/audios/metronome/${ding}.mp3`],
+      }),
+      select: new Howl({
+        src: [`/audios/metronome/beap1.mp3`],
+      }),
+      show: new Howl({
+        src: [`/audios/metronome/show.mp3`],
+      }),
+      adjust: new Howl({
+        src: [`/audios/metronome/beap2.mp3`],
+      }),
+      next: new Howl({
+        src: [`/audios/metronome/beap3.mp3`],
+      }),
+      switch: new Howl({
+        src: [`/audios/metronome/switch.mp3`],
+      }),
+    };
   },
 );

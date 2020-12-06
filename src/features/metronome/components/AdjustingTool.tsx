@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+
+import { Sound } from 'src/features/metronome/domain/model/Sound';
 import ClickNHold from 'react-click-n-hold';
 import '@styles/features/metronome/AdjustingTool.scss';
 
@@ -7,12 +9,20 @@ const pressingTime = 1;
 type AdjustingToolProp = {
   label: string;
   currentValue: string | number;
+  sound: Sound;
   onClick?: (newValue: number) => void;
 };
 
 const AdjustingTool = (props: AdjustingToolProp) => {
-  const { label, currentValue, onClick } = props;
+  const {
+    label,
+    currentValue,
+    sound: { adjust },
+    onClick,
+  } = props;
 
+  const [onLeft, setOnLeft] = useState<boolean>(false);
+  const [onRight, setOnRight] = useState<boolean>(false);
   const [longClick, setLongClick] = useState<boolean>(false);
   const [isAdding, setIsAdding] = useState<boolean>(false);
   const [temp, setTemp] = useState<boolean>(false);
@@ -38,11 +48,17 @@ const AdjustingTool = (props: AdjustingToolProp) => {
       } else {
         onClick(Number(currentValue) - 1);
       }
+      adjust.play();
       setTimeout(() => {
         setTemp(!temp);
       }, 100);
     }
   }, [temp]);
+
+  const click = (newValue: number) => {
+    adjust.play();
+    onClick(newValue);
+  };
 
   return (
     <div className="adjusting-tool">
@@ -56,8 +72,11 @@ const AdjustingTool = (props: AdjustingToolProp) => {
         >
           <button
             type="button"
-            className="add"
-            onClick={() => onClick(Number(currentValue) + 1)}
+            onClick={() => click(Number(currentValue) + 1)}
+            className={`add${onLeft ? ' active' : ''}`}
+            onMouseDown={() => setOnLeft(true)}
+            onMouseUp={() => setOnLeft(false)}
+            onTouchStart={() => setOnLeft(true)}
           >
             <span />
           </button>
@@ -65,8 +84,11 @@ const AdjustingTool = (props: AdjustingToolProp) => {
         <ClickNHold time={pressingTime} onClickNHold={clickNHold} onEnd={end}>
           <button
             type="button"
-            className="reduce"
-            onClick={() => onClick(Number(currentValue) - 1)}
+            onClick={() => click(Number(currentValue) - 1)}
+            className={`reduce${onRight ? ' active' : ''}`}
+            onMouseDown={() => setOnRight(true)}
+            onMouseUp={() => setOnRight(false)}
+            onTouchStart={() => setOnRight(true)}
           >
             <span />
           </button>
