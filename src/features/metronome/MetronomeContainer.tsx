@@ -180,8 +180,13 @@ const MetronomeContainer = () => {
             onVoiceChange={value =>
               dispatch(settingActions.voiceChanged(value))
             }
-            onVoiceNextChange={value =>
-              dispatch(settingActions.voiceNextChanged(value))
+            onVoiceNextChange={(name, backWards) =>
+              dispatch(
+                settingActions.voiceNextChanged({
+                  name,
+                  backWards,
+                }),
+              )
             }
           />
           <StartField

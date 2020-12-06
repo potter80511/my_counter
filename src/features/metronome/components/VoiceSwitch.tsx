@@ -15,8 +15,8 @@ import '@styles/features/metronome/VoiceSwitch.scss';
 type VoiceSwitchProp = {
   currentVoice: Voice;
   switchDeg: string;
-  onVoiceChange: (value: VoiceName) => void;
-  onVoiceNextChange: (value: VoiceName) => void;
+  onVoiceChange: (name: VoiceName) => void;
+  onVoiceNextChange: (name: VoiceName, backWards?: boolean) => void;
 };
 
 const VoiceSwitch = (props: VoiceSwitchProp) => {
@@ -26,8 +26,18 @@ const VoiceSwitch = (props: VoiceSwitchProp) => {
     <div className="voice-switch">
       <label>節拍器聲音</label>
       <div className="arrows">
-        <FontAwesomeIcon icon={faAngleDoubleLeft} className="left" />
-        <FontAwesomeIcon icon={faAngleDoubleRight} className="right" />
+        <button
+          type="button"
+          onClick={() => onVoiceNextChange(currentVoice.common, true)}
+        >
+          <FontAwesomeIcon icon={faAngleDoubleLeft} className="left" />
+        </button>
+        <button
+          type="button"
+          onClick={() => onVoiceNextChange(currentVoice.common)}
+        >
+          <FontAwesomeIcon icon={faAngleDoubleRight} className="right" />
+        </button>
       </div>
       <div className="switch-group">
         {voiceData.map((g, i) => {

@@ -40,7 +40,10 @@ export type CaseReducer = {
   ) => State;
   onShowTempoTypeModal: (state: State, action: PayloadAction<boolean>) => State;
   voiceChanged: (state: State, action: PayloadAction<VoiceName>) => State;
-  voiceNextChanged: (state: State, action: PayloadAction<VoiceName>) => State;
+  voiceNextChanged: (
+    state: State,
+    action: PayloadAction<{ name: VoiceName; backWards?: boolean }>,
+  ) => State;
   reset: (state: State, action: Action) => State;
 };
 
@@ -177,15 +180,31 @@ export const { actions, reducer } = createSlice<State, CaseReducer>({
         currentVoice: newVoice,
       };
     },
-    voiceNextChanged: (state: State, action: PayloadAction<VoiceName>) => {
-      const voiceIndex = voiceData.findIndex(v => v.common === action.payload);
-      const newVoice =
-        voiceIndex === voiceData.length - 1
-          ? voiceData[0]
-          : voiceData[voiceIndex + 1];
+    voiceNextChanged: (
+      state: State,
+      action: PayloadAction<{ name: VoiceName; backWards?: boolean }>,
+    ) => {
+      const { name, backWards } = action.payload;
+      const voiceIndex = voiceData.findIndex(v => v.common === name);
+      const nextIndex = backWards ? voiceIndex - 1 : voiceIndex + 1;
+
+      if (nextIndex > voiceData.length - 1) {
+        const newVoice = voiceData[0];
+        return {
+          ...state,
+          currentVoice: newVoice,
+        };
+      }
+      if (nextIndex < 0) {
+        const newVoice = voiceData[voiceData.length - 1];
+        return {
+          ...state,
+          currentVoice: newVoice,
+        };
+      }
       return {
         ...state,
-        currentVoice: newVoice,
+        currentVoice: voiceData[nextIndex],
       };
     },
     reset: () => defaultState,
