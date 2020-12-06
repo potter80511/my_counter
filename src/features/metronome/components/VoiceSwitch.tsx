@@ -10,6 +10,7 @@ import {
   faAngleDoubleRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { isMobile } from 'react-device-detect';
 
 import '@styles/features/metronome/VoiceSwitch.scss';
 
@@ -48,10 +49,16 @@ const VoiceSwitch = (props: VoiceSwitchProp) => {
           onClick={() => onVoiceNextChange(currentVoice.common, true)}
           className={onLeft ? 'active' : ''}
           onMouseDown={() => {
+            if (!isMobile) {
+              setOnLeft(true);
+              next.play();
+            }
+          }}
+          onMouseUp={() => setOnLeft(false)}
+          onTouchStart={() => {
             setOnLeft(true);
             next.play();
           }}
-          onMouseUp={() => setOnLeft(false)}
         >
           <FontAwesomeIcon icon={faAngleDoubleLeft} className="left" />
         </button>
@@ -60,10 +67,16 @@ const VoiceSwitch = (props: VoiceSwitchProp) => {
           onClick={() => onVoiceNextChange(currentVoice.common)}
           className={onRight ? 'active' : ''}
           onMouseDown={() => {
+            if (!isMobile) {
+              setOnRight(true);
+              next.play();
+            }
+          }}
+          onMouseUp={() => setOnRight(false)}
+          onTouchStart={() => {
             setOnRight(true);
             next.play();
           }}
-          onMouseUp={() => setOnRight(false)}
         >
           <FontAwesomeIcon icon={faAngleDoubleRight} className="right" />
         </button>

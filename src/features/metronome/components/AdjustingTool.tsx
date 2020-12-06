@@ -76,6 +76,7 @@ const AdjustingTool = (props: AdjustingToolProp) => {
             className={`add${onLeft ? ' active' : ''}`}
             onMouseDown={() => setOnLeft(true)}
             onMouseUp={() => setOnLeft(false)}
+            onTouchStart={() => setOnLeft(true)}
           >
             <span />
           </button>
@@ -87,6 +88,7 @@ const AdjustingTool = (props: AdjustingToolProp) => {
             className={`reduce${onRight ? ' active' : ''}`}
             onMouseDown={() => setOnRight(true)}
             onMouseUp={() => setOnRight(false)}
+            onTouchStart={() => setOnRight(true)}
           >
             <span />
           </button>
