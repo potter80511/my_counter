@@ -5,20 +5,42 @@
     font-size: 60px;
   }
   nav {
+    display: flex;
+    justify-content: center;
     a {
-      color: #fff;
-      text-decoration: none;
-      display: inline-block;
-      background: #1a8273;
-      padding: 3px 20px;
-      border-radius: 100em;
-      transition: all .3s;
-      font-size: 22px;
-      &:hover {
-        transform: scale(1.1);
-      }
       &:not(:last-child) {
-        margin-right: 10px;
+        margin-right: 36px;
+      }
+      &.nav-button {
+        width: 80px;
+        height: 80px;
+        border-radius: 15px;
+        .tip {
+          position: absolute;
+          bottom: -20px;
+          transform: translateY(100%);
+          color: white;
+          padding: 5px 15px;
+          border-radius: 8px;
+          font-size: 16px;
+          .tri {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -90%);
+            border-width: 15px 8px;
+            border-style: solid;
+          }
+        }
+      }
+      svg {
+        height: 45px;
+        font-size: 45px;
+      }
+      &.menu-metronome {
+        svg {
+          height: 78px;
+        }
       }
     }
   }
@@ -28,7 +50,40 @@
     }
     nav {
       a {
-        font-size: 16px;
+        &:not(:last-child) {
+          margin-right: 25px;
+        }
+        &.nav-button {
+          width: 50px;
+          height: 50px;
+          border-radius: 10px;
+          .tip {
+            position: absolute;
+            bottom: -20px;
+            transform: translateY(100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            .tri {
+              position: absolute;
+              top: 0;
+              left: 50%;
+              transform: translate(-50%, -90%);
+              border-width: 15px 8px;
+              border-style: solid;
+            }
+          }
+        }
+        svg {
+          height: 30px;
+          font-size: 30px;
+        }
+        &.menu-metronome {
+          svg {
+            height: 48px;
+          }
+        }
       }
     }
   }
