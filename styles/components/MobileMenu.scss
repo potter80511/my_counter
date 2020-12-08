@@ -60,7 +60,7 @@
       flex-direction: column;
       a {
         background: #1a8273;
-        border-radius: 2px;
+        border-radius: 5px;
         padding: 8px;
         width: 42px;
         height: 42px;
@@ -96,7 +96,14 @@
         background: #1692c1;
       }
       .menu-metronome {
-        background: #2d555f;
+        background: #323334;
+        text-decoration: none;
+        color: #06ccff;
+        font-size: 40px;
+        border: 1px solid #4b4f50;
+        i {
+          transform: translate(5px, 4px) rotateZ(-45deg);
+        }
         img {
           width: 25px;
         }
