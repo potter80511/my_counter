@@ -25,6 +25,12 @@ export class WeatherDataFactory {
       case WXType.CLOUDY:
         photoName = isNight ? WXBgs.CloudyNight : WXBgs.CLOUDY;
         break;
+      case WXType.RAIN:
+        photoName = WXBgs.Temp_Rain;
+        break;
+      case WXType.RAINY:
+        photoName = WXBgs.Temp_Rain;
+        break;
       case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS:
         photoName = WXBgs.MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS;
         break;
@@ -90,6 +96,12 @@ export class WeatherDataFactory {
         break;
       case WXType.CLOUDY:
         iconName = WXIcons.CLOUDY;
+        break;
+      case WXType.RAIN:
+        iconName = WXIcons.Partly_Cloud_Shower;
+        break;
+      case WXType.RAINY:
+        iconName = WXIcons.Cloud_Shower;
         break;
       case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS:
         iconName = WXIcons.Partly_Cloud_Shower;

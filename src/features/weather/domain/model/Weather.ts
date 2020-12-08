@@ -11,6 +11,8 @@ export enum WXType {
   PARTLY_CLOUDY = '多雲',
   MOSTLY_CLOUDY = '陰時多雲',
   CLOUDY = '陰',
+  RAIN = '有雨',
+  RAINY = '陰有雨',
   PARTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS = '多雲短暫陣雨',
   OCCASIONAL_SHOWERS = '短暫陣雨',
   OCCASIONAL_RAIN = '短暫雨',
