@@ -32,7 +32,7 @@ const index = () => {
             className="counter"
             icon={faStopwatch}
             tip="Counter"
-            tipColor="#0e9457"
+            tipColor="#0a8a77"
           />
           <IndexLink
             url="/weather"
