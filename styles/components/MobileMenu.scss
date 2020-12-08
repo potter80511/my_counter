@@ -91,6 +91,7 @@
       }
       .menu-counter {
         background: #313131;
+        border: 1px solid #4e5052;
       }
       .menu-weather {
         background: #1692c1;
@@ -101,8 +102,11 @@
         color: #06ccff;
         font-size: 40px;
         border: 1px solid #4b4f50;
-        i {
-          transform: translate(5px, 4px) rotateZ(-45deg);
+        svg {
+          fill: #06ccff;
+          transform: rotateZ(-45deg);
+          height: 40px;
+          position: absolute;
         }
         img {
           width: 25px;

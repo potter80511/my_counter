@@ -46,9 +46,6 @@ const Meta = (props: MetaProps) => {
       <meta property="og:site_name" content={ogsitename} />
       <meta property="og:url" content={ogurl} />
       <link rel="shortcut icon" href="/favicon.ico" />
-      {/* <link href="font/untitled-font-1.ttf" as="font" rel="preload" /> */}
-      <link href="font/untitled-font-1.woff" as="font" rel="preload" />
-      <link href="css/icons.css" rel="stylesheet" />
     </Head>
   );
 };
