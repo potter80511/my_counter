@@ -35,22 +35,22 @@ const MobileMenu = () => {
         <div className="menu-list">
           <div className="items">
             <Link href="/">
-              <a className="menu-home flex-center">
+              <a className="nav-button menu-home flex-center">
                 <FontAwesomeIcon icon={faHome} />
               </a>
             </Link>
             <Link href="/counter">
-              <a className="menu-counter flex-center">
+              <a className="nav-button menu-counter flex-center">
                 <FontAwesomeIcon icon={faStopwatch} />
               </a>
             </Link>
             <Link href="/weather">
-              <a className="menu-weather flex-center">
+              <a className="nav-button menu-weather flex-center">
                 <WeatherSvg />
               </a>
             </Link>
             <Link href="/metronome">
-              <a className="menu-metronome flex-center">
+              <a className="nav-button menu-metronome flex-center">
                 <InfinitySvg />
               </a>
             </Link>

@@ -1,6 +1,11 @@
 import React from 'react';
-import Link from 'next/link';
 import Layout from 'src/components/Layout';
+import IndexLink from 'src/features/index/IndexLink';
+
+import { faStopwatch } from '@fortawesome/free-solid-svg-icons';
+
+import WeatherSvg from 'src/components/icons/WeatherSvg';
+import InfinitySvg from 'src/components/icons/InfinitySvg';
 
 import '@styles/features/index.scss';
 
@@ -22,15 +27,29 @@ const index = () => {
       <div className="index">
         <h2>Johnny's App</h2>
         <nav>
-          <Link href="/counter">
-            <a>Counter</a>
-          </Link>
-          <Link href="/weather">
-            <a>Weather</a>
-          </Link>
-          <Link href="/metronome">
-            <a>Metronome</a>
-          </Link>
+          <IndexLink
+            url="/counter"
+            className="counter"
+            icon={faStopwatch}
+            tip="Counter"
+            tipColor="#0e9457"
+          />
+          <IndexLink
+            url="/weather"
+            className="weather"
+            tip="Weather"
+            tipColor="#daae2b"
+          >
+            <WeatherSvg />
+          </IndexLink>
+          <IndexLink
+            url="/metronome"
+            className="metronome"
+            tip="Metronome"
+            tipColor="#038caf"
+          >
+            <InfinitySvg />
+          </IndexLink>
         </nav>
       </div>
     </Layout>
