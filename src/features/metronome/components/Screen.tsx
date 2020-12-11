@@ -1,22 +1,26 @@
 import React, { useEffect } from 'react';
-import '@styles/features/metronome/Screen.scss';
 import { Metronome } from 'src/features/metronome/domain/model/Metronome';
 import { SpeedExpression } from 'src/features/metronome/domain/model/SpeedExpression';
+import '@styles/features/metronome/Screen.scss';
 
 import { actions as beatingActions } from 'src/features/metronome/slices/beatingSlice';
 import { blueLightActiveSelector } from 'src/features/metronome/selectors';
 import { useSelector, useDispatch } from 'react-redux';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const commonLightLong = 400;
 
 type ScreenProp = Metronome & {
   startStatus: boolean;
+  firstBeatHint: boolean;
   beatNumber: number;
   perBeatSeconds: number;
   maxBeatNumber: number;
   speedExpression: SpeedExpression;
   errorMessages: string;
   onShowTempoTypeModal: () => void;
+  setFirstBeatHint: (on: boolean) => void;
   onSpeedChange: (newSpeed: string) => void;
   onSpeedCheck: (newSpeed: string) => void;
   onInputFucus: () => void;
@@ -27,6 +31,7 @@ const Screen = (props: ScreenProp) => {
 
   const {
     startStatus,
+    firstBeatHint,
     timeSignature,
     beatNumber,
     perBeatSeconds,
@@ -34,6 +39,7 @@ const Screen = (props: ScreenProp) => {
     speed,
     speedExpression,
     errorMessages,
+    setFirstBeatHint,
     onShowTempoTypeModal,
     onSpeedChange,
     onSpeedCheck,
@@ -44,6 +50,7 @@ const Screen = (props: ScreenProp) => {
   const blueLightActive = useSelector(blueLightActiveSelector);
   const blueActiveClass = blueLightActive ? ' active' : '';
   const greenActiveClass = beatNumber === 1 ? ' active' : '';
+  const firstBeatHintClass = firstBeatHint ? ' on' : ' off';
 
   const barArray = Array.from(Array(maxBeatNumber).keys());
 
@@ -80,7 +87,15 @@ const Screen = (props: ScreenProp) => {
             </span>
           </div>
           <div className="speed-group">
-            <span className="speed-name">{speedExpression}</span>
+            <span className="speed-name">
+              {speedExpression}
+              <span
+                className={`bell${firstBeatHintClass}`}
+                onClick={() => setFirstBeatHint(!firstBeatHint)}
+              >
+                <FontAwesomeIcon icon={faBell} />
+              </span>
+            </span>
             <span className="speed">
               <input
                 value={speed}

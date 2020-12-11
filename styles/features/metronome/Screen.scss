@@ -45,6 +45,7 @@ $lightOnGreen: #7df79d;
 
 @keyframes greenLightsOn {
   0% {
+    opacity: 0.3;
     box-shadow: 0 0 5px black;
   }
 
@@ -53,7 +54,51 @@ $lightOnGreen: #7df79d;
   }
 
   100% {
+    opacity: 1;
     box-shadow: 0 0 5px black;
+  }
+}
+
+@keyframes scaleBounceOn {
+  0% {
+    transform: scale(0.9, 0.9);
+  }
+
+  25% {
+    transform: scale(1.5, 1.5);
+  }
+
+  50% {
+    transform: scale(1, 1) rotateZ(60deg);
+  }
+
+  75% {
+    transform: rotateZ(-60deg);
+  }
+
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+@keyframes scaleBounceOff {
+  0% {
+    transform: scale(0.9, 0.9);
+  }
+
+  25% {
+    transform: scale(1.5, 1.5);
+  }
+
+  50% {
+    transform: scale(1, 1) rotateZ(60deg);
+  }
+
+  75% {
+    transform: rotateZ(-60deg);
+  }
+
+  100% {
+    transform: rotateZ(0deg);
   }
 }
 
@@ -132,6 +177,23 @@ $lightOnGreen: #7df79d;
       text-align: right;
       .speed-name {
         margin-bottom: 20px;
+        .bell {
+          margin-left: 10px;
+          display: inline-block;
+          cursor: pointer;
+          svg {
+            height: 20px;
+            color: #f7d71a;
+          }
+          &.on {
+            opacity: 1;
+            animation: scaleBounceOn 0.3s ease-in-out;
+          }
+          &.off {
+            opacity: 0.3;
+            animation: scaleBounceOff 0.3s ease-in-out;
+          }
+        }
       }
       .speed {
         position: relative;

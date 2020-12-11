@@ -13,6 +13,7 @@ import {
   settingSelector,
   timeSignatureSelector,
   showTempoTypeModalSelector,
+  firstBeatHintSelector,
   currentTimeSignatureIndexSelector,
   computedTimeSignatureSelector,
   perBeatSecondsSelector,
@@ -39,6 +40,7 @@ const MetronomeContainer = () => {
   const setting = useSelector(settingSelector);
   const timeSignature = useSelector(timeSignatureSelector);
   const showTempoTypeModal = useSelector(showTempoTypeModalSelector);
+  const firstBeatHint = useSelector(firstBeatHintSelector);
   const currentTimeSignatureIndex = useSelector(
     currentTimeSignatureIndexSelector,
   );
@@ -119,13 +121,14 @@ const MetronomeContainer = () => {
 
   useEffect(() => {
     dispatch(settingActions.setLocalStorage());
-  }, [timeSignature, setting.originalSpeed, currentVoice]);
+  }, [timeSignature, setting.originalSpeed, currentVoice, firstBeatHint]);
 
   return (
     <div className="metronome">
       <div className="metronome-head">
         <Screen
           startStatus={startStatus}
+          firstBeatHint={firstBeatHint}
           beatNumber={beatNumber}
           perBeatSeconds={perBeatSeconds}
           maxBeatNumber={maxBeatNumber}
@@ -136,6 +139,10 @@ const MetronomeContainer = () => {
           onShowTempoTypeModal={() =>
             dispatch(settingActions.onShowTempoTypeModal(true))
           }
+          setFirstBeatHint={on => {
+            sound.bubble.play();
+            dispatch(settingActions.setFirstBeatHint(on));
+          }}
           onSpeedChange={newValue =>
             dispatch(settingActions.update({ speed: newValue }))
           }
@@ -158,6 +165,14 @@ const MetronomeContainer = () => {
       <div className="metronome-body">
         <div className="adjusting-tools">
           <AdjustingTool
+            label="拍子"
+            currentValue={currentTimeSignatureIndex}
+            sound={sound}
+            onClick={newValue =>
+              dispatch(settingActions.adjustedTimeSignature(newValue))
+            }
+          />
+          <AdjustingTool
             label="速度"
             currentValue={setting.speed}
             sound={sound}
@@ -165,14 +180,6 @@ const MetronomeContainer = () => {
               dispatch(settingActions.update({ speed: String(newValue) }));
               dispatch(settingActions.onBlurChecked(String(newValue)));
             }}
-          />
-          <AdjustingTool
-            label="拍子"
-            currentValue={currentTimeSignatureIndex}
-            sound={sound}
-            onClick={newValue =>
-              dispatch(settingActions.adjustedTimeSignature(newValue))
-            }
           />
         </div>
         <div className="other-tools">

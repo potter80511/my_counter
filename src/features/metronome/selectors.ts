@@ -27,6 +27,11 @@ export const showTempoTypeModalSelector = createSelector(
   ({ showTempoTypeModal }) => showTempoTypeModal,
 );
 
+export const firstBeatHintSelector = createSelector(
+  settingSelector,
+  ({ firstBeatHint }) => firstBeatHint,
+);
+
 export const currentTimeSignatureIndexSelector = createSelector(
   timeSignatureSelector,
   timeSignature => timeSignatureData.findIndex(item => item === timeSignature),
@@ -140,13 +145,14 @@ export const voiceSwitchDegSelector = createSelector(
 
 export const soundSelector = createSelector(
   currentVoiceSelector,
-  ({ common, ding }): Sound => {
+  firstBeatHintSelector,
+  ({ common, ding }, firstBeatHint): Sound => {
     return {
       common: new Howl({
         src: [`/audios/metronome/${common}.mp3`],
       }),
       ding: new Howl({
-        src: [`/audios/metronome/${ding}.mp3`],
+        src: [`/audios/metronome/${firstBeatHint ? ding : common}.mp3`],
       }),
       select: new Howl({
         src: [`/audios/metronome/beap1.mp3`],
@@ -155,13 +161,16 @@ export const soundSelector = createSelector(
         src: [`/audios/metronome/show.mp3`],
       }),
       adjust: new Howl({
-        src: [`/audios/metronome/beap2.mp3`],
+        src: [`/audios/metronome/click.mp3`],
       }),
       next: new Howl({
         src: [`/audios/metronome/beap3.mp3`],
       }),
       switch: new Howl({
         src: [`/audios/metronome/switch.mp3`],
+      }),
+      bubble: new Howl({
+        src: [`/audios/metronome/bubble.mp3`],
       }),
     };
   },
