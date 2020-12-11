@@ -10,7 +10,7 @@ export enum VoiceName {
   Voice2 = 'low_frequency',
   Voice3 = 'voice4',
   Voice4 = 'voice5',
-  Voice5 = 'bubble',
+  Voice5 = 'beap2',
 }
 
 export enum DingName {
@@ -18,7 +18,7 @@ export enum DingName {
   Ding2 = 'glass_ding',
   Ding3 = 'ding3',
   Ding4 = 'voice4',
-  Ding5 = 'bubble',
+  Ding5 = 'beap2',
 }
 
 export type Voice = {
@@ -34,22 +34,22 @@ export const voiceData: Voice[] = [
     ding: DingName.Ding1,
   },
   {
-    label: '碗+木魚',
+    label: '木魚',
     common: VoiceName.Voice2,
     ding: DingName.Ding2,
   },
   {
-    label: '玻璃杯+節拍器',
+    label: '普通節拍器1',
     common: VoiceName.Voice3,
     ding: DingName.Ding3,
   },
   {
-    label: '普通節拍器',
+    label: '普通節拍器2',
     common: VoiceName.Voice4,
     ding: DingName.Ding4,
   },
   {
-    label: '泡泡',
+    label: '電子聲',
     common: VoiceName.Voice5,
     ding: DingName.Ding5,
   },
