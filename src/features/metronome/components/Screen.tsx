@@ -50,7 +50,7 @@ const Screen = (props: ScreenProp) => {
   const blueLightActive = useSelector(blueLightActiveSelector);
   const blueActiveClass = blueLightActive ? ' active' : '';
   const greenActiveClass = beatNumber === 1 ? ' active' : '';
-  const firstBeatHintClass = firstBeatHint ? ' on' : '';
+  const firstBeatHintClass = firstBeatHint ? ' on' : ' off';
 
   const barArray = Array.from(Array(maxBeatNumber).keys());
 

@@ -139,7 +139,10 @@ const MetronomeContainer = () => {
           onShowTempoTypeModal={() =>
             dispatch(settingActions.onShowTempoTypeModal(true))
           }
-          setFirstBeatHint={on => dispatch(settingActions.setFirstBeatHint(on))}
+          setFirstBeatHint={on => {
+            sound.bubble.play();
+            dispatch(settingActions.setFirstBeatHint(on));
+          }}
           onSpeedChange={newValue =>
             dispatch(settingActions.update({ speed: newValue }))
           }

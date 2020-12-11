@@ -8,4 +8,5 @@ export type Sound = {
   adjust: Howl;
   next: Howl;
   switch: Howl;
+  bubble: Howl;
 };

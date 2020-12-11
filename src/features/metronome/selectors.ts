@@ -169,6 +169,9 @@ export const soundSelector = createSelector(
       switch: new Howl({
         src: [`/audios/metronome/switch.mp3`],
       }),
+      bubble: new Howl({
+        src: [`/audios/metronome/bubble.mp3`],
+      }),
     };
   },
 );
