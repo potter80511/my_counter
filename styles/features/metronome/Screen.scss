@@ -132,6 +132,20 @@ $lightOnGreen: #7df79d;
       text-align: right;
       .speed-name {
         margin-bottom: 20px;
+        .bell {
+          margin-left: 10px;
+          display: inline-block;
+          cursor: pointer;
+          opacity: 0.3;
+          transition: all 0.2s;
+          svg {
+            height: 15px;
+            color: #f7d71a;
+          }
+          &.on {
+            opacity: 1;
+          }
+        }
       }
       .speed {
         position: relative;

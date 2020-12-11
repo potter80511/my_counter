@@ -16,6 +16,7 @@ export type State = Metronome & {
   originalSpeed: string;
   errorMessages: string;
   showTempoTypeModal: boolean;
+  firstBeatHint: boolean;
   currentVoice: Voice;
 };
 
@@ -25,6 +26,7 @@ export const defaultState: State = {
   originalSpeed: '80',
   errorMessages: '',
   showTempoTypeModal: false,
+  firstBeatHint: false,
   currentVoice: voiceData[0],
 };
 
@@ -39,6 +41,7 @@ export type CaseReducer = {
     action: PayloadAction<TimeSignature>,
   ) => State;
   onShowTempoTypeModal: (state: State, action: PayloadAction<boolean>) => State;
+  setFirstBeatHint: (state: State, action: PayloadAction<boolean>) => State;
   voiceChanged: (state: State, action: PayloadAction<VoiceName>) => State;
   voiceNextChanged: (
     state: State,
@@ -63,6 +66,7 @@ export const { actions, reducer } = createSlice<State, CaseReducer>({
         speed,
         originalSpeed,
         currentVoice,
+        firstBeatHint,
       } = metronome_settings;
       return {
         ...state,
@@ -70,10 +74,17 @@ export const { actions, reducer } = createSlice<State, CaseReducer>({
         speed,
         originalSpeed,
         currentVoice,
+        firstBeatHint,
       };
     },
     setLocalStorage: (state, _action) => {
-      const { timeSignature, speed, originalSpeed, currentVoice } = state;
+      const {
+        timeSignature,
+        speed,
+        originalSpeed,
+        currentVoice,
+        firstBeatHint,
+      } = state;
 
       const metronome_settings: any = localStorage.getItem('metronome_settings')
         ? JSON.parse(localStorage.getItem('metronome_settings'))
@@ -84,6 +95,7 @@ export const { actions, reducer } = createSlice<State, CaseReducer>({
         speed,
         originalSpeed,
         currentVoice,
+        firstBeatHint,
       };
 
       localStorage.setItem('metronome_settings', JSON.stringify(newSettings));
@@ -171,6 +183,12 @@ export const { actions, reducer } = createSlice<State, CaseReducer>({
       return {
         ...state,
         showTempoTypeModal: action.payload,
+      };
+    },
+    setFirstBeatHint: (state: State, action: PayloadAction<boolean>) => {
+      return {
+        ...state,
+        firstBeatHint: action.payload,
       };
     },
     voiceChanged: (state: State, action: PayloadAction<VoiceName>) => {

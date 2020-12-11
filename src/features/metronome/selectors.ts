@@ -27,6 +27,11 @@ export const showTempoTypeModalSelector = createSelector(
   ({ showTempoTypeModal }) => showTempoTypeModal,
 );
 
+export const firstBeatHintSelector = createSelector(
+  settingSelector,
+  ({ firstBeatHint }) => firstBeatHint,
+);
+
 export const currentTimeSignatureIndexSelector = createSelector(
   timeSignatureSelector,
   timeSignature => timeSignatureData.findIndex(item => item === timeSignature),
