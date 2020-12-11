@@ -90,7 +90,7 @@ $lightOnGreen: #7df79d;
   }
 
   50% {
-    transform: scale(1, 1) rotateZ(60deg);
+    transform: scale(0.8, 0.8) rotateZ(60deg);
   }
 
   75% {
@@ -177,12 +177,15 @@ $lightOnGreen: #7df79d;
       text-align: right;
       .speed-name {
         margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         .bell {
           margin-left: 10px;
           display: inline-block;
           cursor: pointer;
           svg {
-            height: 20px;
+            height: 25px;
             color: #f7d71a;
           }
           &.on {
@@ -191,6 +194,7 @@ $lightOnGreen: #7df79d;
           }
           &.off {
             opacity: 0.3;
+            transform: scale(0.9, 0.9);
             animation: scaleBounceOff 0.3s ease-in-out;
           }
         }
