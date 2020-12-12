@@ -186,13 +186,14 @@ $lightOnGreen: #7df79d;
           cursor: pointer;
           svg {
             height: 25px;
-            color: #fded8e;
           }
           &.on {
+            color: #dac965;
             opacity: 1;
             animation: scaleBounceOn 0.3s ease-in-out;
           }
           &.off {
+            color: #ece9d1;
             opacity: 0.3;
             transform: scale(0.9, 0.9);
             animation: scaleBounceOff 0.3s ease-in-out;

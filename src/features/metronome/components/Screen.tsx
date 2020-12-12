@@ -79,7 +79,7 @@ const Screen = (props: ScreenProp) => {
                 <>{beatNumber}</>
               ) : (
                 <span className="please-choose">
-                  點擊
+                  點擊 &nbsp;↑
                   <br />
                   選定拍號
                 </span>
