@@ -179,20 +179,21 @@ $lightOnGreen: #7df79d;
         margin-bottom: 20px;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-end;
         .bell {
           margin-left: 10px;
           display: inline-block;
           cursor: pointer;
           svg {
             height: 25px;
-            color: #f7d71a;
           }
           &.on {
+            color: #eadd8d;
             opacity: 1;
             animation: scaleBounceOn 0.3s ease-in-out;
           }
           &.off {
+            color: #ece9d1;
             opacity: 0.3;
             transform: scale(0.9, 0.9);
             animation: scaleBounceOff 0.3s ease-in-out;

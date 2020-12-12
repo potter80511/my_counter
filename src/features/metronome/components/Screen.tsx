@@ -79,7 +79,7 @@ const Screen = (props: ScreenProp) => {
                 <>{beatNumber}</>
               ) : (
                 <span className="please-choose">
-                  點擊
+                  點擊 &nbsp;↑
                   <br />
                   選定拍號
                 </span>
@@ -105,6 +105,12 @@ const Screen = (props: ScreenProp) => {
                 onBlur={({ currentTarget }) =>
                   onSpeedCheck(currentTarget.value)
                 }
+                onKeyUp={event => {
+                  if (event.key === 'Enter') {
+                    onSpeedCheck(event.currentTarget.value);
+                    event.currentTarget.blur();
+                  }
+                }}
                 onFocus={onInputFucus}
               />
               {errorMessages && (
