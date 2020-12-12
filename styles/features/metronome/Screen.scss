@@ -179,7 +179,7 @@ $lightOnGreen: #7df79d;
         margin-bottom: 20px;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-end;
         .bell {
           margin-left: 10px;
           display: inline-block;
@@ -188,7 +188,7 @@ $lightOnGreen: #7df79d;
             height: 25px;
           }
           &.on {
-            color: #dac965;
+            color: #eadd8d;
             opacity: 1;
             animation: scaleBounceOn 0.3s ease-in-out;
           }

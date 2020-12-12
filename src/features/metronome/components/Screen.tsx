@@ -105,6 +105,12 @@ const Screen = (props: ScreenProp) => {
                 onBlur={({ currentTarget }) =>
                   onSpeedCheck(currentTarget.value)
                 }
+                onKeyUp={event => {
+                  if (event.key === 'Enter') {
+                    onSpeedCheck(event.currentTarget.value);
+                    event.currentTarget.blur();
+                  }
+                }}
                 onFocus={onInputFucus}
               />
               {errorMessages && (
