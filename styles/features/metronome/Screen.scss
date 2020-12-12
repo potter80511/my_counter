@@ -1,0 +1,300 @@
+$lightOnBlue: #61caf7;
+$lightOnGreen: #7df79d;
+
+@keyframes fadeOutSlowly {
+  0% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes lightsOn {
+  0% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes blueLightsOn {
+  0% {
+    box-shadow: 0 0 5px black;
+  }
+
+  50% {
+    box-shadow: 0 0 5px $lightOnBlue;
+  }
+
+  100% {
+    box-shadow: 0 0 5px black;
+  }
+}
+
+@keyframes greenLightsOn {
+  0% {
+    opacity: 0.3;
+    box-shadow: 0 0 5px black;
+  }
+
+  50% {
+    box-shadow: 0 0 5px $lightOnGreen;
+  }
+
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 5px black;
+  }
+}
+
+@keyframes scaleBounceOn {
+  0% {
+    transform: scale(0.9, 0.9);
+  }
+
+  25% {
+    transform: scale(1.5, 1.5);
+  }
+
+  50% {
+    transform: scale(1, 1) rotateZ(60deg);
+  }
+
+  75% {
+    transform: rotateZ(-60deg);
+  }
+
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+@keyframes scaleBounceOff {
+  0% {
+    transform: scale(0.9, 0.9);
+  }
+
+  25% {
+    transform: scale(1.5, 1.5);
+  }
+
+  50% {
+    transform: scale(0.8, 0.8) rotateZ(60deg);
+  }
+
+  75% {
+    transform: rotateZ(-60deg);
+  }
+
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+
+.screen {
+  background-color: #111;
+  border: 2px solid;
+  border-color: transparent #555 #555 transparent;
+  border-radius: 4px;
+  .screen-inner {
+    border-radius: 3px;
+    padding: 5px 15px;
+    border: 1px solid;
+    border-color: #333 transparent transparent #333;
+  }
+  .screen-head {
+    display: flex;
+    justify-content: space-between;
+    span {
+      display: block;
+    }
+    .tempo-group {
+      .tempo {
+        margin-bottom: 15px;
+      }
+      .play-status {
+        margin-left: 10px;
+        &.start {
+          width: 0;
+          height: 0;
+          border-width: 4px 7px;
+          border-style: solid;
+          border-color: transparent transparent transparent #3fea6c;
+        }
+        &.stop {
+          width: 5px;
+          height: 5px;
+          background-color: red;
+        }
+      }
+    }
+    .time-signature {
+      span {
+        text-align: center;
+      }
+      .signature {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 15px;
+        > span {
+          border-radius: 3px;
+          transition: all 0.3s;
+          padding: 2px 20px 2px 5px;
+          &:hover {
+            background-color: #222;
+            cursor: default;
+          }
+        }
+        &:after {
+          content: '';
+          border-width: 10px 5px;
+          border-style: solid;
+          border-color: white transparent transparent transparent;
+          position: absolute;
+          right: 5px;
+          top: 5px;
+          pointer-events: none;
+        }
+      }
+      .beat-number {
+        .please-choose {
+          font-size: 14px;
+        }
+      }
+    }
+    .speed-group {
+      text-align: right;
+      .speed-name {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        .bell {
+          margin-left: 10px;
+          display: inline-block;
+          cursor: pointer;
+          svg {
+            height: 25px;
+          }
+          &.on {
+            color: #eadd8d;
+            opacity: 1;
+            animation: scaleBounceOn 0.3s ease-in-out;
+          }
+          &.off {
+            color: #ece9d1;
+            opacity: 0.3;
+            transform: scale(0.9, 0.9);
+            animation: scaleBounceOff 0.3s ease-in-out;
+          }
+        }
+      }
+      .speed {
+        position: relative;
+        padding-bottom: 20px;
+        width: 120px;
+        input {
+          font-size: 30px;
+          color: #fff;
+          width: 70px;
+          text-align: right;
+          border: none;
+          background: none;
+          border-radius: 3px;
+          padding-right: 5px;
+          transition: all 0.3s;
+          &:hover,
+          &:focus {
+            outline: none;
+            background: #222;
+          }
+        }
+        .error-messages {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          font-size: 9px;
+          color: red;
+          opacity: 0;
+          animation: fadeOutSlowly 2s ease-in-out;
+        }
+      }
+    }
+  }
+  .beating-lights {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0;
+    .left-light,
+    .right-light {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      box-shadow: 0 0 5px black;
+      opacity: 0.5;
+      position: relative;
+      transition: all 0.3s;
+      &.active {
+        animation-iteration-count: forwards;
+      }
+      &:after {
+        content: '';
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: white;
+        opacity: 0.5;
+        position: absolute;
+        right: 4px;
+        top: 1px;
+      }
+    }
+    .left-light {
+      background-color: #58beea;
+      &.active {
+        animation-name: lightsOn, blueLightsOn;
+      }
+    }
+    .right-light {
+      background-color: #3fea6c;
+      &.active {
+        animation-name: lightsOn, greenLightsOn;
+      }
+    }
+    .lights {
+      flex: 1;
+      display: flex;
+      justify-content: space-around;
+      position: relative;
+      bottom: 4px;
+      .bar {
+        width: 1px;
+        height: 12px;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 26, 47, 1) 0%,
+          rgba(9, 129, 219, 1) 25%,
+          rgba(128, 202, 255, 1) 50%,
+          rgba(9, 129, 219, 1) 75%,
+          rgba(0, 26, 47, 1) 100%
+        );
+        opacity: 0;
+        &.active {
+          box-shadow: 0 0 2px #1291e0;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

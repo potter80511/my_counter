@@ -11,7 +11,8 @@ h1 {
   font-size: 40px;
   font-weight: bold;
 }
-button, select {
+button,
+select {
   &:focus {
     outline: none;
   }
@@ -42,4 +43,45 @@ button {
   text-align: center;
   margin: 0 0 30px;
   color: #8d8d92;
+}
+
+.nav-button {
+  border-radius: 5px;
+  padding: 8px;
+  width: 42px;
+  height: 42px;
+  position: relative;
+  transition: all 0.3s;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  &:hover {
+    transform: scale(1.2);
+  }
+  svg {
+    color: #fff;
+    height: 22px;
+    font-size: 22px;
+  }
+  &.menu-home {
+    background: #1a8273;
+  }
+  &.menu-counter {
+    background: #313131;
+    border: 1px solid #4e5052;
+  }
+  &.menu-weather {
+    background: #1692c1;
+  }
+  &.menu-metronome {
+    background: #323334;
+    text-decoration: none;
+    color: #06ccff;
+    font-size: 40px;
+    border: 1px solid #4b4f50;
+    svg {
+      fill: #06ccff;
+      transform: rotateZ(-45deg);
+      height: 40px;
+      position: absolute;
+    }
+  }
 }

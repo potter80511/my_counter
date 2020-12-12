@@ -1,0 +1,46 @@
+.adjusting-tool {
+  max-width: 150px;
+  label {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #aaa;
+  }
+  .tool-buttons {
+    display: flex;
+    justify-content: center;
+    button {
+      width: 60px;
+      height: 60px;
+      padding: 0;
+      border-radius: 50%;
+      border: 2px solid #111;
+      font-size: 0;
+      text-shadow: 1px 1px 1px #888;
+      box-shadow: inset 1px 1px 0 #888;
+      &:first-child {
+        margin-right: 10px;
+      }
+      &:after {
+        font-size: 32px;
+      }
+      &.add {
+        &:after {
+          content: '＋';
+        }
+      }
+      &.reduce {
+        &:after {
+          content: '－';
+        }
+      }
+      &.active {
+        background: #49595f;
+        box-shadow: inset 2px 3px 2px #2f3c41;
+        &:after {
+          color: #44feff;
+          text-shadow: 0 0 5px #44feff;
+        }
+      }
+    }
+  }
+}

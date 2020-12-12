@@ -17,7 +17,7 @@ const meta = {
 
 const weather = () => {
   return (
-    <Layout id={'weather'} meta={meta} className="flex-center">
+    <Layout id="weather" meta={meta} className="flex-center">
       <WeatherContainer />
     </Layout>
   );

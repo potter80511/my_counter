@@ -1,48 +1,50 @@
-
+// fade
 .fade-appear {
   opacity: 0;
 }
 .fade-appear-active {
   opacity: 1;
-  transition: opacity .3s;
+  transition: opacity 0.3s;
 }
 .fade-enter {
   opacity: 0;
 }
 .fade-enter-active {
   opacity: 1;
-  transition: opacity .3s;
+  transition: opacity 0.3s;
 }
 .fade-exit {
   opacity: 1;
 }
 .fade-exit-active {
   opacity: 0;
-  transition: opacity .3s;
+  transition: opacity 0.3s;
 }
 
+// slideInCenterUp
 .slideInCenterUp-appear {
-  bottom: -30% !important;
+  bottom: -50% !important;
 }
 .slideInCenterUp-appear-active {
   bottom: 50% !important;
-  transition: all .6s;
+  transition: all 0.6s;
 }
 .slideInCenterUp-enter {
-  bottom: -30% !important;
+  bottom: -50% !important;
 }
 .slideInCenterUp-enter-active {
   bottom: 50% !important;
-  transition: all .6s;
+  transition: all 0.6s;
 }
 .slideInCenterUp-exit {
   bottom: 50% !important;
 }
 .slideInCenterUp-exit-active {
-  bottom: -30% !important;
-  transition: all .6s;
+  bottom: -50% !important;
+  transition: all 0.6s;
 }
 
+// slideFadeInUp
 .slideFadeInUp-enter {
   transform: translateY(100%);
   opacity: 0;
@@ -50,7 +52,7 @@
 .slideFadeInUp-enter-active {
   transform: translateY(0);
   opacity: 1;
-  transition: all .6s;
+  transition: all 0.6s;
 }
 .slideFadeInUp-exit {
   transform: translateY(0);
@@ -59,20 +61,21 @@
 .slideFadeInUp-exit-active {
   transform: translateY(100%);
   opacity: 0;
-  transition: all .5s linear;
+  transition: all 0.5s linear;
 }
 
+// slideInUp
 .slideInUp-enter {
   transform: translateY(100%);
 }
 .slideInUp-enter-active {
   transform: translateY(0);
-  transition: all .5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 .slideInUp-exit {
   transform: translateY(0);
 }
 .slideInUp-exit-active {
   transform: translateY(100%);
-  transition: all .5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
