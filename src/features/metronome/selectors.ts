@@ -163,7 +163,7 @@ export const soundSelector = createSelector(
       }),
       adjust: new Howl({
         src: [`/audios/metronome/click.mp3`],
-        volume: 0.09,
+        volume: 0.03,
       }),
       next: new Howl({
         src: [`/audios/metronome/beap3.mp3`],
