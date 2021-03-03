@@ -7,6 +7,7 @@ export enum WXIcons {
   Sunny_Cloud = 'sunny_cloud',
   CLOUD = 'cloud',
   CLOUDY = 'cloudy',
+  Mostly_cloudy = 'cloudy',
   Two_White_Cloud = '2_white_cloud',
   Cloud_Thunder_Shower = 'cloud_thunder_shower',
   Cloudy_Shower = 'cloudy_shower',
