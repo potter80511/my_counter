@@ -94,7 +94,13 @@ export class WeatherDataFactory {
       case WXType.MOSTLY_CLOUDY:
         iconName = WXIcons.Two_White_Cloud;
         break;
+      case WXType.MOSTLY_CLOUDY2:
+        iconName = WXIcons.CLOUDY;
+        break;
       case WXType.CLOUDY:
+        iconName = WXIcons.CLOUDY;
+        break;
+      case WXType.CLOUDY_DAY:
         iconName = WXIcons.CLOUDY;
         break;
       case WXType.RAIN:
@@ -115,6 +121,9 @@ export class WeatherDataFactory {
       case WXType.CLOUDY_WITH_OCCASIONAL_RAIN:
         iconName = WXIcons.Cloud_Shower;
         break;
+      case WXType.CLOUDY_WITH_OCCASIONAL_SHOWERS:
+        iconName = WXIcons.Cloudy_Shower;
+        break;
       case WXType.MOSTLY_CLOUDY_WITH_OCCASIONAL_RAIN:
         iconName = WXIcons.Cloudy_Shower;
         break;
@@ -128,6 +137,9 @@ export class WeatherDataFactory {
         iconName = WXIcons.Cloud_Thunder_Shower;
         break;
       case WXType.MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS:
+        iconName = WXIcons.Cloudy_Shower;
+        break;
+      case WXType.MOSTLY_CLOUDY_WITH_OCCASIONAL_SHOWERS2:
         iconName = WXIcons.Cloudy_Shower;
         break;
       case WXType.PARTLY_CLOUDY_WITH_OCCASIONAL_AFTERNOON_THUNDERSHOWERS:
