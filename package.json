@@ -28,7 +28,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.4",
     "howler": "^2.2.0",
-    "moment": "^2.27.0",
+    "moment": "^2.29.2",
     "next": "^9.5.0",
     "next-compose-plugins": "^2.2.0",
     "node-sass": "^4.14.1",
