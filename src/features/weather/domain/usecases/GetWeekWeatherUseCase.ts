@@ -25,7 +25,7 @@ export class GetWeekWeatherUseCase implements GetWeekWeather.UseCase {
         : 'F-D0047-091';
 
     this.fetcher.get(
-      `https://opendata.cwb.gov.tw/api/v1/rest/datastore/${seriesNumber}`,
+      `https://opendata.cwa.gov.tw/api/v1/rest/datastore/${seriesNumber}`,
       {
         onSuccess: result => {
           const weekTemperatureArray = WeekWeatherDataFactory.createWeekDataFromNet(
